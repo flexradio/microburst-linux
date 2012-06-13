@@ -39,10 +39,7 @@
 #include "davinci-i2s.h"
 #include "davinci-mcasp.h"
 
-//#define AUDIO_FORMAT (SND_SOC_DAIFMT_DSP_B |			\
-//		SND_SOC_DAIFMT_CBM_CFM | SND_SOC_DAIFMT_IB_NF)
-
-#define AUDIO_FORMAT (SND_SOC_DAIFMT_I2S | \
+#define AUDIO_FORMAT (SND_SOC_DAIFMT_LEFT_J |			\
 		SND_SOC_DAIFMT_NB_NF | SND_SOC_DAIFMT_CBM_CFM)
 
 static int microburst_hw_params(struct snd_pcm_substream *substream,
@@ -56,6 +53,7 @@ static int microburst_hw_params(struct snd_pcm_substream *substream,
 
 	sysclk = 24576000;
 
+	printk("*** microburst.c: Enter microburst_hw_params ***\n");
 	/* set codec DAI configuration */
 	ret = snd_soc_dai_set_fmt(codec_dai, AUDIO_FORMAT);
 	if (ret < 0)
@@ -66,8 +64,14 @@ static int microburst_hw_params(struct snd_pcm_substream *substream,
 	if (ret < 0)
 		return ret;
 
-	/* set the codec system clock */
-	ret = snd_soc_dai_set_sysclk(codec_dai, 0, sysclk, SND_SOC_CLOCK_OUT);
+	/* Set up for clock input on MCLK */
+	ret = snd_soc_dai_set_sysclk(codec_dai, ADAU17X1_CLK_SRC_MCLK, sysclk,
+			SND_SOC_CLOCK_IN);
+	if (ret < 0)
+		return ret;
+
+	/* Set clock divider, div_id (0) argument ignored */
+	ret = snd_soc_dai_set_clkdiv(codec_dai, 0, 1);
 	if (ret < 0)
 		return ret;
 

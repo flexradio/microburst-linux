@@ -270,6 +270,7 @@ static int adau17x1_hw_params(struct snd_pcm_substream *substream,
 	unsigned int val, div, dsp_div;
 	unsigned int freq;
 
+	printk("*** adau17x1.c: Enter adau17x1_hw_params ***\n");
 	if (adau->clk_src == ADAU17X1_CLK_SRC_PLL)
 		freq = adau->pll_freq;
 	else
@@ -428,6 +429,7 @@ static int adau17x1_set_dai_clkdiv(struct snd_soc_dai *dai, int div_id, int div)
 {
 	struct adau *adau = snd_soc_codec_get_drvdata(dai->codec);
 
+	printk("*** adau17x1c: Enter adau17x1_set_dai_clkdiv ***\n");
 	switch (div) {
 	case 1:
 	case 2:
