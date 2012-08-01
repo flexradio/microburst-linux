@@ -207,7 +207,7 @@ static inline void ti816x_gpio_vr_init(void) {}
 
 static struct i2c_board_info __initdata ti816x_i2c_boardinfo0[] = {
 	{
-	  I2C_BOARD_INFO("adau1761", 0x70), // codec
+	  I2C_BOARD_INFO("adau1761", 0x38), // codec
 	},
 /*
 	{

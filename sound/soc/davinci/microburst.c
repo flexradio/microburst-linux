@@ -168,7 +168,7 @@ static struct snd_soc_dai_link ti81xx_evm_dai[] = {
 		.cpu_dai_name = "davinci-mcasp.2",
 		.codec_dai_name = "adau-hifi",
 		.platform_name = "davinci-pcm-audio",
-		.codec_name = "adau1761.1-0070",
+		.codec_name = "adau1761.1-0038",
 		.init = evm_adau1761_init,
 		.ops = &microburst_ops,
 	},
