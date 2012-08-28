@@ -209,39 +209,20 @@ static struct i2c_board_info __initdata ti816x_i2c_boardinfo0[] = {
 	{
 	  I2C_BOARD_INFO("adau1761", 0x38), // codec
 	},
-/*
-	{
-	  I2C_BOARD_INFO("R5H30211", 0x22), // MCU
-	},
-	{
-	  I2C_BOARD_INFO("M24C64", 0x20), //eeprom
-	},
-*/
-	/* Not present yet
-	{
-		I2C_BOARD_INFO("CY8C3446AX1", 0x04),
-	},
-	{
-		I2C_BOARD_INFO("CY8C3446AX2", 0x08),
-	},
-	*/
 };
 
-/* For future device expansion
 static struct i2c_board_info __initdata ti816x_i2c_boardinfo1[] = {
-// PCA9517 hub   N/A
 	{
-		I2C_BOARD_INFO("xyzzy", 0x39),
+		I2C_BOARD_INFO("xyzzy", 0x19),
 	},
 };
-*/
 
 static int __init ti816x_evm_i2c_init(void)
 {
 	omap_register_i2c_bus(1, 100, ti816x_i2c_boardinfo0,
 		ARRAY_SIZE(ti816x_i2c_boardinfo0));
-	//omap_register_i2c_bus(2, 100, ti816x_i2c_boardinfo1,
-	//	ARRAY_SIZE(ti816x_i2c_boardinfo1));
+	omap_register_i2c_bus(2, 100, ti816x_i2c_boardinfo1,
+		ARRAY_SIZE(ti816x_i2c_boardinfo1));
 	return 0;
 }
 
