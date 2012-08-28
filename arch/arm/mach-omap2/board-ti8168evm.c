@@ -28,7 +28,7 @@
 #include <linux/phy_fixed.h>
 #include <linux/gpio.h>
 #include <linux/regulator/machine.h>
-#include <linux/regulator/gpio-regulator.h>
+#include <linux/regulator/mburst-regulator.h>
 
 #include <mach/hardware.h>
 #include <asm/mach-types.h>
@@ -139,109 +139,74 @@ static struct mtd_partition ti816x_nand_partitions[] = {
 	},
 };
 
-#ifdef CONFIG_REGULATOR_GPIO
-static struct regulator_consumer_supply ti816x_gpio_dcdc_supply[] = {
+#ifdef CONFIG_REGULATOR_MBURST
+static struct regulator_consumer_supply ti816x_i2c_supply[] = {
 	{
 		.supply = "vdd_avs",
 	},
 };
 
-static struct regulator_init_data gpio_pmic_init_data = {
+static struct regulator_init_data i2c_vr_init_data = {
 	.constraints = {
 		.min_uV		= 800000,
 		.max_uV		= 1025000,
 		.valid_ops_mask	= (REGULATOR_CHANGE_VOLTAGE |
 			REGULATOR_CHANGE_STATUS),
 	},
-	.num_consumer_supplies	= ARRAY_SIZE(ti816x_gpio_dcdc_supply),
-	.consumer_supplies	= ti816x_gpio_dcdc_supply,
-};
-
-/* Supported voltage values for regulators */
-static struct gpio_vr_data ti816x_vsel_table[] = {
-	{0x0, 800000}, {0x8, 815000}, {0x4, 830000}, {0xC, 845000},
-	{0x2, 860000}, {0xA, 875000}, {0x6, 890000}, {0xE, 905000},
-	{0x1, 920000}, {0x9, 935000}, {0x5, 950000}, {0xD, 965000},
-	{0x3, 980000}, {0xB, 995000}, {0x7, 1010000}, {0xF, 1025000},
-};
-
-static struct gpio vcore_gpios[] = {
-	{ (VR_GPIO_INSTANCE * 32) + 0, GPIOF_IN, "vgpio 0"},
-	{ (VR_GPIO_INSTANCE * 32) + 1, GPIOF_IN, "vgpio 1"},
-	{ (VR_GPIO_INSTANCE * 32) + 2, GPIOF_IN, "vgpio 2"},
-	{ (VR_GPIO_INSTANCE * 32) + 3, GPIOF_IN, "vgpio 3"},
+	.num_consumer_supplies	= ARRAY_SIZE(ti816x_i2c_supply),
+	.consumer_supplies	= ti816x_i2c_supply,
 };
 
 /* GPIO regulator platform data */
-static struct gpio_reg_platform_data gpio_vr_init_data = {
+static struct mburst_vr_platform_data mburst_vr_init_data = {
+	.name			= 0,
 	.name			= "VFB",
-	.pmic_init_data		= &gpio_pmic_init_data,
-	.gpio_vsel_table	= ti816x_vsel_table,
-	.num_voltages		= ARRAY_SIZE(ti816x_vsel_table),
-	.gpios			= vcore_gpios,
-	.gpio_single_bank	= true,
-	.gpio_arr_mask		= 0xF,
-	.num_gpio_pins		= ARRAY_SIZE(vcore_gpios),
-	.pmic_vout		= 600000,
+	.pmic_init_data		= &i2c_vr_init_data,
+	.pmic_vout		= 600000
 };
 
 /* VCORE for SR regulator init */
-static struct platform_device ti816x_gpio_vr_device = {
-	.name		= "gpio_vr",
+static struct platform_device mburst_vr_device = {
+	.name		= "mburst_vr",
 	.id		= -1,
 	.dev = {
-		.platform_data = &gpio_vr_init_data,
+		.platform_data = &mburst_vr_init_data,
 	},
 };
 
-static void __init ti816x_gpio_vr_init(void)
+static void __init mburst_vr_init(void)
 {
-	if (platform_device_register(&ti816x_gpio_vr_device))
-		printk(KERN_ERR "failed to register ti816x_gpio_vr device\n");
+	if (platform_device_register(&mburst_vr_device))
+		printk(KERN_ERR "board init: failed to register mburst_vr device\n");
 	else
-		printk(KERN_INFO "registered ti816x_gpio_vr device\n");
+		printk(KERN_INFO "board init: registered mburst_vr device\n");
 }
 #else
-static inline void ti816x_gpio_vr_init(void) {}
+static inline void mburst_vr_init(void) {}
 #endif
 
 static struct i2c_board_info __initdata ti816x_i2c_boardinfo0[] = {
 	{
 	  I2C_BOARD_INFO("adau1761", 0x38), // codec
 	},
-/*
 	{
-	  I2C_BOARD_INFO("R5H30211", 0x22), // MCU
+	  I2C_BOARD_INFO("mburst-regulator", 0x08), // regulator
+	  .platform_data = (void *)&mburst_vr_init_data,
 	},
-	{
-	  I2C_BOARD_INFO("M24C64", 0x20), //eeprom
-	},
-*/
-	/* Not present yet
-	{
-		I2C_BOARD_INFO("CY8C3446AX1", 0x04),
-	},
-	{
-		I2C_BOARD_INFO("CY8C3446AX2", 0x08),
-	},
-	*/
 };
 
-/* For future device expansion
 static struct i2c_board_info __initdata ti816x_i2c_boardinfo1[] = {
-// PCA9517 hub   N/A
 	{
-		I2C_BOARD_INFO("xyzzy", 0x39),
+		I2C_BOARD_INFO("xyzzy", 0x19),
 	},
 };
-*/
 
 static int __init ti816x_evm_i2c_init(void)
 {
 	omap_register_i2c_bus(1, 100, ti816x_i2c_boardinfo0,
 		ARRAY_SIZE(ti816x_i2c_boardinfo0));
-	//omap_register_i2c_bus(2, 100, ti816x_i2c_boardinfo1,
-	//	ARRAY_SIZE(ti816x_i2c_boardinfo1));
+	omap_register_i2c_bus(2, 100, ti816x_i2c_boardinfo1,
+		ARRAY_SIZE(ti816x_i2c_boardinfo1));
 	return 0;
 }
 
@@ -409,7 +374,7 @@ static void __init ti8168_evm_init(void)
 	omap2_hsmmc_init(mmc);
 	board_nor_init(ti816x_evm_norflash_partitions,
 		ARRAY_SIZE(ti816x_evm_norflash_partitions), 0);
-	ti816x_gpio_vr_init();
+	mburst_vr_init();
 
 	regulator_has_full_constraints();
 	regulator_use_dummy_regulator();
