@@ -1,0 +1,7 @@
+#!/bin/bash
+#make mrproper
+#make ti8168_microburst_defconfig
+#make -j4 uImage
+make -j4 modules
+sudo chown -R sconklin /nfsroots/microburst/lib/modules/
+make INSTALL_MOD_PATH=/nfsroots/microburst modules_install

@@ -43,8 +43,8 @@
 #include <plat/usb.h>
 #include <plat/mmc.h>
 #include <plat/gpmc.h>
-#include <plat/nand.h>
-#include <plat/hdmi_lib.h>
+//#include <plat/nand.h>
+//#include <plat/hdmi_lib.h>
 
 #include "control.h"
 
@@ -65,14 +65,6 @@ static struct omap2_hsmmc_info mmc[] = {
 	},
 	{}	/* Terminator */
 };
-
-#define VPS_VC_IO_EXP_RESET_DEV_MASK        (0x0Fu)
-#define VPS_VC_IO_EXP_SEL_VIN0_S1_MASK      (0x04u)
-#define VPS_VC_IO_EXP_THS7368_DISABLE_MASK  (0x10u)
-#define VPS_VC_IO_EXP_THS7368_BYPASS_MASK   (0x20u)
-#define VPS_VC_IO_EXP_THS7368_FILTER1_MASK  (0x40u)
-#define VPS_VC_IO_EXP_THS7368_FILTER2_MASK  (0x80u)
-#define VPS_VC_IO_EXP_THS7368_FILTER_SHIFT  (0x06u)
 
 static struct mtd_partition ti816x_evm_norflash_partitions[] = {
 	/* bootloader (U-Boot, etc) in first 5 sectors */
@@ -113,35 +105,6 @@ static struct mtd_partition ti816x_evm_norflash_partitions[] = {
 };
 
 
-/* Maximum ports supported by the PCF8575 */
-#define VPS_PCF8575_MAX_PORTS           (2u)
-
-/* Macros for accessing for ports */
-#define VPS_PCF8575_PORT0               (0u)
-#define VPS_PCF8575_PORT1               (1u)
-
-/* Macros for PCF8575 Pins */
-#define VPS_PCF8575_PIN0                (0x1)
-#define VPS_PCF8575_PIN1                (0x2)
-#define VPS_PCF8575_PIN2                (0x4)
-#define VPS_PCF8575_PIN3                (0x8)
-#define VPS_PCF8575_PIN4                (0x10)
-#define VPS_PCF8575_PIN5                (0x20)
-#define VPS_PCF8575_PIN6                (0x40)
-#define VPS_PCF8575_PIN7                (0x80)
-
-#define VPS_PCF8575_PIN10               (0x1)
-#define VPS_PCF8575_PIN11               (0x2)
-
-#define VPS_THS7375_MASK                (VPS_PCF8575_PIN10 | VPS_PCF8575_PIN11)
-
-#define VPS_THS7360_SD_MASK             (VPS_PCF8575_PIN2 | VPS_PCF8575_PIN5)
-
-#define VPS_THS7360_SF_MASK             (VPS_PCF8575_PIN0 |                    \
-					 VPS_PCF8575_PIN1 |                    \
-					 VPS_PCF8575_PIN3 |                    \
-					 VPS_PCF8575_PIN4)
-
 #define NAND_BLOCK_SIZE					SZ_128K
 
 /* Macro for GPIO voltage regulator */
@@ -174,12 +137,6 @@ static struct mtd_partition ti816x_nand_partitions[] = {
 		.offset         = MTDPART_OFS_APPEND,   /* Offset = 0xCEE0000 */
 		.size           = MTDPART_SIZ_FULL,
 	},
-};
-
-static struct at24_platform_data eeprom_info = {
-	.byte_len       = (256*1024) / 8,
-	.page_size      = 64,
-	.flags          = AT24_FLAG_ADDR16,
 };
 
 #ifdef CONFIG_REGULATOR_GPIO
@@ -250,395 +207,14 @@ static inline void ti816x_gpio_vr_init(void) {}
 
 static struct i2c_board_info __initdata ti816x_i2c_boardinfo0[] = {
 	{
-		I2C_BOARD_INFO("eeprom", 0x50),
-		.platform_data	= &eeprom_info,
+	  I2C_BOARD_INFO("adau1761", 0x38), // codec
 	},
-	{
-		I2C_BOARD_INFO("cpld", 0x23),
-	},
-	{
-		I2C_BOARD_INFO("tlv320aic3x", 0x18),
-	},
-	{
-		I2C_BOARD_INFO("IO Expander", 0x20),
-	},
-
 };
 
 static struct i2c_board_info __initdata ti816x_i2c_boardinfo1[] = {
 	{
-		I2C_BOARD_INFO("pcf8575_1", 0x20),
+		I2C_BOARD_INFO("xyzzy", 0x19),
 	},
-	{
-		I2C_BOARD_INFO("sii9022a", 0x39),
-	},
-	{
-		I2C_BOARD_INFO("pcf8575_1", 0x21),
-	},
-	{
-		I2C_BOARD_INFO("pcf8575_1", 0x2e),
-	},
-};
-
-static struct i2c_client *pcf8575_1_client;
-static unsigned char pcf8575_1_port[2] = {0, 0};
-
-static struct i2c_client *pcf8575_2_client;
-static unsigned char pcf8575_2_port[2] = {0xFF, 0x2F};
-
-static struct i2c_client *ths7353_client;
-
-int vps_ti816x_select_video_decoder(int vid_decoder_id)
-{
-	int ret = 0;
-	struct i2c_msg msg = {
-			.addr = pcf8575_2_client->addr,
-			.flags = 0,
-			.len = 2,
-		};
-	msg.buf = pcf8575_2_port;
-	if (VPS_SEL_TVP7002_DECODER == vid_decoder_id)
-		pcf8575_2_port[1] &= ~VPS_VC_IO_EXP_SEL_VIN0_S1_MASK;
-	else
-		pcf8575_2_port[1] |= VPS_VC_IO_EXP_SEL_VIN0_S1_MASK;
-	ret = (i2c_transfer(pcf8575_2_client->adapter, &msg, 1));
-
-	if (ret < 0)
-		printk(KERN_ERR "I2C: Transfer failed at %s %d with error code: %d\n",
-			__func__, __LINE__, ret);
-	return ret;
-}
-EXPORT_SYMBOL(vps_ti816x_select_video_decoder);
-#define I2C_RETRY_COUNT 10u
-int vps_ti816x_set_tvp7002_filter(enum fvid2_standard standard)
-{
-	int filter_sel;
-	int ret;
-	struct i2c_msg msg = {
-			.addr = pcf8575_2_client->addr,
-			.flags = 0,
-			.len = 2,
-		};
-
-	pcf8575_2_port[0] &= ~(VPS_VC_IO_EXP_THS7368_DISABLE_MASK
-			| VPS_VC_IO_EXP_THS7368_BYPASS_MASK
-			| VPS_VC_IO_EXP_THS7368_FILTER1_MASK
-			| VPS_VC_IO_EXP_THS7368_FILTER2_MASK);
-	switch (standard) {
-	case FVID2_STD_1080P_60:
-	case FVID2_STD_1080P_50:
-	case FVID2_STD_SXGA_60:
-	case FVID2_STD_SXGA_75:
-	case FVID2_STD_SXGAP_60:
-	case FVID2_STD_SXGAP_75:
-	case FVID2_STD_UXGA_60:
-		filter_sel = 0x03u;  /* Filter2: 1, Filter1: 1 */
-		break;
-	case FVID2_STD_1080I_60:
-	case FVID2_STD_1080I_50:
-	case FVID2_STD_1080P_24:
-	case FVID2_STD_1080P_30:
-	case FVID2_STD_720P_60:
-	case FVID2_STD_720P_50:
-	case FVID2_STD_SVGA_60:
-	case FVID2_STD_SVGA_72:
-	case FVID2_STD_SVGA_75:
-	case FVID2_STD_SVGA_85:
-	case FVID2_STD_XGA_60:
-	case FVID2_STD_XGA_70:
-	case FVID2_STD_XGA_75:
-	case FVID2_STD_XGA_85:
-	case FVID2_STD_WXGA_60:
-	case FVID2_STD_WXGA_75:
-	case FVID2_STD_WXGA_85:
-		filter_sel = 0x01u;  /* Filter2: 0, Filter1: 1 */
-		break;
-	case FVID2_STD_480P:
-	case FVID2_STD_576P:
-	case FVID2_STD_VGA_60:
-	case FVID2_STD_VGA_72:
-	case FVID2_STD_VGA_75:
-	case FVID2_STD_VGA_85:
-		filter_sel = 0x02u;  /* Filter2: 1, Filter1: 0 */
-		break;
-	case FVID2_STD_NTSC:
-	case FVID2_STD_PAL:
-	case FVID2_STD_480I:
-	case FVID2_STD_576I:
-	case FVID2_STD_D1:
-		filter_sel = 0x00u;  /* Filter2: 0, Filter1: 0 */
-		break;
-
-	default:
-		filter_sel = 0x01u;  /* Filter2: 0, Filter1: 1 */
-		break;
-	}
-	pcf8575_2_port[0] |=
-		(filter_sel << VPS_VC_IO_EXP_THS7368_FILTER_SHIFT);
-	msg.buf = pcf8575_2_port;
-	ret =  (i2c_transfer(pcf8575_2_client->adapter, &msg, 1));
-	if (ret < 0) {
-		printk(KERN_ERR "I2C: Transfer failed at %s %d with error code: %d\n",
-			__func__, __LINE__, ret);
-		return ret;
-	}
-	return 0;
-#if 0
-	int	status = FVID2_SOK;
-	u8	regAddr, regValue;
-	int	retry, error;
-
-	switch (standard) {
-	case FVID2_STD_1080P_60:
-	case FVID2_STD_1080P_50:
-	case FVID2_STD_SXGA_60:
-	case FVID2_STD_SXGA_75:
-	case FVID2_STD_SXGAP_60:
-	case FVID2_STD_SXGAP_75:
-	case FVID2_STD_UXGA_60:
-	    regValue = 0x9Cu;
-	    break;
-
-	case FVID2_STD_1080I_60:
-	case FVID2_STD_1080I_50:
-	case FVID2_STD_1080P_24:
-	case FVID2_STD_1080P_30:
-	case FVID2_STD_720P_60:
-	case FVID2_STD_720P_50:
-	case FVID2_STD_SVGA_60:
-	case FVID2_STD_SVGA_72:
-	case FVID2_STD_SVGA_75:
-	case FVID2_STD_SVGA_85:
-	case FVID2_STD_XGA_60:
-	case FVID2_STD_XGA_70:
-	case FVID2_STD_XGA_75:
-	case FVID2_STD_XGA_85:
-	case FVID2_STD_WXGA_60:
-	case FVID2_STD_WXGA_75:
-	case FVID2_STD_WXGA_85:
-	    regValue = 0x94u;
-	    break;
-
-	case FVID2_STD_480P:
-	case FVID2_STD_576P:
-	case FVID2_STD_VGA_60:
-	case FVID2_STD_VGA_72:
-	case FVID2_STD_VGA_75:
-	case FVID2_STD_VGA_85:
-	    regValue = 0x4Cu;
-	    break;
-
-	case FVID2_STD_NTSC:
-	case FVID2_STD_PAL:
-	case FVID2_STD_480I:
-	case FVID2_STD_576I:
-	case FVID2_STD_D1:
-	    regValue = 0x04u;
-	    break;
-
-	default:
-	    regValue = 0x94u;
-	    break;
-	}
-	for (retry = 0; retry < I2C_RETRY_COUNT; retry++) {
-		regAddr = 0x01u;
-		error = i2c_smbus_write_byte_data(ths7353_client,
-				regAddr, regValue);
-		if (error < 0) {
-			printk(KERN_ERR "I2C write failed at %d\n\n", __LINE__);
-			status = -1;
-		}
-		regAddr = 0x02u;
-		error = i2c_smbus_write_byte_data(ths7353_client,
-				regAddr, regValue);
-		if (error < 0) {
-			printk(KERN_ERR "I2C write failed at %d\n\n", __LINE__);
-			status = -1;
-		}
-		regAddr = 0x03u;
-		error = i2c_smbus_write_byte_data(ths7353_client,
-				regAddr, regValue);
-		if (error < 0) {
-			printk(KERN_ERR "I2C write failed at %d\n\n", __LINE__);
-			status = -1;
-		}
-	}
-
-	return status;
-#endif
-}
-EXPORT_SYMBOL(vps_ti816x_set_tvp7002_filter);
-int pcf8575_ths7375_enable(enum ti81xx_ths_filter_ctrl ctrl)
-{
-	struct i2c_msg msg = {
-			.addr = pcf8575_1_client->addr,
-			.flags = 0,
-			.len = 2,
-		};
-
-	pcf8575_1_port[1] &= ~VPS_THS7375_MASK;
-	pcf8575_1_port[1] |= (ctrl & VPS_THS7375_MASK);
-	msg.buf = pcf8575_1_port;
-
-	return i2c_transfer(pcf8575_1_client->adapter, &msg, 1);
-}
-
-int pcf8575_ths7360_sd_enable(enum ti81xx_ths_filter_ctrl ctrl)
-{
-	struct i2c_msg msg = {
-		.addr = pcf8575_1_client->addr,
-		.flags = 0,
-		.len = 2,
-	};
-	pcf8575_1_port[0] &= ~VPS_THS7360_SD_MASK;
-	switch (ctrl) {
-	case TI81XX_THSFILTER_ENABLE_MODULE:
-		pcf8575_1_port[0] &= ~(VPS_THS7360_SD_MASK);
-		break;
-	case TI81XX_THSFILTER_BYPASS_MODULE:
-		pcf8575_1_port[0] |= VPS_PCF8575_PIN2;
-		break;
-	case TI81XX_THSFILTER_DISABLE_MODULE:
-		pcf8575_1_port[0] |= VPS_THS7360_SD_MASK;
-		break;
-	default:
-		return -EINVAL;
-	}
-
-	msg.buf = pcf8575_1_port;
-	return i2c_transfer(pcf8575_1_client->adapter, &msg, 1);
-}
-
-int pcf8575_ths7360_hd_enable(enum ti81xx_ths7360_sf_ctrl ctrl)
-{
-	int ret_val;
-	struct i2c_msg msg = {
-		.addr = pcf8575_1_client->addr,
-		.flags = 0,
-		.len = 2,
-	};
-
-	pcf8575_1_port[0] &= ~VPS_THS7360_SF_MASK;
-	switch (ctrl) {
-	case TI81XX_THS7360_DISABLE_SF:
-		pcf8575_1_port[0] |= VPS_PCF8575_PIN4;
-		break;
-	case TI81XX_THS7360_BYPASS_SF:
-		pcf8575_1_port[0] |= VPS_PCF8575_PIN3;
-		break;
-	case TI81XX_THS7360_SF_SD_MODE:
-		pcf8575_1_port[0] &= ~(VPS_THS7360_SF_MASK);
-		break;
-	case TI81XX_THS7360_SF_ED_MODE:
-		pcf8575_1_port[0] |= VPS_PCF8575_PIN0;
-		break;
-	case TI81XX_THS7360_SF_HD_MODE:
-		pcf8575_1_port[0] |= VPS_PCF8575_PIN1;
-		break;
-	case TI81XX_THS7360_SF_TRUE_HD_MODE:
-		pcf8575_1_port[0] |= VPS_PCF8575_PIN0|VPS_PCF8575_PIN1;
-		break;
-	default:
-		return -EINVAL;
-	}
-	msg.buf = pcf8575_1_port;
-
-	ret_val = i2c_transfer(pcf8575_1_client->adapter, &msg, 1);
-	return ret_val;
-
-}
-
-static int pcf8575_video_probe(struct i2c_client *client,
-				const struct i2c_device_id *id)
-{
-	if (client->addr == 0x20)
-		pcf8575_1_client = client;
-	else if (client->addr == 0x21)
-		pcf8575_2_client = client;
-	else if (client->addr == 0x2e)
-		ths7353_client = client;
-	 else
-		BUG();
-	return 0;
-}
-
-static int __devexit pcf8575_video_remove(struct i2c_client *client)
-{
-	pcf8575_1_client = NULL;
-	pcf8575_2_client = NULL;
-	return 0;
-}
-
-static const struct i2c_device_id pcf8575_video_id[] = {
-	{ "pcf8575_1", 0 },
-	{ }
-};
-
-static struct i2c_driver pcf8575_driver = {
-	.driver = {
-		.name   = "pcf8575_1",
-	},
-	.probe          = pcf8575_video_probe,
-	.remove         = pcf8575_video_remove,
-	.id_table       = pcf8575_video_id,
-};
-
-int ti816x_pcf8575_init(void)
-{
-	i2c_add_driver(&pcf8575_driver);
-	return 0;
-}
-
-int ti816x_pcf8575_exit(void)
-{
-	i2c_del_driver(&pcf8575_driver);
-	return 0;
-}
-
-/* FIX ME: Check on the Bit Value */
-
-#define TI816X_EVM_CIR_UART BIT(5)
-
-static struct i2c_client *cpld_reg0_client;
-
-/* CPLD Register 0 Client: used for I/O Control */
-static int cpld_reg0_probe(struct i2c_client *client,
-			const struct i2c_device_id *id)
-{
-	u8 data;
-	struct i2c_msg msg[2] = {
-		{
-			.addr = client->addr,
-			.flags = I2C_M_RD,
-			.len = 1,
-			.buf = &data,
-		},
-		{
-			.addr = client->addr,
-			.flags = 0,
-			.len = 1,
-			.buf = &data,
-		},
-	};
-
-	cpld_reg0_client = client;
-
-	/* Clear UART CIR to enable cir operation. */
-		i2c_transfer(client->adapter, msg, 1);
-		data &= ~(TI816X_EVM_CIR_UART);
-		i2c_transfer(client->adapter, msg + 1, 1);
-	return 0;
-}
-
-static const struct i2c_device_id cpld_reg_ids[] = {
-		{ "cpld_reg0", 0, },
-		{ },
-};
-
-static struct i2c_driver ti816xevm_cpld_driver = {
-	.driver.name    = "cpld_reg0",
-	.id_table       = cpld_reg_ids,
-	.probe          = cpld_reg0_probe,
 };
 
 static int __init ti816x_evm_i2c_init(void)
@@ -699,6 +275,13 @@ static void __init ti816x_spi_init(void)
 				ARRAY_SIZE(ti816x_spi_slave_info));
 }
 
+static struct platform_device flex_adau1x61_device = {
+	.name = "bfin-eval-adau1x61",
+};
+
+static struct platform_device *flex_devices[] __initdata = {
+	&flex_adau1x61_device,
+};
 
 static void __init ti8168_evm_init_irq(void)
 {
@@ -771,34 +354,6 @@ static struct omap_board_mux board_mux[] __initdata = {
 
 int __init ti_ahci_register(u8 num_inst);
 
-#ifdef CONFIG_SND_SOC_TI81XX_HDMI
-static struct snd_hdmi_platform_data ti8168_snd_hdmi_pdata = {
-	.dma_addr = TI81xx_HDMI_WP + HDMI_WP_AUDIO_DATA,
-	.channel = 53,
-	.data_type = 4,
-	.acnt = 4,
-	.fifo_level = 0x20,
-};
-
-static struct platform_device ti8168_hdmi_audio_device = {
-	.name	= "hdmi-dai",
-	.id	= -1,
-        .dev = {
-		.platform_data = &ti8168_snd_hdmi_pdata,
-        }
-};
-
-static struct platform_device ti8168_hdmi_codec_device = {
-	.name	= "hdmi-dummy-codec",
-	.id	= -1,
-};
-
-static struct platform_device *ti8168_devices[] __initdata = {
-	&ti8168_hdmi_audio_device,
-	&ti8168_hdmi_codec_device,
-};
-#endif
-
 static struct fixed_phy_status fixed_phy_status __initdata = {
 	.link		= 1,
 	.speed		= 100,
@@ -812,12 +367,12 @@ static void __init ti8168_evm_init(void)
 	ti81xx_mux_init(board_mux);
 	omap_serial_init();
 	ti816x_evm_i2c_init();
-	i2c_add_driver(&ti816xevm_cpld_driver);
 	ti81xx_register_mcasp(0, &ti8168_evm_snd_data);
 	ti816x_spi_init();
 	/* initialize usb */
 	usb_musb_init(&musb_board_data);
-
+	/* register devices (sound card) */
+	platform_add_devices(flex_devices, ARRAY_SIZE(flex_devices));
 	/* nand initialisation */
 	if (cpu_is_ti81xx()) {
 		u32 *control_status = TI81XX_CTRL_REGADDR(0x40);
@@ -836,9 +391,7 @@ static void __init ti8168_evm_init(void)
 	board_nor_init(ti816x_evm_norflash_partitions,
 		ARRAY_SIZE(ti816x_evm_norflash_partitions), 0);
 	ti816x_gpio_vr_init();
-#ifdef CONFIG_SND_SOC_TI81XX_HDMI
-	platform_add_devices(ti8168_devices, ARRAY_SIZE(ti8168_devices));
-#endif
+
 	regulator_has_full_constraints();
 	regulator_use_dummy_regulator();
 
@@ -864,7 +417,7 @@ static void __init ti8168_evm_map_io(void)
 	ti81xx_map_common_io();
 }
 
-MACHINE_START(TI8168EVM, "ti8168evm")
+MACHINE_START(TI8168EVM, "Flex6000Series")
 	/* Maintainer: Texas Instruments */
 	.boot_params	= 0x80000100,
 	.map_io		= ti8168_evm_map_io,

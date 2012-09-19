@@ -1,0 +1,5 @@
+#!/bin/bash
+make mrproper
+make ti8168_microburst_defconfig
+make -j4 uImage
+make -j4 modules
