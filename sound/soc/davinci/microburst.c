@@ -70,10 +70,9 @@ static int microburst_hw_params(struct snd_pcm_substream *substream,
 		return ret;
 
 	/* Set clock divider, div_id (0) argument ignored */
-	ret = snd_soc_dai_set_clkdiv(codec_dai, 0, 1);
+	ret = snd_soc_dai_set_clkdiv(codec_dai, 0, 2);	//This was originally codec_dai, 0, 1
 	if (ret < 0)
 		return ret;
-
 	return 0;
 }
 
@@ -107,6 +106,9 @@ static const struct snd_soc_dapm_route audio_map[] = {
 
 	{ "Capless HP Out", NULL, "LHP" },
 	{ "Capless HP Out", NULL, "RHP" },
+//	{ "Headphone L", NULL, "HPLCOM" },
+//	{ "Headphone R", NULL, "HPRCOM" },
+//	{ "Mono Out", NULL, "MONO_LOUT" },
 	{ "Diff Out L", NULL, "LOUT" },
 	{ "Diff Out R", NULL, "ROUT" },
 	{ "Stereo Out", NULL, "LOUT" },
@@ -144,17 +146,23 @@ static int evm_adau1761_init(struct snd_soc_pcm_runtime *rtd)
 
 	//{ "Capless HP Out", NULL, "LHP" },     // Headphone Left
 	//{ "Capless HP Out", NULL, "RHP" },     // Headphone Right
-	//{ "Diff Out L", NULL, "LOUT" },        // 
-	//{ "Diff Out R", NULL, "ROUT" },        // 
+	//{ "Diff Out L", NULL, "LOUT" },        // ACC_LINE1_OUT
+	//{ "Diff Out R", NULL, "ROUT" },        // ACC_LINE2_OUT
 	//{ "Stereo Out", NULL, "LOUT" },        // Ext Speaker
 	//{ "Stereo Out", NULL, "ROUT" },        // Ext Speaker
 
 	snd_soc_dapm_enable_pin(dapm, "LINP");
 	snd_soc_dapm_enable_pin(dapm, "LINN");
+	snd_soc_dapm_enable_pin(dapm, "RINP");
+	snd_soc_dapm_enable_pin(dapm, "RINN");
 	snd_soc_dapm_enable_pin(dapm, "LAUX");
 	snd_soc_dapm_enable_pin(dapm, "RAUX");
 	snd_soc_dapm_enable_pin(dapm, "Capless HP Out");
 	snd_soc_dapm_enable_pin(dapm, "Stereo Out");
+//	snd_soc_dapm_enable_pin(dapm, "HPLCOM");
+//	snd_soc_dapm_enable_pin(dapm, "HPRCOM");
+//	snd_soc_dapm_enable_pin(dapm, "MONO_LOUT");
+
 
 	return 0;
 }
