@@ -39,8 +39,10 @@
 #include "davinci-i2s.h"
 #include "davinci-mcasp.h"
 
-#define AUDIO_FORMAT (SND_SOC_DAIFMT_LEFT_J |			\
+//#define AUDIO_FORMAT (SND_SOC_DAIFMT_LEFT_J |			\
 		SND_SOC_DAIFMT_NB_NF | SND_SOC_DAIFMT_CBM_CFM)
+
+#define AUDIO_FORMAT (SND_SOC_DAIFMT_LEFT_J | SND_SOC_DAIFMT_NB_NF | SND_SOC_DAIFMT_CBM_CFM)
 
 static int microburst_hw_params(struct snd_pcm_substream *substream,
 			 struct snd_pcm_hw_params *params)
@@ -73,6 +75,11 @@ static int microburst_hw_params(struct snd_pcm_substream *substream,
 	ret = snd_soc_dai_set_clkdiv(codec_dai, 0, 2);	//This was originally codec_dai, 0, 1
 	if (ret < 0)
 		return ret;
+
+	/* set TDM slot configuration */
+//	ret = snd_soc_dai_set_tdm_slot(codec_dai, 0x03, 0x03, 4, 64);
+// 		return ret;
+
 	return 0;
 }
 

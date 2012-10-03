@@ -536,6 +536,8 @@ static int adau17x1_set_dai_tdm_slot(struct snd_soc_dai *dai,
 	unsigned int ser_ctrl0, ser_ctrl1;
 	unsigned int conv_ctrl0, conv_ctrl1;
 
+printk ("txmask %d rxmask %d slots %d width %d\n",tx_mask,rx_mask,slots,slot_width);
+
 	/* I2S mode */
 	if (slots == 0) {
 		slots = 2;
