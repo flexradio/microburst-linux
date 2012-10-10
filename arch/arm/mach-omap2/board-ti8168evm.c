@@ -45,6 +45,7 @@
 #include <plat/gpmc.h>
 //#include <plat/nand.h>
 //#include <plat/hdmi_lib.h>
+#include <sound/adau17x1.h>
 
 #include "control.h"
 
@@ -205,9 +206,15 @@ static void __init ti816x_gpio_vr_init(void)
 static inline void ti816x_gpio_vr_init(void) {}
 #endif
 
+static struct adau1761_platform_data adau1761_pdata = {
+        .input_differential = true,
+        .headphone_mode = ADAU1761_OUTPUT_MODE_HEADPHONE,
+};
+
 static struct i2c_board_info __initdata ti816x_i2c_boardinfo0[] = {
 	{
 	  I2C_BOARD_INFO("adau1761", 0x38), // codec
+	  .platform_data = &adau1761_pdata,
 	},
 };
 

@@ -124,6 +124,14 @@ static const char * const adau1761_bias_select_extreme_text[] = {
 	"Power saving",
 };
 
+static const unsigned int adau1761_mono_out_gain_values[] = {
+	0, 1, 2,
+};
+
+static const char * const adau1761_mono_out_gain_text[] = {
+	"Common Mode", "0 dB Output", "6 dB Output",
+}; 
+
 static const SOC_ENUM_SINGLE_DECL(adau1761_adc_bias_enum,
 		ADAU17X1_REC_POWER_MGMT, 3, adau1761_bias_select_extreme_text);
 static const SOC_ENUM_SINGLE_DECL(adau1761_hp_bias_enum,
@@ -136,6 +144,9 @@ static const SOC_VALUE_ENUM_SINGLE_DECL(adau1761_playback_bias_enum,
 static const SOC_VALUE_ENUM_SINGLE_DECL(adau1761_capture_bias_enum,
 		ADAU17X1_REC_POWER_MGMT, 1, 0x3, adau1761_bias_select_text,
 		adau1761_bias_select_values);
+static const SOC_VALUE_ENUM_SINGLE_DECL(adau1761_mono_out_gain_enum,
+		ADAU1761_PLAY_MIXER_MONO, 1, 0x3, adau1761_mono_out_gain_text,
+		adau1761_mono_out_gain_values);
 
 static const struct snd_kcontrol_new adau1761_jack_detect_controls[] = {
 	SOC_SINGLE("Jack Detect Switch", 4, 1, 0, ADAU1761_DIGMIC_JACKDETECT),
@@ -187,6 +198,7 @@ static const struct snd_kcontrol_new adau1761_mono_controls[] = {
 		2, 0x3f, 0, adau1761_out_tlv),
 	SOC_SINGLE("Mono Playback Switch", ADAU1761_PLAY_MONO_OUTPUT_VOL,
 		1, 1, 0),
+	SOC_VALUE_ENUM("Mono Playback Gain", adau1761_mono_out_gain_enum),
 };
 
 static const struct snd_kcontrol_new adau1761_left_mixer_controls[] = {
@@ -389,6 +401,8 @@ static const struct snd_soc_dapm_widget adau1761_dapm_widgets[] = {
 
 	SND_SOC_DAPM_SUPPLY("Slew Clock", ADAU1761_CLK_ENABLE0, 6, 0, NULL, 0),
 
+	SND_SOC_DAPM_SUPPLY("ALC Clock", ADAU1761_CLK_ENABLE0, 5, 0, NULL, 0),
+
 	SND_SOC_DAPM_SUPPLY("Digital Clock 0", ADAU1761_CLK_ENABLE1,
 		0, 0, NULL, 0),
 	SND_SOC_DAPM_SUPPLY("Digital Clock 1", ADAU1761_CLK_ENABLE1,
@@ -415,6 +429,8 @@ static const struct snd_soc_dapm_route adau1761_dapm_routes[] = {
 	{ "AIFOUT", NULL, "Serial Port Clock" },
 	{ "AIFIN", NULL, "Serial Input Routing Clock" },
 	{ "AIFOUT", NULL, "Serial Output Routing Clock" },
+//	{ "AIFIN", NULL, "ALC Clock" },
+//	{ "AIFOUT", NULL, "ALC Clock" },
 
 	{ "AIFIN", NULL, "Decimator Resync Clock", adau1761_is_slave_mode },
 	{ "AIFOUT", NULL, "Interpolator Resync Clock", adau1761_is_slave_mode },
@@ -545,6 +561,8 @@ static int adau1761_setup_headphone_mode(struct snd_soc_codec *codec)
 		snd_soc_update_bits(codec, ADAU1761_PLAY_MONO_OUTPUT_VOL, 3, 3);
 	case ADAU1761_OUTPUT_MODE_HEADPHONE: /* fallthrough */
 		snd_soc_update_bits(codec, ADAU1761_PLAY_HP_RIGHT_VOL, 1, 1);
+//		snd_soc_update_bits(codec, ADAU1761_PLAY_MIXER_MONO, 5, 3);
+		snd_soc_add_controls(codec, adau1761_mono_controls,ARRAY_SIZE(adau1761_mono_controls));
 		break;
 	default:
 		return -EINVAL;
@@ -613,7 +631,6 @@ static int adau1761_probe(struct snd_soc_codec *codec)
 	struct adau1761_platform_data *pdata = codec->dev->platform_data;
 	struct adau *adau = snd_soc_codec_get_drvdata(codec);
 	int ret;
-
 	ret = adau17x1_probe(codec);
 	if (ret < 0)
 		return ret;
