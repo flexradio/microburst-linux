@@ -28,6 +28,10 @@
 #define ADAU1761_REC_MIXER_RIGHT1	0x400d
 #define ADAU1761_LEFT_DIFF_INPUT_VOL	0x400e
 #define ADAU1761_RIGHT_DIFF_INPUT_VOL	0x400f
+#define ADAU1761_ALC_CONTROL0		0x4011
+#define ADAU1761_ALC_CONTROL1		0x4012
+#define ADAU1761_ALC_CONTROL2		0x4013
+#define ADAU1761_ALC_CONTROL3		0x4014
 #define ADAU1761_PLAY_LR_MIXER_LEFT	0x4020
 #define ADAU1761_PLAY_MIXER_LEFT0	0x401c
 #define ADAU1761_PLAY_MIXER_LEFT1	0x401d
@@ -62,6 +66,10 @@ static struct reg_default adau1761_reg_defaults[] = {
 	{ ADAU1761_REC_MIXER_RIGHT1,		0x00 },
 	{ ADAU1761_LEFT_DIFF_INPUT_VOL,		0x00 },
 	{ ADAU1761_RIGHT_DIFF_INPUT_VOL,	0x00 },
+	{ ADAU1761_ALC_CONTROL0,		0x00 },
+	{ ADAU1761_ALC_CONTROL1,		0x00 },
+	{ ADAU1761_ALC_CONTROL2,		0x00 },
+	{ ADAU1761_ALC_CONTROL3,		0x00 },
 	{ ADAU1761_PLAY_LR_MIXER_LEFT,		0x00 },
 	{ ADAU1761_PLAY_MIXER_LEFT0,		0x00 },
 	{ ADAU1761_PLAY_MIXER_LEFT1,		0x00 },
@@ -130,7 +138,23 @@ static const unsigned int adau1761_mono_out_gain_values[] = {
 
 static const char * const adau1761_mono_out_gain_text[] = {
 	"Common Mode", "0 dB Output", "6 dB Output",
-}; 
+};
+
+static const unsigned int adau1761_alc_select_values[] = {
+	0, 1, 2, 3, 4,
+};
+
+static const char * const adau1761_alc_select_text[] = {
+	"Off", "Right Only", "Left Only", "Stereo", "DSP Control",
+};
+
+static const unsigned int adau1761_alc_noise_gate_type_values[] = {
+	0, 1, 2, 3,
+};
+
+static const char * const adau1761_alc_noise_gate_type_text[] = {
+	"Hold", "Mute", "Fade Min", "Fade Mute",
+};
 
 static const SOC_ENUM_SINGLE_DECL(adau1761_adc_bias_enum,
 		ADAU17X1_REC_POWER_MGMT, 3, adau1761_bias_select_extreme_text);
@@ -144,12 +168,20 @@ static const SOC_VALUE_ENUM_SINGLE_DECL(adau1761_playback_bias_enum,
 static const SOC_VALUE_ENUM_SINGLE_DECL(adau1761_capture_bias_enum,
 		ADAU17X1_REC_POWER_MGMT, 1, 0x3, adau1761_bias_select_text,
 		adau1761_bias_select_values);
+
 static const SOC_VALUE_ENUM_SINGLE_DECL(adau1761_mono_out_gain_enum,
 		ADAU1761_PLAY_MIXER_MONO, 1, 0x3, adau1761_mono_out_gain_text,
 		adau1761_mono_out_gain_values);
 
+static const SOC_VALUE_ENUM_SINGLE_DECL(adau1761_alc_select_enum,
+		ADAU1761_ALC_CONTROL0, 0, 0x7, adau1761_alc_select_text, 
+		adau1761_alc_select_values);
+static const SOC_VALUE_ENUM_SINGLE_DECL(adau1761_alc_noise_gate_type_enum,
+		ADAU1761_ALC_CONTROL3, 6, 0x3, adau1761_alc_noise_gate_type_text, 
+		adau1761_alc_noise_gate_type_values);
+
 static const struct snd_kcontrol_new adau1761_jack_detect_controls[] = {
-	SOC_SINGLE("Jack Detect Switch", 4, 1, 0, ADAU1761_DIGMIC_JACKDETECT),
+	SOC_SINGLE("Jack Detect Switch", ADAU1761_DIGMIC_JACKDETECT, 4, 1, 0),
 };
 
 static const struct snd_kcontrol_new adau1761_differential_mode_controls[] = {
@@ -160,6 +192,24 @@ static const struct snd_kcontrol_new adau1761_differential_mode_controls[] = {
 
 	SOC_DOUBLE_R_TLV("PGA Boost Capture Volume", ADAU1761_REC_MIXER_LEFT1,
 		ADAU1761_REC_MIXER_RIGHT1, 3, 2, 0, adau1761_pga_boost_tlv),
+};
+
+static const struct snd_kcontrol_new adau1761_alc_controls[] = {
+	SOC_VALUE_ENUM("ALC Select", adau1761_alc_select_enum),
+	SOC_SINGLE("ALC Max Gain", ADAU1761_ALC_CONTROL0, 3, 7, 0),
+	SOC_SINGLE("ALC PGA Slew", ADAU1761_ALC_CONTROL0, 6, 3, 0),
+
+	SOC_SINGLE("ALC Target Level", ADAU1761_ALC_CONTROL1, 0, 0xf, 0),
+	SOC_SINGLE("ALC Hold Time", ADAU1761_ALC_CONTROL1, 4, 0xf, 0),
+
+	SOC_SINGLE("ALC Decay", ADAU1761_ALC_CONTROL2, 0, 0xf, 0),
+	SOC_SINGLE("ALC Attack", ADAU1761_ALC_CONTROL2, 4, 0xf, 0),
+
+	SOC_VALUE_ENUM("ALC Noise Gate Type", adau1761_alc_noise_gate_type_enum),
+	SOC_SINGLE("ALC Noise Gate Enable", ADAU1761_ALC_CONTROL3, 5, 1, 0),
+	SOC_SINGLE("ALC Noise Gate Threashold", 
+		ADAU1761_ALC_CONTROL3, 0, 0x1f,0),
+
 };
 
 static const struct snd_kcontrol_new adau1761_single_mode_controls[] = {
@@ -186,6 +236,7 @@ static const struct snd_kcontrol_new adau1761_controls[] = {
 	SOC_DOUBLE_R("Lineout Playback Switch", ADAU1761_PLAY_LINE_LEFT_VOL,
 		ADAU1761_PLAY_LINE_RIGHT_VOL, 1, 1, 0),
 
+	SOC_SINGLE("Mic Bias", ADAU17X1_MICBIAS, 0, 1, 0),
 	SOC_ENUM("ADC Bias", adau1761_adc_bias_enum),
 	SOC_ENUM("DAC Bias", adau1761_dac_bias_enum),
 	SOC_VALUE_ENUM("Capture Bias", adau1761_capture_bias_enum),
@@ -377,8 +428,7 @@ static const struct snd_soc_dapm_route adau1761_dmic_routes[] = {
 	{ "Input Select", "ADC", "Left ADC" },
 	{ "Input Select", "ADC", "Right ADC" },
 	{ "Input Select", "DMIC", "DMIC" },
-	{ "AIFOUT", NULL, "Input Mux" },
-	{ "DMIC", NULL, "DMICDAT" },
+	{ "AIFOUT", NULL, "Input Select" },
 };
 
 static const struct snd_soc_dapm_route adau1761_no_dmic_routes[] = {
@@ -429,11 +479,11 @@ static const struct snd_soc_dapm_route adau1761_dapm_routes[] = {
 	{ "AIFOUT", NULL, "Serial Port Clock" },
 	{ "AIFIN", NULL, "Serial Input Routing Clock" },
 	{ "AIFOUT", NULL, "Serial Output Routing Clock" },
-//	{ "AIFIN", NULL, "ALC Clock" },
-//	{ "AIFOUT", NULL, "ALC Clock" },
 
-	{ "AIFIN", NULL, "Decimator Resync Clock", adau1761_is_slave_mode },
-	{ "AIFOUT", NULL, "Interpolator Resync Clock", adau1761_is_slave_mode },
+	{ "AIFOUT", NULL, "ALC Clock" },
+
+	{ "AIFIN", NULL, "Decimator Resync Clock" },
+	{ "AIFOUT", NULL, "Interpolator Resync Clock" },
 
 	{ "DSP", NULL, "Decimator Resync Clock" },
 	{ "DSP", NULL, "Interpolator Resync Clock" },
@@ -445,6 +495,8 @@ static const struct snd_soc_dapm_route adau1761_dapm_routes[] = {
 
 	{ "Digital Clock 0", NULL, "SYSCLK" },
 	{ "Digital Clock 1", NULL, "SYSCLK" },
+
+	{ "AIFOUT", NULL, "Decimator Resync Clock" },
 };
 
 static int adau1761_set_bias_level(struct snd_soc_codec *codec,
@@ -561,7 +613,6 @@ static int adau1761_setup_headphone_mode(struct snd_soc_codec *codec)
 		snd_soc_update_bits(codec, ADAU1761_PLAY_MONO_OUTPUT_VOL, 3, 3);
 	case ADAU1761_OUTPUT_MODE_HEADPHONE: /* fallthrough */
 		snd_soc_update_bits(codec, ADAU1761_PLAY_HP_RIGHT_VOL, 1, 1);
-//		snd_soc_update_bits(codec, ADAU1761_PLAY_MIXER_MONO, 5, 3);
 		snd_soc_add_controls(codec, adau1761_mono_controls,ARRAY_SIZE(adau1761_mono_controls));
 		break;
 	default:
@@ -601,6 +652,10 @@ static bool adau1761_readable_register(struct device *dev, unsigned int reg)
 	case ADAU1761_REC_MIXER_RIGHT1:
 	case ADAU1761_LEFT_DIFF_INPUT_VOL:
 	case ADAU1761_RIGHT_DIFF_INPUT_VOL:
+	case ADAU1761_ALC_CONTROL0:
+	case ADAU1761_ALC_CONTROL1:
+	case ADAU1761_ALC_CONTROL2:
+	case ADAU1761_ALC_CONTROL3:
 	case ADAU1761_PLAY_LR_MIXER_LEFT:
 	case ADAU1761_PLAY_MIXER_LEFT0:
 	case ADAU1761_PLAY_MIXER_LEFT1:
@@ -647,6 +702,11 @@ static int adau1761_probe(struct snd_soc_codec *codec)
 		ret = snd_soc_add_controls(codec,
 			adau1761_differential_mode_controls,
 			ARRAY_SIZE(adau1761_differential_mode_controls));
+		if (ret)
+			return ret;
+		ret = snd_soc_add_controls(codec,
+			adau1761_alc_controls,
+			ARRAY_SIZE(adau1761_alc_controls));
 		if (ret)
 			return ret;
 	} else {
