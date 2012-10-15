@@ -11,6 +11,17 @@
  * published by the Free Software Foundation.
  */
 
+/* Platform specific information for Microburst board
+ *
+ * Adapted for Microburst board for FlexRadio Systems
+ * by: Steve Conklin and Jim Reese
+ * 
+ * The ADAU1761 has device specific parameters that are loaded when
+ * the i2c device gets registered with the kernel.  This is done in
+ * the file arch/arm/mach-omap2/board-ti8168evm.c
+ *
+ */
+
 #include <linux/module.h>
 #include <linux/moduleparam.h>
 #include <linux/timer.h>
@@ -21,6 +32,7 @@
 #include <sound/pcm.h>
 #include <sound/soc.h>
 //#include <sound/soc-dapm.h>
+#include <sound/adau17x1.h>
 
 #include <asm/dma.h>
 #include <asm/mach-types.h>
@@ -39,8 +51,7 @@
 #include "davinci-i2s.h"
 #include "davinci-mcasp.h"
 
-#define AUDIO_FORMAT (SND_SOC_DAIFMT_LEFT_J |			\
-		SND_SOC_DAIFMT_NB_NF | SND_SOC_DAIFMT_CBM_CFM)
+#define AUDIO_FORMAT (SND_SOC_DAIFMT_LEFT_J | SND_SOC_DAIFMT_NB_NF | SND_SOC_DAIFMT_CBM_CFM)
 
 static int microburst_hw_params(struct snd_pcm_substream *substream,
 			 struct snd_pcm_hw_params *params)
@@ -70,9 +81,14 @@ static int microburst_hw_params(struct snd_pcm_substream *substream,
 		return ret;
 
 	/* Set clock divider, div_id (0) argument ignored */
-	ret = snd_soc_dai_set_clkdiv(codec_dai, 0, 1);
+	ret = snd_soc_dai_set_clkdiv(codec_dai, 0, 2);	//This was originally codec_dai, 0, 1
 	if (ret < 0)
 		return ret;
+
+	/* set TDM slot configuration */
+//	ret = snd_soc_dai_set_tdm_slot(codec_dai, 0x03, 0x03, 4, 64);
+// 		return ret;
+
 
 	return 0;
 }
@@ -81,36 +97,36 @@ static struct snd_soc_ops microburst_ops = {
 	.hw_params = microburst_hw_params,
 };
 
-/* davinci-evm machine dapm widgets */
-static const struct snd_soc_dapm_widget adau_dapm_widgets[] = {
-	SND_SOC_DAPM_LINE("In 1", NULL),
-	SND_SOC_DAPM_LINE("In 2", NULL),
-	SND_SOC_DAPM_LINE("In 3-4", NULL),
+/* microburst dapm widgets */
+static const struct snd_soc_dapm_widget microburst_dapm_widgets[] = {
+	SND_SOC_DAPM_LINE("MB-Rear-Mic", NULL),
+	SND_SOC_DAPM_LINE("MB-Front-Mic", NULL),
+	SND_SOC_DAPM_LINE("MB-AuxIn", NULL),
 
-	SND_SOC_DAPM_LINE("Diff Out L", NULL),
-	SND_SOC_DAPM_LINE("Diff Out R", NULL),
-	SND_SOC_DAPM_LINE("Stereo Out", NULL),
-	SND_SOC_DAPM_HP("Capless HP Out", NULL),
+	SND_SOC_DAPM_LINE("MB-AuxOut L", NULL),
+	SND_SOC_DAPM_LINE("MB-AuxOut R", NULL),
+	SND_SOC_DAPM_LINE("MB-PwrSpk", NULL),
+	SND_SOC_DAPM_HP("MB-Headphones", NULL),
+	SND_SOC_DAPM_LINE("MB-Speaker", NULL),
 };
 
-/* davinci-evm machine audio_mapnections to the codec pins */
-static const struct snd_soc_dapm_route audio_map[] = {
-	{ "LAUX", NULL, "In 3-4" },
-	{ "RAUX", NULL, "In 3-4" },
-	{ "LINP", NULL, "In 1" },
-	{ "LINN", NULL, "In 1"},
-	{ "RINP", NULL, "In 2" },
-	{ "RINN", NULL, "In 2" },
+/* microburst audio_mapnections to the codec */
+static const struct snd_soc_dapm_route microburst_audio_map[] = {
+	{ "LAUX", NULL, "MB-AuxIn" },
+	{ "RAUX", NULL, "MB-AuxIn" },
+	{ "LINP", NULL, "MB-Rear-Mic" },
+	{ "RINP", NULL, "MB-Front-Mic" },
 
-	{ "In 1", NULL, "MICBIAS" },
-	{ "In 2", NULL, "MICBIAS" },
+	{ "MB-Rear-Mic", NULL, "MICBIAS" },
+	{ "MB-Front-Mic", NULL, "MICBIAS" },
 
-	{ "Capless HP Out", NULL, "LHP" },
-	{ "Capless HP Out", NULL, "RHP" },
-	{ "Diff Out L", NULL, "LOUT" },
-	{ "Diff Out R", NULL, "ROUT" },
-	{ "Stereo Out", NULL, "LOUT" },
-	{ "Stereo Out", NULL, "ROUT" },
+	{ "MB-AuxOut L", NULL, "LOUT" },
+	{ "MB-AuxOut R", NULL, "ROUT" },
+	{ "MB-PwrSpk", NULL, "LOUT" },
+	{ "MB-PwrSpk", NULL, "ROUT" },
+	{ "MB-Headphones", NULL, "LHP" },
+	{ "MB-Headphones", NULL, "RHP" },
+	{ "MB-Speaker", NULL, "MONOOUT" },
 };
 
 /* Logic for the microburst adau1761 as connected on a davinci-evm */
@@ -119,42 +135,26 @@ static int evm_adau1761_init(struct snd_soc_pcm_runtime *rtd)
 	struct snd_soc_codec *codec = rtd->codec;
 	struct snd_soc_dapm_context *dapm = &codec->dapm;
 
+
 	/* Add davinci-evm specific widgets */
-	snd_soc_dapm_new_controls(dapm, adau_dapm_widgets,
-				  ARRAY_SIZE(adau_dapm_widgets));
+//	snd_soc_dapm_new_controls(dapm, microburst_dapm_widgets, ARRAY_SIZE(microburst_dapm_widgets));
+
 
 	/* Set up davinci-evm specific audio path audio_map */
-	snd_soc_dapm_add_routes(dapm, audio_map, ARRAY_SIZE(audio_map));
+//	snd_soc_dapm_add_routes(dapm, microburst_audio_map, ARRAY_SIZE(microburst_audio_map));
 
-	/* not connected - these 3 lines left over from TI EVB code */
-	// _soc_dapm_disable_pin(dapm, "MONO_LOUT");
-	// _soc_dapm_disable_pin(dapm, "HPLCOM");
-	// _soc_dapm_disable_pin(dapm, "HPRCOM");
+//	snd_soc_dapm_enable_pin(dapm, "Mono Playback Mixer");
+//	snd_soc_dapm_enable_pin(dapm, "LINN");
+//	snd_soc_dapm_enable_pin(dapm, "RINP");
+//	snd_soc_dapm_enable_pin(dapm, "RINN");
+//	snd_soc_dapm_enable_pin(dapm, "LAUX");
+//	snd_soc_dapm_enable_pin(dapm, "RAUX");
+//	snd_soc_dapm_enable_pin(dapm, "HP Out");
+//	snd_soc_dapm_enable_pin(dapm, "Stereo Out");
+//	snd_soc_dapm_enable_pin(dapm, "HPLCOM");
+//	snd_soc_dapm_enable_pin(dapm, "HPRCOM");
+//	snd_soc_dapm_enable_pin(dapm, "Mono Out");
 
-	/* always connected */
-	//{ "LAUX", NULL, "In 3-4" },            // Signal ACC_LINE_IN
-	//{ "RAUX", NULL, "In 3-4" },            // Signal CM
-	//{ "LINP", NULL, "In 1" },              // Balanced Mic Pos
-	//{ "LINN", NULL, "In 1"},               // Balanced Mic Neg
-	//{ "RINP", NULL, "In 2" },              // Mic Pos (biased)
-	//{ "RINN", NULL, "In 2" },              // Mic Neg
-
-	//{ "In 1", NULL, "MICBIAS" },           // Mic Bias
-	//{ "In 2", NULL, "MICBIAS" },           // Mic Bias
-
-	//{ "Capless HP Out", NULL, "LHP" },     // Headphone Left
-	//{ "Capless HP Out", NULL, "RHP" },     // Headphone Right
-	//{ "Diff Out L", NULL, "LOUT" },        // 
-	//{ "Diff Out R", NULL, "ROUT" },        // 
-	//{ "Stereo Out", NULL, "LOUT" },        // Ext Speaker
-	//{ "Stereo Out", NULL, "ROUT" },        // Ext Speaker
-
-	snd_soc_dapm_enable_pin(dapm, "LINP");
-	snd_soc_dapm_enable_pin(dapm, "LINN");
-	snd_soc_dapm_enable_pin(dapm, "LAUX");
-	snd_soc_dapm_enable_pin(dapm, "RAUX");
-	snd_soc_dapm_enable_pin(dapm, "Capless HP Out");
-	snd_soc_dapm_enable_pin(dapm, "Stereo Out");
 
 	return 0;
 }

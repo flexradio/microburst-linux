@@ -274,37 +274,45 @@ static int adau17x1_hw_params(struct snd_pcm_substream *substream,
 	if (adau->clk_src == ADAU17X1_CLK_SRC_PLL)
 		freq = adau->pll_freq;
 	else
-		freq = adau->sysclk / adau->sysclk_div;
+		freq = adau->sysclk * adau->sysclk_div;  //this was adau->sysclk * adau->sysclk_div originally, might be hiding the real problem
+		printk("sysclk %d sysclk_div %d freq %d params_rate %d\n",adau->sysclk,adau->sysclk_div,freq,params_rate(params));
 
 	if (freq % params_rate(params) != 0)
 		return -EINVAL;
 
 	switch (freq / params_rate(params)) {
 	case 1024: /* fs */
+		printk("1024\n");
 		div = 0;
 		dsp_div = 1;
 		break;
 	case 6144: /* fs / 6 */
+		printk("6144\n");
 		div = 1;
 		dsp_div = 6;
 		break;
 	case 4096: /* fs / 4 */
+		printk("4096\n");
 		div = 2;
 		dsp_div = 5;
 		break;
 	case 3072: /* fs / 3 */
-		div = 3;
-		dsp_div = 4;
+		printk("3072\n");
+		div = 3;	//originally 3
+		dsp_div = 4;	//originally 4
 		break;
 	case 2048: /* fs / 2 */
+		printk("2048\n");
 		div = 4;
 		dsp_div = 3;
 		break;
 	case 1536: /* fs / 1.5 */
+		printk("1536\n");
 		div = 5;
 		dsp_div = 2;
 		break;
 	case 512: /* fs / 0.5 */
+		printk("512\n");
 		div = 6;
 		dsp_div = 0;
 		break;
@@ -444,6 +452,7 @@ static int adau17x1_set_dai_clkdiv(struct snd_soc_dai *dai, int div_id, int div)
 
 	return snd_soc_update_bits(dai->codec, ADAU17X1_CLOCK_CONTROL,
 		ADAU17X1_CLOCK_CONTROL_INFREQ_MASK, (div - 1) << 1);
+
 }
 
 static int adau17x1_set_dai_fmt(struct snd_soc_dai *dai,
@@ -526,6 +535,8 @@ static int adau17x1_set_dai_tdm_slot(struct snd_soc_dai *dai,
 	struct adau *adau = snd_soc_codec_get_drvdata(codec);
 	unsigned int ser_ctrl0, ser_ctrl1;
 	unsigned int conv_ctrl0, conv_ctrl1;
+
+printk ("txmask %d rxmask %d slots %d width %d\n",tx_mask,rx_mask,slots,slot_width);
 
 	/* I2S mode */
 	if (slots == 0) {
