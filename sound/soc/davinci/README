@@ -1,0 +1,9 @@
+There are two ways to do this -
+
+One is to use a modifed copy of bfin-eval-adau1x61.c as microburst.c
+This is saved as microburst-from-bfin.c
+
+The other is to use a modified copy of davinci-evm.c
+this is saved as microburst-from-davinci.c
+
+TODO edit microburst.c, copy to microburst-from-davinci and build it

@@ -14,9 +14,11 @@ obj-$(CONFIG_SND_SOC_TI81XX_HDMI) += snd-soc-davinci-hdmi.o
 
 # DAVINCI Machine Support
 snd-soc-evm-objs := davinci-evm.o
+snd-soc-microburst-objs := microburst.o
 snd-soc-sffsdr-objs := davinci-sffsdr.o
 
 obj-$(CONFIG_SND_DAVINCI_SOC_EVM) += snd-soc-evm.o
+obj-$(CONFIG_SND_SOC_MICROBURST) += snd-soc-microburst.o
 obj-$(CONFIG_SND_DM6467_SOC_EVM) += snd-soc-evm.o
 obj-$(CONFIG_SND_DA830_SOC_EVM) += snd-soc-evm.o
 obj-$(CONFIG_SND_DA850_SOC_EVM) += snd-soc-evm.o
