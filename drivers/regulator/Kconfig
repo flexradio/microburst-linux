@@ -220,6 +220,14 @@ config REGULATOR_GPIO
 	  based on the GPIO values. It supports TI's software based
 	  TI816X Class-2 SmartReflex implementation
 
+config REGULATOR_MBURST
+	tristate "Microburst voltage regulator"
+	depends on ARCH_TI816X && GPIOLIB
+	default y
+	help
+	  This is an I2C based voltage controller driver, which controls the voltage.
+	  It supports TI's software based TI816X Class-2 SmartReflex implementation
+
 config REGULATOR_TPS6507X
 	tristate "TI TPS6507X Power regulators"
 	depends on I2C
