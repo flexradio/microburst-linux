@@ -1,0 +1,25 @@
+; Code Composer Project File, Version 2.0 (do not modify or remove this line)
+[Project Settings]
+ProjectName="ti.syslink.procMgr.rtos.bios6"
+ProjectType=External
+CPUFamily=TMS470R4X
+Tool="CustomBuilder"
+Config="Package"
+[Source Files]
+Source="../package/package_ti.syslink.procMgr.rtos.bios6.c"
+Source="../common/ProcMgr.c"
+Source="../common/PwrMgr.c"
+Source="../common/Loader.c"
+Source="../common/Processor.c"
+Source="../common/loaders/Elf/DLOAD/C60_DLOAD_REL/c60_reloc.c"
+Source="../common/loaders/Elf/DLOAD/TMS470_DLOAD_DYN/arm_dynamic.c"
+Source="../common/loaders/Elf/DLOAD/TMS470_DLOAD_REL/arm_reloc.c"
+Source="../common/loaders/Elf/DLOAD/DLOAD_SYM/symtab.c"
+Source="../common/loaders/Elf/DLOAD/C60_DLOAD_DYN/c60_dynamic.c"
+Source="../common/loaders/Elf/DLOAD/DLOAD/ArrayList.c"
+Source="../common/loaders/Elf/DLOAD/DLOAD/elf32.c"
+Source="../common/loaders/Elf/DLOAD/DLOAD/dload_endian.c"
+Source="../common/loaders/Elf/dlw_client/dlw_client.c"
+Source="../common/loaders/Elf/DLOAD/DLOAD/dload.c"
+Source="../common/loaders/Elf/dlw_client/dlw_dsbt.c"
+Source="../common/loaders/Elf/ElfLoader.c"

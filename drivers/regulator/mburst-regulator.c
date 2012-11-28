@@ -36,7 +36,7 @@ struct mburst_vr_drvdata {
 #ifdef FAKEIT
 	int                     debug_val;
 #endif
-	struct i2c_client       *client;
+//	struct i2c_client       *client;
 	struct regulator_desc	desc;
 	struct regulator_dev	*rdev;
 	spinlock_t		lock;
@@ -45,7 +45,7 @@ struct mburst_vr_drvdata {
 static int mburst_vr_get_voltage(struct regulator_dev *dev)
 {
 	struct mburst_vr_drvdata *vrdd = rdev_get_drvdata(dev);
-	struct i2c_client *client = vrdd->client;
+//	struct i2c_client *client = vrdd->client;
 	u32 uVolts;
 	int ret;
 

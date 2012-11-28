@@ -197,10 +197,11 @@ static struct i2c_board_info __initdata ti816x_i2c_boardinfo0[] = {
 	  .platform_data = &adau1761_pdata,
 	},
 
-	{
+/*	{
 	  I2C_BOARD_INFO("mburst-regulator", 0x08), // regulator
 	  .platform_data = (void *)&mburst_vr_init_data,
 	},
+*/
 };
 
 static struct i2c_board_info __initdata ti816x_i2c_boardinfo1[] = {

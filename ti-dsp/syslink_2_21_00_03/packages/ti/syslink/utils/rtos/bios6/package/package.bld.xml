@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  This file conforms to the DTD xdc/bld/build.dtd -->
+<package name="ti.syslink.utils.rtos.bios6" version="1, 0, 0, 0" producerId="undefined">
+    <units>
+    </units>
+    <sources>
+        <srcFile name="package/package_ti.syslink.utils.rtos.bios6.c"/>
+        <srcFile name="rtos/osal/bios6/OsalPrint.c"/>
+        <srcFile name="rtos/osal/bios6/OsalKfile.c"/>
+        <srcFile name="rtos/osal/bios6/MemoryOS.c"/>
+        <srcFile name="common/Trace.c"/>
+        <srcFile name="common/Cfg.c"/>
+        <srcFile name="TraceDrv.c"/>
+    </sources>
+    <configscripts>
+    </configscripts>
+    <makefiles>
+        <srcFile name="package.mak" src="package.bld"/>
+        <srcFile name="package/package.xdc.dep" src="package.xdc"/>
+        <srcFile name="package/package.cfg.dep" src="package.xdc"/>
+        <srcFile name="lib/debug/ti.syslink.utils.rtos.bios6.ae674.mak" src="package.bld"/>
+        <srcFile name="package/lib/lib/debug/ti.syslink.utils.rtos.bios6/package/package_ti.syslink.utils.rtos.bios6.oe674.dep" src="package/package_ti.syslink.utils.rtos.bios6.c"/>
+        <srcFile name="package/lib/lib/debug/ti.syslink.utils.rtos.bios6/rtos/osal/bios6/OsalPrint.oe674.dep" src="rtos/osal/bios6/OsalPrint.c"/>
+        <srcFile name="package/lib/lib/debug/ti.syslink.utils.rtos.bios6/rtos/osal/bios6/OsalKfile.oe674.dep" src="rtos/osal/bios6/OsalKfile.c"/>
+        <srcFile name="package/lib/lib/debug/ti.syslink.utils.rtos.bios6/rtos/osal/bios6/MemoryOS.oe674.dep" src="rtos/osal/bios6/MemoryOS.c"/>
+        <srcFile name="package/lib/lib/debug/ti.syslink.utils.rtos.bios6/common/Trace.oe674.dep" src="common/Trace.c"/>
+        <srcFile name="package/lib/lib/debug/ti.syslink.utils.rtos.bios6/common/Cfg.oe674.dep" src="common/Cfg.c"/>
+        <srcFile name="package/lib/lib/debug/ti.syslink.utils.rtos.bios6/TraceDrv.oe674.dep" src="TraceDrv.c"/>
+        <srcFile name="lib/release/ti.syslink.utils.rtos.bios6.ae674.mak" src="package.bld"/>
+        <srcFile name="package/lib/lib/release/ti.syslink.utils.rtos.bios6/package/package_ti.syslink.utils.rtos.bios6.oe674.dep" src="package/package_ti.syslink.utils.rtos.bios6.c"/>
+        <srcFile name="package/lib/lib/release/ti.syslink.utils.rtos.bios6/rtos/osal/bios6/OsalPrint.oe674.dep" src="rtos/osal/bios6/OsalPrint.c"/>
+        <srcFile name="package/lib/lib/release/ti.syslink.utils.rtos.bios6/rtos/osal/bios6/OsalKfile.oe674.dep" src="rtos/osal/bios6/OsalKfile.c"/>
+        <srcFile name="package/lib/lib/release/ti.syslink.utils.rtos.bios6/rtos/osal/bios6/MemoryOS.oe674.dep" src="rtos/osal/bios6/MemoryOS.c"/>
+        <srcFile name="package/lib/lib/release/ti.syslink.utils.rtos.bios6/common/Trace.oe674.dep" src="common/Trace.c"/>
+        <srcFile name="package/lib/lib/release/ti.syslink.utils.rtos.bios6/common/Cfg.oe674.dep" src="common/Cfg.c"/>
+        <srcFile name="package/lib/lib/release/ti.syslink.utils.rtos.bios6/TraceDrv.oe674.dep" src="TraceDrv.c"/>
+        <srcFile name="package/rel/ti_syslink_utils_rtos_bios6.tar.dep" src="package/rel/ti_syslink_utils_rtos_bios6.xdc.inc"/>
+    </makefiles>
+    <targets>
+        <target name="ti.targets.elf.C674"
+            version="ti.targets.elf.C674{1,0,7.2,7"
+            platform="ti.platforms.evmDA830"
+            isa="674"
+            suffix="e674"
+            rootDir="/opt/TI/C6000CGT7.2.7"
+            os="undefined"
+            rts="ti.targets.rts6000">
+            <model endian="little"
+                codeModel="undefined"
+                dataModel="undefined"/>
+        </target>
+    </targets>
+    <libraries>
+    <library name="lib/debug/ti.syslink.utils.rtos.bios6"
+        pname="lib/debug/ti.syslink.utils.rtos.bios6.ae674"
+        profile="debug"
+        target="ti.targets.elf.C674"/>
+    <library name="lib/release/ti.syslink.utils.rtos.bios6"
+        pname="lib/release/ti.syslink.utils.rtos.bios6.ae674"
+        profile="release"
+        target="ti.targets.elf.C674"/>
+    </libraries>
+    <configurations>
+    </configurations>
+    <executables>
+    </executables>
+    <tests>
+    </tests>
+    <releases relDir="package/rel/">
+    <release name="ti_syslink_utils_rtos_bios6"
+        pname="ti_syslink_utils_rtos_bios6.tar"
+        label="default"
+    >
+        <file name="package/package.bld.xml"/>
+        <file name="package/build.cfg"/>
+        <file name="package/package.xdc.inc"/>
+        <file name="package/package.cfg.xdc.inc"/>
+        <file name="lib/debug/ti.syslink.utils.rtos.bios6.ae674"/>
+        <file name="lib/release/ti.syslink.utils.rtos.bios6.ae674"/>
+    </release>
+    </releases>
+    <repositories>
+    </repositories>
+</package>

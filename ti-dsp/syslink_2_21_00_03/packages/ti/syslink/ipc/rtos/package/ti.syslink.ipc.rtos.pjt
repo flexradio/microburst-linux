@@ -1,0 +1,22 @@
+; Code Composer Project File, Version 2.0 (do not modify or remove this line)
+[Project Settings]
+ProjectName="ti.syslink.ipc.rtos"
+ProjectType=External
+CPUFamily=TMS320C67XX
+Tool="CustomBuilder"
+Config="Package"
+[Source Files]
+Source="../package/package_ti.syslink.ipc.rtos.c"
+Source="../cfg/SysLinkCfg.c"
+Source="../ClientNotifyMgr.c"
+Source="../RingIO.c"
+Source="../RingIOShm.c"
+Source="../_Syslink.c"
+Source="../Syslink.c"
+Source="../FrameQBufMgr.c"
+Source="../FrameQ.c"
+Source="../shMem/FrameQ_ShMem.c"
+Source="../shMem/FrameQBufMgr_ShMem.c"
+Source="../syslinkMemMgr/SyslinkMemMgr.c"
+Source="../syslinkMemMgr/shMemMgr/SharedMemoryMgr.c"
+Source="../syslinkMemMgr/tilerMemMgr/TilerMemoryMgr.c"

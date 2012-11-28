@@ -1,0 +1,33 @@
+; Code Composer Project File, Version 2.0 (do not modify or remove this line)
+[Project Settings]
+ProjectName="ti.syslink.family.rtos.bios6.ti814x"
+ProjectType=External
+CPUFamily=TMS470R4X
+Tool="CustomBuilder"
+Config="Package"
+[Source Files]
+Source="../package/package_ti.syslink.family.rtos.bios6.ti814x.c"
+Source="../Platform.c"
+Source="../Dm8168Clock.c"
+Source="../rtos/bios6/ti81xx/ti81xxdsp/Dm8168DspHalMmu.c"
+Source="../rtos/bios6/ti81xx/ti81xxducati/ti81xxvideom3/Dm8168M3VideoHalMmu.c"
+Source="../rtos/bios6/ti81xx/ti81xxducati/ti81xxvpssm3/Dm8168M3DssHalMmu.c"
+Source="../common/ClockOps.c"
+Source="../common/ti81xx/ti81xxdsp/Dm8168DspPwr.c"
+Source="../common/ti81xx/ti81xxducati/Dm8168DucatiPwr.c"
+Source="../common/ti81xx/ti81xxdsp/Dm8168DspProc.c"
+Source="../common/ti81xx/ti81xxdsp/Dm8168DspHal.c"
+Source="../common/ti81xx/ti81xxdsp/Dm8168DspHalBoot.c"
+Source="../common/ti81xx/ti81xxdsp/Dm8168DspHalReset.c"
+Source="../common/ti81xx/ti81xxdsp/Dm8168DspPhyShmem.c"
+Source="../common/ti81xx/ti81xxducati/ti81xxvideom3/Dm8168M3VideoHal.c"
+Source="../common/ti81xx/ti81xxducati/ti81xxvideom3/Dm8168M3VideoHalBoot.c"
+Source="../common/ti81xx/ti81xxducati/ti81xxvideom3/Dm8168M3VideoHalReset.c"
+Source="../common/ti81xx/ti81xxducati/ti81xxvideom3/Dm8168M3VideoProc.c"
+Source="../common/ti81xx/ti81xxducati/ti81xxvideom3/Dm8168M3VideoPhyShmem.c"
+Source="../common/ti81xx/ti81xxducati/ti81xxvpssm3/Dm8168M3DssHal.c"
+Source="../common/ti81xx/ti81xxducati/ti81xxvpssm3/Dm8168M3DssHalReset.c"
+Source="../common/ti81xx/ti81xxducati/ti81xxvpssm3/Dm8168M3DssHalBoot.c"
+Source="../common/ti81xx/ti81xxducati/ti81xxvpssm3/Dm8168M3DssProc.c"
+Source="../common/ti81xx/ti81xxducati/ti81xxvpssm3/Dm8168M3DssPhyShmem.c"
+Source="../common/ti81xx/ti81xxducati/Dm8168DucatiMmu.c"

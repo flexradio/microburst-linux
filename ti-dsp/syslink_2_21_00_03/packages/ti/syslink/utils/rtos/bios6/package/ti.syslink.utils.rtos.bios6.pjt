@@ -1,0 +1,15 @@
+; Code Composer Project File, Version 2.0 (do not modify or remove this line)
+[Project Settings]
+ProjectName="ti.syslink.utils.rtos.bios6"
+ProjectType=External
+CPUFamily=TMS320C67XX
+Tool="CustomBuilder"
+Config="Package"
+[Source Files]
+Source="../package/package_ti.syslink.utils.rtos.bios6.c"
+Source="../rtos/osal/bios6/OsalPrint.c"
+Source="../rtos/osal/bios6/OsalKfile.c"
+Source="../rtos/osal/bios6/MemoryOS.c"
+Source="../common/Trace.c"
+Source="../common/Cfg.c"
+Source="../TraceDrv.c"

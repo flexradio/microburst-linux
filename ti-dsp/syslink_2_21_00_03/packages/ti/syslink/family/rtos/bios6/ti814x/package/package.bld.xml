@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  This file conforms to the DTD xdc/bld/build.dtd -->
+<package name="ti.syslink.family.rtos.bios6.ti814x" version="1, 0, 0, 0" producerId="undefined">
+    <units>
+    </units>
+    <sources>
+        <srcFile name="package/package_ti.syslink.family.rtos.bios6.ti814x.c"/>
+        <srcFile name="Platform.c"/>
+        <srcFile name="Dm8168Clock.c"/>
+        <srcFile name="rtos/bios6/ti81xx/ti81xxdsp/Dm8168DspHalMmu.c"/>
+        <srcFile name="rtos/bios6/ti81xx/ti81xxducati/ti81xxvideom3/Dm8168M3VideoHalMmu.c"/>
+        <srcFile name="rtos/bios6/ti81xx/ti81xxducati/ti81xxvpssm3/Dm8168M3DssHalMmu.c"/>
+        <srcFile name="common/ClockOps.c"/>
+        <srcFile name="common/ti81xx/ti81xxdsp/Dm8168DspPwr.c"/>
+        <srcFile name="common/ti81xx/ti81xxducati/Dm8168DucatiPwr.c"/>
+        <srcFile name="common/ti81xx/ti81xxdsp/Dm8168DspProc.c"/>
+        <srcFile name="common/ti81xx/ti81xxdsp/Dm8168DspHal.c"/>
+        <srcFile name="common/ti81xx/ti81xxdsp/Dm8168DspHalBoot.c"/>
+        <srcFile name="common/ti81xx/ti81xxdsp/Dm8168DspHalReset.c"/>
+        <srcFile name="common/ti81xx/ti81xxdsp/Dm8168DspPhyShmem.c"/>
+        <srcFile name="common/ti81xx/ti81xxducati/ti81xxvideom3/Dm8168M3VideoHal.c"/>
+        <srcFile name="common/ti81xx/ti81xxducati/ti81xxvideom3/Dm8168M3VideoHalBoot.c"/>
+        <srcFile name="common/ti81xx/ti81xxducati/ti81xxvideom3/Dm8168M3VideoHalReset.c"/>
+        <srcFile name="common/ti81xx/ti81xxducati/ti81xxvideom3/Dm8168M3VideoProc.c"/>
+        <srcFile name="common/ti81xx/ti81xxducati/ti81xxvideom3/Dm8168M3VideoPhyShmem.c"/>
+        <srcFile name="common/ti81xx/ti81xxducati/ti81xxvpssm3/Dm8168M3DssHal.c"/>
+        <srcFile name="common/ti81xx/ti81xxducati/ti81xxvpssm3/Dm8168M3DssHalReset.c"/>
+        <srcFile name="common/ti81xx/ti81xxducati/ti81xxvpssm3/Dm8168M3DssHalBoot.c"/>
+        <srcFile name="common/ti81xx/ti81xxducati/ti81xxvpssm3/Dm8168M3DssProc.c"/>
+        <srcFile name="common/ti81xx/ti81xxducati/ti81xxvpssm3/Dm8168M3DssPhyShmem.c"/>
+        <srcFile name="common/ti81xx/ti81xxducati/Dm8168DucatiMmu.c"/>
+    </sources>
+    <configscripts>
+    </configscripts>
+    <makefiles>
+        <srcFile name="package.mak" src="package.bld"/>
+        <srcFile name="package/package.xdc.dep" src="package.xdc"/>
+        <srcFile name="package/package.cfg.dep" src="package.xdc"/>
+        <srcFile name="lib/debug/ti.syslink.family.rtos.bios6.ti814x.aea8f.mak" src="package.bld"/>
+        <srcFile name="package/lib/lib/debug/ti.syslink.family.rtos.bios6.ti814x/package/package_ti.syslink.family.rtos.bios6.ti814x.oea8f.dep" src="package/package_ti.syslink.family.rtos.bios6.ti814x.c"/>
+        <srcFile name="package/lib/lib/debug/ti.syslink.family.rtos.bios6.ti814x/Platform.oea8f.dep" src="Platform.c"/>
+        <srcFile name="package/lib/lib/debug/ti.syslink.family.rtos.bios6.ti814x/Dm8168Clock.oea8f.dep" src="Dm8168Clock.c"/>
+        <srcFile name="package/lib/lib/debug/ti.syslink.family.rtos.bios6.ti814x/rtos/bios6/ti81xx/ti81xxdsp/Dm8168DspHalMmu.oea8f.dep" src="rtos/bios6/ti81xx/ti81xxdsp/Dm8168DspHalMmu.c"/>
+        <srcFile name="package/lib/lib/debug/ti.syslink.family.rtos.bios6.ti814x/rtos/bios6/ti81xx/ti81xxducati/ti81xxvideom3/Dm8168M3VideoHalMmu.oea8f.dep" src="rtos/bios6/ti81xx/ti81xxducati/ti81xxvideom3/Dm8168M3VideoHalMmu.c"/>
+        <srcFile name="package/lib/lib/debug/ti.syslink.family.rtos.bios6.ti814x/rtos/bios6/ti81xx/ti81xxducati/ti81xxvpssm3/Dm8168M3DssHalMmu.oea8f.dep" src="rtos/bios6/ti81xx/ti81xxducati/ti81xxvpssm3/Dm8168M3DssHalMmu.c"/>
+        <srcFile name="package/lib/lib/debug/ti.syslink.family.rtos.bios6.ti814x/common/ClockOps.oea8f.dep" src="common/ClockOps.c"/>
+        <srcFile name="package/lib/lib/debug/ti.syslink.family.rtos.bios6.ti814x/common/ti81xx/ti81xxdsp/Dm8168DspPwr.oea8f.dep" src="common/ti81xx/ti81xxdsp/Dm8168DspPwr.c"/>
+        <srcFile name="package/lib/lib/debug/ti.syslink.family.rtos.bios6.ti814x/common/ti81xx/ti81xxducati/Dm8168DucatiPwr.oea8f.dep" src="common/ti81xx/ti81xxducati/Dm8168DucatiPwr.c"/>
+        <srcFile name="package/lib/lib/debug/ti.syslink.family.rtos.bios6.ti814x/common/ti81xx/ti81xxdsp/Dm8168DspProc.oea8f.dep" src="common/ti81xx/ti81xxdsp/Dm8168DspProc.c"/>
+        <srcFile name="package/lib/lib/debug/ti.syslink.family.rtos.bios6.ti814x/common/ti81xx/ti81xxdsp/Dm8168DspHal.oea8f.dep" src="common/ti81xx/ti81xxdsp/Dm8168DspHal.c"/>
+        <srcFile name="package/lib/lib/debug/ti.syslink.family.rtos.bios6.ti814x/common/ti81xx/ti81xxdsp/Dm8168DspHalBoot.oea8f.dep" src="common/ti81xx/ti81xxdsp/Dm8168DspHalBoot.c"/>
+        <srcFile name="package/lib/lib/debug/ti.syslink.family.rtos.bios6.ti814x/common/ti81xx/ti81xxdsp/Dm8168DspHalReset.oea8f.dep" src="common/ti81xx/ti81xxdsp/Dm8168DspHalReset.c"/>
+        <srcFile name="package/lib/lib/debug/ti.syslink.family.rtos.bios6.ti814x/common/ti81xx/ti81xxdsp/Dm8168DspPhyShmem.oea8f.dep" src="common/ti81xx/ti81xxdsp/Dm8168DspPhyShmem.c"/>
+        <srcFile name="package/lib/lib/debug/ti.syslink.family.rtos.bios6.ti814x/common/ti81xx/ti81xxducati/ti81xxvideom3/Dm8168M3VideoHal.oea8f.dep" src="common/ti81xx/ti81xxducati/ti81xxvideom3/Dm8168M3VideoHal.c"/>
+        <srcFile name="package/lib/lib/debug/ti.syslink.family.rtos.bios6.ti814x/common/ti81xx/ti81xxducati/ti81xxvideom3/Dm8168M3VideoHalBoot.oea8f.dep" src="common/ti81xx/ti81xxducati/ti81xxvideom3/Dm8168M3VideoHalBoot.c"/>
+        <srcFile name="package/lib/lib/debug/ti.syslink.family.rtos.bios6.ti814x/common/ti81xx/ti81xxducati/ti81xxvideom3/Dm8168M3VideoHalReset.oea8f.dep" src="common/ti81xx/ti81xxducati/ti81xxvideom3/Dm8168M3VideoHalReset.c"/>
+        <srcFile name="package/lib/lib/debug/ti.syslink.family.rtos.bios6.ti814x/common/ti81xx/ti81xxducati/ti81xxvideom3/Dm8168M3VideoProc.oea8f.dep" src="common/ti81xx/ti81xxducati/ti81xxvideom3/Dm8168M3VideoProc.c"/>
+        <srcFile name="package/lib/lib/debug/ti.syslink.family.rtos.bios6.ti814x/common/ti81xx/ti81xxducati/ti81xxvideom3/Dm8168M3VideoPhyShmem.oea8f.dep" src="common/ti81xx/ti81xxducati/ti81xxvideom3/Dm8168M3VideoPhyShmem.c"/>
+        <srcFile name="package/lib/lib/debug/ti.syslink.family.rtos.bios6.ti814x/common/ti81xx/ti81xxducati/ti81xxvpssm3/Dm8168M3DssHal.oea8f.dep" src="common/ti81xx/ti81xxducati/ti81xxvpssm3/Dm8168M3DssHal.c"/>
+        <srcFile name="package/lib/lib/debug/ti.syslink.family.rtos.bios6.ti814x/common/ti81xx/ti81xxducati/ti81xxvpssm3/Dm8168M3DssHalReset.oea8f.dep" src="common/ti81xx/ti81xxducati/ti81xxvpssm3/Dm8168M3DssHalReset.c"/>
+        <srcFile name="package/lib/lib/debug/ti.syslink.family.rtos.bios6.ti814x/common/ti81xx/ti81xxducati/ti81xxvpssm3/Dm8168M3DssHalBoot.oea8f.dep" src="common/ti81xx/ti81xxducati/ti81xxvpssm3/Dm8168M3DssHalBoot.c"/>
+        <srcFile name="package/lib/lib/debug/ti.syslink.family.rtos.bios6.ti814x/common/ti81xx/ti81xxducati/ti81xxvpssm3/Dm8168M3DssProc.oea8f.dep" src="common/ti81xx/ti81xxducati/ti81xxvpssm3/Dm8168M3DssProc.c"/>
+        <srcFile name="package/lib/lib/debug/ti.syslink.family.rtos.bios6.ti814x/common/ti81xx/ti81xxducati/ti81xxvpssm3/Dm8168M3DssPhyShmem.oea8f.dep" src="common/ti81xx/ti81xxducati/ti81xxvpssm3/Dm8168M3DssPhyShmem.c"/>
+        <srcFile name="package/lib/lib/debug/ti.syslink.family.rtos.bios6.ti814x/common/ti81xx/ti81xxducati/Dm8168DucatiMmu.oea8f.dep" src="common/ti81xx/ti81xxducati/Dm8168DucatiMmu.c"/>
+        <srcFile name="lib/release/ti.syslink.family.rtos.bios6.ti814x.aea8f.mak" src="package.bld"/>
+        <srcFile name="package/lib/lib/release/ti.syslink.family.rtos.bios6.ti814x/package/package_ti.syslink.family.rtos.bios6.ti814x.oea8f.dep" src="package/package_ti.syslink.family.rtos.bios6.ti814x.c"/>
+        <srcFile name="package/lib/lib/release/ti.syslink.family.rtos.bios6.ti814x/Platform.oea8f.dep" src="Platform.c"/>
+        <srcFile name="package/lib/lib/release/ti.syslink.family.rtos.bios6.ti814x/Dm8168Clock.oea8f.dep" src="Dm8168Clock.c"/>
+        <srcFile name="package/lib/lib/release/ti.syslink.family.rtos.bios6.ti814x/rtos/bios6/ti81xx/ti81xxdsp/Dm8168DspHalMmu.oea8f.dep" src="rtos/bios6/ti81xx/ti81xxdsp/Dm8168DspHalMmu.c"/>
+        <srcFile name="package/lib/lib/release/ti.syslink.family.rtos.bios6.ti814x/rtos/bios6/ti81xx/ti81xxducati/ti81xxvideom3/Dm8168M3VideoHalMmu.oea8f.dep" src="rtos/bios6/ti81xx/ti81xxducati/ti81xxvideom3/Dm8168M3VideoHalMmu.c"/>
+        <srcFile name="package/lib/lib/release/ti.syslink.family.rtos.bios6.ti814x/rtos/bios6/ti81xx/ti81xxducati/ti81xxvpssm3/Dm8168M3DssHalMmu.oea8f.dep" src="rtos/bios6/ti81xx/ti81xxducati/ti81xxvpssm3/Dm8168M3DssHalMmu.c"/>
+        <srcFile name="package/lib/lib/release/ti.syslink.family.rtos.bios6.ti814x/common/ClockOps.oea8f.dep" src="common/ClockOps.c"/>
+        <srcFile name="package/lib/lib/release/ti.syslink.family.rtos.bios6.ti814x/common/ti81xx/ti81xxdsp/Dm8168DspPwr.oea8f.dep" src="common/ti81xx/ti81xxdsp/Dm8168DspPwr.c"/>
+        <srcFile name="package/lib/lib/release/ti.syslink.family.rtos.bios6.ti814x/common/ti81xx/ti81xxducati/Dm8168DucatiPwr.oea8f.dep" src="common/ti81xx/ti81xxducati/Dm8168DucatiPwr.c"/>
+        <srcFile name="package/lib/lib/release/ti.syslink.family.rtos.bios6.ti814x/common/ti81xx/ti81xxdsp/Dm8168DspProc.oea8f.dep" src="common/ti81xx/ti81xxdsp/Dm8168DspProc.c"/>
+        <srcFile name="package/lib/lib/release/ti.syslink.family.rtos.bios6.ti814x/common/ti81xx/ti81xxdsp/Dm8168DspHal.oea8f.dep" src="common/ti81xx/ti81xxdsp/Dm8168DspHal.c"/>
+        <srcFile name="package/lib/lib/release/ti.syslink.family.rtos.bios6.ti814x/common/ti81xx/ti81xxdsp/Dm8168DspHalBoot.oea8f.dep" src="common/ti81xx/ti81xxdsp/Dm8168DspHalBoot.c"/>
+        <srcFile name="package/lib/lib/release/ti.syslink.family.rtos.bios6.ti814x/common/ti81xx/ti81xxdsp/Dm8168DspHalReset.oea8f.dep" src="common/ti81xx/ti81xxdsp/Dm8168DspHalReset.c"/>
+        <srcFile name="package/lib/lib/release/ti.syslink.family.rtos.bios6.ti814x/common/ti81xx/ti81xxdsp/Dm8168DspPhyShmem.oea8f.dep" src="common/ti81xx/ti81xxdsp/Dm8168DspPhyShmem.c"/>
+        <srcFile name="package/lib/lib/release/ti.syslink.family.rtos.bios6.ti814x/common/ti81xx/ti81xxducati/ti81xxvideom3/Dm8168M3VideoHal.oea8f.dep" src="common/ti81xx/ti81xxducati/ti81xxvideom3/Dm8168M3VideoHal.c"/>
+        <srcFile name="package/lib/lib/release/ti.syslink.family.rtos.bios6.ti814x/common/ti81xx/ti81xxducati/ti81xxvideom3/Dm8168M3VideoHalBoot.oea8f.dep" src="common/ti81xx/ti81xxducati/ti81xxvideom3/Dm8168M3VideoHalBoot.c"/>
+        <srcFile name="package/lib/lib/release/ti.syslink.family.rtos.bios6.ti814x/common/ti81xx/ti81xxducati/ti81xxvideom3/Dm8168M3VideoHalReset.oea8f.dep" src="common/ti81xx/ti81xxducati/ti81xxvideom3/Dm8168M3VideoHalReset.c"/>
+        <srcFile name="package/lib/lib/release/ti.syslink.family.rtos.bios6.ti814x/common/ti81xx/ti81xxducati/ti81xxvideom3/Dm8168M3VideoProc.oea8f.dep" src="common/ti81xx/ti81xxducati/ti81xxvideom3/Dm8168M3VideoProc.c"/>
+        <srcFile name="package/lib/lib/release/ti.syslink.family.rtos.bios6.ti814x/common/ti81xx/ti81xxducati/ti81xxvideom3/Dm8168M3VideoPhyShmem.oea8f.dep" src="common/ti81xx/ti81xxducati/ti81xxvideom3/Dm8168M3VideoPhyShmem.c"/>
+        <srcFile name="package/lib/lib/release/ti.syslink.family.rtos.bios6.ti814x/common/ti81xx/ti81xxducati/ti81xxvpssm3/Dm8168M3DssHal.oea8f.dep" src="common/ti81xx/ti81xxducati/ti81xxvpssm3/Dm8168M3DssHal.c"/>
+        <srcFile name="package/lib/lib/release/ti.syslink.family.rtos.bios6.ti814x/common/ti81xx/ti81xxducati/ti81xxvpssm3/Dm8168M3DssHalReset.oea8f.dep" src="common/ti81xx/ti81xxducati/ti81xxvpssm3/Dm8168M3DssHalReset.c"/>
+        <srcFile name="package/lib/lib/release/ti.syslink.family.rtos.bios6.ti814x/common/ti81xx/ti81xxducati/ti81xxvpssm3/Dm8168M3DssHalBoot.oea8f.dep" src="common/ti81xx/ti81xxducati/ti81xxvpssm3/Dm8168M3DssHalBoot.c"/>
+        <srcFile name="package/lib/lib/release/ti.syslink.family.rtos.bios6.ti814x/common/ti81xx/ti81xxducati/ti81xxvpssm3/Dm8168M3DssProc.oea8f.dep" src="common/ti81xx/ti81xxducati/ti81xxvpssm3/Dm8168M3DssProc.c"/>
+        <srcFile name="package/lib/lib/release/ti.syslink.family.rtos.bios6.ti814x/common/ti81xx/ti81xxducati/ti81xxvpssm3/Dm8168M3DssPhyShmem.oea8f.dep" src="common/ti81xx/ti81xxducati/ti81xxvpssm3/Dm8168M3DssPhyShmem.c"/>
+        <srcFile name="package/lib/lib/release/ti.syslink.family.rtos.bios6.ti814x/common/ti81xx/ti81xxducati/Dm8168DucatiMmu.oea8f.dep" src="common/ti81xx/ti81xxducati/Dm8168DucatiMmu.c"/>
+        <srcFile name="package/rel/ti_syslink_family_rtos_bios6_ti814x.tar.dep" src="package/rel/ti_syslink_family_rtos_bios6_ti814x.xdc.inc"/>
+    </makefiles>
+    <targets>
+        <target name="ti.targets.arm.elf.A8F"
+            version="ti.targets.arm.elf.A8F{1,0,5.0,1"
+            platform="ti.platforms.evmDM8168"
+            isa="v7A"
+            suffix="ea8f"
+            rootDir="/db/toolsrc/library/vendors2005/ti/arm/5.0.1/Linux"
+            os="undefined"
+            rts="ti.targets.arm.rtsarm">
+            <model endian="little"
+                codeModel="undefined"
+                dataModel="undefined"/>
+        </target>
+    </targets>
+    <libraries>
+    <library name="lib/debug/ti.syslink.family.rtos.bios6.ti814x"
+        pname="lib/debug/ti.syslink.family.rtos.bios6.ti814x.aea8f"
+        profile="debug"
+        target="ti.targets.arm.elf.A8F"/>
+    <library name="lib/release/ti.syslink.family.rtos.bios6.ti814x"
+        pname="lib/release/ti.syslink.family.rtos.bios6.ti814x.aea8f"
+        profile="release"
+        target="ti.targets.arm.elf.A8F"/>
+    </libraries>
+    <configurations>
+    </configurations>
+    <executables>
+    </executables>
+    <tests>
+    </tests>
+    <releases relDir="package/rel/">
+    <release name="ti_syslink_family_rtos_bios6_ti814x"
+        pname="ti_syslink_family_rtos_bios6_ti814x.tar"
+        label="default"
+    >
+        <file name="package/package.bld.xml"/>
+        <file name="package/build.cfg"/>
+        <file name="package/package.xdc.inc"/>
+        <file name="package/package.cfg.xdc.inc"/>
+        <file name="lib/debug/ti.syslink.family.rtos.bios6.ti814x.aea8f"/>
+        <file name="lib/release/ti.syslink.family.rtos.bios6.ti814x.aea8f"/>
+    </release>
+    </releases>
+    <repositories>
+    </repositories>
+</package>
