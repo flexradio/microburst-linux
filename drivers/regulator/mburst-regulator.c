@@ -1,7 +1,5 @@
-/*
- * mburst-regulator.c
- *
- * I2C controlled voltage regulator driver
+ /*
+ * Microburst kernel voltage regulator driver
  *
  * Copyright (C) 2012 Flex Radio Systems
  *
@@ -15,55 +13,80 @@
  * General Public License for more details.
  */
 
-//#define DEBUG 1
-//#define FAKEIT
 
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/init.h>
 #include <linux/err.h>
-#include <linux/i2c.h>
 #include <linux/slab.h>
+#include <linux/proc_fs.h>
+#include <linux/stat.h>
+#include <linux/uaccess.h>
+#include <linux/cdev.h>
 #include <linux/platform_device.h>
 #include <linux/regulator/driver.h>
 #include <linux/regulator/machine.h>
 #include <linux/regulator/mburst-regulator.h>
 
+#define PROCFS_MAX_SIZE		1024
+#define PROCFS_NAME 		"mb_regulator"
+
 /* Driver local storage details */
 struct mburst_vr_drvdata {
 	int			min_uV;
 	int			max_uV;
-#ifdef FAKEIT
-	int                     debug_val;
-#endif
-//	struct i2c_client       *client;
+	int			setpoint;
+	int			davinci_wants;
 	struct regulator_desc	desc;
 	struct regulator_dev	*rdev;
 	spinlock_t		lock;
 };
 
+static int vr_davinci_wants = 995000;	//debug value remove!
+static int vr_setpoint = 800000;
+
+//static struct proc_dir_entry *Our_Proc_File;
+
+static char procfs_buffer[PROCFS_MAX_SIZE];
+
+/* read function for procfs file */
+
+int mb_proc_read(char *buf,char **start,off_t offset,int count,int *eof,void *data ) 
+{
+int len=0;
+
+len  += sprintf(buf+len, "%d\n",vr_davinci_wants);
+
+printk("MB procfile read: davinci wants %d uV\n",vr_davinci_wants);
+   
+return len;
+}
+
+/* write function for procfs file */
+
+int mb_proc_write(struct file *file,const char *buf,int count,void *data )
+{
+	if(count > PROCFS_MAX_SIZE)
+	    count = PROCFS_MAX_SIZE;
+	if(copy_from_user(procfs_buffer, buf, count))
+	    return -EFAULT;
+
+	sscanf(procfs_buffer, "%d", &vr_setpoint);
+  
+	printk("MB procfile write: VR set to %d uV\n",vr_setpoint);
+  	
+return count;
+}
+
 static int mburst_vr_get_voltage(struct regulator_dev *dev)
 {
-	struct mburst_vr_drvdata *vrdd = rdev_get_drvdata(dev);
-//	struct i2c_client *client = vrdd->client;
-	u32 uVolts;
+
 	int ret;
 
-	dev_dbg(&client->dev, "mburst_vr_get_voltage\n");
+	printk("Mburst VR Setpoint %d\n",vr_setpoint);
 
-	ret = i2c_master_recv(client, (char *)&uVolts, 4);
-	if (ret < 0) {
-		dev_err(&client->dev, "I2C read error\n");
-		goto get_out;
-	}
-	ret = be32_to_cpu(uVolts);
+	ret = vr_setpoint;
 
-get_out:
-
-#ifdef FAKEIT
-	ret = vrdd->debug_val;
-	printk("Get FAKE returning [%d]\n", ret);
-#endif
 	return ret;
 }
 
@@ -71,28 +94,24 @@ static int mburst_vr_set_voltage(struct regulator_dev *dev,
 				int min_uV, int max_uV)
 {
 	struct mburst_vr_drvdata *vrdd = rdev_get_drvdata(dev);
-	struct i2c_client *client = vrdd->client;
 	int uVolts;
 	int ret;
 
-	dev_dbg(&client->dev, "Set min[%d] max[%d]\n", min_uV, max_uV);
+	printk("mburst VR set voltage called: min %d max %d\n",min_uV,max_uV);
 
 	if (min_uV > vrdd->max_uV || min_uV < vrdd->min_uV)
 		return -EINVAL;
 	if (max_uV > vrdd->max_uV || max_uV < vrdd->min_uV)
 		return -EINVAL;
 
-	uVolts =  cpu_to_be32((min_uV + max_uV)/2);
+	uVolts =  (min_uV + max_uV)/2;
 
-	/* write the new voltage value back */
-	ret = i2c_master_send(client, (unsigned char *) &uVolts, 4);
-	if (ret < 0)
-		dev_err(&client->dev, "I2C read error\n");
+	vr_davinci_wants = uVolts;
 
-#ifdef FAKEIT
-	vrdd->debug_val = min_uV;
+	printk("Mburst VR Davinci Requested Regulator to %d uV\n",uVolts);
+
 	ret = 0;
-#endif
+
 	return ret;
 
 }
@@ -121,27 +140,21 @@ static const struct mbreg_vreg_info mvinfo = {
 	.max_uV = 1025000,
 };
 
-static const struct i2c_device_id mbreg_id[] = {
-	{ "mburst-regulator", (kernel_ulong_t)&mvinfo },
-	{ }
-};
-MODULE_DEVICE_TABLE(i2c, mbreg_id);
 
-static int __devinit mburst_vr_probe(struct i2c_client *client,
-				const struct i2c_device_id *id)
+static int __devinit mburst_vr_probe(struct platform_device *pdev)
 {
 	struct regulator_init_data *init_data;
 	struct mburst_vr_drvdata *vrdd;
-	struct mburst_vr_platform_data *mburst_vr_init_data; // ADDED XYZZY
+	struct mburst_vr_platform_data *mburst_vr_init_data;
 
 	int error;
 
-	if (!client) {
-		printk("***** mb-reg: Invalid i2c client data\n");
+	if (!pdev) {
+		printk("***** mb-reg: Device failed to register\n");
 		return -EINVAL;
 	}
 
-	mburst_vr_init_data = client->dev.platform_data;
+	mburst_vr_init_data = pdev->dev.platform_data;
 	init_data = mburst_vr_init_data->pmic_init_data;
 
 	if (!init_data) {
@@ -166,22 +179,19 @@ static int __devinit mburst_vr_probe(struct i2c_client *client,
 	vrdd->debug_val = 1000000;
 #endif
 
-	vrdd->client = client;
 	vrdd->min_uV = init_data->constraints.min_uV;
 	vrdd->max_uV = init_data->constraints.max_uV;
 
-	vrdd->rdev = regulator_register(&mb_reg, &client->dev,
+	vrdd->rdev = regulator_register(&mb_reg, &pdev->dev,
 					init_data, vrdd);
 
 	if (IS_ERR(vrdd->rdev)) {
 		error = PTR_ERR(vrdd->rdev);
-		dev_err(&client->dev, "failed to register %s %s\n",
-			id->name, mb_reg.name);
+		dev_err(&pdev->dev, "failed to register driver.\n");
 		goto err_free_vrdd;
 	}
 
-	i2c_set_clientdata(client, vrdd);
-	dev_dbg(&client->dev, "%s regulator driver is registered.\n", id->name);
+	dev_dbg(&pdev->dev, "Regulator driver is registered.\n");
 
 	return 0;
 
@@ -192,38 +202,59 @@ err_free_vrdd:
 }
 
 /**
- * mburst_vr_remove - I2C volt reg driver remove handler
- * @client:	I2c regulator driver client device structure
+ * mburst_vr_remove - Microburst volt reg driver remove handler
  *
- * Unregister driver as an I2C  client device driver
+ * Unregister driver as a platform device driver
  */
-static int __devexit mburst_vr_remove(struct i2c_client *client)
+static int __devexit mburst_vr_remove(struct platform_device *pdev)
 {
-	struct mburst_vr_drvdata *vrdd = i2c_get_clientdata(client);
+	struct mburst_vr_drvdata *vrdd;
 	regulator_unregister(vrdd->rdev);
 	kfree(vrdd);
 	return 0;
 }
 
-static struct i2c_driver mburst_vr_driver = {
+static struct platform_driver mburst_vr_driver = {
 	.driver = {
 		.name = "mburst_vr",
 		.owner = THIS_MODULE,
 	},
 	.probe = mburst_vr_probe,
 	.remove = __devexit_p(mburst_vr_remove),
-	.id_table	= mbreg_id,
 };
 
 /**
  * mburst_vr_init
  *
- * I2C based voltage regulator Module init function
+ * Module init function
  */
 int __init mburst_vr_init(void)
 {
-	return i2c_add_driver(&mburst_vr_driver);
-	//return platform_driver_register(&mburst_vr_driver);
+
+	/* create procfs files */
+
+	struct proc_dir_entry *Our_Proc_File = create_proc_entry(PROCFS_NAME, 0644, NULL);
+	
+	if (Our_Proc_File == NULL) {
+		remove_proc_entry(PROCFS_NAME, NULL);
+		printk(KERN_ALERT "Error: Could not initialize /proc/%s\n",
+			PROCFS_NAME);
+		return -ENOMEM;
+	}
+
+	Our_Proc_File->read_proc  = mb_proc_read;
+	Our_Proc_File->write_proc = mb_proc_write;
+	//Our_Proc_File->owner 	  = THIS_MODULE;
+	Our_Proc_File->mode 	  = S_IFREG | S_IRUGO;
+	Our_Proc_File->uid 	  = 0;
+	Our_Proc_File->gid 	  = 0;
+	Our_Proc_File->size 	  = 37;
+
+	printk(KERN_INFO "/proc/%s created\n", PROCFS_NAME);	
+
+
+	return platform_driver_register(&mburst_vr_driver);
+
 }
 subsys_initcall(mburst_vr_init);
 
@@ -234,10 +265,11 @@ subsys_initcall(mburst_vr_init);
  */
 static void __exit mburst_vr_exit(void)
 {
-	i2c_del_driver(&mburst_vr_driver);
+	platform_driver_unregister(&mburst_vr_driver);
+	remove_proc_entry(PROCFS_NAME, NULL);
 }
 module_exit(mburst_vr_exit);
 
 MODULE_AUTHOR("Flex Radio Systems");
-MODULE_DESCRIPTION("I2C voltage regulator driver");
+MODULE_DESCRIPTION("Microburst voltage regulator driver");
 MODULE_LICENSE("GPL v2");

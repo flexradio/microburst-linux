@@ -147,7 +147,7 @@ static struct regulator_consumer_supply ti816x_i2c_supply[] = {
 	},
 };
 
-static struct regulator_init_data i2c_vr_init_data = {
+static struct regulator_init_data mburst_vr_init_data = {
 	.constraints = {
 		.min_uV		= 800000,
 		.max_uV		= 1025000,
@@ -158,11 +158,11 @@ static struct regulator_init_data i2c_vr_init_data = {
 	.consumer_supplies	= ti816x_i2c_supply,
 };
 
-/* GPIO regulator platform data */
-static struct mburst_vr_platform_data mburst_vr_init_data = {
+/* Mburst regulator platform data */
+static struct mburst_vr_platform_data mburst_vr_platform_data = {
 	.name			= 0,
 	.name			= "VFB",
-	.pmic_init_data		= &i2c_vr_init_data,
+	.pmic_init_data		= &mburst_vr_init_data,
 	.pmic_vout		= 600000
 };
 
@@ -171,16 +171,16 @@ static struct platform_device mburst_vr_device = {
 	.name		= "mburst_vr",
 	.id		= -1,
 	.dev = {
-		.platform_data = &mburst_vr_init_data,
+		.platform_data = &mburst_vr_platform_data,
 	},
 };
 
 static void __init mburst_vr_init(void)
 {
 	if (platform_device_register(&mburst_vr_device))
-		printk(KERN_ERR "board init: failed to register mburst_vr device\n");
+		printk(KERN_ERR "failed to register mburst_vr device\n");
 	else
-		printk(KERN_INFO "board init: registered mburst_vr device\n");
+		printk(KERN_INFO "registered mburst_vr device\n");
 }
 #else
 static inline void mburst_vr_init(void) {}
@@ -197,11 +197,6 @@ static struct i2c_board_info __initdata ti816x_i2c_boardinfo0[] = {
 	  .platform_data = &adau1761_pdata,
 	},
 
-/*	{
-	  I2C_BOARD_INFO("mburst-regulator", 0x08), // regulator
-	  .platform_data = (void *)&mburst_vr_init_data,
-	},
-*/
 };
 
 static struct i2c_board_info __initdata ti816x_i2c_boardinfo1[] = {
