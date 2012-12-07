@@ -45,26 +45,25 @@ struct mburst_vr_drvdata {
 static int vr_davinci_wants = 995000;	//debug value remove!
 static int vr_setpoint = 800000;
 
-//static struct proc_dir_entry *Our_Proc_File;
-
+static struct proc_dir_entry *Our_Proc_File;
 static char procfs_buffer[PROCFS_MAX_SIZE];
 
 /* read function for procfs file */
 
 int mb_proc_read(char *buf,char **start,off_t offset,int count,int *eof,void *data ) 
 {
-int len=0;
+	int len=0;
 
-len  += sprintf(buf+len, "%d\n",vr_davinci_wants);
+	len  += sprintf(buf+len, "%d\n",vr_davinci_wants);
 
-printk("MB procfile read: davinci wants %d uV\n",vr_davinci_wants);
+	printk(KERN_INFO"MB procfile read: davinci wants %d uV\n",vr_davinci_wants);
    
-return len;
+	return len;
 }
 
 /* write function for procfs file */
 
-int mb_proc_write(struct file *file,const char *buf,int count,void *data )
+int mb_proc_write(struct file *file,const char *buf,unsigned long count,void *data )
 {
 	if(count > PROCFS_MAX_SIZE)
 	    count = PROCFS_MAX_SIZE;
@@ -73,9 +72,9 @@ int mb_proc_write(struct file *file,const char *buf,int count,void *data )
 
 	sscanf(procfs_buffer, "%d", &vr_setpoint);
   
-	printk("MB procfile write: VR set to %d uV\n",vr_setpoint);
+	printk(KERN_INFO "MB procfile write: VR set to %d uV\n",vr_setpoint);
   	
-return count;
+	return count;
 }
 
 static int mburst_vr_get_voltage(struct regulator_dev *dev)
@@ -83,7 +82,7 @@ static int mburst_vr_get_voltage(struct regulator_dev *dev)
 
 	int ret;
 
-	printk("Mburst VR Setpoint %d\n",vr_setpoint);
+	//printk(KERN_INFO "Mburst VR Setpoint %d\n",vr_setpoint);
 
 	ret = vr_setpoint;
 
@@ -97,8 +96,6 @@ static int mburst_vr_set_voltage(struct regulator_dev *dev,
 	int uVolts;
 	int ret;
 
-	printk("mburst VR set voltage called: min %d max %d\n",min_uV,max_uV);
-
 	if (min_uV > vrdd->max_uV || min_uV < vrdd->min_uV)
 		return -EINVAL;
 	if (max_uV > vrdd->max_uV || max_uV < vrdd->min_uV)
@@ -108,7 +105,7 @@ static int mburst_vr_set_voltage(struct regulator_dev *dev,
 
 	vr_davinci_wants = uVolts;
 
-	printk("Mburst VR Davinci Requested Regulator to %d uV\n",uVolts);
+	printk(KERN_INFO "Mburst VR Davinci Requested Regulator to %d uV\n",uVolts);
 
 	ret = 0;
 
@@ -150,7 +147,7 @@ static int __devinit mburst_vr_probe(struct platform_device *pdev)
 	int error;
 
 	if (!pdev) {
-		printk("***** mb-reg: Device failed to register\n");
+		printk(KERN_ERR "***** mb-reg: Device failed to register\n");
 		return -EINVAL;
 	}
 
@@ -158,7 +155,7 @@ static int __devinit mburst_vr_probe(struct platform_device *pdev)
 	init_data = mburst_vr_init_data->pmic_init_data;
 
 	if (!init_data) {
-		printk("***** mb-reg: Invalid init data\n");
+		printk(KERN_ERR "***** mb-reg: Invalid init data\n");
 		return -EINVAL;
 	}
 
@@ -208,7 +205,7 @@ err_free_vrdd:
  */
 static int __devexit mburst_vr_remove(struct platform_device *pdev)
 {
-	struct mburst_vr_drvdata *vrdd;
+	struct mburst_vr_drvdata *vrdd = dev_get_drvdata(&pdev->dev);
 	regulator_unregister(vrdd->rdev);
 	kfree(vrdd);
 	return 0;
@@ -233,11 +230,11 @@ int __init mburst_vr_init(void)
 
 	/* create procfs files */
 
-	struct proc_dir_entry *Our_Proc_File = create_proc_entry(PROCFS_NAME, 0644, NULL);
+	Our_Proc_File = create_proc_entry(PROCFS_NAME, 0644, NULL);
 	
 	if (Our_Proc_File == NULL) {
 		remove_proc_entry(PROCFS_NAME, NULL);
-		printk(KERN_ALERT "Error: Could not initialize /proc/%s\n",
+		printk(KERN_ERR "Error: Could not initialize /proc/%s\n",
 			PROCFS_NAME);
 		return -ENOMEM;
 	}
@@ -245,10 +242,10 @@ int __init mburst_vr_init(void)
 	Our_Proc_File->read_proc  = mb_proc_read;
 	Our_Proc_File->write_proc = mb_proc_write;
 	//Our_Proc_File->owner 	  = THIS_MODULE;
-	Our_Proc_File->mode 	  = S_IFREG | S_IRUGO;
-	Our_Proc_File->uid 	  = 0;
-	Our_Proc_File->gid 	  = 0;
-	Our_Proc_File->size 	  = 37;
+//	Our_Proc_File->mode 	  = S_IFREG | S_IRUGO;
+//	Our_Proc_File->uid 	  = 0;
+//	Our_Proc_File->gid 	  = 0;
+//	Our_Proc_File->size 	  = 37;
 
 	printk(KERN_INFO "/proc/%s created\n", PROCFS_NAME);	
 
