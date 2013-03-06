@@ -108,9 +108,6 @@ static struct mtd_partition ti816x_evm_norflash_partitions[] = {
 
 #define NAND_BLOCK_SIZE					SZ_128K
 
-/* Macro for GPIO voltage regulator */
-#define VR_GPIO_INSTANCE	0
-
 static struct mtd_partition ti816x_nand_partitions[] = {
 /* All the partition sizes are listed in terms of NAND block size */
 	{
