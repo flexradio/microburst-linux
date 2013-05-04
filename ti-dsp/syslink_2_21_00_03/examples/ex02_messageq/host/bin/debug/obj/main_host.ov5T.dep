@@ -26,7 +26,7 @@ bin/debug/obj/main_host.ov5T: main_host.c \
   /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/include/sys/sysmacros.h \
   /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/include/bits/pthreadtypes.h \
   /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/include/alloca.h \
-  /src/flex/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/Std.h \
-  /src/flex/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/IpcHost.h \
-  /src/flex/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/SysLink.h \
+  /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/Std.h \
+  /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/IpcHost.h \
+  /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/SysLink.h \
   /opt/TI/ipc_1_25_00_04/packages/ti/ipc/MultiProc.h App.h

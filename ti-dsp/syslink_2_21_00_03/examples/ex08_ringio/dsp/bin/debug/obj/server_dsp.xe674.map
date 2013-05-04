@@ -1,7 +1,7 @@
 ******************************************************************************
                TMS320C6x Linker Unix v7.2.7                    
 ******************************************************************************
->> Linked Tue Nov 27 13:24:24 2012
+>> Linked Wed Apr  3 14:53:46 2013
 
 OUTPUT FILE NAME:   <bin/debug/server_dsp.xe674>
 ENTRY POINT SYMBOL: "ti_sysbios_family_c64p_Hwi0"  address: 8f0ae000
@@ -67,8 +67,8 @@ ti.sdo.ipc.SharedRegion_1
 *          0    8e010000    00ff0000     NOLOAD SECTION
                   8e010000    00ff0000     --HOLE--
 
-xdc.meta   0    8f000000    00000100     COPY SECTION
-                  8f000000    00000100     Dsp_pe674.oe674 (xdc.meta)
+xdc.meta   0    8f000000    00000110     COPY SECTION
+                  8f000000    00000110     Dsp_pe674.oe674 (xdc.meta)
 
 .far       0    8f000000    00041968     UNINITIALIZED
                   8f000000    00041018     Dsp_pe674.oe674 (.far)
@@ -1787,9 +1787,9 @@ address    name
 8f055b60   _RingIOShm_writersetvAttribute
 8f000000   __ASM__
 8f0ade10   __CIOBUF_
-8f000070   __ISA__
-8f000088   __PLAT__
-8f0000b0   __TARG__
+8f000080   __ISA__
+8f000098   __PLAT__
+8f0000c0   __TARG__
 8f0ade10   __TI_STACK_END
 00001000   __TI_STACK_SIZE
 8f0ae200   __TI_STATIC_BASE
@@ -1798,7 +1798,7 @@ address    name
 ffffffff   __TI_pprof_out_hndl
 ffffffff   __TI_prof_data_size
 ffffffff   __TI_prof_data_start
-8f0000d8   __TRDR__
+8f0000e8   __TRDR__
 ffffffff   __binit__
 8f06ce00   __c6xabi_divu
 8f05dec0   __c6xabi_divull
@@ -2910,10 +2910,10 @@ address    name
 8f000000   __ASM__
 8f000000   ti_sdo_utils_NameServer_Module_State_0_nsRemoteHandle__A
 8f000010   ti_sysbios_heaps_HeapMem_Instance_State_0_buf__A
-8f000070   __ISA__
-8f000088   __PLAT__
-8f0000b0   __TARG__
-8f0000d8   __TRDR__
+8f000080   __ISA__
+8f000098   __PLAT__
+8f0000c0   __TARG__
+8f0000e8   __TRDR__
 8f020010   ti_sysbios_knl_Task_Instance_State_0_hookEnv__A
 8f020018   xdc_runtime_LoggerBuf_Instance_State_0_entryArr__A
 8f021018   xdc_runtime_SysMin_Module_State_0_outbuf__A

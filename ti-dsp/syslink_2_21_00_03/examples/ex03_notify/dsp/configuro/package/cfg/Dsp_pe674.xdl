@@ -9,10 +9,10 @@
  */
 
 
--l"/src/flex/ti-dsp/syslink_2_21_00_03/examples/ex03_notify/dsp/configuro/package/cfg/Dsp_pe674.oe674"
--l"/src/flex/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/ipc/rtos/lib/release/ti.syslink.ipc.rtos.ae674"
+-l"/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/examples/ex03_notify/dsp/configuro/package/cfg/Dsp_pe674.oe674"
+-l"/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/ipc/rtos/lib/release/ti.syslink.ipc.rtos.ae674"
 -l"/opt/TI/ipc_1_25_00_04/packages/ti/sdo/ipc/lib/ipc/nonInstrumented/ipc.ae674"
--l"/src/flex/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/utils/rtos/bios6/lib/release/ti.syslink.utils.rtos.bios6.ae674"
+-l"/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/utils/rtos/bios6/lib/release/ti.syslink.utils.rtos.bios6.ae674"
 -l"/opt/TI/bios_6_34_02_18/packages/ti/sysbios/lib/sysbios/nonInstrumented/sysbios.ae674"
 -l"/opt/TI/xdctools_3_24_05_48/packages/ti/targets/rts6000/lib/ti.targets.rts6000.ae674"
 -l"/opt/TI/xdctools_3_24_05_48/packages/ti/targets/rts6000/lib/boot.ae674"

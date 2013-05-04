@@ -11,7 +11,7 @@ var makeAssembly = false;
 var Executable = xdc.module('xdc.bld.Executable');
 
 var exeOpts = new Executable.Attrs({
-        cfgScript: '/src/flex/ti-dsp/syslink_2_21_00_03/examples/ex08_ringio/dsp/Dsp.cfg',
+        cfgScript: '/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/examples/ex08_ringio/dsp/Dsp.cfg',
         profile: 'release',
         cfgHome: 'configuro',
 });
@@ -41,7 +41,7 @@ else {
 
 var thisObj = {
     cfg:        'Dsp.cfg',
-    outputPath: '/src/flex/ti-dsp/syslink_2_21_00_03/examples/ex08_ringio/dsp/configuro',
+    outputPath: '/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/examples/ex08_ringio/dsp/configuro',
     exeName:    'Dsp' + suffix,
     exeIntName: 'Dsp' + suffix.replace('.', '_'),
     targ:       targ,

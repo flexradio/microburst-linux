@@ -35,16 +35,16 @@ bin/release/obj/App.ov5T: App.c \
   /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/include/bits/string.h \
   /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/include/bits/string2.h \
   /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/include/stdlib.h \
-  /src/flex/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/Std.h \
-  /src/flex/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/utils/Memory.h \
-  /src/flex/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/utils/MemoryDefs.h \
-  /src/flex/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/utils/_MemoryDefs.h \
-  /src/flex/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/utils/MemoryOS.h \
-  /src/flex/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/utils/_MemoryOS.h \
-  /src/flex/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/utils/_Memory.h \
-  /src/flex/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/utils/IHeap.h \
-  /src/flex/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/utils/Trace.h \
-  /src/flex/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/utils/OsalPrint.h \
+  /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/Std.h \
+  /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/utils/Memory.h \
+  /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/utils/MemoryDefs.h \
+  /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/utils/_MemoryDefs.h \
+  /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/utils/MemoryOS.h \
+  /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/utils/_MemoryOS.h \
+  /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/utils/_Memory.h \
+  /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/utils/IHeap.h \
+  /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/utils/Trace.h \
+  /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/utils/OsalPrint.h \
   /opt/TI/ipc_1_25_00_04/packages/ti/ipc/Notify.h \
   /opt/TI/ipc_1_25_00_04/packages/ti/ipc/SharedRegion.h \
   /opt/TI/ipc_1_25_00_04/packages/ti/ipc/HeapBufMP.h \

@@ -56,7 +56,7 @@ int mb_proc_read(char *buf,char **start,off_t offset,int count,int *eof,void *da
 
 	len  += sprintf(buf+len, "%d\n",vr_davinci_wants);
 
-	printk(KERN_INFO"MB procfile read: davinci wants %d uV\n",vr_davinci_wants);
+	//printk(KERN_INFO"MB procfile read: davinci wants %d uV\n",vr_davinci_wants);
    
 	return len;
 }
@@ -72,7 +72,7 @@ int mb_proc_write(struct file *file,const char *buf,unsigned long count,void *da
 
 	sscanf(procfs_buffer, "%d", &vr_setpoint);
   
-	printk(KERN_INFO "MB procfile write: VR set to %d uV\n",vr_setpoint);
+	//printk(KERN_INFO "MB procfile write: VR set to %d uV\n",vr_setpoint);
   	
 	return count;
 }
@@ -105,7 +105,7 @@ static int mburst_vr_set_voltage(struct regulator_dev *dev,
 
 	vr_davinci_wants = uVolts;
 
-	printk(KERN_INFO "Mburst VR Davinci Requested Regulator to %d uV\n",uVolts);
+	//printk(KERN_INFO "Mburst VR Davinci Requested Regulator to %d uV\n",uVolts);
 
 	ret = 0;
 

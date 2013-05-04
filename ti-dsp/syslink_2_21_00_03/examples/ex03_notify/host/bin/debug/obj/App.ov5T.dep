@@ -32,6 +32,6 @@ bin/debug/obj/App.ov5T: App.c \
   /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/include/alloca.h \
   /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/include/semaphore.h \
   /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/include/bits/semaphore.h \
-  /src/flex/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/Std.h \
+  /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/Std.h \
   /opt/TI/ipc_1_25_00_04/packages/ti/ipc/Notify.h ../shared/AppCommon.h \
   ../shared/SystemCfg.h App.h

@@ -12,6 +12,7 @@
 #include <linux/i2c.h>
 #include <linux/spi/spi.h>
 #include <linux/slab.h>
+#include <linux/delay.h>
 #include <sound/core.h>
 #include <sound/pcm.h>
 #include <sound/pcm_params.h>
@@ -20,6 +21,8 @@
 #include <sound/adau17x1.h>
 
 #include "adau17x1.h"
+
+#include "microburst-sigmadsp.h"
 
 #define ADAU1761_DIGMIC_JACKDETECT	0x4008
 #define ADAU1761_REC_MIXER_LEFT0	0x400a
@@ -57,6 +60,14 @@
 
 #define ADAU1761_FIRMWARE "adau1761.bin"
 
+/* Safeload Registers for SigmaDSP Firmware */
+
+#define ADAU1761_SAFELOAD_DATA(x) (0x1 + (x))
+#define ADAU1761_SAFELOAD_ADDR		0x6
+#define ADAU1761_SAFELOAD_SIZE		0x7
+
+/********************************************/
+
 static struct reg_default adau1761_reg_defaults[] = {
 	{ ADAU1761_DEJITTER,			0x03 },
 	{ ADAU1761_DIGMIC_JACKDETECT,		0x00 },
@@ -92,7 +103,7 @@ static struct reg_default adau1761_reg_defaults[] = {
 	{ ADAU17X1_MICBIAS,			0x00 },
 	{ ADAU17X1_SERIAL_PORT0,		0x00 },
 	{ ADAU17X1_SERIAL_PORT1,		0x00 },
-	{ ADAU17X1_CONVERTER0,			0x00 },
+	{ ADAU17X1_CONVERTER0,			0x04 },
 	{ ADAU17X1_CONVERTER1,			0x00 },
 	{ ADAU17X1_LEFT_INPUT_DIGITAL_VOL,	0x00 },
 	{ ADAU17X1_RIGHT_INPUT_DIGITAL_VOL,	0x00 },
@@ -104,12 +115,189 @@ static struct reg_default adau1761_reg_defaults[] = {
 	{ ADAU17X1_SERIAL_PORT_PAD,		0x00 },
 	{ ADAU17X1_CONTROL_PORT_PAD0,		0x00 },
 	{ ADAU17X1_CONTROL_PORT_PAD1,		0x00 },
-	{ ADAU17X1_DSP_SAMPLING_RATE,		0x01 },
-	{ ADAU17X1_SERIAL_INPUT_ROUTE,		0x00 },
-	{ ADAU17X1_SERIAL_OUTPUT_ROUTE,		0x00 },
+	{ ADAU17X1_DSP_SAMPLING_RATE,		0x03 },
+	{ ADAU17X1_SERIAL_INPUT_ROUTE,		0x04 },
+	{ ADAU17X1_SERIAL_OUTPUT_ROUTE,		0x04 },
 	{ ADAU17X1_DSP_ENABLE,			0x00 },
 	{ ADAU17X1_DSP_RUN,			0x00 },
-	{ ADAU17X1_SERIAL_SAMPLING_RATE,	0x00 },
+	{ ADAU17X1_SERIAL_SAMPLING_RATE,	0x04 },
+};
+
+/* Safeload write function for SigmaDSP Firmware parameters */
+
+static int adau1761_safeload_write(struct adau *adau, uint32_t addr, uint32_t *data,
+          unsigned int size)
+{
+          unsigned int i;
+          int ret;
+
+          if (size > 5)
+                    return -EINVAL;
+
+          for (i = 0; i < size; i++) {
+                    ret = regmap_write(adau->regmap, ADAU1761_SAFELOAD_DATA(i), data[i]);
+                    if (ret)
+                              return ret;
+          }
+
+          ret = regmap_write(adau->regmap, ADAU1761_SAFELOAD_ADDR, addr - 1);
+          if (ret)
+                    return ret;
+          ret = regmap_write(adau->regmap, ADAU1761_SAFELOAD_SIZE, size);
+          if (ret)
+                    return ret;
+
+          /* Wait for the operation to finish */
+          udelay(30);
+
+          return 0;
+}
+
+/* Block write function for SigmaDSP Firmware parameters     */
+
+static int adau1761_block_write(struct adau *adau, uint32_t addr, uint32_t *data,
+          unsigned int size)
+{
+          int ret;
+          int i;
+          printk ("MB-sigmadsp: register write addr %d size %d\n", addr, size);
+          for (i = 0; i < size/4; i++)
+          {
+        	  printk ("MB-sigmadsp: %d: %08X\n", addr+i, data[i]);
+        	  data[i] = htonl(data[i]);
+          }
+          ret = regmap_raw_write(adau->regmap, addr, data, size);
+		  return ret;
+};
+
+/* Microburst SigmaDSP kcontrol definitions */
+
+static const unsigned int microburst_sigmadsp_input_source_values[] = {
+		0, 1, 2,
+};
+
+static const char * const microburst_sigmadsp_input_source_text[] = {
+		"Signal Generator", "Balanced Input", "Microphone",
+};
+
+static const char * const microburst_sigmadsp_monitor_voice_cw_text[] = {
+		"Monitor Voice", "Monitor CW",
+};
+
+/* Microburst SigmaDSP kcontrol functions */
+
+static int microburst_sigmadsp_cw_key_get(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk ("MB-codecdsp: microburst_sigmadsp_cw_key_get called\n");
+	ucontrol->value.integer.value[0] = kcontrol->private_value;
+	return 0;
+};
+
+static int microburst_sigmadsp_cw_key_put(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+	struct adau *adau = snd_soc_codec_get_drvdata(codec);
+	int key_state;
+	uint32_t cw_key_addr = MOD_CW_KEY_ISON_ADDR;
+	uint32_t key_down = MICROBURST_SIGMADSP_FIXPT_ONE;
+	uint32_t key_up = MICROBURST_SIGMADSP_FIXPT_ZERO;
+	int ret;
+	key_state = ucontrol->value.integer.value[0];
+
+	printk ("MB-codecdsp: microburst_sigmadsp_cw_key_put called.  Key state: %d\n", key_state);
+	if (key_state) {
+		//printk ("MB-codecdsp: setting key down state\n");
+		adau1761_block_write(adau, cw_key_addr, &key_down ,sizeof(key_down));
+	}
+	else  {
+		//printk ("MB-codecdsp: setting key up state\n");
+		adau1761_block_write(adau, cw_key_addr, &key_up, sizeof(key_up));
+	}
+	return 0;
+};
+
+static int microburst_sigmadsp_monitor_voice_cw_get(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk ("MB-sigmadsp: monitor_voice_cw_get called\n");
+	ucontrol->value.integer.value[0] = kcontrol->private_value;
+	return 0;
+};
+
+static int microburst_sigmadsp_monitor_voice_cw_put(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk ("MB-sigmadsp: monitor_voice_cw_put called\n");
+	uint32_t buf[2];
+	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+	struct adau *adau = snd_soc_codec_get_drvdata(codec);
+	int mon_cw;		//monitor CW is state 1, monitor Voice is state 0
+	uint32_t mux_addr = MOD_MONITOR_VOICE_CW_ALG0_STAGE0_MONOSWITCHNOSLEW_ADDR;
+	mon_cw = ucontrol->value.integer.value[0];
+	if (mon_cw)
+	{
+		buf[0] = MICROBURST_SIGMADSP_FIXPT_ZERO;
+		buf[1] = MICROBURST_SIGMADSP_FIXPT_ONE;
+	}
+	else
+	{
+		buf[0] = MICROBURST_SIGMADSP_FIXPT_ONE;
+		buf[1] = MICROBURST_SIGMADSP_FIXPT_ZERO;
+	}
+
+	int ret;
+
+	printk ("MB-sigmadsp: monitor voice cw setting to %d\n", mon_cw);
+	adau1761_block_write(adau, mux_addr, &buf, 8);
+
+	return 0;
+};
+
+/*static int microburst_sigmadsp_input_source_get(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk ("MB-sigmadsp: input_source_get called\n");
+	ucontrol->value.integer.value[0] = kcontrol->private_value;
+	return 0;
+};
+
+static int microburst_sigmadsp_input_source_put(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk ("MB-sigmadsp: input_source_put called\n");
+	uint32_t buf[2];
+	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+	struct adau *adau = snd_soc_codec_get_drvdata(codec);
+	int input_source;		//0 is Sig Gen  1 is Rear Panel Mic  2 is Front Panel Mic
+	uint32_t mux_1_addr = MOD_MONITOR_VOICE_CW_ALG0_STAGE0_MONOSWITCHNOSLEW_ADDR;
+	input_source = ucontrol->value.integer.value[0];
+	if (mon_cw)
+	{
+		buf[0] = MICROBURST_SIGMADSP_FIXPT_ZERO;
+		buf[1] = MICROBURST_SIGMADSP_FIXPT_ONE;
+	}
+	else
+	{
+		buf[0] = MICROBURST_SIGMADSP_FIXPT_ONE;
+		buf[1] = MICROBURST_SIGMADSP_FIXPT_ZERO;
+	}
+
+	int ret;
+
+	printk ("MB-sigmadsp: monitor voice cw setting to %d\n", mon_cw);
+	adau1761_block_write(adau, mux_1_addr, &buf, 8);
+
+	return 0;
+};*/
+/* Microburst SigmaDSP kcontrols */
+
+static const struct snd_kcontrol_new microburst_sigmadsp_controls[] = {
+		SOC_SINGLE_BOOL_EXT("Microburst SigmaDSP CW Key", 0, microburst_sigmadsp_cw_key_get,
+				microburst_sigmadsp_cw_key_put),
+		SOC_SINGLE_BOOL_EXT("Microburst SigmaDSP Monitor Voice CW", 1, microburst_sigmadsp_monitor_voice_cw_get,
+				microburst_sigmadsp_monitor_voice_cw_put),
 };
 
 static const DECLARE_TLV_DB_SCALE(adau1761_sing_in_tlv, -1500, 300, 1);
@@ -709,7 +897,8 @@ static int adau1761_probe(struct snd_soc_codec *codec)
 			ARRAY_SIZE(adau1761_alc_controls));
 		if (ret)
 			return ret;
-	} else {
+		} 
+		else {
 		ret = snd_soc_add_controls(codec,
 			adau1761_single_mode_controls,
 			ARRAY_SIZE(adau1761_single_mode_controls));
@@ -750,10 +939,17 @@ static int adau1761_probe(struct snd_soc_codec *codec)
 			return ret;
 
 		ret = adau17x1_load_firmware(codec, ADAU1761_FIRMWARE);
-		if (ret)
-			dev_warn(codec->dev, "Failed to firmware\n");
+		if (ret) { 
+			dev_warn(codec->dev, "Failed to load SigmaDSP firmware\n");
 	}
+		else {
+			ret = snd_soc_add_controls(codec, microburst_sigmadsp_controls, ARRAY_SIZE(microburst_sigmadsp_controls));
+			printk("MB-codecdsp: adding kcontrols for dsp module\n");
 
+		if (ret)
+			return ret;
+		}
+	}
 	return 0;
 }
 

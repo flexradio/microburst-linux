@@ -1,7 +1,7 @@
 ******************************************************************************
                TMS320C6x Linker Unix v7.2.7                    
 ******************************************************************************
->> Linked Tue Nov 27 13:22:49 2012
+>> Linked Wed Apr  3 14:52:13 2013
 
 OUTPUT FILE NAME:   <bin/release/server_dsp.xe674>
 ENTRY POINT SYMBOL: "ti_sysbios_family_c64p_Hwi0"  address: 8f029c00
@@ -63,8 +63,8 @@ ti.sdo.ipc.SharedRegion_1
 *          0    8e010000    00ff0000     NOLOAD SECTION
                   8e010000    00ff0000     --HOLE--
 
-xdc.meta   0    8f000000    00000108     COPY SECTION
-                  8f000000    00000108     Dsp_pe674.oe674 (xdc.meta)
+xdc.meta   0    8f000000    00000118     COPY SECTION
+                  8f000000    00000118     Dsp_pe674.oe674 (xdc.meta)
 
 .text      0    8f000000    0001c8c0     
                   8f000000    000012a0     Server.oe674 (.text)
@@ -1259,9 +1259,9 @@ address    name
 8f02a000   _Ipc_ResetVector
 8f000000   __ASM__
 8f029a88   __CIOBUF_
-8f000078   __ISA__
-8f000090   __PLAT__
-8f0000b8   __TARG__
+8f000088   __ISA__
+8f0000a0   __PLAT__
+8f0000c8   __TARG__
 8f029a88   __TI_STACK_END
 00001000   __TI_STACK_SIZE
 8f029bb8   __TI_STATIC_BASE
@@ -1270,7 +1270,7 @@ address    name
 ffffffff   __TI_pprof_out_hndl
 ffffffff   __TI_prof_data_size
 ffffffff   __TI_prof_data_start
-8f0000e0   __TRDR__
+8f0000f0   __TRDR__
 ffffffff   __binit__
 8f013ec0   __c6xabi_divu
 8f009bc0   __c6xabi_divull
@@ -2361,10 +2361,10 @@ address    name
 00001000   __TI_STACK_SIZE
 8f000000   __ASM__
 8f000050   Server_init
-8f000078   __ISA__
-8f000090   __PLAT__
-8f0000b8   __TARG__
-8f0000e0   __TRDR__
+8f000088   __ISA__
+8f0000a0   __PLAT__
+8f0000c8   __TARG__
+8f0000f0   __TRDR__
 8f000130   Server_exit
 8f0001a4   Server_exec
 8f000850   Server_delete

@@ -1,6 +1,6 @@
 /* THIS IS A GENERATED FILE -- DO NOT EDIT */
 /* configuro was passed a config.bld file */
-xdc.includeFile("/src/flex/ti-dsp/syslink_2_21_00_03/examples/ex06_listmp/shared/config.bld");
+xdc.includeFile("/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/examples/ex06_listmp/shared/config.bld");
 /* configuro was passed the target's name explicitly */
 try {
     var target = xdc.module('ti.targets.elf.C674');

@@ -66,8 +66,8 @@ package.mak: /opt/TI/xdctools_3_24_05_48/packages/xdc/bld/ITargetFilter.xs
 /opt/TI/xdctools_3_24_05_48/packages/xdc/bld/package.xs:
 package.mak: /opt/TI/xdctools_3_24_05_48/packages/xdc/bld/package.xs
 package.mak: config.bld
-/src/flex/ti-dsp/syslink_2_21_00_03/examples/ex08_ringio/shared/config.bld:
-package.mak: /src/flex/ti-dsp/syslink_2_21_00_03/examples/ex08_ringio/shared/config.bld
+/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/examples/ex08_ringio/shared/config.bld:
+package.mak: /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/examples/ex08_ringio/shared/config.bld
 /opt/TI/xdctools_3_24_05_48/packages/ti/targets/ITarget.xs:
 package.mak: /opt/TI/xdctools_3_24_05_48/packages/ti/targets/ITarget.xs
 /opt/TI/xdctools_3_24_05_48/packages/ti/targets/C28_large.xs:

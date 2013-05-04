@@ -3939,7 +3939,7 @@ __FAR__ const xdc_SizeT ti_sysbios_xdcruntime_GateThreadSupport_Instance_State_g
  *  Define absolute path prefix for this executable's
  *  configuration generated files.
  */
-xdc__META(__ASM__, "@(#)__ASM__ = /src/flex/ti-dsp/syslink_2_21_00_03/examples/ex01_helloworld/dsp/configuro/package/cfg/Dsp_pe674");
+xdc__META(__ASM__, "@(#)__ASM__ = /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/examples/ex01_helloworld/dsp/configuro/package/cfg/Dsp_pe674");
 
 /*
  *  ======== __ISA__ ========

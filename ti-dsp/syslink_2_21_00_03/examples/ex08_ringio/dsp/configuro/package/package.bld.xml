@@ -7,7 +7,7 @@
         <srcFile name="package/cfg/Dsp_pe674.c"/>
     </sources>
     <configscripts>
-        <srcFile name="/src/flex/ti-dsp/syslink_2_21_00_03/examples/ex08_ringio/dsp/Dsp.cfg"/>
+        <srcFile name="/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/examples/ex08_ringio/dsp/Dsp.cfg"/>
     </configscripts>
     <makefiles>
         <srcFile name="package.mak" src="package.bld"/>
@@ -43,7 +43,7 @@
         isPartial="false"
         xCfgScript="package/cfg/Dsp_pe674.cfg"
         xCfgPrefix="package/cfg/Dsp_pe674"
-        cfgScript="/src/flex/ti-dsp/syslink_2_21_00_03/examples/ex08_ringio/dsp/Dsp.cfg"
+        cfgScript="/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/examples/ex08_ringio/dsp/Dsp.cfg"
         cfgArgs="null"
         />
     </configurations>
@@ -55,7 +55,7 @@
         profile="release"
         xCfgScript="package/cfg/Dsp_pe674.cfg"
         xCfgPrefix="package/cfg/Dsp_pe674"
-        cfgScript="/src/flex/ti-dsp/syslink_2_21_00_03/examples/ex08_ringio/dsp/Dsp.cfg"
+        cfgScript="/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/examples/ex08_ringio/dsp/Dsp.cfg"
         cfgArgs="null"
         />
     </executables>
