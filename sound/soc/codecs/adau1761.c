@@ -135,7 +135,7 @@ static int adau1761_safeload_write(struct adau *adau, uint32_t addr, uint32_t *d
                     return -EINVAL;
 
           for (i = 0; i < size; i++) {
-                    ret = regmap_write(adau->regmap, ADAU1761_SAFELOAD_DATA(i), data[i]);
+                    ret = regmap_write(adau->regmap, ADAU1761_SAFELOAD_DATA(i), htonl(data[i]));
                     if (ret)
                               return ret;
           }
@@ -160,15 +160,28 @@ static int adau1761_block_write(struct adau *adau, uint32_t addr, uint32_t *data
 {
           int ret;
           int i;
-          printk ("MB-sigmadsp: register write addr %d size %d\n", addr, size);
+          printk (KERN_DEBUG "MB-sigmadsp: register write addr %d size %d\n", addr, size);
           for (i = 0; i < size/4; i++)
           {
-        	  printk ("MB-sigmadsp: %d: %08X\n", addr+i, data[i]);
+        	  printk (KERN_DEBUG "MB-sigmadsp: %d: %08X\n", addr+i, data[i]);
         	  data[i] = htonl(data[i]);
           }
           ret = regmap_raw_write(adau->regmap, addr, data, size);
 		  return ret;
 };
+
+/* Utility functions to convert SigmaDSP Firmware 5.23 paramters between decimal and hex values */
+/*
+float sigma523_to_float(uint32_t param_value)
+{
+	return (float)(param_value / 8388608.0);
+}
+
+uint32_t float_to_sigma523(float param_value)
+{
+	return (uint32_t)(param_value * 8388608);
+}
+*/
 
 /* Microburst SigmaDSP kcontrol definitions */
 
@@ -189,7 +202,7 @@ static const char * const microburst_sigmadsp_monitor_voice_cw_text[] = {
 static int microburst_sigmadsp_cw_key_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk ("MB-codecdsp: microburst_sigmadsp_cw_key_get called\n");
+	printk (KERN_DEBUG "MB-codecdsp: microburst_sigmadsp_cw_key_get called\n");
 	ucontrol->value.integer.value[0] = kcontrol->private_value;
 	return 0;
 };
@@ -203,10 +216,9 @@ static int microburst_sigmadsp_cw_key_put(struct snd_kcontrol *kcontrol,
 	uint32_t cw_key_addr = MOD_CW_KEY_ISON_ADDR;
 	uint32_t key_down = MICROBURST_SIGMADSP_FIXPT_ONE;
 	uint32_t key_up = MICROBURST_SIGMADSP_FIXPT_ZERO;
-	int ret;
 	key_state = ucontrol->value.integer.value[0];
 
-	printk ("MB-codecdsp: microburst_sigmadsp_cw_key_put called.  Key state: %d\n", key_state);
+	printk (KERN_DEBUG "MB-codecdsp: microburst_sigmadsp_cw_key_put called.  Key state: %d\n", key_state);
 	if (key_state) {
 		//printk ("MB-codecdsp: setting key down state\n");
 		adau1761_block_write(adau, cw_key_addr, &key_down ,sizeof(key_down));
@@ -221,7 +233,7 @@ static int microburst_sigmadsp_cw_key_put(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_monitor_voice_cw_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk ("MB-sigmadsp: monitor_voice_cw_get called\n");
+	printk (KERN_DEBUG "MB-sigmadsp: monitor_voice_cw_get called\n");
 	ucontrol->value.integer.value[0] = kcontrol->private_value;
 	return 0;
 };
@@ -229,7 +241,7 @@ static int microburst_sigmadsp_monitor_voice_cw_get(struct snd_kcontrol *kcontro
 static int microburst_sigmadsp_monitor_voice_cw_put(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk ("MB-sigmadsp: monitor_voice_cw_put called\n");
+	printk (KERN_DEBUG "MB-sigmadsp: monitor_voice_cw_put called\n");
 	uint32_t buf[2];
 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
 	struct adau *adau = snd_soc_codec_get_drvdata(codec);
@@ -247,33 +259,31 @@ static int microburst_sigmadsp_monitor_voice_cw_put(struct snd_kcontrol *kcontro
 		buf[1] = MICROBURST_SIGMADSP_FIXPT_ZERO;
 	}
 
-	int ret;
-
-	printk ("MB-sigmadsp: monitor voice cw setting to %d\n", mon_cw);
+	printk (KERN_DEBUG "MB-sigmadsp: monitor voice cw setting to %d\n", mon_cw);
 	adau1761_block_write(adau, mux_addr, &buf, 8);
 
 	return 0;
 };
 
-/*static int microburst_sigmadsp_input_source_get(struct snd_kcontrol *kcontrol,
+static int microburst_sigmadsp_compander_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk ("MB-sigmadsp: input_source_get called\n");
+	printk (KERN_DEBUG "MB-sigmadsp: compander_get called\n");
 	ucontrol->value.integer.value[0] = kcontrol->private_value;
 	return 0;
 };
 
-static int microburst_sigmadsp_input_source_put(struct snd_kcontrol *kcontrol,
+static int microburst_sigmadsp_compander_put(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk ("MB-sigmadsp: input_source_put called\n");
+	printk (KERN_DEBUG "MB-sigmadsp: compander_put called\n");
 	uint32_t buf[2];
 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
 	struct adau *adau = snd_soc_codec_get_drvdata(codec);
-	int input_source;		//0 is Sig Gen  1 is Rear Panel Mic  2 is Front Panel Mic
-	uint32_t mux_1_addr = MOD_MONITOR_VOICE_CW_ALG0_STAGE0_MONOSWITCHNOSLEW_ADDR;
-	input_source = ucontrol->value.integer.value[0];
-	if (mon_cw)
+	int compander_enable;
+	uint32_t mux_addr = MOD_COMPANDER_ENABLE_ALG0_STAGE0_MONOSWITCHNOSLEW_ADDR;
+	compander_enable = ucontrol->value.integer.value[0];
+	if (compander_enable)
 	{
 		buf[0] = MICROBURST_SIGMADSP_FIXPT_ZERO;
 		buf[1] = MICROBURST_SIGMADSP_FIXPT_ONE;
@@ -284,13 +294,304 @@ static int microburst_sigmadsp_input_source_put(struct snd_kcontrol *kcontrol,
 		buf[1] = MICROBURST_SIGMADSP_FIXPT_ZERO;
 	}
 
-	int ret;
-
-	printk ("MB-sigmadsp: monitor voice cw setting to %d\n", mon_cw);
-	adau1761_block_write(adau, mux_1_addr, &buf, 8);
+	printk (KERN_DEBUG "MB-sigmadsp: compander setting to %d\n", compander_enable);
+	adau1761_block_write(adau, mux_addr, &buf, 8);
 
 	return 0;
-};*/
+};
+
+static int microburst_sigmadsp_tx_eq_get(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_get called\n");
+	ucontrol->value.integer.value[0] = kcontrol->private_value;
+	return 0;
+};
+
+static int microburst_sigmadsp_tx_eq_put(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_put called\n");
+	uint32_t buf[2];
+	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+	struct adau *adau = snd_soc_codec_get_drvdata(codec);
+	int tx_eq_enable;
+	uint32_t mux_addr = MOD_TX_EQ_ENABLE_ALG0_STAGE0_MONOSWITCHNOSLEW_ADDR;
+	tx_eq_enable = ucontrol->value.integer.value[0];
+	if (tx_eq_enable)
+	{
+		buf[0] = MICROBURST_SIGMADSP_FIXPT_ZERO;
+		buf[1] = MICROBURST_SIGMADSP_FIXPT_ONE;
+	}
+	else
+	{
+		buf[0] = MICROBURST_SIGMADSP_FIXPT_ONE;
+		buf[1] = MICROBURST_SIGMADSP_FIXPT_ZERO;
+	}
+
+	printk (KERN_DEBUG "MB-sigmadsp: tx_eq setting to %d\n", tx_eq_enable);
+	adau1761_block_write(adau, mux_addr, &buf, 8);
+
+	return 0;
+};
+
+static int microburst_sigmadsp_rx_eq_get(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_get called\n");
+	ucontrol->value.integer.value[0] = kcontrol->private_value;
+	return 0;
+};
+
+static int microburst_sigmadsp_rx_eq_put(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_put called\n");
+	uint32_t buf[2];
+	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+	struct adau *adau = snd_soc_codec_get_drvdata(codec);
+	int rx_eq_enable;
+	uint32_t mux_addr = MOD_RX_EQ_ENABLE_ALG0_STAGE0_STEREOSWITCHNOSLEW_ADDR;
+	rx_eq_enable = ucontrol->value.integer.value[0];
+	if (rx_eq_enable)
+	{
+		buf[0] = MICROBURST_SIGMADSP_FIXPT_ZERO;
+		buf[1] = MICROBURST_SIGMADSP_FIXPT_ONE;
+	}
+	else
+	{
+		buf[0] = MICROBURST_SIGMADSP_FIXPT_ONE;
+		buf[1] = MICROBURST_SIGMADSP_FIXPT_ZERO;
+	}
+
+	printk (KERN_DEBUG "MB-sigmadsp: rx_eq setting to %d\n", rx_eq_enable);
+	adau1761_block_write(adau, mux_addr, &buf, 8);
+
+	return 0;
+};
+
+static int microburst_sigmadsp_meter_select_get(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: meter_select_get called\n");
+	ucontrol->value.integer.value[0] = kcontrol->private_value;
+	return 0;
+};
+
+static int microburst_sigmadsp_meter_select_put(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: meter_select_put called\n");
+	uint32_t buf[2];
+	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+	struct adau *adau = snd_soc_codec_get_drvdata(codec);
+	int meter_select;		// 0 is meter input   1 is meter output
+	uint32_t mux_addr = MOD_METER_SELECT_ALG0_STAGE0_MONOSWITCHNOSLEW_ADDR;
+	meter_select = ucontrol->value.integer.value[0];
+	if (meter_select)
+	{
+		buf[0] = MICROBURST_SIGMADSP_FIXPT_ZERO;
+		buf[1] = MICROBURST_SIGMADSP_FIXPT_ONE;
+	}
+	else
+	{
+		buf[0] = MICROBURST_SIGMADSP_FIXPT_ONE;
+		buf[1] = MICROBURST_SIGMADSP_FIXPT_ZERO;
+	}
+
+	printk (KERN_DEBUG "MB-sigmadsp: meter_select setting to %d\n", meter_select);
+	adau1761_block_write(adau, mux_addr, &buf, 8);
+
+	return 0;
+};
+
+static int microburst_sigmadsp_echo_cancel_get(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: echo_cancel_get called\n");
+	ucontrol->value.integer.value[0] = kcontrol->private_value;
+	return 0;
+};
+
+static int microburst_sigmadsp_echo_cancel_put(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: echo_cancel_put called\n");
+	uint32_t buf[2];
+	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+	struct adau *adau = snd_soc_codec_get_drvdata(codec);
+	int echo_cancel;
+	uint32_t mux_addr = MOD_ECHO_CANCEL_ENABLE_ALG0_STAGE0_MONOSWITCHNOSLEW_ADDR;
+	echo_cancel = ucontrol->value.integer.value[0];
+	if (echo_cancel)
+	{
+		buf[0] = MICROBURST_SIGMADSP_FIXPT_ZERO;
+		buf[1] = MICROBURST_SIGMADSP_FIXPT_ONE;
+	}
+	else
+	{
+		buf[0] = MICROBURST_SIGMADSP_FIXPT_ONE;
+		buf[1] = MICROBURST_SIGMADSP_FIXPT_ZERO;
+	}
+
+	printk (KERN_DEBUG "MB-sigmadsp: echo_cancel setting to %d\n", echo_cancel);
+	adau1761_block_write(adau, mux_addr, &buf, 8);
+
+	return 0;
+};
+
+static int microburst_sigmadsp_input_source_get(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: input_source_get called\n");
+	ucontrol->value.integer.value[0] = kcontrol->private_value;
+	return 0;
+};
+
+static int microburst_sigmadsp_input_source_put(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: input_source_put called\n");
+	uint32_t buf[3];
+	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+	struct adau *adau = snd_soc_codec_get_drvdata(codec);
+	int input_source;		//0 is Sig Gen  1 is Rear Panel Mic  2 is Front Panel Mic
+	uint32_t mux_addr = MOD_INPUT_SOURCE_ALG0_STAGE0_MONOSWITCHNOSLEW_ADDR;
+	input_source = ucontrol->value.integer.value[0];
+	switch (input_source) {
+
+	case 0:	{
+			buf[0] = MICROBURST_SIGMADSP_FIXPT_ONE;
+			buf[1] = MICROBURST_SIGMADSP_FIXPT_ZERO;
+			buf[2] = MICROBURST_SIGMADSP_FIXPT_ZERO;
+		};
+	break;
+	case 1:	{
+			buf[0] = MICROBURST_SIGMADSP_FIXPT_ZERO;
+			buf[1] = MICROBURST_SIGMADSP_FIXPT_ONE;
+			buf[2] = MICROBURST_SIGMADSP_FIXPT_ZERO;
+		};
+	break;
+	default: {
+			buf[0] = MICROBURST_SIGMADSP_FIXPT_ZERO;
+			buf[1] = MICROBURST_SIGMADSP_FIXPT_ZERO;
+			buf[2] = MICROBURST_SIGMADSP_FIXPT_ONE;
+		};
+	break;
+	};
+
+	printk (KERN_DEBUG "MB-sigmadsp: input_source setting to %d\n", input_source);
+	adau1761_block_write(adau, mux_addr, &buf, 12);
+
+	return 0;
+};
+
+static int microburst_sigmadsp_sig_gen_select_get(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: sig_gen_select_get called\n");
+	ucontrol->value.integer.value[0] = kcontrol->private_value;
+	return 0;
+};
+
+static int microburst_sigmadsp_sig_gen_select_put(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: sig_gen_select_put called\n");
+	uint32_t buf[4];
+	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+	struct adau *adau = snd_soc_codec_get_drvdata(codec);
+	int sig_gen_select;		//0 is Sine signle or dual  1 is square   2 is triangle   3 is white noise
+	uint32_t mux_addr = MOD_SIGGEN_SIG_GEN_SELECT_ALG0_STAGE0_MONOSWITCHNOSLEW_ADDR;
+	sig_gen_select = ucontrol->value.integer.value[0];
+	switch (sig_gen_select) {
+
+	case 1:	{
+			buf[0] = MICROBURST_SIGMADSP_FIXPT_ZERO;
+			buf[1] = MICROBURST_SIGMADSP_FIXPT_ONE;
+			buf[2] = MICROBURST_SIGMADSP_FIXPT_ZERO;
+			buf[3] = MICROBURST_SIGMADSP_FIXPT_ZERO;
+		};
+	break;
+	case 2: {
+			buf[0] = MICROBURST_SIGMADSP_FIXPT_ZERO;
+			buf[1] = MICROBURST_SIGMADSP_FIXPT_ZERO;
+			buf[2] = MICROBURST_SIGMADSP_FIXPT_ONE;
+			buf[3] = MICROBURST_SIGMADSP_FIXPT_ZERO;
+		};
+	break;
+	case 3: {
+				buf[0] = MICROBURST_SIGMADSP_FIXPT_ZERO;
+				buf[1] = MICROBURST_SIGMADSP_FIXPT_ZERO;
+				buf[2] = MICROBURST_SIGMADSP_FIXPT_ZERO;
+				buf[3] = MICROBURST_SIGMADSP_FIXPT_ONE;
+			};
+	break;
+	default:	{
+			buf[0] = MICROBURST_SIGMADSP_FIXPT_ONE;
+			buf[1] = MICROBURST_SIGMADSP_FIXPT_ZERO;
+			buf[2] = MICROBURST_SIGMADSP_FIXPT_ZERO;
+			buf[3] = MICROBURST_SIGMADSP_FIXPT_ZERO;
+		};
+	break;
+	};
+
+	printk (KERN_DEBUG "MB-sigmadsp: sig_gen_select setting to %d\n", sig_gen_select);
+	adau1761_block_write(adau, mux_addr, &buf, 16);
+
+	return 0;
+};
+
+static int microburst_sigmadsp_monitor_level_get(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: monitor_level_get called\n");
+	ucontrol->value.integer.value[0] = kcontrol->private_value;
+	return 0;
+};
+
+static int microburst_sigmadsp_monitor_level_put(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: monitor_level_put called\n");
+	uint32_t buf;
+	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+	struct adau *adau = snd_soc_codec_get_drvdata(codec);
+	int monitor_level;		//0 is Sine signle or dual  1 is square   2 is triangle   3 is white noise
+	uint32_t mux_addr = MOD_MONITOR_LEVEL_GAIN1940ALGNS2_ADDR;
+	monitor_level = ucontrol->value.integer.value[0];
+	buf = MICROBURST_SIGMADSP_FIXPT_LEVEL_LOOKUP_64_STEP_MINUS_96_TO_ZERO[monitor_level];
+	printk (KERN_DEBUG "MB-sigmadsp: monitor_level setting to %d\n", monitor_level);
+	adau1761_block_write(adau, mux_addr, &buf, 4);
+
+	return 0;
+};
+
+static int microburst_sigmadsp_sig_gen_level_get(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: sig_gen_level_get called\n");
+	ucontrol->value.integer.value[0] = kcontrol->private_value;
+	return 0;
+};
+
+static int microburst_sigmadsp_sig_gen_level_put(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: sig_gen_level_put called\n");
+	uint32_t buf;
+	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+	struct adau *adau = snd_soc_codec_get_drvdata(codec);
+	int sig_gen_level;
+	uint32_t mux_addr = MOD_SIGGEN_SIG_GEN_LEVEL_ALG0_GAINS200ALG3GAINTARGET_ADDR;
+	sig_gen_level = ucontrol->value.integer.value[0];
+	buf = MICROBURST_SIGMADSP_FIXPT_LEVEL_LOOKUP_64_STEP_MINUS_96_TO_ZERO[sig_gen_level];
+	printk (KERN_DEBUG "MB-sigmadsp: sig_gen_level setting to %d\n", sig_gen_level);
+	adau1761_block_write(adau, mux_addr, &buf, 4);
+
+	return 0;
+};
+
 /* Microburst SigmaDSP kcontrols */
 
 static const struct snd_kcontrol_new microburst_sigmadsp_controls[] = {
@@ -298,6 +599,24 @@ static const struct snd_kcontrol_new microburst_sigmadsp_controls[] = {
 				microburst_sigmadsp_cw_key_put),
 		SOC_SINGLE_BOOL_EXT("Microburst SigmaDSP Monitor Voice CW", 1, microburst_sigmadsp_monitor_voice_cw_get,
 				microburst_sigmadsp_monitor_voice_cw_put),
+		SOC_SINGLE_BOOL_EXT("Microburst SigmaDSP Compander", 1, microburst_sigmadsp_compander_get,
+				microburst_sigmadsp_compander_put),
+		SOC_SINGLE_BOOL_EXT("Microburst SigmaDSP TX EQ", 0, microburst_sigmadsp_tx_eq_get,
+				microburst_sigmadsp_tx_eq_put),
+		SOC_SINGLE_BOOL_EXT("Microburst SigmaDSP RX EQ", 0, microburst_sigmadsp_rx_eq_get,
+				microburst_sigmadsp_rx_eq_put),
+		SOC_SINGLE_BOOL_EXT("Microburst SigmaDSP Meter Select", 0, microburst_sigmadsp_meter_select_get,
+				microburst_sigmadsp_meter_select_put),
+		SOC_SINGLE_BOOL_EXT("Microburst SigmaDSP Echo Cancel", 0, microburst_sigmadsp_echo_cancel_get,
+				microburst_sigmadsp_echo_cancel_put),
+		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Input Source", 2, microburst_sigmadsp_input_source_get,
+				microburst_sigmadsp_input_source_put),
+		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Sig Gen Select", 3, microburst_sigmadsp_sig_gen_select_get,
+				microburst_sigmadsp_sig_gen_select_put),
+		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Monitor Level", 63, microburst_sigmadsp_monitor_level_get,
+				microburst_sigmadsp_monitor_level_put),
+		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Sig Gen Level", 63, microburst_sigmadsp_sig_gen_level_get,
+				microburst_sigmadsp_sig_gen_level_put),
 };
 
 static const DECLARE_TLV_DB_SCALE(adau1761_sing_in_tlv, -1500, 300, 1);
