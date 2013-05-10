@@ -123,6 +123,66 @@ static struct reg_default adau1761_reg_defaults[] = {
 	{ ADAU17X1_SERIAL_SAMPLING_RATE,	0x04 },
 };
 
+/* Lookup tables for SigmaDSP Firmware parameters */
+
+/* ONE and ZERO definitions */
+
+uint32_t MICROBURST_SIGMADSP_FIXPT_ZERO	= 0x00000000;
+uint32_t MICROBURST_SIGMADSP_FIXPT_ONE = 0x00800000;
+
+/* Level control lookup tables */
+
+uint32_t MICROBURST_SIGMADSP_FIXPT_LEVEL_LOOKUP_64_STEP_MINUS_96_TO_ZERO[64] = { 0x0000009E, 0x000000BC,
+		0x000000DF, 0x00000109, 0x0000013B, 0x00000177, 0x000001BD, 0x00000211, 0x00000275, 0x000002EC,
+		0x00000379, 0x00000420, 0x000004E7, 0x000005D4, 0x000006ED, 0x0000083B, 0x000009C8, 0x00000BA0,
+		0x00000DD1, 0x0000106C, 0x00001385, 0x00001733, 0x00001B92, 0x000020C5, 0x000026F2, 0x00002E49,
+		0x00003703, 0x00004161, 0x00004DB5, 0x00005C5A, 0x00006DC3, 0x00008274, 0x00009B0B, 0x0000B845,
+		0x0000DB01, 0x00010449, 0x0001355A, 0x00016FAA, 0x0001B4F8, 0x00020756, 0x0002693C, 0x0002DD96,
+		0x000367DE, 0x00040C37, 0x0004CF8B, 0x0005B7B1, 0x0006CB9A, 0x00081385, 0x00099941, 0x000B6873,
+		0x000D8EF6, 0x00101D3F, 0x001326DD, 0x0016C311, 0x001B0D7B, 0x002026F3, 0x00263680, 0x002D6A86,
+		0x0035FA27, 0x004026E7, 0x004C3EA8, 0x005A9DF8, 0x006BB2D6, 0x00800000 };  //table for 64 1.5 dB steps
+
+uint32_t MICROBURST_SIGMADSP_FIXPT_LEVEL_LOOKUP_32_STEP_MINUS_96_TO_ZERO[32] = { 0x000000BC,
+		0x00000109, 0x00000177, 0x00000211, 0x000002EC,
+		0x00000420, 0x000005D4, 0x0000083B, 0x00000BA0,
+		0x0000106C, 0x00001733, 0x000020C5, 0x00002E49,
+		0x00004161, 0x00005C5A, 0x00008274, 0x0000B845,
+		0x00010449, 0x00016FAA, 0x00020756, 0x0002DD96,
+		0x00040C37, 0x0005B7B1, 0x00081385, 0x000B6873,
+		0x00101D3F, 0x0016C311, 0x002026F3, 0x002D6A86,
+		0x004026E7, 0x005A9DF8, 0x00800000 };   //table for 32 3 dB steps
+
+/* TX_FILTER Low Pass Parameters */
+
+uint32_t MICROBURST_SIGMADSP_FIXPT_TX_LPF_10000HZ[8] = { 0x0068464F, 0x00D08C9F, 0x0068464F, 0xFFA87724, 0xFF319B32,
+		0x000002B8, 0x0000028C, 0x00000001 };
+uint32_t MICROBURST_SIGMADSP_FIXPT_TX_LPF_8000HZ[8] = { 0x0053954A, 0x00A72A95, 0x0053954A, 0xFFC5E3AA, 0xFF67E819,
+		0x000002B8, 0x0000028C, 0x00000001 };
+uint32_t MICROBURST_SIGMADSP_FIXPT_TX_LPF_4000HZ[8] = { 0x00283B63, 0x005076C5, 0x00283B63, 0xFFE4EBF3, 0xFFF84977,
+		0x000002B8, 0x0000028C, 0x00000001 };
+uint32_t MICROBURST_SIGMADSP_FIXPT_TX_LPF_3000HZ[8] = { 0x001C3366, 0x003866CC, 0x001C3366, 0xFFE29A52, 0x002B49B3,
+		0x000002B8, 0x0000028C, 0x00000001 };
+uint32_t MICROBURST_SIGMADSP_FIXPT_TX_LPF_2500HZ[8] = { 0x001617AF, 0x002C2F5F, 0x001616AF, 0xFFDE41F5, 0x00485958,
+		0x000002B8, 0x0000028C, 0x00000001 };
+uint32_t MICROBURST_SIGMADSP_FIXPT_TX_LPF_2000HZ[8] = { 0x001011B5, 0x0020236A, 0x001011B5, 0xFFD6DAD1, 0x00681FD1,
+		0x000002B8, 0x0000028C, 0x00000001 };
+
+/* TX_FILTER High Pass Parameters */
+
+uint32_t MICROBURST_SIGMADSP_FIXPT_TX_HPF_60HZ[8] = { 0x007DD334, 0xFF045997, 0x007DD334, 0xFF816E67, 0x00FE8F2C,
+		0x000002C2, 0x00000294, 0x00000001 };
+uint32_t MICROBURST_SIGMADSP_FIXPT_TX_HPF_100HZ[8] = { 0x007D5A87, 0xFF054AF2, 0x007D5A87, 0xFF826068, 0x00FD98E1,
+		0x000002C2, 0x00000294, 0x00000001 };
+uint32_t MICROBURST_SIGMADSP_FIXPT_TX_HPF_200HZ[8] = { 0x007C2E69, 0xFF07A32D, 0x007C2E69, 0xFF84B5A3, 0x00FB2FBF,
+		0x000002C2, 0x00000294, 0x00000001 };
+uint32_t MICROBURST_SIGMADSP_FIXPT_TX_HPF_400HZ[8] = { 0x0079DCAC, 0xFF0C46A7, 0x0079DCAC, 0xFF893FDD, 0x00F65785,
+		0x000002C2, 0x00000294, 0x00000001 };
+uint32_t MICROBURST_SIGMADSP_FIXPT_TX_HPF_450HZ[8] = { 0x0079498A, 0xFF0D6CEC, 0x0079498A, 0xFF8A5BED, 0x00F5203A,
+		0x000002C2, 0x00000294, 0x00000001 };
+uint32_t MICROBURST_SIGMADSP_FIXPT_TX_HPF_500HZ[8] = { 0x0078B6E8, 0xFF0E9231, 0x0078B6E8, 0xFF8B7578, 0x00F3E871,
+		0x000002C2, 0x00000294, 0x00000001 };
+
+
 /* Safeload write function for SigmaDSP Firmware parameters */
 
 static int adau1761_safeload_write(struct adau *adau, uint32_t addr, uint32_t *data,
@@ -160,13 +220,14 @@ static int adau1761_block_write(struct adau *adau, uint32_t addr, uint32_t *data
 {
           int ret;
           int i;
-          printk (KERN_DEBUG "MB-sigmadsp: register write addr %d size %d\n", addr, size);
+          uint32_t data_swapped[(size/4)];
+          printk (KERN_DEBUG "MB-sigmadsp: register block write addr %d size %d\n", addr, size);
           for (i = 0; i < size/4; i++)
           {
         	  printk (KERN_DEBUG "MB-sigmadsp: %d: %08X\n", addr+i, data[i]);
-        	  data[i] = htonl(data[i]);
+        	  data_swapped[i] = htonl(data[i]);
           }
-          ret = regmap_raw_write(adau->regmap, addr, data, size);
+          ret = regmap_raw_write(adau->regmap, addr, data_swapped, size);
 		  return ret;
 };
 
@@ -583,11 +644,84 @@ static int microburst_sigmadsp_sig_gen_level_put(struct snd_kcontrol *kcontrol,
 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
 	struct adau *adau = snd_soc_codec_get_drvdata(codec);
 	int sig_gen_level;
-	uint32_t mux_addr = MOD_SIGGEN_SIG_GEN_LEVEL_ALG0_GAINS200ALG3GAINTARGET_ADDR;
+	uint32_t mux_addr = MOD_SIGGEN_SIG_GEN_LEVEL_GAIN1940ALGNS3_ADDR;
 	sig_gen_level = ucontrol->value.integer.value[0];
 	buf = MICROBURST_SIGMADSP_FIXPT_LEVEL_LOOKUP_64_STEP_MINUS_96_TO_ZERO[sig_gen_level];
 	printk (KERN_DEBUG "MB-sigmadsp: sig_gen_level setting to %d\n", sig_gen_level);
 	adau1761_block_write(adau, mux_addr, &buf, 4);
+
+	return 0;
+};
+
+static int microburst_sigmadsp_cw_sidetone_get(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: cw_sidetone_get called\n");
+	ucontrol->value.integer.value[0] = kcontrol->private_value;
+	return 0;
+};
+
+static int microburst_sigmadsp_cw_sidetone_put(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: cw_sidetone_put called\n");
+	uint32_t buf[3];
+	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+	struct adau *adau = snd_soc_codec_get_drvdata(codec);
+	int sidetone_frequency;
+	uint32_t mux_addr = MOD_STATIC_CW_SIDETONE_ALG0_MASK_ADDR;
+	sidetone_frequency = ucontrol->value.integer.value[0];
+	buf[0] = 0x000000FF;
+	buf[1] = (uint32_t)(sidetone_frequency * 699);
+	buf[2] = MICROBURST_SIGMADSP_FIXPT_ONE;
+	printk (KERN_DEBUG "MB-sigmadsp: sidetone_frequency setting to %d\n", sidetone_frequency);
+	adau1761_block_write(adau, mux_addr, &buf, 12);
+
+	return 0;
+};
+
+static int microburst_sigmadsp_tx_filter_bw_get(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: tx_filter_bw_get called\n");
+	ucontrol->value.integer.value[0] = kcontrol->private_value;
+	return 0;
+};
+
+static int microburst_sigmadsp_tx_filter_bw_put(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: tx_filter_bw_put called\n");
+	uint32_t *buf_lp;
+	uint32_t *buf_hp;
+	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+	struct adau *adau = snd_soc_codec_get_drvdata(codec);
+	int bandwidth_select;
+	uint32_t lp_addr = MOD_TX_FILTER_TX_LPF_ALG0_STAGE0_B2_ADDR;
+	uint32_t hp_addr = MOD_TX_FILTER_TX_HPF_ALG0_STAGE0_B2_ADDR;
+	bandwidth_select = ucontrol->value.integer.value[0];
+	switch (bandwidth_select) {
+
+	case 2:	{
+			buf_lp = MICROBURST_SIGMADSP_FIXPT_TX_LPF_10000HZ;
+			buf_hp = MICROBURST_SIGMADSP_FIXPT_TX_HPF_60HZ;
+			};
+	break;
+	case 1: {
+			buf_lp = MICROBURST_SIGMADSP_FIXPT_TX_LPF_8000HZ;
+			buf_hp = MICROBURST_SIGMADSP_FIXPT_TX_HPF_200HZ;
+			};
+	break;
+	default: {
+			buf_lp = MICROBURST_SIGMADSP_FIXPT_TX_LPF_2500HZ;
+			buf_hp = MICROBURST_SIGMADSP_FIXPT_TX_HPF_500HZ;
+			};
+	break;
+	};
+
+	printk (KERN_DEBUG "MB-sigmadsp: tx_filter_bw setting to %d\n", bandwidth_select);
+	adau1761_block_write(adau, lp_addr, buf_lp, 32);
+	adau1761_block_write(adau, hp_addr, buf_hp, 32);
 
 	return 0;
 };
@@ -617,6 +751,10 @@ static const struct snd_kcontrol_new microburst_sigmadsp_controls[] = {
 				microburst_sigmadsp_monitor_level_put),
 		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Sig Gen Level", 63, microburst_sigmadsp_sig_gen_level_get,
 				microburst_sigmadsp_sig_gen_level_put),
+		SOC_SINGLE_INT_EXT("Microburst SigmaDSP CW Sidetone", 10000, microburst_sigmadsp_cw_sidetone_get,
+				microburst_sigmadsp_cw_sidetone_put),
+		SOC_SINGLE_INT_EXT("Microburst SigmaDSP TX Filter Bandwidth", 2, microburst_sigmadsp_tx_filter_bw_get,
+				microburst_sigmadsp_tx_filter_bw_put),
 };
 
 static const DECLARE_TLV_DB_SCALE(adau1761_sing_in_tlv, -1500, 300, 1);
@@ -714,7 +852,7 @@ static const struct snd_kcontrol_new adau1761_alc_controls[] = {
 
 	SOC_VALUE_ENUM("ALC Noise Gate Type", adau1761_alc_noise_gate_type_enum),
 	SOC_SINGLE("ALC Noise Gate Enable", ADAU1761_ALC_CONTROL3, 5, 1, 0),
-	SOC_SINGLE("ALC Noise Gate Threashold", 
+	SOC_SINGLE("ALC Noise Gate Threshold",
 		ADAU1761_ALC_CONTROL3, 0, 0x1f,0),
 
 };
