@@ -182,6 +182,189 @@ uint32_t MICROBURST_SIGMADSP_FIXPT_TX_HPF_450HZ[8] = { 0x0079498A, 0xFF0D6CEC, 0
 uint32_t MICROBURST_SIGMADSP_FIXPT_TX_HPF_500HZ[8] = { 0x0078B6E8, 0xFF0E9231, 0x0078B6E8, 0xFF8B7578, 0x00F3E871,
 		0x000002C2, 0x00000294, 0x00000001 };
 
+/* EQ_PANEL Filter Parameters */
+
+uint32_t MICROBURST_SIGMADSP_EQ_PANEL_STAGE_0_FIXPT_BOOST[21][5] = {
+ {0x007D970C, 0xFF031CA8, 0x007F513F, 0xFF83125A, 0x00FCDDFD, },
+ {0x007D9668, 0xFF030D1F, 0x007F61B9, 0xFF83031B, 0x00FCEE1C, },
+ {0x007D95FB, 0xFF02FD0C, 0x007F7288, 0xFF82F349, 0x00FCFEC0, },
+ {0x007D95B9, 0xFF02EC8A, 0x007F83A1, 0xFF82E300, 0x00FD0FD0, },
+ {0x007D9597, 0xFF02DBB0, 0x007F94F7, 0xFF82D257, 0x00FD2135, },
+ {0x007D958B, 0xFF02CA91, 0x007FA681, 0xFF82C161, 0x00FD32DD, },
+ {0x007D958F, 0xFF02B93E, 0x007FB835, 0xFF82B030, 0x00FD44B6, },
+ {0x007D959D, 0xFF02A7C6, 0x007FCA09, 0xFF829ED2, 0x00FD56B2, },
+ {0x007D95B0, 0xFF029637, 0x007FDBF7, 0xFF828D54, 0x00FD68C5, },
+ {0x007D95C4, 0xFF02849A, 0x007FEDF7, 0xFF827BC3, 0x00FD7AE4, },
+ {0x007D95DA, 0xFF0272FA, 0x00800000, 0xFF826A26, 0x00FD8D06, },
+ {0x007D95F0, 0xFF026160, 0x0080120C, 0xFF825887, 0x00FD9F23, },
+ {0x007D9606, 0xFF024FD1, 0x00802413, 0xFF8246EC, 0x00FDB134, },
+ {0x007D9620, 0xFF023E53, 0x0080360D, 0xFF82355B, 0x00FDC336, },
+ {0x007D9641, 0xFF022CEC, 0x008047F4, 0xFF8223D9, 0x00FDD522, },
+ {0x007D966E, 0xFF021B9F, 0x008059BE, 0xFF821269, 0x00FDE6F6, },
+ {0x007D96AD, 0xFF020A6E, 0x00806B63, 0xFF82010E, 0x00FDF8AF, },
+ {0x007D9707, 0xFF01F95D, 0x00807CD8, 0xFF81EFCA, 0x00FE0A4C, },
+ {0x007D9785, 0xFF01E86C, 0x00808E15, 0xFF81DE9F, 0x00FE1BCC, },
+ {0x007D9833, 0xFF01D79D, 0x00809F0C, 0xFF81CD8C, 0x00FE2D2E, },
+ {0x007D991F, 0xFF01C6EE, 0x0080AFB1, 0xFF81BC92, 0x00FE3E74, }, };
+uint32_t MICROBURST_SIGMADSP_EQ_PANEL_STAGE_1_FIXPT_BOOST[21][5] = {
+ {0x007CCB6D, 0xFF050148, 0x007E55B7, 0xFF84DEDC, 0x00FAFEB8, },
+ {0x007CE1C4, 0xFF04BCD3, 0x007E83DE, 0xFF849A5E, 0x00FB432D, },
+ {0x007CF58E, 0xFF047C10, 0x007EB0E0, 0xFF845992, 0x00FB83F0, },
+ {0x007D06D8, 0xFF043ECD, 0x007EDCE1, 0xFF841C47, 0x00FBC133, },
+ {0x007D15AE, 0xFF0404DD, 0x007F0803, 0xFF83E24E, 0x00FBFB23, },
+ {0x007D221A, 0xFF03CE12, 0x007F326A, 0xFF83AB7C, 0x00FC31EE, },
+ {0x007D2C26, 0xFF039A41, 0x007F5C36, 0xFF8377A4, 0x00FC65BF, },
+ {0x007D33D7, 0xFF036943, 0x007F858A, 0xFF83469F, 0x00FC96BD, },
+ {0x007D3932, 0xFF033AF1, 0x007FAE87, 0xFF831847, 0x00FCC50F, },
+ {0x007D3C3C, 0xFF030F27, 0x007FD74D, 0xFF82EC77, 0x00FCF0D9, },
+ {0x00000000, 0x00000000, 0x00800000, 0x00000000, 0x00000000, },
+ {0x007D3B5A, 0xFF02BEA1, 0x008028BF, 0xFF829BE6, 0x00FD415F, },
+ {0x007D376D, 0xFF0299A6, 0x008051AD, 0xFF8276E6, 0x00FD665A, },
+ {0x007D3127, 0xFF0276B2, 0x00807AEC, 0xFF8253ED, 0x00FD894E, },
+ {0x007D2883, 0xFF0255AA, 0x0080A49D, 0xFF8232E1, 0x00FDAA56, },
+ {0x007D1D78, 0xFF023673, 0x0080CEE2, 0xFF8213A5, 0x00FDC98D, },
+ {0x007D0FFD, 0xFF0218F4, 0x0080F9E1, 0xFF81F622, 0x00FDE70C, },
+ {0x007D0005, 0xFF01FD15, 0x008125BB, 0xFF81DA40, 0x00FE02EB, },
+ {0x007CED83, 0xFF01E2C0, 0x00815296, 0xFF81BFE7, 0x00FE1D40, },
+ {0x007CD866, 0xFF01C9DF, 0x00818098, 0xFF81A702, 0x00FE3621, },
+ {0x007CC09C, 0xFF01B25D, 0x0081AFE7, 0xFF818F7D, 0x00FE4DA3, }, };
+uint32_t MICROBURST_SIGMADSP_EQ_PANEL_STAGE_2_FIXPT_BOOST[21][5] = {
+ {0x0079B652, 0xFF0A14FB, 0x007CBBC8, 0xFF898DE6, 0x00F5EB05, },
+ {0x0079E08B, 0xFF099146, 0x007D158C, 0xFF8909E9, 0x00F66EBA, },
+ {0x007A05EB, 0xFF09146D, 0x007D6D4A, 0xFF888CCB, 0x00F6EB93, },
+ {0x007A2686, 0xFF089E1B, 0x007DC342, 0xFF881639, 0x00F761E5, },
+ {0x007A426E, 0xFF082E00, 0x007E17B2, 0xFF87A5E0, 0x00F7D200, },
+ {0x007A59B4, 0xFF07C3CD, 0x007E6AD9, 0xFF873B73, 0x00F83C33, },
+ {0x007A6C63, 0xFF075F37, 0x007EBCF8, 0xFF86D6A5, 0x00F8A0C9, },
+ {0x007A7A83, 0xFF06FFF7, 0x007F0E4C, 0xFF867730, 0x00F90009, },
+ {0x007A841C, 0xFF06A5C7, 0x007F5F15, 0xFF861CCF, 0x00F95A39, },
+ {0x007A892F, 0xFF065067, 0x007FAF91, 0xFF85C741, 0x00F9AF99, },
+ {0x00000000, 0x00000000, 0x00800000, 0x00000000, 0x00000000, },
+ {0x007A85BD, 0xFF05B31E, 0x008050A2, 0xFF8529A1, 0x00FA4CE2, },
+ {0x007A7D2E, 0xFF056AC0, 0x0080A1B6, 0xFF84E11B, 0x00FA9540, },
+ {0x007A7002, 0xFF052648, 0x0080F380, 0xFF849C7E, 0x00FAD9B8, },
+ {0x007A5E2C, 0xFF04E582, 0x0081463F, 0xFF845B95, 0x00FB1A7E, },
+ {0x007A4799, 0xFF04A83D, 0x00819A39, 0xFF841E2E, 0x00FB57C3, },
+ {0x007A2C33, 0xFF046E4A, 0x0081EFB1, 0xFF83E41B, 0x00FB91B6, },
+ {0x007A0BE2, 0xFF04377D, 0x008246EF, 0xFF83AD2F, 0x00FBC883, },
+ {0x0079E687, 0xFF0403AA, 0x0082A039, 0xFF837940, 0x00FBFC56, },
+ {0x0079BC01, 0xFF03D2AA, 0x0082FBDA, 0xFF834825, 0x00FC2D56, },
+ {0x00798C2B, 0xFF03A456, 0x00835A1E, 0xFF8319B7, 0x00FC5BAA, }, };
+uint32_t MICROBURST_SIGMADSP_EQ_PANEL_STAGE_3_FIXPT_BOOST[21][5] = {
+ {0x0073E6A3, 0xFF146AD5, 0x0079B6F0, 0xFF92626D, 0x00EB952B, },
+ {0x0074320A, 0xFF137794, 0x007A60E3, 0xFF916D13, 0x00EC886C, },
+ {0x007474AA, 0xFF129020, 0x007B07B6, 0xFF90839F, 0x00ED6FE0, },
+ {0x0074AE97, 0xFF11B3FD, 0x007BABD2, 0xFF8FA596, 0x00EE4C03, },
+ {0x0074DFE1, 0xFF10E2B3, 0x007C4DA1, 0xFF8ED27E, 0x00EF1D4D, },
+ {0x00750893, 0xFF101BCC, 0x007CED8E, 0xFF8E09DF, 0x00EFE434, },
+ {0x007528B4, 0xFF0F5ED4, 0x007D8C06, 0xFF8D4B46, 0x00F0A12C, },
+ {0x00754048, 0xFF0EAB5C, 0x007E2977, 0xFF8C9642, 0x00F154A4, },
+ {0x00754F4B, 0xFF0E00F8, 0x007EC64F, 0xFF8BEA66, 0x00F1FF08, },
+ {0x007555B7, 0xFF0D5F3F, 0x007F6301, 0xFF8B4747, 0x00F2A0C1, },
+ {0x00000000, 0x00000000, 0x00800000, 0x00000000, 0x00000000, },
+ {0x00754892, 0xFF0C343A, 0x00809DC0, 0xFF8A19AD, 0x00F3CBC6, },
+ {0x007534D7, 0xFF0BAA2D, 0x00813CB9, 0xFF898E70, 0x00F455D3, },
+ {0x00751831, 0xFF0B274A, 0x0081DD64, 0xFF890A6B, 0x00F4D8B6, },
+ {0x0074F27A, 0xFF0AAB37, 0x0082803F, 0xFF888D47, 0x00F554C9, },
+ {0x0074C389, 0xFF0A35A2, 0x008325C9, 0xFF8816AE, 0x00F5CA5E, },
+ {0x00748B2D, 0xFF09C63A, 0x0083CE84, 0xFF87A64F, 0x00F639C6, },
+ {0x0074492D, 0xFF095CAF, 0x00847AF8, 0xFF873BDC, 0x00F6A351, },
+ {0x0073FD48, 0xFF08F8B9, 0x00852BAF, 0xFF86D709, 0x00F70747, },
+ {0x0073A739, 0xFF089A10, 0x0085E138, 0xFF86778F, 0x00F765F0, },
+ {0x007346B0, 0xFF084070, 0x00869C27, 0xFF861D29, 0x00F7BF90, }, };
+uint32_t MICROBURST_SIGMADSP_EQ_PANEL_STAGE_4_FIXPT_BOOST[21][5] = {
+ {0x00699734, 0xFF299D16, 0x00745BC5, 0xFFA20D07, 0x00D662EA, },
+ {0x006A0F8F, 0xFF2801AB, 0x00758D59, 0xFFA06318, 0x00D7FE55, },
+ {0x006A794D, 0xFF267790, 0x0076BB9D, 0xFF9ECB16, 0x00D98870, },
+ {0x006AD457, 0xFF24FE50, 0x0077E721, 0xFF9D4487, 0x00DB01B0, },
+ {0x006B2094, 0xFF239572, 0x0079107E, 0xFF9BCEEE, 0x00DC6A8E, },
+ {0x006B5DE3, 0xFF223C79, 0x007A3852, 0xFF9A69CB, 0x00DDC387, },
+ {0x006B8C23, 0xFF20F2E9, 0x007B5F43, 0xFF99149A, 0x00DF0D17, },
+ {0x006BAB2C, 0xFF1FB83F, 0x007C85FD, 0xFF97CED7, 0x00E047C1, },
+ {0x006BBAD0, 0xFF1E8BFD, 0x007DAD33, 0xFF9697FD, 0x00E17403, },
+ {0x006BBADA, 0xFF1D6DA2, 0x007ED59E, 0xFF956F88, 0x00E2925E, },
+ {0x00000000, 0x00000000, 0x00800000, 0x00000000, 0x00000000, },
+ {0x006B8B2A, 0xFF1B589E, 0x00812D20, 0xFF9347B6, 0x00E4A762, },
+ {0x006B5AE1, 0xFF1A60F7, 0x00825DCC, 0xFF924753, 0x00E59F09, },
+ {0x006B19DB, 0xFF19753D, 0x008392DC, 0xFF915348, 0x00E68AC3, },
+ {0x006AC7BB, 0xFF1894F5, 0x0084CD2E, 0xFF906B17, 0x00E76B0B, },
+ {0x006A6416, 0xFF17BFA7, 0x00860DA8, 0xFF8F8E42, 0x00E84059, },
+ {0x0069EE76, 0xFF16F4DD, 0x00875539, 0xFF8EBC51, 0x00E90B23, },
+ {0x00696659, 0xFF163425, 0x0088A4DA, 0xFF8DF4CD, 0x00E9CBDB, },
+ {0x0068CB30, 0xFF157D10, 0x0089FD8D, 0xFF8D3742, 0x00EA82F0, },
+ {0x00681C60, 0xFF14CF31, 0x008B605F, 0xFF8C8341, 0x00EB30CF, },
+ {0x0067593F, 0xFF142A1E, 0x008CCE66, 0xFF8BD85B, 0x00EBD5E2, }, };
+uint32_t MICROBURST_SIGMADSP_EQ_PANEL_STAGE_5_FIXPT_BOOST[21][5] = {
+ {0x00597B89, 0xFF54FBBF, 0x006BFD8C, 0xFFBA86EB, 0x00AB0441, },
+ {0x005A1619, 0xFF52C498, 0x006DF1E0, 0xFFB7F807, 0x00AD3B68, },
+ {0x005A9B28, 0xFF509F84, 0x006FE6D7, 0xFFB57E01, 0x00AF607C, },
+ {0x005B0A0F, 0xFF4E8C87, 0x0071DD12, 0xFFB318DF, 0x00B17379, },
+ {0x005B6227, 0xFF4C8B96, 0x0073D545, 0xFFB0C894, 0x00B3746A, },
+ {0x005BA2C8, 0xFF4A9C98, 0x0075D035, 0xFFAE8D03, 0x00B56368, },
+ {0x005BCB45, 0xFF48BF67, 0x0077CEBB, 0xFFAC6600, 0x00B74099, },
+ {0x005BDAEF, 0xFF46F3D1, 0x0079D1C0, 0xFFAA5350, 0x00B90C2F, },
+ {0x005BD110, 0xFF453999, 0x007BDA40, 0xFFA854B0, 0x00BAC667, },
+ {0x005BACEA, 0xFF43907A, 0x007DE94B, 0xFFA669CB, 0x00BC6F86, },
+ {0x00000000, 0x00000000, 0x00800000, 0x00000000, 0x00000000, },
+ {0x005B12A7, 0xFF40703F, 0x00821F94, 0xFFA2CDC5, 0x00BF8FC1, },
+ {0x005A9AE0, 0xFF3EF870, 0x0084494E, 0xFFA11BD3, 0x00C10790, },
+ {0x005A0578, 0xFF3D9054, 0x00867E87, 0xFF9F7C01, 0x00C26FAC, },
+ {0x00595179, 0xFF3C3783, 0x0088C0AE, 0xFF9DEDD9, 0x00C3C87D, },
+ {0x00587DDD, 0xFF3AED93, 0x008B1146, 0xFF9C70DD, 0x00C5126D, },
+ {0x0057898A, 0xFF39B214, 0x008D71E6, 0xFF9B0490, 0x00C64DEC, },
+ {0x00567356, 0xFF388497, 0x008FE43B, 0xFF99A86F, 0x00C77B69, },
+ {0x00553A00, 0xFF3764AA, 0x00926A09, 0xFF985BF7, 0x00C89B56, },
+ {0x0053DC31, 0xFF3651D9, 0x0095052C, 0xFF971EA2, 0x00C9AE27, },
+ {0x0052587C, 0xFF354BB1, 0x0097B798, 0xFF95EFEC, 0x00CAB44F, }, };
+uint32_t MICROBURST_SIGMADSP_EQ_PANEL_STAGE_6_FIXPT_BOOST[21][5] = {
+ {0x0046D9BA, 0xFFAB6B4E, 0x00624FAA, 0xFFD6D69C, 0x005494B2, },
+ {0x00476440, 0xFFA9C87E, 0x00650AC4, 0xFFD390FC, 0x00563782, },
+ {0x0047D31F, 0xFFA82DF7, 0x0067D0F4, 0xFFD05BEE, 0x0057D209, },
+ {0x004824C8, 0xFFA69C23, 0x006AA2F2, 0xFFCD3846, 0x005963DD, },
+ {0x004857AA, 0xFFA51361, 0x006D8194, 0xFFCA26C2, 0x005AEC9F, },
+ {0x00486A2B, 0xFFA39404, 0x00706DCC, 0xFFC72808, 0x005C6BFC, },
+ {0x00485AAF, 0xFFA21E54, 0x007368A9, 0xFFC43CA8, 0x005DE1AC, },
+ {0x0048278F, 0xFFA0B28C, 0x00767359, 0xFFC16518, 0x005F4D74, },
+ {0x0047CF1D, 0xFF9F50DD, 0x00798F28, 0xFFBEA1BA, 0x0060AF23, },
+ {0x00474FA1, 0xFF9DF96D, 0x007CBD86, 0xFFBBF2D9, 0x00620693, },
+ {0x00000000, 0x00000000, 0x00800000, 0x00000000, 0x00000000, },
+ {0x0045D465, 0xFF9B69A9, 0x00835849, 0xFFB6D352, 0x00649657, },
+ {0x0044D4EF, 0xFF9A316E, 0x0086C835, 0xFFB462DC, 0x0065CE92, },
+ {0x0043A6FD, 0xFF9903A3, 0x008A51BE, 0xFFB20746, 0x0066FC5D, },
+ {0x00424883, 0xFF97E03E, 0x008DF702, 0xFFAFC07B, 0x00681FC2, },
+ {0x0040B760, 0xFF96C72C, 0x0091BA48, 0xFFAD8E58, 0x006938D4, },
+ {0x003EF159, 0xFF95B855, 0x00959DFD, 0xFFAB70AA, 0x006A47AB, },
+ {0x003CF416, 0xFF94B399, 0x0099A4B9, 0xFFA96731, 0x006B4C67, },
+ {0x003ABD1F, 0xFF93B8D2, 0x009DD13E, 0xFFA771A3, 0x006C472E, },
+ {0x003849DC, 0xFF92C7D5, 0x00A2267A, 0xFFA58FA9, 0x006D382B, },
+ {0x0035978F, 0xFF91E072, 0x00A6A78C, 0xFFA3C0E5, 0x006E1F8E, }, };
+uint32_t MICROBURST_SIGMADSP_EQ_PANEL_STAGE_7_FIXPT_BOOST[21][5] = {
+ {0x0025293C, 0x005524DC, 0x00574439, 0xFFD919F8, 0xFFD553B8, },
+ {0x00258BA6, 0x0055BAB8, 0x005AA971, 0xFFD92C07, 0xFFD0E42A, },
+ {0x0025F4BA, 0x005638DD, 0x005E31A8, 0xFFD92199, 0xFFCC7F28, },
+ {0x00266536, 0x00569C60, 0x0061DE1B, 0xFFD8FC07, 0xFFC82448, },
+ {0x0026DE03, 0x0056E235, 0x0065B013, 0xFFD8BC85, 0xFFC3D330, },
+ {0x00276032, 0x00570726, 0x0069A8ED, 0xFFD8642B, 0xFFBF8B91, },
+ {0x0027ED02, 0x005707D2, 0x006DCA12, 0xFFD7F3F5, 0xFFBB4D25, },
+ {0x002885E5, 0x0056E0A9, 0x007214FC, 0xFFD76CCA, 0xFFB717AD, },
+ {0x00292C82, 0x00568DE5, 0x00768B34, 0xFFD6CF7A, 0xFFB2EAEC, },
+ {0x0029E2B9, 0x00560B87, 0x007B2E53, 0xFFD61CC4, 0xFFAEC6A9, },
+ {0x002AAAAB, 0x00555555, 0x00800000, 0xFFD55555, 0xFFAAAAAB, },
+ {0x002B86BF, 0x005466D0, 0x008501F1, 0xFFD479C9, 0xFFA696B8, },
+ {0x002C79A9, 0x00533B30, 0x008A35E8, 0xFFD38AAD, 0xFFA28A92, },
+ {0x002D8675, 0x0051CD61, 0x008F9DB5, 0xFFD2887C, 0xFF9E85F9, },
+ {0x002EB08B, 0x005017F9, 0x00953B34, 0xFFD173A4, 0xFF9A88A5, },
+ {0x002FFBBE, 0x004E1532, 0x009B1049, 0xFFD04C81, 0xFF969246, },
+ {0x00316C59, 0x004BBEE2, 0x00A11EE0, 0xFFCF1360, 0xFF92A284, },
+ {0x0033072A, 0x00490E74, 0x00A768EC, 0xFFCDC87A, 0xFF8EB8FC, },
+ {0x0034D195, 0x0045FCDC, 0x00ADF05E, 0xFFCC6BF6, 0xFF8AD53B, },
+ {0x0036D1A5, 0x0042828C, 0x00B4B727, 0xFFCAFDE5, 0xFF86F6C2, },
+ {0x00390E28, 0x003E976D, 0x00BBBF2B, 0xFFC97E43, 0xFF831CFD, }, };
+
+uint32_t MICROBURST_SIGMADSP_TX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[3] = { MOD_TX_EQ_TX_EQ_PANEL_ALG0_DATA_ADR_FIXPT, MOD_TX_EQ_TX_EQ_PANEL_ALG0_COEFF_ADR_FIXPT, MOD_TX_EQ_TX_EQ_PANEL_ALG0_LOOP_FIXPT };
+
+uint32_t MICROBURST_SIGMADSP_RX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[4] = { MOD_RX_EQ_RX_EQ_PANEL_ALG0_DATA_ADR_FIXPT, MOD_RX_EQ_RX_EQ_PANEL_ALG0_DATAR_ADR_FIXPT, MOD_RX_EQ_RX_EQ_PANEL_ALG0_COEFF_ADR_FIXPT, MOD_RX_EQ_RX_EQ_PANEL_ALG0_LOOP_FIXPT };
+
 
 /* Safeload write function for SigmaDSP Firmware parameters */
 
@@ -190,20 +373,32 @@ static int adau1761_safeload_write(struct adau *adau, uint32_t addr, uint32_t *d
 {
           unsigned int i;
           int ret;
+          unsigned int bytes_to_write = size/4;
+          uint32_t data_swapped[(size/4)];
+          printk (KERN_DEBUG "MB-sigmadsp: register safeload write addr %d size %d\n", addr, size);
 
-          if (size > 5)
+          if (size/4 > 5)
                     return -EINVAL;
+          for (i = 0; i < size/4; i++)
+          {
+              printk (KERN_DEBUG "MB-sigmadsp: %d: %08X\n", addr+i, data[i]);
+              data_swapped[i] = htonl(data[i]);
+          }
 
-          for (i = 0; i < size; i++) {
-                    ret = regmap_write(adau->regmap, ADAU1761_SAFELOAD_DATA(i), htonl(data[i]));
+          for (i = 0; i < size/4; i++)
+          {
+        	  	  	printk (KERN_DEBUG "MB-sigmadsp: safeload regmap write addr %d data %08X\n", ADAU1761_SAFELOAD_DATA(i), data_swapped[i]);
+                    ret = regmap_raw_write(adau->regmap, ADAU1761_SAFELOAD_DATA(i), &data_swapped[i], 1);
                     if (ret)
                               return ret;
           }
 
-          ret = regmap_write(adau->regmap, ADAU1761_SAFELOAD_ADDR, addr - 1);
+          printk (KERN_DEBUG "MB-sigmadsp: safeload regmap write addr %d data %08X\n", ADAU1761_SAFELOAD_ADDR, addr-1);
+          ret = regmap_raw_write(adau->regmap, ADAU1761_SAFELOAD_ADDR, &addr-1, 1);
           if (ret)
                     return ret;
-          ret = regmap_write(adau->regmap, ADAU1761_SAFELOAD_SIZE, size);
+          printk (KERN_DEBUG "MB-sigmadsp: safeload regmap write addr %d data %d\n", ADAU1761_SAFELOAD_SIZE, size/4);
+          ret = regmap_raw_write(adau->regmap, ADAU1761_SAFELOAD_SIZE, &bytes_to_write , 1);
           if (ret)
                     return ret;
 
@@ -219,7 +414,7 @@ static int adau1761_block_write(struct adau *adau, uint32_t addr, uint32_t *data
           unsigned int size)
 {
           int ret;
-          int i;
+          unsigned int i;
           uint32_t data_swapped[(size/4)];
           printk (KERN_DEBUG "MB-sigmadsp: register block write addr %d size %d\n", addr, size);
           for (i = 0; i < size/4; i++)
@@ -230,19 +425,6 @@ static int adau1761_block_write(struct adau *adau, uint32_t addr, uint32_t *data
           ret = regmap_raw_write(adau->regmap, addr, data_swapped, size);
 		  return ret;
 };
-
-/* Utility functions to convert SigmaDSP Firmware 5.23 paramters between decimal and hex values */
-/*
-float sigma523_to_float(uint32_t param_value)
-{
-	return (float)(param_value / 8388608.0);
-}
-
-uint32_t float_to_sigma523(float param_value)
-{
-	return (uint32_t)(param_value * 8388608);
-}
-*/
 
 /* Microburst SigmaDSP kcontrol definitions */
 
@@ -618,7 +800,7 @@ static int microburst_sigmadsp_monitor_level_put(struct snd_kcontrol *kcontrol,
 	uint32_t buf;
 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
 	struct adau *adau = snd_soc_codec_get_drvdata(codec);
-	int monitor_level;		//0 is Sine signle or dual  1 is square   2 is triangle   3 is white noise
+	int monitor_level;
 	uint32_t mux_addr = MOD_MONITOR_LEVEL_GAIN1940ALGNS2_ADDR;
 	monitor_level = ucontrol->value.integer.value[0];
 	buf = MICROBURST_SIGMADSP_FIXPT_LEVEL_LOOKUP_64_STEP_MINUS_96_TO_ZERO[monitor_level];
@@ -726,6 +908,592 @@ static int microburst_sigmadsp_tx_filter_bw_put(struct snd_kcontrol *kcontrol,
 	return 0;
 };
 
+static int microburst_sigmadsp_tx_eq_stage_0_get(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_0_get called\n");
+	ucontrol->value.integer.value[0] = kcontrol->private_value;
+	return 0;
+};
+
+static int microburst_sigmadsp_tx_eq_stage_0_put(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_0_put called\n");
+	uint32_t buf[5];
+	uint32_t buf2[3];
+	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+	struct adau *adau = snd_soc_codec_get_drvdata(codec);
+	int boost_level;
+	int i;
+	uint32_t stage_addr = MOD_TX_EQ_TX_EQ_PANEL_ALG0_STAGE0_B2_ADDR;
+	uint32_t data_addr = MOD_TX_EQ_TX_EQ_PANEL_ALG0_DATA_ADR_ADDR;
+	boost_level = ucontrol->value.integer.value[0];
+	for (i = 0; i < 5; i++)
+	{
+	buf[i] = MICROBURST_SIGMADSP_EQ_PANEL_STAGE_0_FIXPT_BOOST[boost_level][i];
+	//printk (KERN_DEBUG "MB-sigmadsp: tx eq stage data %d %d %x\n", boost_level, i, buf[i]);
+	};
+	for (i = 0; i < 3; i++)
+	{
+	buf2[i] = MICROBURST_SIGMADSP_TX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[i];
+	};
+	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_0 boost level setting to %d\n", boost_level);
+	adau1761_block_write(adau, stage_addr, &buf, 20);
+	adau1761_block_write(adau, data_addr, &buf2, 12);
+
+	return 0;
+};
+
+static int microburst_sigmadsp_tx_eq_stage_1_get(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_1_get called\n");
+	ucontrol->value.integer.value[0] = kcontrol->private_value;
+	return 0;
+};
+
+static int microburst_sigmadsp_tx_eq_stage_1_put(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_1_put called\n");
+	uint32_t buf[5];
+	uint32_t buf2[3];
+	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+	struct adau *adau = snd_soc_codec_get_drvdata(codec);
+	int boost_level;
+	int i;
+	uint32_t stage_addr = MOD_TX_EQ_TX_EQ_PANEL_ALG0_STAGE1_B2_ADDR;
+	uint32_t data_addr = MOD_TX_EQ_TX_EQ_PANEL_ALG0_DATA_ADR_ADDR;
+	boost_level = ucontrol->value.integer.value[0];
+	for (i = 0; i < 5; i++)
+	{
+	buf[i] = MICROBURST_SIGMADSP_EQ_PANEL_STAGE_1_FIXPT_BOOST[boost_level][i];
+	//printk (KERN_DEBUG "MB-sigmadsp: tx eq stage data %d %d %x\n", boost_level, i, buf[i]);
+	};
+	for (i = 0; i < 3; i++)
+	{
+	buf2[i] = MICROBURST_SIGMADSP_TX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[i];
+	};
+	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_1 boost level setting to %d\n", boost_level);
+	adau1761_block_write(adau, stage_addr, &buf, 20);
+	adau1761_block_write(adau, data_addr, &buf2, 12);
+
+	return 0;
+};
+
+static int microburst_sigmadsp_tx_eq_stage_2_get(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_2_get called\n");
+	ucontrol->value.integer.value[0] = kcontrol->private_value;
+	return 0;
+};
+
+static int microburst_sigmadsp_tx_eq_stage_2_put(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_2_put called\n");
+	uint32_t buf[5];
+	uint32_t buf2[3];
+	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+	struct adau *adau = snd_soc_codec_get_drvdata(codec);
+	int boost_level;
+	int i;
+	uint32_t stage_addr = MOD_TX_EQ_TX_EQ_PANEL_ALG0_STAGE2_B2_ADDR;
+	uint32_t data_addr = MOD_TX_EQ_TX_EQ_PANEL_ALG0_DATA_ADR_ADDR;
+	boost_level = ucontrol->value.integer.value[0];
+	for (i = 0; i < 5; i++)
+	{
+	buf[i] = MICROBURST_SIGMADSP_EQ_PANEL_STAGE_2_FIXPT_BOOST[boost_level][i];
+	//printk (KERN_DEBUG "MB-sigmadsp: tx eq stage data %d %d %x\n", boost_level, i, buf[i]);
+	};
+	for (i = 0; i < 3; i++)
+	{
+	buf2[i] = MICROBURST_SIGMADSP_TX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[i];
+	};
+	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_2 boost level setting to %d\n", boost_level);
+	adau1761_block_write(adau, stage_addr, &buf, 20);
+	adau1761_block_write(adau, data_addr, &buf2, 12);
+
+	return 0;
+};
+
+static int microburst_sigmadsp_tx_eq_stage_3_get(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_3_get called\n");
+	ucontrol->value.integer.value[0] = kcontrol->private_value;
+	return 0;
+};
+
+static int microburst_sigmadsp_tx_eq_stage_3_put(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_3_put called\n");
+	uint32_t buf[5];
+	uint32_t buf2[3];
+	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+	struct adau *adau = snd_soc_codec_get_drvdata(codec);
+	int boost_level;
+	int i;
+	uint32_t stage_addr = MOD_TX_EQ_TX_EQ_PANEL_ALG0_STAGE3_B2_ADDR;
+	uint32_t data_addr = MOD_TX_EQ_TX_EQ_PANEL_ALG0_DATA_ADR_ADDR;
+	boost_level = ucontrol->value.integer.value[0];
+	for (i = 0; i < 5; i++)
+	{
+	buf[i] = MICROBURST_SIGMADSP_EQ_PANEL_STAGE_3_FIXPT_BOOST[boost_level][i];
+	//printk (KERN_DEBUG "MB-sigmadsp: tx eq stage data %d %d %x\n", boost_level, i, buf[i]);
+	};
+	for (i = 0; i < 3; i++)
+	{
+	buf2[i] = MICROBURST_SIGMADSP_TX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[i];
+	};
+	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_3 boost level setting to %d\n", boost_level);
+	adau1761_block_write(adau, stage_addr, &buf, 20);
+	adau1761_block_write(adau, data_addr, &buf2, 12);
+
+	return 0;
+};
+
+static int microburst_sigmadsp_tx_eq_stage_4_get(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_4_get called\n");
+	ucontrol->value.integer.value[0] = kcontrol->private_value;
+	return 0;
+};
+
+static int microburst_sigmadsp_tx_eq_stage_4_put(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_4_put called\n");
+	uint32_t buf[5];
+	uint32_t buf2[3];
+	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+	struct adau *adau = snd_soc_codec_get_drvdata(codec);
+	int boost_level;
+	int i;
+	uint32_t stage_addr = MOD_TX_EQ_TX_EQ_PANEL_ALG0_STAGE4_B2_ADDR;
+	uint32_t data_addr = MOD_TX_EQ_TX_EQ_PANEL_ALG0_DATA_ADR_ADDR;
+	boost_level = ucontrol->value.integer.value[0];
+	for (i = 0; i < 5; i++)
+	{
+	buf[i] = MICROBURST_SIGMADSP_EQ_PANEL_STAGE_4_FIXPT_BOOST[boost_level][i];
+	//printk (KERN_DEBUG "MB-sigmadsp: tx eq stage data %d %d %x\n", boost_level, i, buf[i]);
+	};
+	for (i = 0; i < 3; i++)
+	{
+	buf2[i] = MICROBURST_SIGMADSP_TX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[i];
+	};
+	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_4 boost level setting to %d\n", boost_level);
+	adau1761_block_write(adau, stage_addr, &buf, 20);
+	adau1761_block_write(adau, data_addr, &buf2, 12);
+
+	return 0;
+};
+
+static int microburst_sigmadsp_tx_eq_stage_5_get(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_5_get called\n");
+	ucontrol->value.integer.value[0] = kcontrol->private_value;
+	return 0;
+};
+
+static int microburst_sigmadsp_tx_eq_stage_5_put(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_5_put called\n");
+	uint32_t buf[5];
+	uint32_t buf2[3];
+	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+	struct adau *adau = snd_soc_codec_get_drvdata(codec);
+	int boost_level;
+	int i;
+	uint32_t stage_addr = MOD_TX_EQ_TX_EQ_PANEL_ALG0_STAGE5_B2_ADDR;
+	uint32_t data_addr = MOD_TX_EQ_TX_EQ_PANEL_ALG0_DATA_ADR_ADDR;
+	boost_level = ucontrol->value.integer.value[0];
+	for (i = 0; i < 5; i++)
+	{
+	buf[i] = MICROBURST_SIGMADSP_EQ_PANEL_STAGE_5_FIXPT_BOOST[boost_level][i];
+	//printk (KERN_DEBUG "MB-sigmadsp: tx eq stage data %d %d %x\n", boost_level, i, buf[i]);
+	};
+	for (i = 0; i < 3; i++)
+	{
+	buf2[i] = MICROBURST_SIGMADSP_TX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[i];
+	};
+	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_5 boost level setting to %d\n", boost_level);
+	adau1761_block_write(adau, stage_addr, &buf, 20);
+	adau1761_block_write(adau, data_addr, &buf2, 12);
+
+	return 0;
+};
+
+static int microburst_sigmadsp_tx_eq_stage_6_get(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_6_get called\n");
+	ucontrol->value.integer.value[0] = kcontrol->private_value;
+	return 0;
+};
+
+static int microburst_sigmadsp_tx_eq_stage_6_put(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_6_put called\n");
+	uint32_t buf[5];
+	uint32_t buf2[3];
+	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+	struct adau *adau = snd_soc_codec_get_drvdata(codec);
+	int boost_level;
+	int i;
+	uint32_t stage_addr = MOD_TX_EQ_TX_EQ_PANEL_ALG0_STAGE6_B2_ADDR;
+	uint32_t data_addr = MOD_TX_EQ_TX_EQ_PANEL_ALG0_DATA_ADR_ADDR;
+	boost_level = ucontrol->value.integer.value[0];
+	for (i = 0; i < 5; i++)
+	{
+	buf[i] = MICROBURST_SIGMADSP_EQ_PANEL_STAGE_6_FIXPT_BOOST[boost_level][i];
+	//printk (KERN_DEBUG "MB-sigmadsp: tx eq stage data %d %d %x\n", boost_level, i, buf[i]);
+	};
+	for (i = 0; i < 3; i++)
+	{
+	buf2[i] = MICROBURST_SIGMADSP_TX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[i];
+	};
+	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_6 boost level setting to %d\n", boost_level);
+	adau1761_block_write(adau, stage_addr, &buf, 20);
+	adau1761_block_write(adau, data_addr, &buf2, 12);
+
+	return 0;
+};
+
+static int microburst_sigmadsp_tx_eq_stage_7_get(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_7_get called\n");
+	ucontrol->value.integer.value[0] = kcontrol->private_value;
+	return 0;
+};
+
+static int microburst_sigmadsp_tx_eq_stage_7_put(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_7_put called\n");
+	uint32_t buf[5];
+	uint32_t buf2[3];
+	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+	struct adau *adau = snd_soc_codec_get_drvdata(codec);
+	int boost_level;
+	int i;
+	uint32_t stage_addr = MOD_TX_EQ_TX_EQ_PANEL_ALG0_STAGE7_B2_ADDR;
+	uint32_t data_addr = MOD_TX_EQ_TX_EQ_PANEL_ALG0_DATA_ADR_ADDR;
+	boost_level = ucontrol->value.integer.value[0];
+	for (i = 0; i < 5; i++)
+	{
+	buf[i] = MICROBURST_SIGMADSP_EQ_PANEL_STAGE_7_FIXPT_BOOST[boost_level][i];
+	//printk (KERN_DEBUG "MB-sigmadsp: tx eq stage data %d %d %x\n", boost_level, i, buf[i]);
+	};
+	for (i = 0; i < 3; i++)
+	{
+	buf2[i] = MICROBURST_SIGMADSP_TX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[i];
+	};
+	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_7 boost level setting to %d\n", boost_level);
+	adau1761_block_write(adau, stage_addr, &buf, 20);
+	adau1761_block_write(adau, data_addr, &buf2, 12);
+
+	return 0;
+};
+
+static int microburst_sigmadsp_rx_eq_stage_0_get(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_0_get called\n");
+	ucontrol->value.integer.value[0] = kcontrol->private_value;
+	return 0;
+};
+
+static int microburst_sigmadsp_rx_eq_stage_0_put(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_0_put called\n");
+	uint32_t buf[5];
+	uint32_t buf2[4];
+	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+	struct adau *adau = snd_soc_codec_get_drvdata(codec);
+	int boost_level;
+	int i;
+	uint32_t stage_addr = MOD_RX_EQ_RX_EQ_PANEL_ALG0_STAGE0_B2_ADDR;
+	uint32_t data_addr = MOD_RX_EQ_RX_EQ_PANEL_ALG0_DATA_ADR_ADDR;
+	boost_level = ucontrol->value.integer.value[0];
+	for (i = 0; i < 5; i++)
+	{
+	buf[i] = MICROBURST_SIGMADSP_EQ_PANEL_STAGE_0_FIXPT_BOOST[boost_level][i];
+	//printk (KERN_DEBUG "MB-sigmadsp: tx eq stage data %d %d %x\n", boost_level, i, buf[i]);
+	};
+	for (i = 0; i < 4; i++)
+	{
+	buf2[i] = MICROBURST_SIGMADSP_RX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[i];
+	};
+	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_0 boost level setting to %d\n", boost_level);
+	adau1761_block_write(adau, stage_addr, &buf, 20);
+	adau1761_block_write(adau, data_addr, &buf2, 16);
+
+	return 0;
+};
+
+static int microburst_sigmadsp_rx_eq_stage_1_get(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_1_get called\n");
+	ucontrol->value.integer.value[0] = kcontrol->private_value;
+	return 0;
+};
+
+static int microburst_sigmadsp_rx_eq_stage_1_put(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_1_put called\n");
+	uint32_t buf[5];
+	uint32_t buf2[4];
+	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+	struct adau *adau = snd_soc_codec_get_drvdata(codec);
+	int boost_level;
+	int i;
+	uint32_t stage_addr = MOD_RX_EQ_RX_EQ_PANEL_ALG0_STAGE1_B2_ADDR;
+	uint32_t data_addr = MOD_RX_EQ_RX_EQ_PANEL_ALG0_DATA_ADR_ADDR;
+	boost_level = ucontrol->value.integer.value[0];
+	for (i = 0; i < 5; i++)
+	{
+	buf[i] = MICROBURST_SIGMADSP_EQ_PANEL_STAGE_1_FIXPT_BOOST[boost_level][i];
+	//printk (KERN_DEBUG "MB-sigmadsp: tx eq stage data %d %d %x\n", boost_level, i, buf[i]);
+	};
+	for (i = 0; i < 4; i++)
+	{
+	buf2[i] = MICROBURST_SIGMADSP_RX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[i];
+	};
+	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_1 boost level setting to %d\n", boost_level);
+	adau1761_block_write(adau, stage_addr, &buf, 20);
+	adau1761_block_write(adau, data_addr, &buf2, 16);
+
+	return 0;
+};
+static int microburst_sigmadsp_rx_eq_stage_2_get(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_2_get called\n");
+	ucontrol->value.integer.value[0] = kcontrol->private_value;
+	return 0;
+};
+
+static int microburst_sigmadsp_rx_eq_stage_2_put(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_2_put called\n");
+	uint32_t buf[5];
+	uint32_t buf2[4];
+	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+	struct adau *adau = snd_soc_codec_get_drvdata(codec);
+	int boost_level;
+	int i;
+	uint32_t stage_addr = MOD_RX_EQ_RX_EQ_PANEL_ALG0_STAGE2_B2_ADDR;
+	uint32_t data_addr = MOD_RX_EQ_RX_EQ_PANEL_ALG0_DATA_ADR_ADDR;
+	boost_level = ucontrol->value.integer.value[0];
+	for (i = 0; i < 5; i++)
+	{
+	buf[i] = MICROBURST_SIGMADSP_EQ_PANEL_STAGE_2_FIXPT_BOOST[boost_level][i];
+	//printk (KERN_DEBUG "MB-sigmadsp: tx eq stage data %d %d %x\n", boost_level, i, buf[i]);
+	};
+	for (i = 0; i < 4; i++)
+	{
+	buf2[i] = MICROBURST_SIGMADSP_RX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[i];
+	};
+	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_2 boost level setting to %d\n", boost_level);
+	adau1761_block_write(adau, stage_addr, &buf, 20);
+	adau1761_block_write(adau, data_addr, &buf2, 16);
+
+	return 0;
+};
+static int microburst_sigmadsp_rx_eq_stage_3_get(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_3_get called\n");
+	ucontrol->value.integer.value[0] = kcontrol->private_value;
+	return 0;
+};
+
+static int microburst_sigmadsp_rx_eq_stage_3_put(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_3_put called\n");
+	uint32_t buf[5];
+	uint32_t buf2[4];
+	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+	struct adau *adau = snd_soc_codec_get_drvdata(codec);
+	int boost_level;
+	int i;
+	uint32_t stage_addr = MOD_RX_EQ_RX_EQ_PANEL_ALG0_STAGE3_B2_ADDR;
+	uint32_t data_addr = MOD_RX_EQ_RX_EQ_PANEL_ALG0_DATA_ADR_ADDR;
+	boost_level = ucontrol->value.integer.value[0];
+	for (i = 0; i < 5; i++)
+	{
+	buf[i] = MICROBURST_SIGMADSP_EQ_PANEL_STAGE_3_FIXPT_BOOST[boost_level][i];
+	//printk (KERN_DEBUG "MB-sigmadsp: tx eq stage data %d %d %x\n", boost_level, i, buf[i]);
+	};
+	for (i = 0; i < 4; i++)
+	{
+	buf2[i] = MICROBURST_SIGMADSP_RX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[i];
+	};
+	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_3 boost level setting to %d\n", boost_level);
+	adau1761_block_write(adau, stage_addr, &buf, 20);
+	adau1761_block_write(adau, data_addr, &buf2, 16);
+
+	return 0;
+};
+static int microburst_sigmadsp_rx_eq_stage_4_get(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_4_get called\n");
+	ucontrol->value.integer.value[0] = kcontrol->private_value;
+	return 0;
+};
+
+static int microburst_sigmadsp_rx_eq_stage_4_put(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_4_put called\n");
+	uint32_t buf[5];
+	uint32_t buf2[4];
+	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+	struct adau *adau = snd_soc_codec_get_drvdata(codec);
+	int boost_level;
+	int i;
+	uint32_t stage_addr = MOD_RX_EQ_RX_EQ_PANEL_ALG0_STAGE4_B2_ADDR;
+	uint32_t data_addr = MOD_RX_EQ_RX_EQ_PANEL_ALG0_DATA_ADR_ADDR;
+	boost_level = ucontrol->value.integer.value[0];
+	for (i = 0; i < 5; i++)
+	{
+	buf[i] = MICROBURST_SIGMADSP_EQ_PANEL_STAGE_4_FIXPT_BOOST[boost_level][i];
+	//printk (KERN_DEBUG "MB-sigmadsp: tx eq stage data %d %d %x\n", boost_level, i, buf[i]);
+	};
+	for (i = 0; i < 4; i++)
+	{
+	buf2[i] = MICROBURST_SIGMADSP_RX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[i];
+	};
+	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_4 boost level setting to %d\n", boost_level);
+	adau1761_block_write(adau, stage_addr, &buf, 20);
+	adau1761_block_write(adau, data_addr, &buf2, 16);
+
+	return 0;
+};
+static int microburst_sigmadsp_rx_eq_stage_5_get(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_5_get called\n");
+	ucontrol->value.integer.value[0] = kcontrol->private_value;
+	return 0;
+};
+
+static int microburst_sigmadsp_rx_eq_stage_5_put(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_5_put called\n");
+	uint32_t buf[5];
+	uint32_t buf2[4];
+	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+	struct adau *adau = snd_soc_codec_get_drvdata(codec);
+	int boost_level;
+	int i;
+	uint32_t stage_addr = MOD_RX_EQ_RX_EQ_PANEL_ALG0_STAGE5_B2_ADDR;
+	uint32_t data_addr = MOD_RX_EQ_RX_EQ_PANEL_ALG0_DATA_ADR_ADDR;
+	boost_level = ucontrol->value.integer.value[0];
+	for (i = 0; i < 5; i++)
+	{
+	buf[i] = MICROBURST_SIGMADSP_EQ_PANEL_STAGE_5_FIXPT_BOOST[boost_level][i];
+	//printk (KERN_DEBUG "MB-sigmadsp: tx eq stage data %d %d %x\n", boost_level, i, buf[i]);
+	};
+	for (i = 0; i < 4; i++)
+	{
+	buf2[i] = MICROBURST_SIGMADSP_RX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[i];
+	};
+	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_5 boost level setting to %d\n", boost_level);
+	adau1761_block_write(adau, stage_addr, &buf, 20);
+	adau1761_block_write(adau, data_addr, &buf2, 16);
+
+	return 0;
+};
+static int microburst_sigmadsp_rx_eq_stage_6_get(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_6_get called\n");
+	ucontrol->value.integer.value[0] = kcontrol->private_value;
+	return 0;
+};
+
+static int microburst_sigmadsp_rx_eq_stage_6_put(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_6_put called\n");
+	uint32_t buf[5];
+	uint32_t buf2[4];
+	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+	struct adau *adau = snd_soc_codec_get_drvdata(codec);
+	int boost_level;
+	int i;
+	uint32_t stage_addr = MOD_RX_EQ_RX_EQ_PANEL_ALG0_STAGE6_B2_ADDR;
+	uint32_t data_addr = MOD_RX_EQ_RX_EQ_PANEL_ALG0_DATA_ADR_ADDR;
+	boost_level = ucontrol->value.integer.value[0];
+	for (i = 0; i < 5; i++)
+	{
+	buf[i] = MICROBURST_SIGMADSP_EQ_PANEL_STAGE_6_FIXPT_BOOST[boost_level][i];
+	//printk (KERN_DEBUG "MB-sigmadsp: tx eq stage data %d %d %x\n", boost_level, i, buf[i]);
+	};
+	for (i = 0; i < 4; i++)
+	{
+	buf2[i] = MICROBURST_SIGMADSP_RX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[i];
+	};
+	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_6 boost level setting to %d\n", boost_level);
+	adau1761_block_write(adau, stage_addr, &buf, 20);
+	adau1761_block_write(adau, data_addr, &buf2, 16);
+
+	return 0;
+};
+static int microburst_sigmadsp_rx_eq_stage_7_get(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_7_get called\n");
+	ucontrol->value.integer.value[0] = kcontrol->private_value;
+	return 0;
+};
+
+static int microburst_sigmadsp_rx_eq_stage_7_put(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_7_put called\n");
+	uint32_t buf[5];
+	uint32_t buf2[4];
+	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+	struct adau *adau = snd_soc_codec_get_drvdata(codec);
+	int boost_level;
+	int i;
+	uint32_t stage_addr = MOD_RX_EQ_RX_EQ_PANEL_ALG0_STAGE7_B2_ADDR;
+	uint32_t data_addr = MOD_RX_EQ_RX_EQ_PANEL_ALG0_DATA_ADR_ADDR;
+	boost_level = ucontrol->value.integer.value[0];
+	for (i = 0; i < 5; i++)
+	{
+	buf[i] = MICROBURST_SIGMADSP_EQ_PANEL_STAGE_7_FIXPT_BOOST[boost_level][i];
+	//printk (KERN_DEBUG "MB-sigmadsp: tx eq stage data %d %d %x\n", boost_level, i, buf[i]);
+	};
+	for (i = 0; i < 4; i++)
+	{
+	buf2[i] = MICROBURST_SIGMADSP_RX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[i];
+	};
+	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_7 boost level setting to %d\n", boost_level);
+	adau1761_block_write(adau, stage_addr, &buf, 20);
+	adau1761_block_write(adau, data_addr, &buf2, 16);
+
+	return 0;
+};
+
 /* Microburst SigmaDSP kcontrols */
 
 static const struct snd_kcontrol_new microburst_sigmadsp_controls[] = {
@@ -755,6 +1523,39 @@ static const struct snd_kcontrol_new microburst_sigmadsp_controls[] = {
 				microburst_sigmadsp_cw_sidetone_put),
 		SOC_SINGLE_INT_EXT("Microburst SigmaDSP TX Filter Bandwidth", 2, microburst_sigmadsp_tx_filter_bw_get,
 				microburst_sigmadsp_tx_filter_bw_put),
+		SOC_SINGLE_INT_EXT("Microburst SigmaDSP TX EQ Stage 0", 20, microburst_sigmadsp_tx_eq_stage_0_get,
+				microburst_sigmadsp_tx_eq_stage_0_put),
+		SOC_SINGLE_INT_EXT("Microburst SigmaDSP TX EQ Stage 1", 20, microburst_sigmadsp_tx_eq_stage_1_get,
+				microburst_sigmadsp_tx_eq_stage_1_put),
+		SOC_SINGLE_INT_EXT("Microburst SigmaDSP TX EQ Stage 2", 20, microburst_sigmadsp_tx_eq_stage_2_get,
+				microburst_sigmadsp_tx_eq_stage_2_put),
+		SOC_SINGLE_INT_EXT("Microburst SigmaDSP TX EQ Stage 3", 20, microburst_sigmadsp_tx_eq_stage_3_get,
+				microburst_sigmadsp_tx_eq_stage_3_put),
+		SOC_SINGLE_INT_EXT("Microburst SigmaDSP TX EQ Stage 4", 20, microburst_sigmadsp_tx_eq_stage_4_get,
+				microburst_sigmadsp_tx_eq_stage_4_put),
+		SOC_SINGLE_INT_EXT("Microburst SigmaDSP TX EQ Stage 5", 20, microburst_sigmadsp_tx_eq_stage_5_get,
+				microburst_sigmadsp_tx_eq_stage_5_put),
+		SOC_SINGLE_INT_EXT("Microburst SigmaDSP TX EQ Stage 6", 20, microburst_sigmadsp_tx_eq_stage_6_get,
+				microburst_sigmadsp_tx_eq_stage_6_put),
+		SOC_SINGLE_INT_EXT("Microburst SigmaDSP TX EQ Stage 7", 20, microburst_sigmadsp_tx_eq_stage_7_get,
+				microburst_sigmadsp_tx_eq_stage_7_put),
+		SOC_SINGLE_INT_EXT("Microburst SigmaDSP RX EQ Stage 0", 20, microburst_sigmadsp_rx_eq_stage_0_get,
+				microburst_sigmadsp_rx_eq_stage_0_put),
+		SOC_SINGLE_INT_EXT("Microburst SigmaDSP RX EQ Stage 1", 20, microburst_sigmadsp_rx_eq_stage_1_get,
+				microburst_sigmadsp_rx_eq_stage_1_put),
+		SOC_SINGLE_INT_EXT("Microburst SigmaDSP RX EQ Stage 2", 20, microburst_sigmadsp_rx_eq_stage_2_get,
+				microburst_sigmadsp_rx_eq_stage_2_put),
+		SOC_SINGLE_INT_EXT("Microburst SigmaDSP RX EQ Stage 3", 20, microburst_sigmadsp_rx_eq_stage_3_get,
+				microburst_sigmadsp_rx_eq_stage_3_put),
+		SOC_SINGLE_INT_EXT("Microburst SigmaDSP RX EQ Stage 4", 20, microburst_sigmadsp_rx_eq_stage_4_get,
+				microburst_sigmadsp_rx_eq_stage_4_put),
+		SOC_SINGLE_INT_EXT("Microburst SigmaDSP RX EQ Stage 5", 20, microburst_sigmadsp_rx_eq_stage_5_get,
+				microburst_sigmadsp_rx_eq_stage_5_put),
+		SOC_SINGLE_INT_EXT("Microburst SigmaDSP RX EQ Stage 6", 20, microburst_sigmadsp_rx_eq_stage_6_get,
+				microburst_sigmadsp_rx_eq_stage_6_put),
+		SOC_SINGLE_INT_EXT("Microburst SigmaDSP RX EQ Stage 7", 20, microburst_sigmadsp_rx_eq_stage_7_get,
+				microburst_sigmadsp_rx_eq_stage_7_put),
+
 };
 
 static const DECLARE_TLV_DB_SCALE(adau1761_sing_in_tlv, -1500, 300, 1);
