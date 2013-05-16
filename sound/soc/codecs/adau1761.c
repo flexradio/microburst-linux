@@ -617,6 +617,7 @@ static int microburst_sigmadsp_meter_select_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
 	printk (KERN_DEBUG "MB-sigmadsp: meter_select_get called\n");
+
 	ucontrol->value.integer.value[0] = kcontrol->private_value;
 	return 0;
 };
@@ -1494,6 +1495,60 @@ static int microburst_sigmadsp_rx_eq_stage_7_put(struct snd_kcontrol *kcontrol,
 	return 0;
 };
 
+static int microburst_sigmadsp_peak_meter_readback_get(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: peak_meter_readback_get called\n");
+	uint32_t readback_address = MOD_MIC_LEVEL_PEAK_READBACKALGSIGMA2001_ADDR;
+	uint32_t meter_reading;
+	uint32_t meter_reading_inverted;
+	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+	struct adau *adau = snd_soc_codec_get_drvdata(codec);
+	printk (KERN_DEBUG "MB-sigmadsp: reading peak meter addr %d", readback_address);
+	regmap_raw_read(adau->regmap, readback_address, &meter_reading_inverted, 4);
+	meter_reading = htonl(meter_reading_inverted);
+	ucontrol->value.integer.value[0] = meter_reading;
+	printk (KERN_DEBUG "MB-sigmadsp: peak reading value %08X", meter_reading);
+	return 0;
+};
+
+static int microburst_sigmadsp_peak_meter_readback_put(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: peak_meter_readback_put called\n");
+	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+	struct adau *adau = snd_soc_codec_get_drvdata(codec);
+	//the put function does not do anything, this is a read-only control
+	return 0;
+};
+
+static int microburst_sigmadsp_average_meter_readback_get(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: average_meter_readback_get called\n");
+	uint32_t readback_address = MOD_MIC_LEVEL_AVG_READBACKALGSIGMA2002_ADDR;
+	uint32_t meter_reading;
+	uint32_t meter_reading_inverted;
+	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+	struct adau *adau = snd_soc_codec_get_drvdata(codec);
+	printk (KERN_DEBUG "MB-sigmadsp: reading average meter addr %d", readback_address);
+	regmap_raw_read(adau->regmap, readback_address, &meter_reading_inverted, 4);
+	meter_reading = htonl(meter_reading_inverted);
+	ucontrol->value.integer.value[0] = meter_reading;
+	printk (KERN_DEBUG "MB-sigmadsp: average reading value %08X", meter_reading);
+	return 0;
+};
+
+static int microburst_sigmadsp_average_meter_readback_put(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	printk (KERN_DEBUG "MB-sigmadsp: average_meter_readback_put called\n");
+	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+	struct adau *adau = snd_soc_codec_get_drvdata(codec);
+	//the put function does not do anything, this is a read-only control
+	return 0;
+};
+
 /* Microburst SigmaDSP kcontrols */
 
 static const struct snd_kcontrol_new microburst_sigmadsp_controls[] = {
@@ -1555,6 +1610,10 @@ static const struct snd_kcontrol_new microburst_sigmadsp_controls[] = {
 				microburst_sigmadsp_rx_eq_stage_6_put),
 		SOC_SINGLE_INT_EXT("Microburst SigmaDSP RX EQ Stage 7", 20, microburst_sigmadsp_rx_eq_stage_7_get,
 				microburst_sigmadsp_rx_eq_stage_7_put),
+		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Peak Meter Readback", 0x00800000, microburst_sigmadsp_peak_meter_readback_get,
+				microburst_sigmadsp_peak_meter_readback_put),
+		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Average Meter Readback", 0x00800000, microburst_sigmadsp_average_meter_readback_get,
+				microburst_sigmadsp_average_meter_readback_put),
 
 };
 
