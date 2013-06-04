@@ -373,7 +373,7 @@ static int adau1761_safeload_write(struct adau *adau, uint32_t addr, uint32_t *d
 {
           unsigned int i;
           int ret;
-          unsigned int bytes_to_write = size/4;
+          uint32_t bytes_to_write = size/4;
           uint32_t data_swapped[(size/4)];
           printk (KERN_DEBUG "MB-sigmadsp: register safeload write addr %d size %d\n", addr, size);
 
@@ -388,22 +388,24 @@ static int adau1761_safeload_write(struct adau *adau, uint32_t addr, uint32_t *d
           for (i = 0; i < size/4; i++)
           {
         	  	  	printk (KERN_DEBUG "MB-sigmadsp: safeload regmap write addr %d data %08X\n", ADAU1761_SAFELOAD_DATA(i), data_swapped[i]);
-                    ret = regmap_raw_write(adau->regmap, ADAU1761_SAFELOAD_DATA(i), &data_swapped[i], 1);
+                    ret = regmap_raw_write(adau->regmap, ADAU1761_SAFELOAD_DATA(i), &data[i], 4);
                     if (ret)
                               return ret;
           }
 
-          printk (KERN_DEBUG "MB-sigmadsp: safeload regmap write addr %d data %08X\n", ADAU1761_SAFELOAD_ADDR, addr-1);
-          ret = regmap_raw_write(adau->regmap, ADAU1761_SAFELOAD_ADDR, &addr-1, 1);
+          addr = htonl(addr - 1);
+          printk (KERN_DEBUG "MB-sigmadsp: safeload regmap write addr %08X data %08X\n", ADAU1761_SAFELOAD_ADDR, addr);
+          ret = regmap_raw_write(adau->regmap, ADAU1761_SAFELOAD_ADDR, &addr, 4);
           if (ret)
                     return ret;
-          printk (KERN_DEBUG "MB-sigmadsp: safeload regmap write addr %d data %d\n", ADAU1761_SAFELOAD_SIZE, size/4);
-          ret = regmap_raw_write(adau->regmap, ADAU1761_SAFELOAD_SIZE, &bytes_to_write , 1);
+          printk (KERN_DEBUG "MB-sigmadsp: safeload regmap write addr %08X data %08X\n", ADAU1761_SAFELOAD_SIZE, size/4);
+          bytes_to_write = htonl(bytes_to_write);
+          ret = regmap_raw_write(adau->regmap, ADAU1761_SAFELOAD_SIZE, &bytes_to_write , 4);
           if (ret)
                     return ret;
 
           /* Wait for the operation to finish */
-          udelay(30);
+          udelay(60);
 
           return 0;
 }
@@ -1489,7 +1491,7 @@ static int microburst_sigmadsp_rx_eq_stage_7_put(struct snd_kcontrol *kcontrol,
 	buf2[i] = MICROBURST_SIGMADSP_RX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[i];
 	};
 	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_7 boost level setting to %d\n", boost_level);
-	adau1761_block_write(adau, stage_addr, &buf, 20);
+	adau1761_safeload_write(adau, stage_addr, &buf, 20);
 	adau1761_block_write(adau, data_addr, &buf2, 16);
 
 	return 0;
