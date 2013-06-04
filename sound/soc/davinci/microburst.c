@@ -62,7 +62,7 @@ static int microburst_hw_params(struct snd_pcm_substream *substream,
 	int ret = 0;
 	unsigned sysclk;
 
-	sysclk = 24576000;
+	sysclk = 24576000; // 98304000
 
 	/* set codec DAI configuration */
 	ret = snd_soc_dai_set_fmt(codec_dai, AUDIO_FORMAT);
