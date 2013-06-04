@@ -985,6 +985,7 @@ static struct omap_hwmod ti81xx_gpio1_hwmod = {
 	.slaves		= ti81xx_gpio1_slaves,
 	.slaves_cnt	= ARRAY_SIZE(ti81xx_gpio1_slaves),
 	.omap_chip	= OMAP_CHIP_INIT(CHIP_IS_TI81XX),
+	.flags		= HWMOD_INIT_NO_RESET,
 };
 
 /* GPIO2 TI81XX*/
@@ -1020,6 +1021,7 @@ static struct omap_hwmod ti81xx_gpio2_hwmod = {
 	.slaves		= ti81xx_gpio2_slaves,
 	.slaves_cnt	= ARRAY_SIZE(ti81xx_gpio2_slaves),
 	.omap_chip	= OMAP_CHIP_INIT(CHIP_IS_TI81XX),
+	.flags		= HWMOD_INIT_NO_RESET,
 };
 
 /* GPIO3 TI814X */
