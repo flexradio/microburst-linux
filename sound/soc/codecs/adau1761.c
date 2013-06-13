@@ -115,12 +115,12 @@ static struct reg_default adau1761_reg_defaults[] = {
 	{ ADAU17X1_SERIAL_PORT_PAD,		0x00 },
 	{ ADAU17X1_CONTROL_PORT_PAD0,		0x00 },
 	{ ADAU17X1_CONTROL_PORT_PAD1,		0x00 },
-	{ ADAU17X1_DSP_SAMPLING_RATE,		0x03 },
+	{ ADAU17X1_DSP_SAMPLING_RATE,		0x01 },
 	{ ADAU17X1_SERIAL_INPUT_ROUTE,		0x04 },
 	{ ADAU17X1_SERIAL_OUTPUT_ROUTE,		0x04 },
 	{ ADAU17X1_DSP_ENABLE,			0x00 },
 	{ ADAU17X1_DSP_RUN,			0x00 },
-	{ ADAU17X1_SERIAL_SAMPLING_RATE,	0x04 },
+	{ ADAU17X1_SERIAL_SAMPLING_RATE,	0x00 },
 };
 
 /* Lookup tables for SigmaDSP Firmware parameters */
@@ -1491,7 +1491,7 @@ static int microburst_sigmadsp_rx_eq_stage_7_put(struct snd_kcontrol *kcontrol,
 	buf2[i] = MICROBURST_SIGMADSP_RX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[i];
 	};
 	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_7 boost level setting to %d\n", boost_level);
-	adau1761_safeload_write(adau, stage_addr, &buf, 20);
+	adau1761_block_write(adau, stage_addr, &buf, 20);
 	adau1761_block_write(adau, data_addr, &buf2, 16);
 
 	return 0;

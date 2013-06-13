@@ -82,6 +82,7 @@ static int microburst_hw_params(struct snd_pcm_substream *substream,
 
 	/* Set clock divider, div_id (0) argument ignored */
 	ret = snd_soc_dai_set_clkdiv(codec_dai, 0, 2);	//This was originally codec_dai, 0, 1
+
 	if (ret < 0)
 		return ret;
 
