@@ -51,7 +51,8 @@
 #include "davinci-i2s.h"
 #include "davinci-mcasp.h"
 
-#define AUDIO_FORMAT (SND_SOC_DAIFMT_LEFT_J | SND_SOC_DAIFMT_NB_NF | SND_SOC_DAIFMT_CBM_CFM)
+#define CODEC_AUDIO_FORMAT (SND_SOC_DAIFMT_LEFT_J | SND_SOC_DAIFMT_NB_NF | SND_SOC_DAIFMT_CBM_CFM)
+#define CPU_AUDIO_FORMAT (SND_SOC_DAIFMT_I2S | SND_SOC_DAIFMT_NB_NF | SND_SOC_DAIFMT_CBM_CFM)
 
 static int microburst_hw_params(struct snd_pcm_substream *substream,
 			 struct snd_pcm_hw_params *params)
@@ -62,33 +63,36 @@ static int microburst_hw_params(struct snd_pcm_substream *substream,
 	int ret = 0;
 	unsigned sysclk;
 
-	sysclk = 24576000; // 98304000
+        sysclk = 24576000; // 98304000
+        //	sysclk = 98304000;
 
 	/* set codec DAI configuration */
-	ret = snd_soc_dai_set_fmt(codec_dai, AUDIO_FORMAT);
+	ret = snd_soc_dai_set_fmt(codec_dai, CODEC_AUDIO_FORMAT);
 	if (ret < 0)
 		return ret;
 
 	/* set cpu DAI configuration */
-	ret = snd_soc_dai_set_fmt(cpu_dai, AUDIO_FORMAT);
+	ret = snd_soc_dai_set_fmt(cpu_dai, CPU_AUDIO_FORMAT);
 	if (ret < 0)
 		return ret;
 
-	/* Set up for clock input on MCLK */
-	ret = snd_soc_dai_set_sysclk(codec_dai, ADAU17X1_CLK_SRC_MCLK, sysclk,
+	/* Set up for clock input on PLL */
+	ret = snd_soc_dai_set_sysclk(codec_dai, ADAU17X1_CLK_SRC_PLL, sysclk,
 			SND_SOC_CLOCK_IN);
 	if (ret < 0)
 		return ret;
 
+        ret = snd_soc_dai_set_pll(codec_dai, 0, 0, sysclk, 49152000);
+
 	/* Set clock divider, div_id (0) argument ignored */
-	ret = snd_soc_dai_set_clkdiv(codec_dai, 0, 2);	//This was originally codec_dai, 0, 1
+        ret = snd_soc_dai_set_clkdiv(codec_dai, 0, 4);	//This was originally codec_dai, 0, 1
 
 	if (ret < 0)
 		return ret;
 
 	/* set TDM slot configuration */
-//	ret = snd_soc_dai_set_tdm_slot(codec_dai, 0x03, 0x03, 4, 64);
-// 		return ret;
+        //	ret = snd_soc_dai_set_tdm_slot(codec_dai, 0x03, 0x03, 2, 32);
+        // 		return ret;
 
 
 	return 0;
