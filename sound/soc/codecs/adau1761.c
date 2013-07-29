@@ -2054,8 +2054,8 @@ static enum adau1761_output_mode adau1761_get_lineout_mode(
 {
 	struct adau1761_platform_data *pdata = codec->dev->platform_data;
 
-	if (pdata)
-		return pdata->lineout_mode;
+        //	if (pdata)
+        //		return pdata->lineout_mode;
 
 	return ADAU1761_OUTPUT_MODE_LINE;
 }
