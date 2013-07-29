@@ -1,0 +1,13 @@
+package/lib/lib/debug/ti.syslink.utils.rtos.bios6/common/Cfg.oe674: ../../common/Cfg.c /opt/TI/xdctools_3_24_05_48/packages/xdc/std.h /opt/TI/C6000CGT7.2.7/include/string.h ../../common/../Cfg.h /opt/TI/C6000CGT7.2.7/include/stdarg.h /opt/TI/C6000CGT7.2.7/include/stddef.h /opt/TI/xdctools_3_24_05_48/packages/ti/targets/elf/std.h /opt/TI/xdctools_3_24_05_48/packages/ti/targets/select.h /opt/TI/C6000CGT7.2.7/include/linkage.h /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/utils/String.h /opt/TI/xdctools_3_24_05_48/packages/ti/targets/std.h /opt/TI/C6000CGT7.2.7/include/stdint.h 
+../../common/Cfg.c:
+/opt/TI/xdctools_3_24_05_48/packages/xdc/std.h:
+/opt/TI/C6000CGT7.2.7/include/string.h:
+../../common/../Cfg.h:
+/opt/TI/C6000CGT7.2.7/include/stdarg.h:
+/opt/TI/C6000CGT7.2.7/include/stddef.h:
+/opt/TI/xdctools_3_24_05_48/packages/ti/targets/elf/std.h:
+/opt/TI/xdctools_3_24_05_48/packages/ti/targets/select.h:
+/opt/TI/C6000CGT7.2.7/include/linkage.h:
+/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/utils/String.h:
+/opt/TI/xdctools_3_24_05_48/packages/ti/targets/std.h:
+/opt/TI/C6000CGT7.2.7/include/stdint.h:
