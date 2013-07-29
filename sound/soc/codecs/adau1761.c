@@ -2248,8 +2248,8 @@ static int adau1761_probe(struct snd_soc_codec *codec)
 	case ADAU1761_OUTPUT_MODE_LINE:
 		break;
 	case ADAU1761_OUTPUT_MODE_HEADPHONE:
-		snd_soc_update_bits(codec, ADAU1761_PLAY_LINE_LEFT_VOL, 1, 0);
-		snd_soc_update_bits(codec, ADAU1761_PLAY_LINE_RIGHT_VOL, 1, 0);
+		snd_soc_update_bits(codec, ADAU1761_PLAY_LINE_LEFT_VOL, 1, 1);
+		snd_soc_update_bits(codec, ADAU1761_PLAY_LINE_RIGHT_VOL, 1, 1);
 		break;
 	default:
 		return -EINVAL;
