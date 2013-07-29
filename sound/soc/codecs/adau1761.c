@@ -1858,7 +1858,7 @@ static const struct snd_soc_dapm_widget adau1x61_dapm_widgets[] = {
 
 	SND_SOC_DAPM_SUPPLY("SYSCLK", SND_SOC_NOPM, 0, 0, NULL, 0),
 
-        //	SND_SOC_DAPM_POST("Dejitter fixup", adau1761_dejitter_fixup),
+        SND_SOC_DAPM_POST("Dejitter fixup", adau1761_dejitter_fixup),
 
 	SND_SOC_DAPM_INPUT("LAUX"),
 	SND_SOC_DAPM_INPUT("RAUX"),
