@@ -1,0 +1,2233 @@
+Archive member included because of file (symbol)
+
+/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Notify.o)
+                              bin/debug/obj/App.ov5T (Notify_registerEventSingle)
+/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MessageQ.o)
+                              bin/debug/obj/App.ov5T (MessageQ_Params_init)
+/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Ipc.o)
+                              bin/debug/obj/main_host.ov5T (Ipc_control)
+/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIO.o)
+                              /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Ipc.o) (RingIO_getConfig)
+/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIOShm.o)
+                              /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Ipc.o) (RingIOShm_getConfig)
+/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQ.o)
+                              /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Ipc.o) (FrameQ_getConfig)
+/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQBufMgr.o)
+                              /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Ipc.o) (FrameQBufMgr_getConfig)
+/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ClientNotifyMgr.o)
+                              /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIO.o) (ClientNotifyMgr_sharedMemReq)
+/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapMemMP.o)
+                              /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Ipc.o) (HeapMemMP_getConfig)
+/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapBufMP.o)
+                              /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Ipc.o) (HeapBufMP_getConfig)
+/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMP.o)
+                              /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Ipc.o) (GateMP_getConfig)
+/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NotifyDrvUsr.o)
+                              /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Notify.o) (NotifyDrvUsr_open)
+/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapBufMPDrv.o)
+                              /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapBufMP.o) (HeapBufMPDrv_open)
+/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MessageQDrv.o)
+                              /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MessageQ.o) (MessageQDrv_open)
+/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(IpcDrv.o)
+                              /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Ipc.o) (IpcDrv_open)
+/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQDrv.o)
+                              /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQ.o) (FrameQDrv_open)
+/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQBufMgrDrv.o)
+                              /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQBufMgr.o) (FrameQBufMgrDrv_open)
+/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ClientNotifyMgrDrv.o)
+                              /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ClientNotifyMgr.o) (ClientNotifyMgrDrv_open)
+/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIODrv.o)
+                              /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIO.o) (RingIODrv_open)
+/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIOShmDrv.o)
+                              /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIOShm.o) (RingIOShmDrv_open)
+/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapMemMPDrv.o)
+                              /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapMemMP.o) (HeapMemMPDrv_open)
+/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMPDrv.o)
+                              /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMP.o) (GateMPDrv_open)
+/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalProcess.o)
+                              /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Ipc.o) (OsalProcess_getPid)
+/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMutex.o)
+                              /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQ.o) (GateMutex_create)
+/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Memory.o)
+                              /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQ.o) (Memory_alloc)
+/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(List.o)
+                              /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQ.o) (List_construct)
+/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(String.o)
+                              /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MessageQ.o) (String_len)
+/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Trace.o)
+                              /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Notify.o) (curTrace)
+/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NameServer.o)
+                              /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Ipc.o) (NameServer_setup)
+/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MultiProc.o)
+                              /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Ipc.o) (MultiProc_getConfig)
+/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Gate.o)
+                              /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQ.o) (Gate_enterSystem)
+/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SysLink.o)
+                              bin/debug/obj/main_host.ov5T (SysLink_setup)
+/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Cache.o)
+                              /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQ.o) (Cache_inv)
+/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NameServerDrv.o)
+                              /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NameServer.o) (NameServerDrv_open)
+/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MultiProcDrv.o)
+                              /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MultiProc.o) (MultiProcDrv_open)
+/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(TraceDrv.o)
+                              /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Trace.o) (TraceDrv_ioctl)
+/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(CacheDrv.o)
+                              /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Cache.o) (CacheDrv_ioctl)
+/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Dev.o)
+                              /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NotifyDrvUsr.o) (Dev_pollOpen)
+/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MemoryOS.o)
+                              /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SysLink.o) (MemoryOS_setup)
+/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalDrv.o)
+                              /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MemoryOS.o) (OsalDrv_open)
+/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalMutex.o)
+                              /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMutex.o) (OsalMutex_create)
+/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalPrint.o)
+                              /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Notify.o) (Osal_printf)
+/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ProcMgr.o)
+                              /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Ipc.o) (ProcMgr_getConfig)
+/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ProcMgrDrvUsr.o)
+                              /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ProcMgr.o) (ProcMgrDrvUsr_open)
+/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQ_common.o)
+                              /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQ.o) (FrameQ_isSupportedInterface)
+/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SharedRegion.o)
+                              /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Ipc.o) (SharedRegion_getConfig)
+/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ListMP.o)
+                              /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Ipc.o) (ListMP_getConfig)
+/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SharedRegionDrv.o)
+                              /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SharedRegion.o) (SharedRegionDrv_open)
+/src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ListMPDrv.o)
+                              /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ListMP.o) (ListMPDrv_open)
+/home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/libc_nonshared.a(elf-init.oS)
+                              /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/crt1.o (__libc_csu_fini)
+/home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-linux-gnueabi/4.3.3/libgcc.a(_udivsi3.o)
+                              /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ClientNotifyMgr.o) (__aeabi_uidiv)
+/home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-linux-gnueabi/4.3.3/libgcc.a(_dvmd_lnx.o)
+                              /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-linux-gnueabi/4.3.3/libgcc.a(_udivsi3.o) (__aeabi_idiv0)
+
+Allocating common symbols
+Common symbol       size              file
+
+MemoryOS_state      0x10              /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MemoryOS.o)
+NameServer_Object   0x4               /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NameServer.o)
+
+Discarded input sections
+
+ .note.GNU-stack
+                0x00000000        0x0 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/crt1.o
+ .note.GNU-stack
+                0x00000000        0x0 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/crti.o
+ .note.GNU-stack
+                0x00000000        0x0 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-linux-gnueabi/4.3.3/crtbegin.o
+ .note.GNU-stack
+                0x00000000        0x0 bin/debug/obj/main_host.ov5T
+ .note.GNU-stack
+                0x00000000        0x0 bin/debug/obj/App.ov5T
+ .note.GNU-stack
+                0x00000000        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Notify.o)
+ .note.GNU-stack
+                0x00000000        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MessageQ.o)
+ .note.GNU-stack
+                0x00000000        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Ipc.o)
+ .note.GNU-stack
+                0x00000000        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIO.o)
+ .note.GNU-stack
+                0x00000000        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIOShm.o)
+ .note.GNU-stack
+                0x00000000        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQ.o)
+ .note.GNU-stack
+                0x00000000        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQBufMgr.o)
+ .note.GNU-stack
+                0x00000000        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ClientNotifyMgr.o)
+ .note.GNU-stack
+                0x00000000        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapMemMP.o)
+ .note.GNU-stack
+                0x00000000        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapBufMP.o)
+ .note.GNU-stack
+                0x00000000        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMP.o)
+ .note.GNU-stack
+                0x00000000        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NotifyDrvUsr.o)
+ .note.GNU-stack
+                0x00000000        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapBufMPDrv.o)
+ .note.GNU-stack
+                0x00000000        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MessageQDrv.o)
+ .note.GNU-stack
+                0x00000000        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(IpcDrv.o)
+ .note.GNU-stack
+                0x00000000        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQDrv.o)
+ .note.GNU-stack
+                0x00000000        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQBufMgrDrv.o)
+ .note.GNU-stack
+                0x00000000        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ClientNotifyMgrDrv.o)
+ .note.GNU-stack
+                0x00000000        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIODrv.o)
+ .note.GNU-stack
+                0x00000000        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIOShmDrv.o)
+ .note.GNU-stack
+                0x00000000        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapMemMPDrv.o)
+ .note.GNU-stack
+                0x00000000        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMPDrv.o)
+ .note.GNU-stack
+                0x00000000        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalProcess.o)
+ .note.GNU-stack
+                0x00000000        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMutex.o)
+ .note.GNU-stack
+                0x00000000        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Memory.o)
+ .note.GNU-stack
+                0x00000000        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(List.o)
+ .note.GNU-stack
+                0x00000000        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(String.o)
+ .note.GNU-stack
+                0x00000000        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Trace.o)
+ .note.GNU-stack
+                0x00000000        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NameServer.o)
+ .note.GNU-stack
+                0x00000000        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MultiProc.o)
+ .note.GNU-stack
+                0x00000000        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Gate.o)
+ .note.GNU-stack
+                0x00000000        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SysLink.o)
+ .note.GNU-stack
+                0x00000000        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Cache.o)
+ .note.GNU-stack
+                0x00000000        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NameServerDrv.o)
+ .note.GNU-stack
+                0x00000000        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MultiProcDrv.o)
+ .note.GNU-stack
+                0x00000000        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(TraceDrv.o)
+ .note.GNU-stack
+                0x00000000        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(CacheDrv.o)
+ .note.GNU-stack
+                0x00000000        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Dev.o)
+ .note.GNU-stack
+                0x00000000        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MemoryOS.o)
+ .note.GNU-stack
+                0x00000000        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalDrv.o)
+ .note.GNU-stack
+                0x00000000        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalMutex.o)
+ .note.GNU-stack
+                0x00000000        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalPrint.o)
+ .note.GNU-stack
+                0x00000000        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ProcMgr.o)
+ .note.GNU-stack
+                0x00000000        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ProcMgrDrvUsr.o)
+ .note.GNU-stack
+                0x00000000        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQ_common.o)
+ .note.GNU-stack
+                0x00000000        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SharedRegion.o)
+ .note.GNU-stack
+                0x00000000        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ListMP.o)
+ .note.GNU-stack
+                0x00000000        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SharedRegionDrv.o)
+ .note.GNU-stack
+                0x00000000        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ListMPDrv.o)
+ .note.GNU-stack
+                0x00000000        0x0 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/libc_nonshared.a(elf-init.oS)
+ .note.GNU-stack
+                0x00000000        0x0 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-linux-gnueabi/4.3.3/libgcc.a(_udivsi3.o)
+ .note.GNU-stack
+                0x00000000        0x0 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-linux-gnueabi/4.3.3/libgcc.a(_dvmd_lnx.o)
+ .note.GNU-stack
+                0x00000000        0x0 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-linux-gnueabi/4.3.3/crtend.o
+ .note.GNU-stack
+                0x00000000        0x0 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/crtn.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/crt1.o
+LOAD /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/crti.o
+LOAD /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-linux-gnueabi/4.3.3/crtbegin.o
+LOAD bin/debug/obj/main_host.ov5T
+LOAD bin/debug/obj/App.ov5T
+LOAD /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug
+LOAD /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/libpthread.so
+START GROUP
+LOAD /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/lib/libpthread.so.0
+LOAD /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/libpthread_nonshared.a
+END GROUP
+LOAD /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/libc.so
+START GROUP
+LOAD /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/lib/libc.so.6
+LOAD /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/libc_nonshared.a
+LOAD /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/lib/ld-linux.so.3
+END GROUP
+LOAD /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/librt.so
+LOAD /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-linux-gnueabi/4.3.3/libgcc.a
+LOAD /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/lib/libgcc_s.so
+LOAD /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/libc.so
+START GROUP
+LOAD /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/lib/libc.so.6
+LOAD /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/libc_nonshared.a
+LOAD /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/lib/ld-linux.so.3
+END GROUP
+LOAD /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-linux-gnueabi/4.3.3/libgcc.a
+LOAD /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/lib/libgcc_s.so
+LOAD /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-linux-gnueabi/4.3.3/crtend.o
+LOAD /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/crtn.o
+                0x00008000                PROVIDE (__executable_start, 0x8000)
+                0x00008134                . = (0x8000 + SIZEOF_HEADERS)
+
+.interp         0x00008134       0x13
+ *(.interp)
+ .interp        0x00008134       0x13 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/crti.o
+
+.note.ABI-tag   0x00008148       0x20
+ .note.ABI-tag  0x00008148       0x20 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/crt1.o
+
+.note.gnu.build-id
+ *(.note.gnu.build-id)
+
+.hash           0x00008168      0x150
+ *(.hash)
+ .hash          0x00008168      0x150 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/crti.o
+
+.gnu.hash
+ *(.gnu.hash)
+
+.dynsym         0x000082b8      0x2d0
+ *(.dynsym)
+ .dynsym        0x000082b8      0x2d0 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/crti.o
+
+.dynstr         0x00008588      0x202
+ *(.dynstr)
+ .dynstr        0x00008588      0x202 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/crti.o
+
+.gnu.version    0x0000878a       0x5a
+ *(.gnu.version)
+ .gnu.version   0x0000878a       0x5a /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/crti.o
+
+.gnu.version_d  0x000087e4        0x0
+ *(.gnu.version_d)
+ .gnu.version_d
+                0x00000000        0x0 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/crti.o
+
+.gnu.version_r  0x000087e4       0x60
+ *(.gnu.version_r)
+ .gnu.version_r
+                0x000087e4       0x60 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/crti.o
+
+.rel.dyn        0x00008844       0x10
+ *(.rel.init)
+ *(.rel.text .rel.text.* .rel.gnu.linkonce.t.*)
+ *(.rel.fini)
+ *(.rel.rodata .rel.rodata.* .rel.gnu.linkonce.r.*)
+ *(.rel.data.rel.ro* .rel.gnu.linkonce.d.rel.ro.*)
+ *(.rel.data .rel.data.* .rel.gnu.linkonce.d.*)
+ *(.rel.tdata .rel.tdata.* .rel.gnu.linkonce.td.*)
+ *(.rel.tbss .rel.tbss.* .rel.gnu.linkonce.tb.*)
+ *(.rel.ctors)
+ *(.rel.dtors)
+ *(.rel.got)
+ .rel.got       0x00008844        0x8 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/crti.o
+ *(.rel.bss .rel.bss.* .rel.gnu.linkonce.b.*)
+ .rel.bss       0x0000884c        0x8 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/crti.o
+
+.rel.ifunc.dyn
+ *(.rel.ifunc.*)
+
+.rela.dyn
+ *(.rela.init)
+ *(.rela.text .rela.text.* .rela.gnu.linkonce.t.*)
+ *(.rela.fini)
+ *(.rela.rodata .rela.rodata.* .rela.gnu.linkonce.r.*)
+ *(.rela.data .rela.data.* .rela.gnu.linkonce.d.*)
+ *(.rela.tdata .rela.tdata.* .rela.gnu.linkonce.td.*)
+ *(.rela.tbss .rela.tbss.* .rela.gnu.linkonce.tb.*)
+ *(.rela.ctors)
+ *(.rela.dtors)
+ *(.rela.got)
+ *(.rela.bss .rela.bss.* .rela.gnu.linkonce.b.*)
+
+.rela.ifunc.dyn
+ *(.rela.ifunc.*)
+
+.rel.plt        0x00008854      0x140
+ *(.rel.plt)
+ .rel.plt       0x00008854      0x140 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/crti.o
+
+.rela.plt
+ *(.rela.plt)
+
+.init           0x00008994        0xc
+ *(.init)
+ .init          0x00008994        0x8 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/crti.o
+                0x00008994                _init
+ .init          0x0000899c        0x4 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/crtn.o
+
+.plt            0x000089a0      0x1f4
+ *(.plt)
+ .plt           0x000089a0      0x1f4 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/crti.o
+                0x000089b4                open@@GLIBC_2.4
+                0x000089c0                mmap@@GLIBC_2.4
+                0x000089cc                abort@@GLIBC_2.4
+                0x000089d8                pthread_exit@@GLIBC_2.4
+                0x000089e4                __libc_start_main@@GLIBC_2.4
+                0x000089fc                vsprintf@@GLIBC_2.4
+                0x00008a08                getenv@@GLIBC_2.4
+                0x00008a14                sem_init@@GLIBC_2.4
+                0x00008a20                memset@@GLIBC_2.4
+                0x00008a2c                sem_destroy@@GLIBC_2.4
+                0x00008a38                perror@@GLIBC_2.4
+                0x00008a44                free@@GLIBC_2.4
+                0x00008a50                read@@GLIBC_2.4
+                0x00008a5c                pthread_mutex_unlock@@GLIBC_2.4
+                0x00008a68                ioctl@@GLIBC_2.4
+                0x00008a74                pthread_mutex_lock@@GLIBC_2.4
+                0x00008a80                pthread_create@@GLIBC_2.4
+                0x00008a8c                memcpy@@GLIBC_2.4
+                0x00008a98                sem_post@@GLIBC_2.4
+                0x00008aa4                pthread_sigmask@@GLIBC_2.4
+                0x00008ab0                printf@@GLIBC_2.4
+                0x00008abc                raise@@GLIBC_2.4
+                0x00008ac8                pthread_mutex_init@@GLIBC_2.4
+                0x00008ad4                close@@GLIBC_2.4
+                0x00008ae0                fwrite@@GLIBC_2.4
+                0x00008aec                malloc@@GLIBC_2.4
+                0x00008af8                sleep@@GLIBC_2.4
+                0x00008b04                sigfillset@@GLIBC_2.4
+                0x00008b10                puts@@GLIBC_2.4
+                0x00008b1c                getpid@@GLIBC_2.4
+                0x00008b28                fcntl@@GLIBC_2.4
+                0x00008b34                munmap@@GLIBC_2.4
+                0x00008b40                nanosleep@@GLIBC_2.4
+                0x00008b4c                sem_wait@@GLIBC_2.4
+                0x00008b58                exit@@GLIBC_2.4
+                0x00008b64                __errno_location@@GLIBC_2.4
+                0x00008b70                pthread_self@@GLIBC_2.4
+                0x00008b7c                pthread_join@@GLIBC_2.4
+                0x00008b88                getpagesize@@GLIBC_2.4
+
+.text           0x00008b94    0x3c850
+ *(.text .stub .text.* .gnu.linkonce.t.*)
+ .text          0x00008b94       0x38 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/crt1.o
+                0x00008b94                _start
+ .text          0x00008bcc       0x24 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/crti.o
+ .text          0x00008bf0       0x4c /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-linux-gnueabi/4.3.3/crtbegin.o
+ .text          0x00008c3c      0x5b4 bin/debug/obj/main_host.ov5T
+                0x00008c3c                main
+ .text          0x000091f0      0xdb8 bin/debug/obj/App.ov5T
+                0x0000980c                App_delete
+                0x00009ae4                App_exec
+                0x000091f0                App_create
+ .text          0x00009fa8     0x2af0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Notify.o)
+                0x00009fa8                Notify_getConfig
+                0x0000ad78                Notify_registerEventSingle
+                0x0000c224                Notify_restore
+                0x0000bc94                Notify_sendEvent
+                0x0000c418                Notify_disableEvent
+                0x0000ab48                Notify_intLineRegistered
+                0x0000a710                Notify_sharedMemReq
+                0x0000b8e4                Notify_unregisterEvent
+                0x0000a148                Notify_setup
+                0x0000b574                Notify_unregisterEventSingle
+                0x0000a8a8                Notify_eventAvailable
+                0x0000a338                Notify_destroy
+                0x0000a600                Notify_detach
+                0x0000a46c                Notify_attach
+                0x0000b174                Notify_registerEvent
+                0x0000c024                Notify_disable
+                0x0000c758                Notify_enableEvent
+ .text          0x0000ca98     0x26ec /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MessageQ.o)
+                0x0000d78c                MessageQ_close
+                0x0000ea40                MessageQ_setReplyQueue
+                0x0000e040                MessageQ_staticMsgInit
+                0x0000ebc4                MessageQ_getQueueId
+                0x0000f090                MessageQ_detach
+                0x0000ecc4                MessageQ_setMsgTrace
+                0x0000e76c                MessageQ_unregisterHeap
+                0x0000ca98                MessageQ_getConfig
+                0x0000db98                MessageQ_get
+                0x0000e320                MessageQ_free
+                0x0000cc1c                MessageQ_setup
+                0x0000d50c                MessageQ_open
+                0x0000d93c                MessageQ_put
+                0x0000e1a4                MessageQ_alloc
+                0x0000d02c                MessageQ_create
+                0x0000cea0                MessageQ_Params_init
+                0x0000e8a8                MessageQ_unblock
+                0x0000de5c                MessageQ_count
+                0x0000cda8                MessageQ_destroy
+                0x0000d280                MessageQ_delete
+                0x0000ef64                MessageQ_attach
+                0x0000e500                MessageQ_registerHeap
+                0x0000ee3c                MessageQ_sharedMemReq
+ .text          0x0000f184     0x1aa0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Ipc.o)
+                0x00010880                Ipc_writeConfig
+                0x00010b70                Ipc_runtimeId
+                0x0001040c                Ipc_control
+                0x0000fc68                Ipc_destroy
+                0x0000f3bc                Ipc_setup
+                0x0000f184                Ipc_getConfig
+                0x00010764                Ipc_readConfig
+ .text          0x00010c24     0x3040 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIO.o)
+                0x00012834                RingIO_unregisterNotifier
+                0x00010f44                RingIO_destroy
+                0x000122c8                RingIO_close
+                0x00010c24                RingIO_getConfig
+                0x0001392c                RingIO_flush
+                0x00013734                RingIO_setAttribute
+                0x00012b30                RingIO_getValidSize
+                0x00013a50                RingIO_sendNotify
+                0x00013b34                RingIO_sharedMemReq
+                0x00011804                RingIO_delete
+                0x00011ec4                RingIO_openByAddr
+                0x00013058                RingIO_getWaterMark
+                0x00011070                RingIO_Params_init
+                0x00012dc4                RingIO_getEmptyAttrSize
+                0x000133a4                RingIO_release
+                0x00012ea0                RingIO_getAcquiredOffset
+                0x000125a4                RingIO_registerNotifier
+                0x000129f4                RingIO_setNotifyType
+                0x00011ac4                RingIO_open
+                0x00013608                RingIO_getvAttribute
+                0x00013208                RingIO_acquire
+                0x00012c0c                RingIO_getEmptySize
+                0x00013134                RingIO_setWaterMark
+                0x00013478                RingIO_cancel
+                0x00013534                RingIO_getAttribute
+                0x000111fc                RingIO_create
+                0x00012ce8                RingIO_getValidAttrSize
+                0x00010da8                RingIO_setup
+                0x00013818                RingIO_setvAttribute
+                0x00012f7c                RingIO_getAcquiredSize
+ .text          0x00013c64      0x5d4 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIOShm.o)
+                0x00013de8                RingIOShm_setup
+                0x000140ac                RingIOShm_Params_init
+                0x00013f84                RingIOShm_destroy
+                0x00013c64                RingIOShm_getConfig
+ .text          0x00014238     0x5bf8 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQ.o)
+                0x00016588                FrameQ_freev
+                0x00018360                FrameQ_sendNotify
+                0x00016320                FrameQ_free
+                0x000159b0                FrameQ_close
+                0x000173fc                FrameQ_getv
+                0x000178b8                FrameQ_registerNotifier
+                0x00015028                FrameQ_open
+                0x00016020                FrameQ_allocv
+                0x00017d48                FrameQ_unregisterNotifier
+                0x00014894                FrameQ_create
+                0x00015d84                FrameQ_alloc
+                0x0001902c                FrameQ_ShMem_Params_init
+                0x00018c1c                FrameQ_getvNumFreeFrames
+                0x00018eb0                FrameQ_control
+                0x0001809c                FrameQ_dup
+                0x00019c84                FrameQ_ShMem_sharedMemReq
+                0x000187dc                FrameQ_getvNumFrames
+                0x000191c4                FrameQ_Params_init
+                0x0001689c                FrameQ_put
+                0x00014238                FrameQ_getConfig
+                0x00018a44                FrameQ_getNumFreeFrames
+                0x0001709c                FrameQ_get
+                0x0001467c                FrameQ_destroy
+                0x0001857c                FrameQ_getNumFrames
+                0x000143d4                FrameQ_setup
+                0x00014c30                FrameQ_delete
+                0x00016c38                FrameQ_putv
+ .text          0x00019e30     0x5f20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQBufMgr.o)
+                0x0001ec00                FrameQBufMgr_getKnlHandle
+                0x0001c240                FrameQBufMgr_freev
+                0x0001d39c                FrameQBufMgr_add
+                0x0001b58c                FrameQBufMgr_close
+                0x0001dae0                FrameQBufMgr_writeBackFrameBuf
+                0x0001ea18                FrameQBufMgr_getId
+                0x0001e6c8                FrameQBufMgr_translateAddr
+                0x0001a83c                FrameQBufMgr_delete
+                0x0001eea0                FrameQBufMgr_getvNumFreeFrames
+                0x0001c9f4                FrameQBufMgr_dupv
+                0x0001f1dc                FrameQBufMgr_isSupportedBufInterface
+                0x0001ba4c                FrameQBufMgr_allocv
+                0x0001a280                FrameQBufMgr_destroy
+                0x00019e30                FrameQBufMgr_getConfig
+                0x0001bf20                FrameQBufMgr_free
+                0x0001e3b4                FrameQBufMgr_invalidate
+                0x0001eabc                FrameQBufMgr_getHandle
+                0x0001eccc                FrameQBufMgr_getNumFreeFrames
+                0x0001e090                FrameQBufMgr_writeBack
+                0x0001f19c                FrameQBufMgr_isSupportedInterface
+                0x0001f238                FrameQBufMgr_ShMem_Params_init
+                0x0001a4b4                FrameQBufMgr_create
+                0x0001d68c                FrameQBufMgr_writeBackHeaderBuf
+                0x0001f134                FrameQBufMgr_getBaseHeaderSize
+                0x0001c670                FrameQBufMgr_dup
+                0x0001b75c                FrameQBufMgr_alloc
+                0x0001cde4                FrameQBufMgr_registerNotifier
+                0x0001ddb8                FrameQBufMgr_invalidateFrameBuf
+                0x00019fd4                FrameQBufMgr_setup
+                0x0001d4f8                FrameQBufMgr_remove
+                0x0001f3d0                FrameQBufMgr_Params_init
+                0x0001d108                FrameQBufMgr_unregisterNotifier
+                0x0001d8ac                FrameQBufMgr_invalidateHeaderBuf
+                0x0001ac70                FrameQBufMgr_open
+ .text          0x0001fd50     0x519c /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ClientNotifyMgr.o)
+                0x00023440                ClientNotifyMgr_sendNotification
+                0x000249ac                ClientNotifyMgr_sendForceNotificationMulti
+                0x00022094                ClientNotifyMgr_close
+                0x00023170                ClientNotifyMgr_disableNotification
+                0x0001fdb4                ClientNotifyMgr_sharedMemReq
+                0x00020f8c                ClientNotifyMgr_create
+                0x00020c40                ClientNotifyMgr_destroy
+                0x0001ff2c                ClientNotifyMgr_callBack
+                0x000208a4                ClientNotifyMgr_setup
+                0x0001fd50                ClientNotifyMgr_sharedMemModReq
+                0x000240b8                ClientNotifyMgr_sendNotificationMulti
+                0x000228f4                ClientNotifyMgr_unregisterClient
+                0x00020700                ClientNotifyMgr_getConfig
+                0x00022e98                ClientNotifyMgr_enableNotification
+                0x00023c18                ClientNotifyMgr_sendForceNotification
+                0x00020dec                ClientNotifyMgr_Params_init
+                0x00021978                ClientNotifyMgr_delete
+                0x000221bc                ClientNotifyMgr_registerClient
+                0x00021f10                ClientNotifyMgr_open
+ .text          0x00024eec     0x2440 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapMemMP.o)
+                0x00024eec                HeapMemMP_getConfig
+                0x000266ec                HeapMemMP_getStats
+                0x000254b8                HeapMemMP_create
+                0x00026918                HeapMemMP_getExtendedStats
+                0x00026ff4                _HeapMemMP_create
+                0x00026cb0                HeapMemMP_getKnlHandle
+                0x00025078                HeapMemMP_setup
+                0x00025200                HeapMemMP_destroy
+                0x00025330                HeapMemMP_Params_init
+                0x00026e38                HeapMemMP_getUsrHandle
+                0x00026004                HeapMemMP_close
+                0x00026b2c                HeapMemMP_sharedMemReq
+                0x000271ec                HeapMemMP_restore
+                0x000257dc                HeapMemMP_delete
+                0x00026490                HeapMemMP_free
+                0x00026280                HeapMemMP_alloc
+                0x00025a60                HeapMemMP_openByAddr
+                0x00025d28                HeapMemMP_open
+ .text          0x0002732c     0x2268 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapBufMP.o)
+                0x00027908                HeapBufMP_create
+                0x00028438                HeapBufMP_close
+                0x00027e90                HeapBufMP_openByAddr
+                0x00029088                HeapBufMP_sharedMemReq
+                0x00028d60                HeapBufMP_isBlocking
+                0x00028b30                HeapBufMP_getStats
+                0x00027648                HeapBufMP_destroy
+                0x000274b8                HeapBufMP_setup
+                0x00029398                _HeapBufMP_create
+                0x000286b8                HeapBufMP_alloc
+                0x0002732c                HeapBufMP_getConfig
+                0x0002777c                HeapBufMP_Params_init
+                0x00027c14                HeapBufMP_delete
+                0x00029210                HeapBufMP_getKnlHandle
+                0x000288cc                HeapBufMP_free
+                0x00028160                HeapBufMP_open
+                0x00028e54                HeapBufMP_getExtendedStats
+ .text          0x00029594     0x2224 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMP.o)
+                0x00029594                GateMP_getConfig
+                0x0002b314                GateMP_getDefaultRemote
+                0x0002ae4c                GateMP_enter
+                0x00029ecc                GateMP_Instance_finalize
+                0x0002972c                GateMP_setup
+                0x0002a294                GateMP_delete
+                0x0002a820                GateMP_openByAddr
+                0x00029d10                GateMP_Instance_init
+                0x0002b418                GateMP_getSharedAddr
+                0x0002ab40                GateMP_close
+                0x00029b64                GateMP_Params_init
+                0x0002a514                GateMP_open
+                0x0002b5c8                GateMP_getLocalProtect
+                0x00029f28                _GateMP_create
+                0x0002b1fc                GateMP_sharedMemReq
+                0x0002b01c                GateMP_leave
+                0x0002b618                GateMP_getRemoteProtect
+                0x0002a060                GateMP_create
+                0x0002b668                GateMP_getKnlHandle
+                0x000299a4                GateMP_destroy
+                0x0002b510                GateMP_setReserved
+ .text          0x0002b7b8      0x814 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NotifyDrvUsr.o)
+                0x0002be50                _NotifyDrvUsr_eventWorker
+                0x0002bb34                NotifyDrvUsr_close
+                0x0002bd10                NotifyDrvUsr_ioctl
+                0x0002b7b8                NotifyDrvUsr_open
+ .text          0x0002bfcc      0x484 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapBufMPDrv.o)
+                0x0002bfcc                HeapBufMPDrv_open
+                0x0002c318                HeapBufMPDrv_ioctl
+                0x0002c1fc                HeapBufMPDrv_close
+ .text          0x0002c450      0x498 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MessageQDrv.o)
+                0x0002c7b0                MessageQDrv_ioctl
+                0x0002c450                MessageQDrv_open
+                0x0002c694                MessageQDrv_close
+ .text          0x0002c8e8      0x464 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(IpcDrv.o)
+                0x0002c8e8                IpcDrv_open
+                0x0002cc14                IpcDrv_ioctl
+                0x0002caf8                IpcDrv_close
+ .text          0x0002cd4c      0x3e8 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQDrv.o)
+                0x0002cffc                FrameQDrv_ioctl
+                0x0002cd4c                FrameQDrv_open
+                0x0002cee0                FrameQDrv_close
+ .text          0x0002d134      0x3e8 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQBufMgrDrv.o)
+                0x0002d134                FrameQBufMgrDrv_open
+                0x0002d2c8                FrameQBufMgrDrv_close
+                0x0002d3e4                FrameQBufMgrDrv_ioctl
+ .text          0x0002d51c      0x3e8 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ClientNotifyMgrDrv.o)
+                0x0002d51c                ClientNotifyMgrDrv_open
+                0x0002d7cc                ClientNotifyMgrDrv_ioctl
+                0x0002d6b0                ClientNotifyMgrDrv_close
+ .text          0x0002d904      0x3e8 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIODrv.o)
+                0x0002da98                RingIODrv_close
+                0x0002dbb4                RingIODrv_ioctl
+                0x0002d904                RingIODrv_open
+ .text          0x0002dcec      0x3e8 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIOShmDrv.o)
+                0x0002df9c                RingIOShmDrv_ioctl
+                0x0002de80                RingIOShmDrv_close
+                0x0002dcec                RingIOShmDrv_open
+ .text          0x0002e0d4      0x3ec /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapMemMPDrv.o)
+                0x0002e26c                HeapMemMPDrv_close
+                0x0002e388                HeapMemMPDrv_ioctl
+                0x0002e0d4                HeapMemMPDrv_open
+ .text          0x0002e4c0      0x3ec /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMPDrv.o)
+                0x0002e4c0                GateMPDrv_open
+                0x0002e658                GateMPDrv_close
+                0x0002e774                GateMPDrv_ioctl
+ .text          0x0002e8ac       0x50 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalProcess.o)
+                0x0002e8d4                OsalProcess_getTid
+                0x0002e8ac                OsalProcess_getPid
+ .text          0x0002e8fc      0x5a8 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMutex.o)
+                0x0002eb70                GateMutex_leave
+                0x0002ed40                GateMutex_delete
+                0x0002ec2c                GateMutex_create
+                0x0002ea9c                GateMutex_enter
+                0x0002e8fc                GateMutex_Instance_init
+                0x0002ea04                GateMutex_Instance_finalize
+ .text          0x0002eea4      0xa34 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Memory.o)
+                0x0002f630                Memory_getMaxDefaultTypeAlign
+                0x0002f3a8                Memory_getStats
+                0x0002f840                Memory_translate
+                0x0002f64c                Memory_valloc
+                0x0002f0bc                Memory_calloc
+                0x0002eea4                Memory_alloc
+                0x0002f4dc                Memory_query
+                0x0002f248                Memory_free
+ .text          0x0002f8d8     0x15ec /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(List.o)
+                0x00030034                List_get
+                0x0002fc2c                List_construct
+                0x00030154                List_put
+                0x000305c4                List_insert
+                0x0002f8d8                List_Params_init
+                0x0002fd20                List_destruct
+                0x0002f9a0                List_create
+                0x0002fac0                List_delete
+                0x00030794                List_remove
+                0x00030a74                List_dequeue
+                0x0002ff08                List_empty
+                0x000302d4                List_next
+                0x00030bac                List_enqueue
+                0x0002fe1c                List_elemClear
+                0x00030d38                List_enqueueHead
+                0x00030418                List_prev
+                0x00030904                List_putHead
+ .text          0x00030ec4      0x600 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(String.o)
+                0x00031428                String_hash
+                0x000311c8                String_cpy
+                0x00030f74                String_cmp
+                0x000310a4                String_ncmp
+                0x00031394                String_hexToStr
+                0x00031240                String_ncpy
+                0x00030ec4                String_cat
+                0x00031320                String_len
+ .text          0x000314c4      0x53c /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Trace.o)
+                0x000314c4                _GT_0trace
+                0x000317ac                _GT_5trace
+                0x00031994                _GT_setTrace
+                0x00031544                _GT_1trace
+                0x00031700                _GT_4trace
+                0x00031664                _GT_3trace
+                0x000315d0                _GT_2trace
+                0x00031868                _GT_6trace
+                0x00031934                _GT_setFailureReason
+ .text          0x00031a00     0x2de8 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NameServer.o)
+                0x00031fc8                NameServer_create
+                0x00034120                NameServer_match
+                0x000337cc                NameServer_getLocal
+                0x00032d20                NameServer_addUInt32
+                0x00032278                NameServer_delete
+                0x000329dc                NameServer_add
+                0x00031d38                NameServer_destroy
+                0x000343ec                NameServer_getHandle
+                0x00033e64                NameServer_getLocalUInt32
+                0x00031bb8                NameServer_setup
+                0x00031e34                NameServer_Params_init
+                0x0003314c                NameServer_removeEntry
+                0x000324b8                NameServer_open
+                0x00033388                NameServer_get
+                0x00032774                NameServer_close
+                0x00032efc                NameServer_remove
+                0x00034618                NameServer_isRegistered
+                0x00033b90                NameServer_getUInt32
+                0x00031a00                NameServer_getConfig
+ .text          0x000347e8      0xcd0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MultiProc.o)
+                0x00034b44                MultiProc_destroy
+                0x0003524c                MultiProc_self
+                0x000351d8                MultiProc_getNumProcessors
+                0x000349a0                MultiProc_setup
+                0x00034c40                MultiProc_setLocalId
+                0x00035044                MultiProc_getName
+                0x00034e44                MultiProc_getId
+                0x000352c0                MultiProc_getSlot
+                0x000347e8                MultiProc_getConfig
+ .text          0x000354b8      0x104 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Gate.o)
+                0x0003551c                Gate_leaveSystem
+                0x000354b8                Gate_enterSystem
+ .text          0x000355bc      0x178 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SysLink.o)
+                0x000356e4                SysLink_destroy
+                0x000355bc                SysLink_setup
+ .text          0x00035734      0x4c0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Cache.o)
+                0x00035b04                Cache_setMode
+                0x00035a4c                Cache_wait
+                0x00035734                Cache_inv
+                0x0003583c                Cache_wb
+                0x00035944                Cache_wbInv
+ .text          0x00035bf4      0x484 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NameServerDrv.o)
+                0x00035bf4                NameServerDrv_open
+                0x00035e24                NameServerDrv_close
+                0x00035f40                NameServerDrv_ioctl
+ .text          0x00036078      0x3b8 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MultiProcDrv.o)
+                0x00036328                MultiProcDrv_ioctl
+                0x0003620c                MultiProcDrv_close
+                0x00036078                MultiProcDrv_open
+ .text          0x00036430      0x164 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(TraceDrv.o)
+                0x00036430                TraceDrv_ioctl
+ .text          0x00036594       0xf4 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(CacheDrv.o)
+                0x00036594                CacheDrv_ioctl
+ .text          0x00036688      0x194 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Dev.o)
+                0x00036688                Dev_pollOpen
+ .text          0x0003681c     0x163c /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MemoryOS.o)
+                0x00037ac0                MemoryOS_set
+                0x00037928                MemoryOS_copy
+                0x00037060                MemoryOS_map
+                0x0003681c                MemoryOS_setup
+                0x00037c4c                MemoryOS_translate
+                0x00036d4c                MemoryOS_alloc
+                0x00036abc                MemoryOS_destroy
+                0x000375cc                MemoryOS_unmap
+                0x00036e60                MemoryOS_calloc
+                0x00036f6c                MemoryOS_free
+ .text          0x00037e58      0x6f0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalDrv.o)
+                0x00037ff8                OsalDrv_close
+                0x00037e58                OsalDrv_open
+                0x0003832c                OsalDrv_unmap
+                0x0003840c                OsalDrv_ioctl
+                0x0003811c                OsalDrv_map
+ .text          0x00038548      0x52c /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalMutex.o)
+                0x000386ac                OsalMutex_delete
+                0x00038548                OsalMutex_create
+                0x00038814                OsalMutex_enter
+                0x00038944                OsalMutex_leave
+ .text          0x00038a74       0x50 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalPrint.o)
+                0x00038a74                Osal_printf
+ .text          0x00038ac4     0x4d5c /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ProcMgr.o)
+                0x0003c114                ProcMgr_getSymbolAddress
+                0x00038e00                ProcMgr_destroy
+                0x0003c8bc                ProcMgr_unmap
+                0x00039598                ProcMgr_delete
+                0x0003ab98                ProcMgr_load
+                0x0003b02c                ProcMgr_getStartParams
+                0x0003a93c                ProcMgr_detach
+                0x0003d484                ProcMgr_getSectionData
+                0x00038ac4                ProcMgr_getConfig
+                0x0003b190                ProcMgr_start
+                0x0003cfb4                ProcMgr_getMaxMemoryRegions
+                0x0003b30c                ProcMgr_stop
+                0x0003985c                ProcMgr_open
+                0x0003c3ac                ProcMgr_map
+                0x00038fd4                ProcMgr_Params_init
+                0x0003aeb0                ProcMgr_unload
+                0x0003a4b4                ProcMgr_attach
+                0x0003b5dc                ProcMgr_read
+                0x0003bca0                ProcMgr_translateAddr
+                0x00039158                ProcMgr_create
+                0x0003b470                ProcMgr_getState
+                0x0003d6c0                ProcMgr_getLoadedFileId
+                0x0003a338                ProcMgr_getAttachParams
+                0x00039f04                ProcMgr_close
+                0x0003b874                ProcMgr_write
+                0x0003bb10                ProcMgr_control
+                0x0003d074                ProcMgr_getProcInfo
+                0x0003d270                ProcMgr_getSectionInfo
+                0x00038c48                ProcMgr_setup
+ .text          0x0003d820      0x500 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ProcMgrDrvUsr.o)
+                0x0003d820                ProcMgrDrvUsr_open
+                0x0003d9b8                ProcMgrDrvUsr_close
+                0x0003dad4                ProcMgrDrvUsr_ioctl
+ .text          0x0003dd20      0xa24 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQ_common.o)
+                0x0003dddc                FrameQ_getNumFrameBuffers
+                0x0003e16c                FrameQ_getFrameBufValidSize
+                0x0003e5b0                FrameQ_setFrameBufDataStartOffset
+                0x0003e41c                FrameQ_setFrameBufValidSize
+                0x0003dec8                FrameQ_getFrameBuffer
+                0x0003e01c                FrameQ_getFrameBufSize
+                0x0003dd20                FrameQ_isSupportedInterface
+                0x0003e2c4                FrameQ_getFrameBufDataStartOffset
+                0x0003dd60                FrameQ_getExtendedHeaderPtr
+ .text          0x0003e744     0x36f8 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SharedRegion.o)
+                0x0003fcc8                SharedRegion_getPtr
+                0x0003e8c8                SharedRegion_setup
+                0x00040d70                SharedRegion_isCacheEnabled
+                0x0004164c                SharedRegion_getRegionInfo
+                0x00040fec                SharedRegion_getNumRegions
+                0x00040944                SharedRegion_getEntry
+                0x0003fe74                SharedRegion_getSRPtr
+                0x00040194                SharedRegion_clearEntry
+                0x0003e744                SharedRegion_getConfig
+                0x0003f44c                SharedRegion_stop
+                0x0003ef7c                SharedRegion_destroy
+                0x0004184c                _SharedRegion_setRegions
+                0x0004072c                SharedRegion_getIdByName
+                0x00041204                SharedRegion_reserveMemory
+                0x000404c0                SharedRegion_getHeap
+                0x000411e8                SharedRegion_invalidSRPtr
+                0x0003f32c                SharedRegion_start
+                0x0003f56c                SharedRegion_attach
+                0x0003fb08                SharedRegion_getId
+                0x0003f6d0                SharedRegion_detach
+                0x00040b64                SharedRegion_getCacheLineSize
+                0x0003f838                SharedRegion_setEntry
+                0x00040f80                SharedRegion_translateEnabled
+                0x00041bf0                _SharedRegion_clearRegions
+                0x00041058                SharedRegion_entryInit
+ .text          0x00041e3c     0x295c /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ListMP.o)
+                0x00041e3c                ListMP_getConfig
+                0x00042410                ListMP_create
+                0x00044654                _ListMP_create
+                0x00044450                ListMP_prev
+                0x00043fec                ListMP_remove
+                0x000430b0                ListMP_close
+                0x00041fc0                ListMP_setup
+                0x00042bd4                ListMP_open
+                0x00042e70                ListMP_openByAddr
+                0x00042784                ListMP_delete
+                0x00044774                ListMP_getGate
+                0x00043690                ListMP_getTail
+                0x0004214c                ListMP_destroy
+                0x00043d14                ListMP_insert
+                0x00042280                ListMP_Params_init
+                0x000434cc                ListMP_getHead
+                0x00043ab8                ListMP_putTail
+                0x00044248                ListMP_next
+                0x000429f4                ListMP_sharedMemReq
+                0x0004385c                ListMP_putHead
+                0x00043310                ListMP_empty
+ .text          0x00044798      0x5d4 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SharedRegionDrv.o)
+                0x00044a4c                SharedRegionDrv_ioctl
+                0x00044930                SharedRegionDrv_close
+                0x00044798                SharedRegionDrv_open
+ .text          0x00044d6c      0x3ec /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ListMPDrv.o)
+                0x00044f04                ListMPDrv_close
+                0x00045020                ListMPDrv_ioctl
+                0x00044d6c                ListMPDrv_open
+ .text          0x00045158       0x70 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/libc_nonshared.a(elf-init.oS)
+                0x00045158                __libc_csu_fini
+                0x0004515c                __libc_csu_init
+ .text          0x000451c8      0x20c /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-linux-gnueabi/4.3.3/libgcc.a(_udivsi3.o)
+                0x000451c8                __udivsi3
+                0x000451c8                __aeabi_uidiv
+                0x000453b4                __aeabi_uidivmod
+ .text          0x000453d4       0x10 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-linux-gnueabi/4.3.3/libgcc.a(_dvmd_lnx.o)
+                0x000453d4                __aeabi_idiv0
+                0x000453d4                __aeabi_ldiv0
+ .text          0x000453e4        0x0 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-linux-gnueabi/4.3.3/crtend.o
+ .text          0x000453e4        0x0 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/crtn.o
+ *(.gnu.warning)
+ *(.glue_7t)
+ .glue_7t       0x00000000        0x0 linker stubs
+ *(.glue_7)
+ .glue_7        0x00000000        0x0 linker stubs
+ *(.vfp11_veneer)
+ .vfp11_veneer  0x00000000        0x0 linker stubs
+ *(.v4_bx)
+ .v4_bx         0x00000000        0x0 linker stubs
+
+.fini           0x000453e4        0x8
+ *(.fini)
+ .fini          0x000453e4        0x4 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/crti.o
+                0x000453e4                _fini
+ .fini          0x000453e8        0x4 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/crtn.o
+                0x000453ec                PROVIDE (__etext, .)
+                0x000453ec                PROVIDE (_etext, .)
+                0x000453ec                PROVIDE (etext, .)
+
+.rodata         0x000453ec    0x16180
+ *(.rodata .rodata.* .gnu.linkonce.r.*)
+ .rodata.cst4   0x000453ec        0x4 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/crt1.o
+                0x000453ec                _IO_stdin_used
+ .rodata        0x000453f0      0x244 bin/debug/obj/main_host.ov5T
+ .rodata        0x00045634      0x250 bin/debug/obj/App.ov5T
+ .rodata        0x00045884      0xc54 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Notify.o)
+ .rodata        0x000464d8      0xf90 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MessageQ.o)
+ .rodata        0x00047468      0x894 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Ipc.o)
+ .rodata        0x00047cfc     0x11ec /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIO.o)
+ .rodata        0x00048ee8      0x368 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIOShm.o)
+ .rodata        0x00049250     0x1c98 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQ.o)
+ .rodata        0x0004aee8     0x2044 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQBufMgr.o)
+ .rodata        0x0004cf2c     0x13c4 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ClientNotifyMgr.o)
+ .rodata        0x0004e2f0      0xd28 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapMemMP.o)
+ .rodata        0x0004f018      0xcc8 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapBufMP.o)
+ .rodata        0x0004fce0      0x9fc /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMP.o)
+ .rodata        0x000506dc      0x424 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NotifyDrvUsr.o)
+ .rodata        0x00050b00      0x2d4 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapBufMPDrv.o)
+ .rodata        0x00050dd4      0x2c8 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MessageQDrv.o)
+ .rodata        0x0005109c      0x280 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(IpcDrv.o)
+ .rodata        0x0005131c      0x284 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQDrv.o)
+ .rodata        0x000515a0      0x2ec /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQBufMgrDrv.o)
+ .rodata        0x0005188c      0x318 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ClientNotifyMgrDrv.o)
+ .rodata        0x00051ba4      0x284 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIODrv.o)
+ .rodata        0x00051e28      0x2ac /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIOShmDrv.o)
+ .rodata        0x000520d4      0x2b8 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapMemMPDrv.o)
+ .rodata        0x0005238c      0x284 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMPDrv.o)
+ .rodata        0x00052610      0x244 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMutex.o)
+ .rodata        0x00052854      0x508 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Memory.o)
+ .rodata        0x00052d5c      0x898 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(List.o)
+ .rodata        0x000535f4      0x414 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(String.o)
+ .rodata        0x00053a08       0x50 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Trace.o)
+ .rodata        0x00053a58      0xe1c /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NameServer.o)
+ .rodata        0x00054874      0x628 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MultiProc.o)
+ .rodata        0x00054e9c       0x9c /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Gate.o)
+ .rodata        0x00054f38       0x74 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SysLink.o)
+ .rodata        0x00054fac      0x264 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Cache.o)
+ .rodata        0x00055210      0x2e0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NameServerDrv.o)
+ .rodata        0x000554f0      0x270 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MultiProcDrv.o)
+ .rodata        0x00055760      0x120 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(TraceDrv.o)
+ .rodata        0x00055880       0xf0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(CacheDrv.o)
+ .rodata        0x00055970       0xd8 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Dev.o)
+ .rodata        0x00055a48      0x90c /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MemoryOS.o)
+ .rodata        0x00056354      0x394 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalDrv.o)
+ .rodata        0x000566e8      0x344 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalMutex.o)
+ .rodata        0x00056a2c        0x4 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalPrint.o)
+ .rodata        0x00056a30     0x1e88 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ProcMgr.o)
+ .rodata        0x000588b8      0x370 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ProcMgrDrvUsr.o)
+ .rodata        0x00058c28      0x608 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQ_common.o)
+ .rodata        0x00059230     0x1198 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SharedRegion.o)
+ .rodata        0x0005a3c8      0xc04 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ListMP.o)
+ .rodata        0x0005afcc      0x31c /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SharedRegionDrv.o)
+ .rodata        0x0005b2e8      0x284 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ListMPDrv.o)
+
+.rodata1
+ *(.rodata1)
+
+.ARM.extab      0x0005b56c     0x168c
+ *(.ARM.extab* .gnu.linkonce.armextab.*)
+ .ARM.extab     0x0005b56c        0x0 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/crt1.o
+ .ARM.extab     0x0005b56c        0x0 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/crti.o
+ .ARM.extab     0x0005b56c        0x0 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-linux-gnueabi/4.3.3/crtbegin.o
+ .ARM.extab     0x0005b56c       0x24 bin/debug/obj/main_host.ov5T
+ .ARM.extab     0x0005b590       0x3c bin/debug/obj/App.ov5T
+ .ARM.extab     0x0005b5cc       0xcc /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Notify.o)
+ .ARM.extab     0x0005b698      0x120 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MessageQ.o)
+ .ARM.extab     0x0005b7b8       0x6c /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Ipc.o)
+ .ARM.extab     0x0005b824      0x168 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIO.o)
+ .ARM.extab     0x0005b98c       0x30 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIOShm.o)
+ .ARM.extab     0x0005b9bc      0x168 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQ.o)
+ .ARM.extab     0x0005bb24      0x1a4 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQBufMgr.o)
+ .ARM.extab     0x0005bcc8       0xe4 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ClientNotifyMgr.o)
+ .ARM.extab     0x0005bdac       0xd8 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapMemMP.o)
+ .ARM.extab     0x0005be84       0xcc /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapBufMP.o)
+ .ARM.extab     0x0005bf50       0xfc /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMP.o)
+ .ARM.extab     0x0005c04c       0x30 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NotifyDrvUsr.o)
+ .ARM.extab     0x0005c07c       0x24 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapBufMPDrv.o)
+ .ARM.extab     0x0005c0a0       0x24 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MessageQDrv.o)
+ .ARM.extab     0x0005c0c4       0x24 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(IpcDrv.o)
+ .ARM.extab     0x0005c0e8       0x24 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQDrv.o)
+ .ARM.extab     0x0005c10c       0x24 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQBufMgrDrv.o)
+ .ARM.extab     0x0005c130       0x24 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ClientNotifyMgrDrv.o)
+ .ARM.extab     0x0005c154       0x24 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIODrv.o)
+ .ARM.extab     0x0005c178       0x24 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIOShmDrv.o)
+ .ARM.extab     0x0005c19c       0x24 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapMemMPDrv.o)
+ .ARM.extab     0x0005c1c0       0x24 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMPDrv.o)
+ .ARM.extab     0x0005c1e4       0x18 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalProcess.o)
+ .ARM.extab     0x0005c1fc       0x48 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMutex.o)
+ .ARM.extab     0x0005c244       0x84 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Memory.o)
+ .ARM.extab     0x0005c2c8       0xcc /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(List.o)
+ .ARM.extab     0x0005c394       0x18 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(String.o)
+ .ARM.extab     0x0005c3ac       0x6c /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Trace.o)
+ .ARM.extab     0x0005c418       0xe4 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NameServer.o)
+ .ARM.extab     0x0005c4fc       0x6c /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MultiProc.o)
+ .ARM.extab     0x0005c568       0x30 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Gate.o)
+ .ARM.extab     0x0005c598       0x18 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SysLink.o)
+ .ARM.extab     0x0005c5b0       0x3c /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Cache.o)
+ .ARM.extab     0x0005c5ec       0x24 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NameServerDrv.o)
+ .ARM.extab     0x0005c610       0x24 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MultiProcDrv.o)
+ .ARM.extab     0x0005c634        0xc /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(TraceDrv.o)
+ .ARM.extab     0x0005c640        0xc /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(CacheDrv.o)
+ .ARM.extab     0x0005c64c        0xc /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Dev.o)
+ .ARM.extab     0x0005c658       0xcc /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MemoryOS.o)
+ .ARM.extab     0x0005c724       0x3c /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalDrv.o)
+ .ARM.extab     0x0005c760       0x30 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalMutex.o)
+ .ARM.extab     0x0005c790        0xc /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalPrint.o)
+ .ARM.extab     0x0005c79c      0x15c /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ProcMgr.o)
+ .ARM.extab     0x0005c8f8       0x24 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ProcMgrDrvUsr.o)
+ .ARM.extab     0x0005c91c       0x60 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQ_common.o)
+ .ARM.extab     0x0005c97c      0x144 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SharedRegion.o)
+ .ARM.extab     0x0005cac0       0xf0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ListMP.o)
+ .ARM.extab     0x0005cbb0       0x24 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SharedRegionDrv.o)
+ .ARM.extab     0x0005cbd4       0x24 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ListMPDrv.o)
+ .ARM.extab     0x0005cbf8        0x0 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/libc_nonshared.a(elf-init.oS)
+ .ARM.extab.init
+                0x0005cbf8        0x0 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/crtn.o
+ .ARM.extab.fini
+                0x0005cbf8        0x0 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/crtn.o
+                0x0005cbf8                __exidx_start = .
+
+.ARM.exidx      0x0005cbf8      0xf88
+ *(.ARM.exidx* .gnu.linkonce.armexidx.*)
+ .ARM.exidx     0x0005cc08        0x0 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/crt1.o
+                                  0x8 (size before relaxing)
+ .ARM.exidx     0x0005cc08        0x8 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/crti.o
+ .ARM.exidx     0x0005cc10        0x8 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-linux-gnueabi/4.3.3/crtbegin.o
+                                 0x10 (size before relaxing)
+ .ARM.exidx     0x0005cc18       0x18 bin/debug/obj/main_host.ov5T
+ .ARM.exidx     0x0005cc30       0x28 bin/debug/obj/App.ov5T
+ .ARM.exidx     0x0005cc58       0x88 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Notify.o)
+ .ARM.exidx     0x0005cce0       0xc0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MessageQ.o)
+ .ARM.exidx     0x0005cda0       0x48 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Ipc.o)
+ .ARM.exidx     0x0005cde8       0xf0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIO.o)
+ .ARM.exidx     0x0005ced8       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIOShm.o)
+ .ARM.exidx     0x0005cef8       0xf0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQ.o)
+ .ARM.exidx     0x0005cfe8      0x120 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQBufMgr.o)
+                                0x128 (size before relaxing)
+ .ARM.exidx     0x0005d108       0x98 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ClientNotifyMgr.o)
+ .ARM.exidx     0x0005d1a0       0x90 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapMemMP.o)
+ .ARM.exidx     0x0005d230       0x88 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapBufMP.o)
+ .ARM.exidx     0x0005d2b8       0xa8 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMP.o)
+ .ARM.exidx     0x0005d360       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NotifyDrvUsr.o)
+ .ARM.exidx     0x0005d380       0x18 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapBufMPDrv.o)
+ .ARM.exidx     0x0005d398       0x18 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MessageQDrv.o)
+ .ARM.exidx     0x0005d3b0       0x18 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(IpcDrv.o)
+ .ARM.exidx     0x0005d3c8       0x18 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQDrv.o)
+ .ARM.exidx     0x0005d3e0       0x18 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQBufMgrDrv.o)
+ .ARM.exidx     0x0005d3f8       0x18 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ClientNotifyMgrDrv.o)
+ .ARM.exidx     0x0005d410       0x18 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIODrv.o)
+ .ARM.exidx     0x0005d428       0x18 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIOShmDrv.o)
+ .ARM.exidx     0x0005d440       0x18 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapMemMPDrv.o)
+ .ARM.exidx     0x0005d458       0x18 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMPDrv.o)
+ .ARM.exidx     0x0005d470       0x10 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalProcess.o)
+ .ARM.exidx     0x0005d480       0x30 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMutex.o)
+ .ARM.exidx     0x0005d4b0       0x60 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Memory.o)
+ .ARM.exidx     0x0005d510       0x88 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(List.o)
+ .ARM.exidx     0x0005d598       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(String.o)
+                                 0x40 (size before relaxing)
+ .ARM.exidx     0x0005d5b8       0x48 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Trace.o)
+ .ARM.exidx     0x0005d600       0x98 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NameServer.o)
+ .ARM.exidx     0x0005d698       0x48 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MultiProc.o)
+ .ARM.exidx     0x0005d6e0       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Gate.o)
+ .ARM.exidx     0x0005d700       0x10 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SysLink.o)
+ .ARM.exidx     0x0005d710       0x28 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Cache.o)
+ .ARM.exidx     0x0005d738       0x18 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NameServerDrv.o)
+ .ARM.exidx     0x0005d750       0x18 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MultiProcDrv.o)
+ .ARM.exidx     0x0005d768        0x8 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(TraceDrv.o)
+ .ARM.exidx     0x0005d770        0x8 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(CacheDrv.o)
+ .ARM.exidx     0x0005d778        0x8 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Dev.o)
+ .ARM.exidx     0x0005d780       0x88 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MemoryOS.o)
+ .ARM.exidx     0x0005d808       0x28 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalDrv.o)
+ .ARM.exidx     0x0005d830       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalMutex.o)
+ .ARM.exidx     0x0005d850        0x8 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalPrint.o)
+ .ARM.exidx     0x0005d858       0xe8 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ProcMgr.o)
+ .ARM.exidx     0x0005d940       0x18 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ProcMgrDrvUsr.o)
+ .ARM.exidx     0x0005d958       0x48 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQ_common.o)
+ .ARM.exidx     0x0005d9a0       0xe0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SharedRegion.o)
+ .ARM.exidx     0x0005da80       0xa8 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ListMP.o)
+ .ARM.exidx     0x0005db28       0x18 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SharedRegionDrv.o)
+ .ARM.exidx     0x0005db40       0x18 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ListMPDrv.o)
+ .ARM.exidx     0x0005db58       0x18 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/libc_nonshared.a(elf-init.oS)
+                                 0x10 (size before relaxing)
+ .ARM.exidx.init
+                0x0005cbf8       0x10 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/crtn.o
+                                  0x8 (size before relaxing)
+ .ARM.exidx.fini
+                0x0005db70       0x10 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/crtn.o
+                                  0x8 (size before relaxing)
+                0x0005db80                __exidx_end = .
+
+.eh_frame_hdr
+ *(.eh_frame_hdr)
+
+.eh_frame       0x0005db80        0x4
+ *(.eh_frame)
+ .eh_frame      0x0005db80        0x4 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-linux-gnueabi/4.3.3/crtend.o
+
+.gcc_except_table
+ *(.gcc_except_table .gcc_except_table.*)
+                0x0005db84                . = (ALIGN (0x8000) - ((0x8000 - .) & 0x7fff))
+                0x00066000                . = (0x8000 DATA_SEGMENT_ALIGN 0x1000)
+
+.eh_frame
+ *(.eh_frame)
+
+.gcc_except_table
+ *(.gcc_except_table .gcc_except_table.*)
+
+.tdata
+ *(.tdata .tdata.* .gnu.linkonce.td.*)
+
+.tbss
+ *(.tbss .tbss.* .gnu.linkonce.tb.*)
+ *(.tcommon)
+
+.preinit_array  0x00066000        0x0
+                0x00066000                PROVIDE (__preinit_array_start, .)
+ *(.preinit_array)
+                0x00066000                PROVIDE (__preinit_array_end, .)
+
+.init_array     0x00066000        0x4
+                0x00066000                PROVIDE (__init_array_start, .)
+ *(SORT(.init_array.*))
+ *(.init_array)
+ .init_array    0x00066000        0x4 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-linux-gnueabi/4.3.3/crtbegin.o
+                0x00066004                PROVIDE (__init_array_end, .)
+
+.fini_array     0x00066004        0x4
+                0x00066004                PROVIDE (__fini_array_start, .)
+ *(.fini_array)
+ .fini_array    0x00066004        0x4 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-linux-gnueabi/4.3.3/crtbegin.o
+ *(SORT(.fini_array.*))
+                0x00066008                PROVIDE (__fini_array_end, .)
+
+.ctors
+ *crtbegin.o(.ctors)
+ *crtbegin?.o(.ctors)
+ *(EXCLUDE_FILE(*crtend?.o *crtend.o) .ctors)
+ *(SORT(.ctors.*))
+ *(.ctors)
+
+.dtors
+ *crtbegin.o(.dtors)
+ *crtbegin?.o(.dtors)
+ *(EXCLUDE_FILE(*crtend?.o *crtend.o) .dtors)
+ *(SORT(.dtors.*))
+ *(.dtors)
+
+.jcr            0x00066008        0x4
+ *(.jcr)
+ .jcr           0x00066008        0x0 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-linux-gnueabi/4.3.3/crtbegin.o
+ .jcr           0x00066008        0x4 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-linux-gnueabi/4.3.3/crtend.o
+
+.data.rel.ro
+ *(.data.rel.ro.local* .gnu.linkonce.d.rel.ro.local.*)
+ *(.data.rel.ro* .gnu.linkonce.d.rel.ro.*)
+
+.dynamic        0x0006600c      0x100
+ *(.dynamic)
+ .dynamic       0x0006600c      0x100 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/crti.o
+                0x0006600c                _DYNAMIC
+                0x0006610c                . = (. DATA_SEGMENT_RELRO_END 0x0)
+
+.got            0x0006610c       0xb0
+ *(.got.plt)
+ .got.plt       0x0006610c       0xac /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/crti.o
+                0x0006610c                _GLOBAL_OFFSET_TABLE_
+ *(.got)
+ .got           0x000661b8        0x4 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/crti.o
+
+.data           0x000661bc       0x48
+                0x000661bc                __data_start = .
+ *(.data .data.* .gnu.linkonce.d.*)
+ .data          0x000661bc        0x4 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/crt1.o
+                0x000661bc                data_start
+ .data          0x000661c0        0x0 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/crti.o
+ .data          0x000661c0        0x4 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-linux-gnueabi/4.3.3/crtbegin.o
+                0x000661c0                __dso_handle
+ .data          0x000661c4        0x0 bin/debug/obj/main_host.ov5T
+ .data          0x000661c4        0x0 bin/debug/obj/App.ov5T
+ .data          0x000661c4        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Notify.o)
+ .data          0x000661c4        0x4 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MessageQ.o)
+                0x000661c4                MessageQ_module
+ .data          0x000661c8        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Ipc.o)
+ .data          0x000661c8        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIO.o)
+ .data          0x000661c8        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIOShm.o)
+ .data          0x000661c8        0x4 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQ.o)
+                0x000661c8                FrameQ_module
+ .data          0x000661cc        0x4 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQBufMgr.o)
+                0x000661cc                FrameQBufMgr_module
+ .data          0x000661d0        0x4 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ClientNotifyMgr.o)
+                0x000661d0                ClientNotifyMgr_module
+ .data          0x000661d4        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapMemMP.o)
+ .data          0x000661d4        0x4 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapBufMP.o)
+                0x000661d4                HeapBufMP_module
+ .data          0x000661d8        0x4 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMP.o)
+ .data          0x000661dc        0x4 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NotifyDrvUsr.o)
+ .data          0x000661e0        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapBufMPDrv.o)
+ .data          0x000661e0        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MessageQDrv.o)
+ .data          0x000661e0        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(IpcDrv.o)
+ .data          0x000661e0        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQDrv.o)
+ .data          0x000661e0        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQBufMgrDrv.o)
+ .data          0x000661e0        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ClientNotifyMgrDrv.o)
+ .data          0x000661e0        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIODrv.o)
+ .data          0x000661e0        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIOShmDrv.o)
+ .data          0x000661e0        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapMemMPDrv.o)
+ .data          0x000661e0        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMPDrv.o)
+ .data          0x000661e0        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalProcess.o)
+ .data          0x000661e0        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMutex.o)
+ .data          0x000661e0        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Memory.o)
+ .data          0x000661e0        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(List.o)
+ .data          0x000661e0        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(String.o)
+ .data          0x000661e0        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Trace.o)
+ .data          0x000661e0        0x4 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NameServer.o)
+                0x000661e0                NameServer_module
+ .data          0x000661e4        0x4 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MultiProc.o)
+                0x000661e4                MultiProc_module
+ .data          0x000661e8        0xc /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Gate.o)
+                0x000661f0                Gate_systemHandle
+                0x000661e8                Gate_systemObject
+ .data          0x000661f4        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SysLink.o)
+ .data          0x000661f4        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Cache.o)
+ .data          0x000661f4        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NameServerDrv.o)
+ .data          0x000661f4        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MultiProcDrv.o)
+ .data          0x000661f4        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(TraceDrv.o)
+ .data          0x000661f4        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(CacheDrv.o)
+ .data          0x000661f4        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Dev.o)
+ .data          0x000661f4        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MemoryOS.o)
+ .data          0x000661f4        0x4 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalDrv.o)
+ .data          0x000661f8        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalMutex.o)
+ .data          0x000661f8        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalPrint.o)
+ .data          0x000661f8        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ProcMgr.o)
+ .data          0x000661f8        0x4 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ProcMgrDrvUsr.o)
+ .data          0x000661fc        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQ_common.o)
+ .data          0x000661fc        0x4 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SharedRegion.o)
+                0x000661fc                SharedRegion_module
+ .data          0x00066200        0x4 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ListMP.o)
+                0x00066200                ListMP_module
+ .data          0x00066204        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SharedRegionDrv.o)
+ .data          0x00066204        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ListMPDrv.o)
+ .data          0x00066204        0x0 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/libc_nonshared.a(elf-init.oS)
+ .data          0x00066204        0x0 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-linux-gnueabi/4.3.3/libgcc.a(_udivsi3.o)
+ .data          0x00066204        0x0 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-linux-gnueabi/4.3.3/libgcc.a(_dvmd_lnx.o)
+ .data          0x00066204        0x0 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-linux-gnueabi/4.3.3/crtend.o
+ .data          0x00066204        0x0 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/crtn.o
+
+.data1
+ *(.data1)
+                0x00066204                _edata = .
+                0x00066204                PROVIDE (edata, .)
+                0x00066204                __bss_start = .
+                0x00066204                __bss_start__ = .
+
+.bss            0x00066208    0x2d650
+ *(.dynbss)
+ .dynbss        0x00066208        0x4 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/crti.o
+                0x00066208                stderr@@GLIBC_2.4
+ *(.bss .bss.* .gnu.linkonce.b.*)
+ .bss           0x0006620c        0x0 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/crt1.o
+ .bss           0x0006620c        0x0 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/crti.o
+ .bss           0x0006620c        0x1 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-linux-gnueabi/4.3.3/crtbegin.o
+ *fill*         0x0006620d        0x3 00
+ .bss           0x00066210        0x4 bin/debug/obj/main_host.ov5T
+ .bss           0x00066214       0x58 bin/debug/obj/App.ov5T
+ .bss           0x0006626c       0x14 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Notify.o)
+                0x0006626c                Notify_state
+ .bss           0x00066280        0x4 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MessageQ.o)
+                0x00066280                MessageQ_state
+ .bss           0x00066284       0x5c /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Ipc.o)
+                0x000662d4                SysLinkCfg_sysMemMap
+                0x00066284                Ipc_state
+                0x000662dc                SysLink_params
+ .bss           0x000662e0        0xc /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIO.o)
+                0x000662e0                RingIO_state
+ .bss           0x000662ec        0x8 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIOShm.o)
+                0x000662ec                RingIOShm_state
+ .bss           0x000662f4       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQ.o)
+                0x000662f4                FrameQ_module_obj
+ .bss           0x00066314       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQBufMgr.o)
+                0x00066314                FrameQBufMgr_module_obj
+ .bss           0x00066334    0x2d024 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ClientNotifyMgr.o)
+                0x00066334                ClientNotifyMgr_module_obj
+ .bss           0x00093358        0x4 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapMemMP.o)
+                0x00093358                HeapMemMP_state
+ .bss           0x0009335c        0x4 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapBufMP.o)
+                0x0009335c                HeapBufMP_state
+ .bss           0x00093360       0x1c /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMP.o)
+ .bss           0x0009337c        0xc /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NotifyDrvUsr.o)
+ .bss           0x00093388        0x8 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapBufMPDrv.o)
+ .bss           0x00093390        0x8 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MessageQDrv.o)
+ .bss           0x00093398        0x8 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(IpcDrv.o)
+ .bss           0x000933a0        0x8 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQDrv.o)
+ .bss           0x000933a8        0x8 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQBufMgrDrv.o)
+ .bss           0x000933b0        0x8 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ClientNotifyMgrDrv.o)
+ .bss           0x000933b8        0x8 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIODrv.o)
+ .bss           0x000933c0        0x8 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIOShmDrv.o)
+ .bss           0x000933c8        0x8 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapMemMPDrv.o)
+ .bss           0x000933d0        0x8 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMPDrv.o)
+ .bss           0x000933d8        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalProcess.o)
+ .bss           0x000933d8        0x4 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMutex.o)
+ .bss           0x000933dc        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Memory.o)
+ .bss           0x000933dc        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(List.o)
+ .bss           0x000933dc        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(String.o)
+ .bss           0x000933dc        0x4 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Trace.o)
+                0x000933dc                curTrace
+ .bss           0x000933e0        0xc /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NameServer.o)
+                0x000933e0                NameServer_state
+ .bss           0x000933ec      0x298 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MultiProc.o)
+                0x000933ec                MultiProc_state
+ .bss           0x00093684       0x18 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Gate.o)
+                0x00093684                staticMutex
+ .bss           0x0009369c        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SysLink.o)
+ .bss           0x0009369c        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Cache.o)
+ .bss           0x0009369c        0x8 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NameServerDrv.o)
+ .bss           0x000936a4        0x8 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MultiProcDrv.o)
+ .bss           0x000936ac        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(TraceDrv.o)
+ .bss           0x000936ac        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(CacheDrv.o)
+ .bss           0x000936ac        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Dev.o)
+ .bss           0x000936ac       0x18 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MemoryOS.o)
+ .bss           0x000936c4        0x4 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalDrv.o)
+ .bss           0x000936c8        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalMutex.o)
+ .bss           0x000936c8        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalPrint.o)
+ .bss           0x000936c8       0x2c /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ProcMgr.o)
+                0x000936c8                ProcMgr_state
+ .bss           0x000936f4        0x4 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ProcMgrDrvUsr.o)
+ .bss           0x000936f8        0x0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQ_common.o)
+ .bss           0x000936f8      0x138 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SharedRegion.o)
+                0x000936f8                SharedRegion_state
+ .bss           0x00093830        0x4 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ListMP.o)
+                0x00093830                ListMP_state
+ .bss           0x00093834        0x8 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SharedRegionDrv.o)
+ .bss           0x0009383c        0x8 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ListMPDrv.o)
+ .bss           0x00093844        0x0 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/libc_nonshared.a(elf-init.oS)
+ .bss           0x00093844        0x0 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-linux-gnueabi/4.3.3/libgcc.a(_udivsi3.o)
+ .bss           0x00093844        0x0 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-linux-gnueabi/4.3.3/libgcc.a(_dvmd_lnx.o)
+ .bss           0x00093844        0x0 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-linux-gnueabi/4.3.3/crtend.o
+ .bss           0x00093844        0x0 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/crtn.o
+ *(COMMON)
+ COMMON         0x00093844        0x4 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NameServer.o)
+                0x00093844                NameServer_Object
+ COMMON         0x00093848       0x10 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MemoryOS.o)
+                0x00093848                MemoryOS_state
+                0x00093858                . = ALIGN ((. != 0x0)?0x4:0x1)
+                0x00093858                _bss_end__ = .
+                0x00093858                __bss_end__ = .
+                0x00093858                . = ALIGN (0x4)
+                0x00093858                . = ALIGN (0x4)
+                0x00093858                __end__ = .
+                0x00093858                _end = .
+                0x00093858                PROVIDE (end, .)
+                0x00093858                . = DATA_SEGMENT_END (.)
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.ARM.attributes
+                0x00000000       0x2d
+ .ARM.attributes
+                0x00000000       0x2d /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/crt1.o
+ .ARM.attributes
+                0x0000002d       0x31 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/crti.o
+ .ARM.attributes
+                0x0000005e       0x31 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-linux-gnueabi/4.3.3/crtbegin.o
+ .ARM.attributes
+                0x0000008f       0x2a bin/debug/obj/main_host.ov5T
+ .ARM.attributes
+                0x000000b9       0x2a bin/debug/obj/App.ov5T
+ .ARM.attributes
+                0x000000e3       0x31 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Notify.o)
+ .ARM.attributes
+                0x00000114       0x31 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MessageQ.o)
+ .ARM.attributes
+                0x00000145       0x31 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Ipc.o)
+ .ARM.attributes
+                0x00000176       0x31 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIO.o)
+ .ARM.attributes
+                0x000001a7       0x31 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIOShm.o)
+ .ARM.attributes
+                0x000001d8       0x31 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQ.o)
+ .ARM.attributes
+                0x00000209       0x31 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQBufMgr.o)
+ .ARM.attributes
+                0x0000023a       0x31 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ClientNotifyMgr.o)
+ .ARM.attributes
+                0x0000026b       0x31 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapMemMP.o)
+ .ARM.attributes
+                0x0000029c       0x31 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapBufMP.o)
+ .ARM.attributes
+                0x000002cd       0x31 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMP.o)
+ .ARM.attributes
+                0x000002fe       0x31 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NotifyDrvUsr.o)
+ .ARM.attributes
+                0x0000032f       0x31 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapBufMPDrv.o)
+ .ARM.attributes
+                0x00000360       0x31 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MessageQDrv.o)
+ .ARM.attributes
+                0x00000391       0x31 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(IpcDrv.o)
+ .ARM.attributes
+                0x000003c2       0x31 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQDrv.o)
+ .ARM.attributes
+                0x000003f3       0x31 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQBufMgrDrv.o)
+ .ARM.attributes
+                0x00000424       0x31 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ClientNotifyMgrDrv.o)
+ .ARM.attributes
+                0x00000455       0x31 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIODrv.o)
+ .ARM.attributes
+                0x00000486       0x31 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIOShmDrv.o)
+ .ARM.attributes
+                0x000004b7       0x31 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapMemMPDrv.o)
+ .ARM.attributes
+                0x000004e8       0x31 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMPDrv.o)
+ .ARM.attributes
+                0x00000519       0x31 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalProcess.o)
+ .ARM.attributes
+                0x0000054a       0x31 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMutex.o)
+ .ARM.attributes
+                0x0000057b       0x31 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Memory.o)
+ .ARM.attributes
+                0x000005ac       0x31 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(List.o)
+ .ARM.attributes
+                0x000005dd       0x31 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(String.o)
+ .ARM.attributes
+                0x0000060e       0x31 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Trace.o)
+ .ARM.attributes
+                0x0000063f       0x31 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NameServer.o)
+ .ARM.attributes
+                0x00000670       0x31 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MultiProc.o)
+ .ARM.attributes
+                0x000006a1       0x31 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Gate.o)
+ .ARM.attributes
+                0x000006d2       0x31 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SysLink.o)
+ .ARM.attributes
+                0x00000703       0x31 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Cache.o)
+ .ARM.attributes
+                0x00000734       0x31 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NameServerDrv.o)
+ .ARM.attributes
+                0x00000765       0x31 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MultiProcDrv.o)
+ .ARM.attributes
+                0x00000796       0x31 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(TraceDrv.o)
+ .ARM.attributes
+                0x000007c7       0x31 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(CacheDrv.o)
+ .ARM.attributes
+                0x000007f8       0x31 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Dev.o)
+ .ARM.attributes
+                0x00000829       0x31 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MemoryOS.o)
+ .ARM.attributes
+                0x0000085a       0x31 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalDrv.o)
+ .ARM.attributes
+                0x0000088b       0x31 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalMutex.o)
+ .ARM.attributes
+                0x000008bc       0x31 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalPrint.o)
+ .ARM.attributes
+                0x000008ed       0x31 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ProcMgr.o)
+ .ARM.attributes
+                0x0000091e       0x31 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ProcMgrDrvUsr.o)
+ .ARM.attributes
+                0x0000094f       0x31 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQ_common.o)
+ .ARM.attributes
+                0x00000980       0x31 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SharedRegion.o)
+ .ARM.attributes
+                0x000009b1       0x31 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ListMP.o)
+ .ARM.attributes
+                0x000009e2       0x31 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SharedRegionDrv.o)
+ .ARM.attributes
+                0x00000a13       0x31 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ListMPDrv.o)
+ .ARM.attributes
+                0x00000a44       0x31 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/libc_nonshared.a(elf-init.oS)
+ .ARM.attributes
+                0x00000a75       0x16 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-linux-gnueabi/4.3.3/libgcc.a(_udivsi3.o)
+ .ARM.attributes
+                0x00000a8b       0x14 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-linux-gnueabi/4.3.3/libgcc.a(_dvmd_lnx.o)
+ .ARM.attributes
+                0x00000a9f       0x31 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-linux-gnueabi/4.3.3/crtend.o
+ .ARM.attributes
+                0x00000ad0       0x31 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/crtn.o
+
+.comment        0x00000000      0x891
+ *(.comment)
+ .comment       0x00000000       0x2b bin/debug/obj/main_host.ov5T
+ .comment       0x0000002b       0x2b bin/debug/obj/App.ov5T
+ .comment       0x00000056       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Notify.o)
+ .comment       0x00000081       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MessageQ.o)
+ .comment       0x000000ac       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Ipc.o)
+ .comment       0x000000d7       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIO.o)
+ .comment       0x00000102       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIOShm.o)
+ .comment       0x0000012d       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQ.o)
+ .comment       0x00000158       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQBufMgr.o)
+ .comment       0x00000183       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ClientNotifyMgr.o)
+ .comment       0x000001ae       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapMemMP.o)
+ .comment       0x000001d9       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapBufMP.o)
+ .comment       0x00000204       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMP.o)
+ .comment       0x0000022f       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NotifyDrvUsr.o)
+ .comment       0x0000025a       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapBufMPDrv.o)
+ .comment       0x00000285       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MessageQDrv.o)
+ .comment       0x000002b0       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(IpcDrv.o)
+ .comment       0x000002db       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQDrv.o)
+ .comment       0x00000306       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQBufMgrDrv.o)
+ .comment       0x00000331       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ClientNotifyMgrDrv.o)
+ .comment       0x0000035c       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIODrv.o)
+ .comment       0x00000387       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIOShmDrv.o)
+ .comment       0x000003b2       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapMemMPDrv.o)
+ .comment       0x000003dd       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMPDrv.o)
+ .comment       0x00000408       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalProcess.o)
+ .comment       0x00000433       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMutex.o)
+ .comment       0x0000045e       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Memory.o)
+ .comment       0x00000489       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(List.o)
+ .comment       0x000004b4       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(String.o)
+ .comment       0x000004df       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Trace.o)
+ .comment       0x0000050a       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NameServer.o)
+ .comment       0x00000535       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MultiProc.o)
+ .comment       0x00000560       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Gate.o)
+ .comment       0x0000058b       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SysLink.o)
+ .comment       0x000005b6       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Cache.o)
+ .comment       0x000005e1       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NameServerDrv.o)
+ .comment       0x0000060c       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MultiProcDrv.o)
+ .comment       0x00000637       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(TraceDrv.o)
+ .comment       0x00000662       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(CacheDrv.o)
+ .comment       0x0000068d       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Dev.o)
+ .comment       0x000006b8       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MemoryOS.o)
+ .comment       0x000006e3       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalDrv.o)
+ .comment       0x0000070e       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalMutex.o)
+ .comment       0x00000739       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalPrint.o)
+ .comment       0x00000764       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ProcMgr.o)
+ .comment       0x0000078f       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ProcMgrDrvUsr.o)
+ .comment       0x000007ba       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQ_common.o)
+ .comment       0x000007e5       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SharedRegion.o)
+ .comment       0x00000810       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ListMP.o)
+ .comment       0x0000083b       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SharedRegionDrv.o)
+ .comment       0x00000866       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ListMPDrv.o)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x00000000      0x660
+ *(.debug_aranges)
+ .debug_aranges
+                0x00000000       0x20 bin/debug/obj/main_host.ov5T
+ .debug_aranges
+                0x00000020       0x20 bin/debug/obj/App.ov5T
+ .debug_aranges
+                0x00000040       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Notify.o)
+ .debug_aranges
+                0x00000060       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MessageQ.o)
+ .debug_aranges
+                0x00000080       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Ipc.o)
+ .debug_aranges
+                0x000000a0       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIO.o)
+ .debug_aranges
+                0x000000c0       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIOShm.o)
+ .debug_aranges
+                0x000000e0       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQ.o)
+ .debug_aranges
+                0x00000100       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQBufMgr.o)
+ .debug_aranges
+                0x00000120       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ClientNotifyMgr.o)
+ .debug_aranges
+                0x00000140       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapMemMP.o)
+ .debug_aranges
+                0x00000160       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapBufMP.o)
+ .debug_aranges
+                0x00000180       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMP.o)
+ .debug_aranges
+                0x000001a0       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NotifyDrvUsr.o)
+ .debug_aranges
+                0x000001c0       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapBufMPDrv.o)
+ .debug_aranges
+                0x000001e0       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MessageQDrv.o)
+ .debug_aranges
+                0x00000200       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(IpcDrv.o)
+ .debug_aranges
+                0x00000220       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQDrv.o)
+ .debug_aranges
+                0x00000240       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQBufMgrDrv.o)
+ .debug_aranges
+                0x00000260       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ClientNotifyMgrDrv.o)
+ .debug_aranges
+                0x00000280       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIODrv.o)
+ .debug_aranges
+                0x000002a0       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIOShmDrv.o)
+ .debug_aranges
+                0x000002c0       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapMemMPDrv.o)
+ .debug_aranges
+                0x000002e0       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMPDrv.o)
+ .debug_aranges
+                0x00000300       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalProcess.o)
+ .debug_aranges
+                0x00000320       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMutex.o)
+ .debug_aranges
+                0x00000340       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Memory.o)
+ .debug_aranges
+                0x00000360       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(List.o)
+ .debug_aranges
+                0x00000380       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(String.o)
+ .debug_aranges
+                0x000003a0       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Trace.o)
+ .debug_aranges
+                0x000003c0       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NameServer.o)
+ .debug_aranges
+                0x000003e0       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MultiProc.o)
+ .debug_aranges
+                0x00000400       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Gate.o)
+ .debug_aranges
+                0x00000420       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SysLink.o)
+ .debug_aranges
+                0x00000440       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Cache.o)
+ .debug_aranges
+                0x00000460       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NameServerDrv.o)
+ .debug_aranges
+                0x00000480       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MultiProcDrv.o)
+ .debug_aranges
+                0x000004a0       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(TraceDrv.o)
+ .debug_aranges
+                0x000004c0       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(CacheDrv.o)
+ .debug_aranges
+                0x000004e0       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Dev.o)
+ .debug_aranges
+                0x00000500       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MemoryOS.o)
+ .debug_aranges
+                0x00000520       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalDrv.o)
+ .debug_aranges
+                0x00000540       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalMutex.o)
+ .debug_aranges
+                0x00000560       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalPrint.o)
+ .debug_aranges
+                0x00000580       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ProcMgr.o)
+ .debug_aranges
+                0x000005a0       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ProcMgrDrvUsr.o)
+ .debug_aranges
+                0x000005c0       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQ_common.o)
+ .debug_aranges
+                0x000005e0       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SharedRegion.o)
+ .debug_aranges
+                0x00000600       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ListMP.o)
+ .debug_aranges
+                0x00000620       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SharedRegionDrv.o)
+ .debug_aranges
+                0x00000640       0x20 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ListMPDrv.o)
+
+.debug_pubnames
+                0x00000000     0x2f38
+ *(.debug_pubnames)
+ .debug_pubnames
+                0x00000000       0x1b bin/debug/obj/main_host.ov5T
+ .debug_pubnames
+                0x0000001b       0x3d bin/debug/obj/App.ov5T
+ .debug_pubnames
+                0x00000058      0x1ad /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Notify.o)
+ .debug_pubnames
+                0x00000205      0x22c /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MessageQ.o)
+ .debug_pubnames
+                0x00000431       0xc5 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Ipc.o)
+ .debug_pubnames
+                0x000004f6      0x2ca /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIO.o)
+ .debug_pubnames
+                0x000007c0       0x82 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIOShm.o)
+ .debug_pubnames
+                0x00000842      0x268 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQ.o)
+ .debug_pubnames
+                0x00000aaa      0x415 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQBufMgr.o)
+ .debug_pubnames
+                0x00000ebf      0x2ca /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ClientNotifyMgr.o)
+ .debug_pubnames
+                0x00001189      0x1c6 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapMemMP.o)
+ .debug_pubnames
+                0x0000134f      0x1c3 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapBufMP.o)
+ .debug_pubnames
+                0x00001512      0x1db /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMP.o)
+ .debug_pubnames
+                0x000016ed       0x74 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NotifyDrvUsr.o)
+ .debug_pubnames
+                0x00001761       0x56 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapBufMPDrv.o)
+ .debug_pubnames
+                0x000017b7       0x53 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MessageQDrv.o)
+ .debug_pubnames
+                0x0000180a       0x44 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(IpcDrv.o)
+ .debug_pubnames
+                0x0000184e       0x4d /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQDrv.o)
+ .debug_pubnames
+                0x0000189b       0x5f /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQBufMgrDrv.o)
+ .debug_pubnames
+                0x000018fa       0x68 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ClientNotifyMgrDrv.o)
+ .debug_pubnames
+                0x00001962       0x4d /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIODrv.o)
+ .debug_pubnames
+                0x000019af       0x56 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIOShmDrv.o)
+ .debug_pubnames
+                0x00001a05       0x56 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapMemMPDrv.o)
+ .debug_pubnames
+                0x00001a5b       0x4d /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMPDrv.o)
+ .debug_pubnames
+                0x00001aa8       0x40 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalProcess.o)
+ .debug_pubnames
+                0x00001ae8       0xa0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMutex.o)
+ .debug_pubnames
+                0x00001b88       0xb3 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Memory.o)
+ .debug_pubnames
+                0x00001c3b      0x12c /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(List.o)
+ .debug_pubnames
+                0x00001d67       0x92 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(String.o)
+ .debug_pubnames
+                0x00001df9       0xb2 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Trace.o)
+ .debug_pubnames
+                0x00001eab      0x211 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NameServer.o)
+ .debug_pubnames
+                0x000020bc      0x108 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MultiProc.o)
+ .debug_pubnames
+                0x000021c4       0x78 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Gate.o)
+ .debug_pubnames
+                0x0000223c       0x38 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SysLink.o)
+ .debug_pubnames
+                0x00002274       0x5e /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Cache.o)
+ .debug_pubnames
+                0x000022d2       0x59 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NameServerDrv.o)
+ .debug_pubnames
+                0x0000232b       0x56 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MultiProcDrv.o)
+ .debug_pubnames
+                0x00002381       0x25 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(TraceDrv.o)
+ .debug_pubnames
+                0x000023a6       0x25 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(CacheDrv.o)
+ .debug_pubnames
+                0x000023cb       0x23 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Dev.o)
+ .debug_pubnames
+                0x000023ee       0xe4 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MemoryOS.o)
+ .debug_pubnames
+                0x000024d2       0x69 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalDrv.o)
+ .debug_pubnames
+                0x0000253b       0x64 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalMutex.o)
+ .debug_pubnames
+                0x0000259f       0x22 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalPrint.o)
+ .debug_pubnames
+                0x000025c1      0x294 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ProcMgr.o)
+ .debug_pubnames
+                0x00002855       0x59 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ProcMgrDrvUsr.o)
+ .debug_pubnames
+                0x000028ae      0x131 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQ_common.o)
+ .debug_pubnames
+                0x000029df      0x2ee /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SharedRegion.o)
+ .debug_pubnames
+                0x00002ccd      0x1bf /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ListMP.o)
+ .debug_pubnames
+                0x00002e8c       0x5f /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SharedRegionDrv.o)
+ .debug_pubnames
+                0x00002eeb       0x4d /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ListMPDrv.o)
+
+.debug_info     0x00000000    0x1e77e
+ *(.debug_info .gnu.linkonce.wi.*)
+ .debug_info    0x00000000      0x220 bin/debug/obj/main_host.ov5T
+ .debug_info    0x00000220      0x636 bin/debug/obj/App.ov5T
+ .debug_info    0x00000856      0xeab /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Notify.o)
+ .debug_info    0x00001701     0x10b2 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MessageQ.o)
+ .debug_info    0x000027b3      0xeb9 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Ipc.o)
+ .debug_info    0x0000366c     0x1bbd /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIO.o)
+ .debug_info    0x00005229      0x32f /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIOShm.o)
+ .debug_info    0x00005558     0x2336 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQ.o)
+ .debug_info    0x0000788e     0x25a9 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQBufMgr.o)
+ .debug_info    0x00009e37     0x184e /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ClientNotifyMgr.o)
+ .debug_info    0x0000b685      0xdaa /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapMemMP.o)
+ .debug_info    0x0000c42f      0xd7b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapBufMP.o)
+ .debug_info    0x0000d1aa      0xee3 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMP.o)
+ .debug_info    0x0000e08d      0x4d1 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NotifyDrvUsr.o)
+ .debug_info    0x0000e55e      0x677 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapBufMPDrv.o)
+ .debug_info    0x0000ebd5      0x7cd /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MessageQDrv.o)
+ .debug_info    0x0000f3a2      0x3cf /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(IpcDrv.o)
+ .debug_info    0x0000f771      0xa71 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQDrv.o)
+ .debug_info    0x000101e2      0xbb1 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQBufMgrDrv.o)
+ .debug_info    0x00010d93      0x6d9 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ClientNotifyMgrDrv.o)
+ .debug_info    0x0001146c      0xb80 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIODrv.o)
+ .debug_info    0x00011fec      0x2b1 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIOShmDrv.o)
+ .debug_info    0x0001229d      0x65a /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapMemMPDrv.o)
+ .debug_info    0x000128f7      0x61e /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMPDrv.o)
+ .debug_info    0x00012f15      0x112 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalProcess.o)
+ .debug_info    0x00013027      0x3d3 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMutex.o)
+ .debug_info    0x000133fa      0x621 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Memory.o)
+ .debug_info    0x00013a1b      0x66f /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(List.o)
+ .debug_info    0x0001408a      0x361 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(String.o)
+ .debug_info    0x000143eb      0x5bc /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Trace.o)
+ .debug_info    0x000149a7      0xe1a /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NameServer.o)
+ .debug_info    0x000157c1      0x4f7 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MultiProc.o)
+ .debug_info    0x00015cb8      0x337 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Gate.o)
+ .debug_info    0x00015fef      0x8b7 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SysLink.o)
+ .debug_info    0x000168a6      0x486 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Cache.o)
+ .debug_info    0x00016d2c      0x709 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NameServerDrv.o)
+ .debug_info    0x00017435      0x2f3 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MultiProcDrv.o)
+ .debug_info    0x00017728      0x20d /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(TraceDrv.o)
+ .debug_info    0x00017935      0x2ed /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(CacheDrv.o)
+ .debug_info    0x00017c22      0x405 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Dev.o)
+ .debug_info    0x00018027      0xa07 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MemoryOS.o)
+ .debug_info    0x00018a2e      0x3ce /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalDrv.o)
+ .debug_info    0x00018dfc      0x36d /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalMutex.o)
+ .debug_info    0x00019169      0x110 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalPrint.o)
+ .debug_info    0x00019279     0x1e89 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ProcMgr.o)
+ .debug_info    0x0001b102      0x229 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ProcMgrDrvUsr.o)
+ .debug_info    0x0001b32b      0x563 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQ_common.o)
+ .debug_info    0x0001b88e     0x1188 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SharedRegion.o)
+ .debug_info    0x0001ca16      0xf1f /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ListMP.o)
+ .debug_info    0x0001d935      0x762 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SharedRegionDrv.o)
+ .debug_info    0x0001e097      0x6e7 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ListMPDrv.o)
+
+.debug_abbrev   0x00000000     0x4d03
+ *(.debug_abbrev)
+ .debug_abbrev  0x00000000       0xc0 bin/debug/obj/main_host.ov5T
+ .debug_abbrev  0x000000c0      0x1c7 bin/debug/obj/App.ov5T
+ .debug_abbrev  0x00000287      0x1c4 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Notify.o)
+ .debug_abbrev  0x0000044b      0x227 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MessageQ.o)
+ .debug_abbrev  0x00000672      0x212 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Ipc.o)
+ .debug_abbrev  0x00000884      0x22d /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIO.o)
+ .debug_abbrev  0x00000ab1      0x180 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIOShm.o)
+ .debug_abbrev  0x00000c31      0x28b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQ.o)
+ .debug_abbrev  0x00000ebc      0x295 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQBufMgr.o)
+ .debug_abbrev  0x00001151      0x217 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ClientNotifyMgr.o)
+ .debug_abbrev  0x00001368      0x1cd /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapMemMP.o)
+ .debug_abbrev  0x00001535      0x1c0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapBufMP.o)
+ .debug_abbrev  0x000016f5      0x213 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMP.o)
+ .debug_abbrev  0x00001908      0x1bb /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NotifyDrvUsr.o)
+ .debug_abbrev  0x00001ac3      0x132 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapBufMPDrv.o)
+ .debug_abbrev  0x00001bf5      0x187 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MessageQDrv.o)
+ .debug_abbrev  0x00001d7c      0x113 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(IpcDrv.o)
+ .debug_abbrev  0x00001e8f      0x18e /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQDrv.o)
+ .debug_abbrev  0x0000201d      0x19d /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQBufMgrDrv.o)
+ .debug_abbrev  0x000021ba      0x140 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ClientNotifyMgrDrv.o)
+ .debug_abbrev  0x000022fa      0x16f /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIODrv.o)
+ .debug_abbrev  0x00002469      0x10d /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIOShmDrv.o)
+ .debug_abbrev  0x00002576      0x141 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapMemMPDrv.o)
+ .debug_abbrev  0x000026b7      0x150 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMPDrv.o)
+ .debug_abbrev  0x00002807       0x7d /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalProcess.o)
+ .debug_abbrev  0x00002884      0x142 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMutex.o)
+ .debug_abbrev  0x000029c6      0x1d6 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Memory.o)
+ .debug_abbrev  0x00002b9c      0x169 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(List.o)
+ .debug_abbrev  0x00002d05       0xf9 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(String.o)
+ .debug_abbrev  0x00002dfe      0x143 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Trace.o)
+ .debug_abbrev  0x00002f41      0x1fa /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NameServer.o)
+ .debug_abbrev  0x0000313b      0x1bb /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MultiProc.o)
+ .debug_abbrev  0x000032f6      0x156 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Gate.o)
+ .debug_abbrev  0x0000344c      0x160 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SysLink.o)
+ .debug_abbrev  0x000035ac      0x128 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Cache.o)
+ .debug_abbrev  0x000036d4      0x177 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NameServerDrv.o)
+ .debug_abbrev  0x0000384b      0x13d /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MultiProcDrv.o)
+ .debug_abbrev  0x00003988      0x10b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(TraceDrv.o)
+ .debug_abbrev  0x00003a93      0x120 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(CacheDrv.o)
+ .debug_abbrev  0x00003bb3      0x103 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Dev.o)
+ .debug_abbrev  0x00003cb6      0x206 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MemoryOS.o)
+ .debug_abbrev  0x00003ebc      0x152 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalDrv.o)
+ .debug_abbrev  0x0000400e      0x143 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalMutex.o)
+ .debug_abbrev  0x00004151       0xb0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalPrint.o)
+ .debug_abbrev  0x00004201      0x1ec /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ProcMgr.o)
+ .debug_abbrev  0x000043ed       0xdd /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ProcMgrDrvUsr.o)
+ .debug_abbrev  0x000044ca      0x13c /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQ_common.o)
+ .debug_abbrev  0x00004606      0x283 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SharedRegion.o)
+ .debug_abbrev  0x00004889      0x1d0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ListMP.o)
+ .debug_abbrev  0x00004a59      0x16b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SharedRegionDrv.o)
+ .debug_abbrev  0x00004bc4      0x13f /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ListMPDrv.o)
+
+.debug_line     0x00000000     0x9d85
+ *(.debug_line)
+ .debug_line    0x00000000       0xec bin/debug/obj/main_host.ov5T
+ .debug_line    0x000000ec      0x243 bin/debug/obj/App.ov5T
+ .debug_line    0x0000032f      0x43e /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Notify.o)
+ .debug_line    0x0000076d      0x43f /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MessageQ.o)
+ .debug_line    0x00000bac      0x5ea /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Ipc.o)
+ .debug_line    0x00001196      0x548 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIO.o)
+ .debug_line    0x000016de      0x208 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIOShm.o)
+ .debug_line    0x000018e6      0x7ee /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQ.o)
+ .debug_line    0x000020d4      0x85c /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQBufMgr.o)
+ .debug_line    0x00002930      0x6c7 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ClientNotifyMgr.o)
+ .debug_line    0x00002ff7      0x43e /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapMemMP.o)
+ .debug_line    0x00003435      0x417 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapBufMP.o)
+ .debug_line    0x0000384c      0x412 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMP.o)
+ .debug_line    0x00003c5e      0x34d /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NotifyDrvUsr.o)
+ .debug_line    0x00003fab      0x262 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapBufMPDrv.o)
+ .debug_line    0x0000420d      0x25e /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MessageQDrv.o)
+ .debug_line    0x0000446b      0x311 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(IpcDrv.o)
+ .debug_line    0x0000477c      0x235 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQDrv.o)
+ .debug_line    0x000049b1      0x254 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQBufMgrDrv.o)
+ .debug_line    0x00004c05      0x25f /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ClientNotifyMgrDrv.o)
+ .debug_line    0x00004e64      0x230 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIODrv.o)
+ .debug_line    0x00005094      0x1f6 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIOShmDrv.o)
+ .debug_line    0x0000528a      0x258 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapMemMPDrv.o)
+ .debug_line    0x000054e2      0x230 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMPDrv.o)
+ .debug_line    0x00005712      0x1d8 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalProcess.o)
+ .debug_line    0x000058ea      0x1f6 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMutex.o)
+ .debug_line    0x00005ae0      0x216 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Memory.o)
+ .debug_line    0x00005cf6      0x25a /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(List.o)
+ .debug_line    0x00005f50      0x148 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(String.o)
+ .debug_line    0x00006098      0x1f8 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Trace.o)
+ .debug_line    0x00006290      0x45b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NameServer.o)
+ .debug_line    0x000066eb      0x266 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MultiProc.o)
+ .debug_line    0x00006951      0x1c8 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Gate.o)
+ .debug_line    0x00006b19      0x32c /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SysLink.o)
+ .debug_line    0x00006e45      0x1ee /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Cache.o)
+ .debug_line    0x00007033      0x23a /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NameServerDrv.o)
+ .debug_line    0x0000726d      0x1f6 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MultiProcDrv.o)
+ .debug_line    0x00007463      0x1b6 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(TraceDrv.o)
+ .debug_line    0x00007619      0x1bb /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(CacheDrv.o)
+ .debug_line    0x000077d4      0x2a6 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Dev.o)
+ .debug_line    0x00007a7a      0x3be /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MemoryOS.o)
+ .debug_line    0x00007e38      0x228 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalDrv.o)
+ .debug_line    0x00008060      0x261 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalMutex.o)
+ .debug_line    0x000082c1      0x10f /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalPrint.o)
+ .debug_line    0x000083d0      0x68c /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ProcMgr.o)
+ .debug_line    0x00008a5c      0x1fa /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ProcMgrDrvUsr.o)
+ .debug_line    0x00008c56      0x1f1 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQ_common.o)
+ .debug_line    0x00008e47      0x630 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SharedRegion.o)
+ .debug_line    0x00009477      0x439 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ListMP.o)
+ .debug_line    0x000098b0      0x299 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SharedRegionDrv.o)
+ .debug_line    0x00009b49      0x23c /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ListMPDrv.o)
+
+.debug_frame    0x00000000     0x39c8
+ *(.debug_frame)
+ .debug_frame   0x00000000       0x64 bin/debug/obj/main_host.ov5T
+ .debug_frame   0x00000064       0x9c bin/debug/obj/App.ov5T
+ .debug_frame   0x00000100      0x1ec /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Notify.o)
+ .debug_frame   0x000002ec      0x2b0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MessageQ.o)
+ .debug_frame   0x0000059c      0x10c /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Ipc.o)
+ .debug_frame   0x000006a8      0x358 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIO.o)
+ .debug_frame   0x00000a00       0x80 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIOShm.o)
+ .debug_frame   0x00000a80      0x36c /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQ.o)
+ .debug_frame   0x00000dec      0x430 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQBufMgr.o)
+ .debug_frame   0x0000121c      0x230 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ClientNotifyMgr.o)
+ .debug_frame   0x0000144c      0x20c /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapMemMP.o)
+ .debug_frame   0x00001658      0x1f0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapBufMP.o)
+ .debug_frame   0x00001848      0x264 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMP.o)
+ .debug_frame   0x00001aac       0x88 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NotifyDrvUsr.o)
+ .debug_frame   0x00001b34       0x68 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapBufMPDrv.o)
+ .debug_frame   0x00001b9c       0x68 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MessageQDrv.o)
+ .debug_frame   0x00001c04       0x68 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(IpcDrv.o)
+ .debug_frame   0x00001c6c       0x64 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQDrv.o)
+ .debug_frame   0x00001cd0       0x64 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQBufMgrDrv.o)
+ .debug_frame   0x00001d34       0x64 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ClientNotifyMgrDrv.o)
+ .debug_frame   0x00001d98       0x64 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIODrv.o)
+ .debug_frame   0x00001dfc       0x64 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIOShmDrv.o)
+ .debug_frame   0x00001e60       0x64 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapMemMPDrv.o)
+ .debug_frame   0x00001ec4       0x64 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMPDrv.o)
+ .debug_frame   0x00001f28       0x48 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalProcess.o)
+ .debug_frame   0x00001f70       0xb8 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMutex.o)
+ .debug_frame   0x00002028      0x15c /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Memory.o)
+ .debug_frame   0x00002184      0x1ec /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(List.o)
+ .debug_frame   0x00002370       0xd8 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(String.o)
+ .debug_frame   0x00002448      0x10c /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Trace.o)
+ .debug_frame   0x00002554      0x224 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NameServer.o)
+ .debug_frame   0x00002778      0x10c /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MultiProc.o)
+ .debug_frame   0x00002884       0x80 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Gate.o)
+ .debug_frame   0x00002904       0x48 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SysLink.o)
+ .debug_frame   0x0000294c       0x9c /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Cache.o)
+ .debug_frame   0x000029e8       0x68 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NameServerDrv.o)
+ .debug_frame   0x00002a50       0x64 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MultiProcDrv.o)
+ .debug_frame   0x00002ab4       0x2c /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(TraceDrv.o)
+ .debug_frame   0x00002ae0       0x2c /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(CacheDrv.o)
+ .debug_frame   0x00002b0c       0x2c /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Dev.o)
+ .debug_frame   0x00002b38      0x1ec /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MemoryOS.o)
+ .debug_frame   0x00002d24       0x9c /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalDrv.o)
+ .debug_frame   0x00002dc0       0x80 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalMutex.o)
+ .debug_frame   0x00002e40       0x38 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalPrint.o)
+ .debug_frame   0x00002e78      0x33c /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ProcMgr.o)
+ .debug_frame   0x000031b4       0x64 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ProcMgrDrvUsr.o)
+ .debug_frame   0x00003218      0x108 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQ_common.o)
+ .debug_frame   0x00003320      0x320 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SharedRegion.o)
+ .debug_frame   0x00003640      0x25c /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ListMP.o)
+ .debug_frame   0x0000389c       0x64 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SharedRegionDrv.o)
+ .debug_frame   0x00003900       0x64 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ListMPDrv.o)
+ .debug_frame   0x00003964       0x44 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../arm-none-linux-gnueabi/libc/usr/lib/libc_nonshared.a(elf-init.oS)
+ .debug_frame   0x000039a8       0x20 /home/jreese/CodeSourcery/Sourcery_G++_Lite/bin/../lib/gcc/arm-none-linux-gnueabi/4.3.3/libgcc.a(_udivsi3.o)
+
+.debug_str      0x00000000     0x8221
+ *(.debug_str)
+ .debug_str     0x00000000      0x132 bin/debug/obj/main_host.ov5T
+                                0x189 (size before relaxing)
+ .debug_str     0x00000132      0x24b bin/debug/obj/App.ov5T
+                                0x3ab (size before relaxing)
+ .debug_str     0x0000037d      0x68f /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Notify.o)
+                                0x7b8 (size before relaxing)
+ .debug_str     0x00000a0c      0x480 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MessageQ.o)
+                                0x787 (size before relaxing)
+ .debug_str     0x00000e8c      0x80e /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Ipc.o)
+                                0xa99 (size before relaxing)
+ .debug_str     0x0000169a      0x9c7 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIO.o)
+                                0xe6d (size before relaxing)
+ .debug_str     0x00002061      0x105 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIOShm.o)
+                                0x28c (size before relaxing)
+ .debug_str     0x00002166      0xc7f /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQ.o)
+                               0x1445 (size before relaxing)
+ .debug_str     0x00002de5      0x991 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQBufMgr.o)
+                               0x16f0 (size before relaxing)
+ .debug_str     0x00003776      0x73f /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ClientNotifyMgr.o)
+                                0xd05 (size before relaxing)
+ .debug_str     0x00003eb5      0x2db /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapMemMP.o)
+                                0x682 (size before relaxing)
+ .debug_str     0x00004190      0x25b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapBufMP.o)
+                                0x6ab (size before relaxing)
+ .debug_str     0x000043eb      0x286 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMP.o)
+                                0x6f7 (size before relaxing)
+ .debug_str     0x00004671      0x21d /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NotifyDrvUsr.o)
+                                0x3e0 (size before relaxing)
+ .debug_str     0x0000488e       0xcd /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapBufMPDrv.o)
+                                0x43f (size before relaxing)
+ .debug_str     0x0000495b       0xc7 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MessageQDrv.o)
+                                0x49d (size before relaxing)
+ .debug_str     0x00004a22       0xa9 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(IpcDrv.o)
+                                0x278 (size before relaxing)
+ .debug_str     0x00004acb       0xbb /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQDrv.o)
+                                0x6c6 (size before relaxing)
+ .debug_str     0x00004b86       0xdf /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQBufMgrDrv.o)
+                                0x846 (size before relaxing)
+ .debug_str     0x00004c65       0xf1 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ClientNotifyMgrDrv.o)
+                                0x540 (size before relaxing)
+ .debug_str     0x00004d56       0xbb /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIODrv.o)
+                                0x704 (size before relaxing)
+ .debug_str     0x00004e11       0xcd /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIOShmDrv.o)
+                                0x25c (size before relaxing)
+ .debug_str     0x00004ede       0xcd /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapMemMPDrv.o)
+                                0x40e (size before relaxing)
+ .debug_str     0x00004fab       0xbb /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMPDrv.o)
+                                0x4d3 (size before relaxing)
+ .debug_str     0x00005066       0x91 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalProcess.o)
+                                0x160 (size before relaxing)
+ .debug_str     0x000050f7      0x18e /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMutex.o)
+                                0x318 (size before relaxing)
+ .debug_str     0x00005285      0x13c /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Memory.o)
+                                0x3b8 (size before relaxing)
+ .debug_str     0x000053c1      0x179 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(List.o)
+                                0x2e7 (size before relaxing)
+ .debug_str     0x0000553a      0x105 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(String.o)
+                                0x1dd (size before relaxing)
+ .debug_str     0x0000563f      0x22a /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Trace.o)
+                                0x364 (size before relaxing)
+ .debug_str     0x00005869      0x2d4 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NameServer.o)
+                                0x521 (size before relaxing)
+ .debug_str     0x00005b3d      0x18a /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MultiProc.o)
+                                0x34a (size before relaxing)
+ .debug_str     0x00005cc7      0x150 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Gate.o)
+                                0x298 (size before relaxing)
+ .debug_str     0x00005e17       0xe5 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SysLink.o)
+                                0x8d0 (size before relaxing)
+ .debug_str     0x00005efc      0x117 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Cache.o)
+                                0x24e (size before relaxing)
+ .debug_str     0x00006013       0xd5 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NameServerDrv.o)
+                                0x388 (size before relaxing)
+ .debug_str     0x000060e8       0xcf /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MultiProcDrv.o)
+                                0x26c (size before relaxing)
+ .debug_str     0x000061b7       0x78 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(TraceDrv.o)
+                                0x22a (size before relaxing)
+ .debug_str     0x0000622f       0x78 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(CacheDrv.o)
+                                0x227 (size before relaxing)
+ .debug_str     0x000062a7      0x22d /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Dev.o)
+                                0x34c (size before relaxing)
+ .debug_str     0x000064d4      0x25d /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MemoryOS.o)
+                                0x5c0 (size before relaxing)
+ .debug_str     0x00006731      0x116 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalDrv.o)
+                                0x2c4 (size before relaxing)
+ .debug_str     0x00006847       0xea /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalMutex.o)
+                                0x30f (size before relaxing)
+ .debug_str     0x00006931       0xa0 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalPrint.o)
+                                0x162 (size before relaxing)
+ .debug_str     0x000069d1      0xd57 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ProcMgr.o)
+                               0x10c4 (size before relaxing)
+ .debug_str     0x00007728       0xe4 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ProcMgrDrvUsr.o)
+                                0x224 (size before relaxing)
+ .debug_str     0x0000780c      0x1ad /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQ_common.o)
+                                0x436 (size before relaxing)
+ .debug_str     0x000079b9      0x460 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SharedRegion.o)
+                                0x9dc (size before relaxing)
+ .debug_str     0x00007e19      0x268 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ListMP.o)
+                                0x569 (size before relaxing)
+ .debug_str     0x00008081       0xe5 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SharedRegionDrv.o)
+                                0x526 (size before relaxing)
+ .debug_str     0x00008166       0xbb /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ListMPDrv.o)
+                                0x3b0 (size before relaxing)
+
+.debug_loc      0x00000000     0x52ff
+ *(.debug_loc)
+ .debug_loc     0x00000000       0x81 bin/debug/obj/main_host.ov5T
+ .debug_loc     0x00000081       0xd7 bin/debug/obj/App.ov5T
+ .debug_loc     0x00000158      0x2db /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Notify.o)
+ .debug_loc     0x00000433      0x408 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MessageQ.o)
+ .debug_loc     0x0000083b      0x183 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Ipc.o)
+ .debug_loc     0x000009be      0x50a /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIO.o)
+ .debug_loc     0x00000ec8       0xac /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIOShm.o)
+ .debug_loc     0x00000f74      0x50a /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQ.o)
+ .debug_loc     0x0000147e      0x637 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQBufMgr.o)
+ .debug_loc     0x00001ab5      0x331 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ClientNotifyMgr.o)
+ .debug_loc     0x00001de6      0x312 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapMemMP.o)
+ .debug_loc     0x000020f8      0x2e7 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapBufMP.o)
+ .debug_loc     0x000023df      0x387 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMP.o)
+ .debug_loc     0x00002766       0xac /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NotifyDrvUsr.o)
+ .debug_loc     0x00002812       0x81 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapBufMPDrv.o)
+ .debug_loc     0x00002893       0x81 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MessageQDrv.o)
+ .debug_loc     0x00002914       0x81 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(IpcDrv.o)
+ .debug_loc     0x00002995       0x81 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQDrv.o)
+ .debug_loc     0x00002a16       0x81 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQBufMgrDrv.o)
+ .debug_loc     0x00002a97       0x81 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ClientNotifyMgrDrv.o)
+ .debug_loc     0x00002b18       0x81 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIODrv.o)
+ .debug_loc     0x00002b99       0x81 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(RingIOShmDrv.o)
+ .debug_loc     0x00002c1a       0x81 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(HeapMemMPDrv.o)
+ .debug_loc     0x00002c9b       0x81 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMPDrv.o)
+ .debug_loc     0x00002d1c       0x56 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalProcess.o)
+ .debug_loc     0x00002d72      0x102 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(GateMutex.o)
+ .debug_loc     0x00002e74      0x204 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Memory.o)
+ .debug_loc     0x00003078      0x2db /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(List.o)
+ .debug_loc     0x00003353      0x158 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(String.o)
+ .debug_loc     0x000034ab      0x183 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Trace.o)
+ .debug_loc     0x0000362e      0x331 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NameServer.o)
+ .debug_loc     0x0000395f      0x183 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MultiProc.o)
+ .debug_loc     0x00003ae2       0xac /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Gate.o)
+ .debug_loc     0x00003b8e       0x56 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SysLink.o)
+ .debug_loc     0x00003be4       0xd7 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Cache.o)
+ .debug_loc     0x00003cbb       0x81 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(NameServerDrv.o)
+ .debug_loc     0x00003d3c       0x81 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MultiProcDrv.o)
+ .debug_loc     0x00003dbd       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(TraceDrv.o)
+ .debug_loc     0x00003de8       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(CacheDrv.o)
+ .debug_loc     0x00003e13       0x2b /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(Dev.o)
+ .debug_loc     0x00003e3e      0x2db /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(MemoryOS.o)
+ .debug_loc     0x00004119       0xd7 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalDrv.o)
+ .debug_loc     0x000041f0       0xac /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalMutex.o)
+ .debug_loc     0x0000429c       0x37 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(OsalPrint.o)
+ .debug_loc     0x000042d3      0x4df /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ProcMgr.o)
+ .debug_loc     0x000047b2       0x81 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ProcMgrDrvUsr.o)
+ .debug_loc     0x00004833      0x183 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(FrameQ_common.o)
+ .debug_loc     0x000049b6      0x4b4 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SharedRegion.o)
+ .debug_loc     0x00004e6a      0x393 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ListMP.o)
+ .debug_loc     0x000051fd       0x81 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(SharedRegionDrv.o)
+ .debug_loc     0x0000527e       0x81 /src/flex/microburst-linux/ti-dsp/syslink_2_21_00_03/packages/ti/syslink/lib/syslink.a_debug(ListMPDrv.o)
+
+.debug_macinfo
+ *(.debug_macinfo)
+
+.debug_weaknames
+ *(.debug_weaknames)
+
+.debug_funcnames
+ *(.debug_funcnames)
+
+.debug_typenames
+ *(.debug_typenames)
+
+.debug_varnames
+ *(.debug_varnames)
+
+.debug_pubtypes
+ *(.debug_pubtypes)
+
+.debug_ranges
+ *(.debug_ranges)
+
+.gnu.attributes
+ *(.gnu.attributes)
+
+.note.gnu.arm.ident
+ *(.note.gnu.arm.ident)
+
+/DISCARD/
+ *(.note.GNU-stack)
+ *(.gnu_debuglink)
+OUTPUT(bin/debug/app_host elf32-littlearm)
