@@ -38,4 +38,4 @@
 
 #include "CODEC_IC_1_PARAM.h"
 
-#endif MICROBURST_SIGMADSP_H_
+#endif //MICROBURST_SIGMADSP_H_

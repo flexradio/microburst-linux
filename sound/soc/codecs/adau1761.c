@@ -519,7 +519,7 @@ static int microburst_sigmadsp_monitor_voice_cw_put(struct snd_kcontrol *kcontro
 	}
 
 	//printk (KERN_DEBUG "MB-sigmadsp: monitor voice cw setting to %d\n", mon_cw);
-	adau1761_block_write(adau, mux_addr, &buf, 8);
+	adau1761_block_write(adau, mux_addr, buf, 8);
 
 	return 0;
 };
@@ -554,7 +554,7 @@ static int microburst_sigmadsp_compander_put(struct snd_kcontrol *kcontrol,
 	}
 
 	//printk (KERN_DEBUG "MB-sigmadsp: compander setting to %d\n", compander_enable);
-	adau1761_block_write(adau, mux_addr, &buf, 8);
+	adau1761_block_write(adau, mux_addr, buf, 8);
 
 	return 0;
 };
@@ -589,7 +589,7 @@ static int microburst_sigmadsp_tx_eq_put(struct snd_kcontrol *kcontrol,
 	}
 
 	//printk (KERN_DEBUG "MB-sigmadsp: tx_eq setting to %d\n", tx_eq_enable);
-	adau1761_block_write(adau, mux_addr, &buf, 8);
+	adau1761_block_write(adau, mux_addr, buf, 8);
 	return 0;
 };
 
@@ -623,7 +623,7 @@ static int microburst_sigmadsp_rx_eq_put(struct snd_kcontrol *kcontrol,
 	}
 
 	//printk (KERN_DEBUG "MB-sigmadsp: rx_eq setting to %d\n", rx_eq_enable);
-	adau1761_block_write(adau, mux_addr, &buf, 8);
+	adau1761_block_write(adau, mux_addr, buf, 8);
 	return 0;
 };
 
@@ -658,7 +658,7 @@ static int microburst_sigmadsp_meter_select_put(struct snd_kcontrol *kcontrol,
 	}
 
 	//printk (KERN_DEBUG "MB-sigmadsp: meter_select setting to %d\n", meter_select);
-	adau1761_block_write(adau, mux_addr, &buf, 8);
+	adau1761_block_write(adau, mux_addr, buf, 8);
 
 	return 0;
 };
@@ -693,7 +693,7 @@ static int microburst_sigmadsp_echo_cancel_put(struct snd_kcontrol *kcontrol,
 	}
 
 	//printk (KERN_DEBUG "MB-sigmadsp: echo_cancel setting to %d\n", echo_cancel);
-	adau1761_block_write(adau, mux_addr, &buf, 8);
+	adau1761_block_write(adau, mux_addr, buf, 8);
 
 	return 0;
 };
@@ -739,7 +739,7 @@ static int microburst_sigmadsp_input_source_put(struct snd_kcontrol *kcontrol,
 	};
 
 	//printk (KERN_DEBUG "MB-sigmadsp: input_source setting to %d\n", input_source);
-	adau1761_block_write(adau, mux_addr, &buf, 12);
+	adau1761_block_write(adau, mux_addr, buf, 12);
 
 	return 0;
 };
@@ -795,7 +795,7 @@ static int microburst_sigmadsp_sig_gen_select_put(struct snd_kcontrol *kcontrol,
 	};
 
 	//printk (KERN_DEBUG "MB-sigmadsp: sig_gen_select setting to %d\n", sig_gen_select);
-	adau1761_block_write(adau, mux_addr, &buf, 16);
+	adau1761_block_write(adau, mux_addr, buf, 16);
 
 	return 0;
 };
@@ -872,7 +872,7 @@ static int microburst_sigmadsp_cw_sidetone_put(struct snd_kcontrol *kcontrol,
 	buf[1] = (uint32_t)(sidetone_frequency * 699);
 	buf[2] = MICROBURST_SIGMADSP_FIXPT_ONE;
 	//printk (KERN_DEBUG "MB-sigmadsp: sidetone_frequency setting to %d\n", sidetone_frequency);
-	adau1761_block_write(adau, mux_addr, &buf, 12);
+	adau1761_block_write(adau, mux_addr, buf, 12);
 
 	return 0;
 };
@@ -956,8 +956,8 @@ static int microburst_sigmadsp_tx_eq_stage_0_put(struct snd_kcontrol *kcontrol,
 	//printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_0 boost level setting to %d\n", boost_level);
 //	adau1761_block_write(adau, stage_addr, &buf, 20);
 //	adau1761_block_write(adau, data_addr, &buf2, 12);
-	adau1761_safeload_write(adau, stage_addr, &buf, 20);
-	adau1761_block_write(adau, data_addr, &buf2, 12);
+	adau1761_safeload_write(adau, stage_addr, buf, 20);
+	adau1761_block_write(adau, data_addr, buf2, 12);
 
 
 	return 0;
@@ -998,8 +998,8 @@ static int microburst_sigmadsp_tx_eq_stage_1_put(struct snd_kcontrol *kcontrol,
 //	adau1761_block_write(adau, stage_addr, &buf, 20);
 //	adau1761_block_write(adau, data_addr, &buf2, 12);
 
-	adau1761_safeload_write(adau, stage_addr, &buf, 20);
-	adau1761_block_write(adau, data_addr, &buf2, 12);
+	adau1761_safeload_write(adau, stage_addr, buf, 20);
+	adau1761_block_write(adau, data_addr, buf2, 12);
 	return 0;
 };
 
@@ -1034,8 +1034,8 @@ static int microburst_sigmadsp_tx_eq_stage_2_put(struct snd_kcontrol *kcontrol,
 	buf2[i] = MICROBURST_SIGMADSP_TX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[i];
 	};
 	//printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_2 boost level setting to %d\n", boost_level);
-	adau1761_safeload_write(adau, stage_addr, &buf, 20);
-	adau1761_block_write(adau, data_addr, &buf2, 12);
+	adau1761_safeload_write(adau, stage_addr, buf, 20);
+	adau1761_block_write(adau, data_addr, buf2, 12);
 
 	return 0;
 };
@@ -1071,8 +1071,8 @@ static int microburst_sigmadsp_tx_eq_stage_3_put(struct snd_kcontrol *kcontrol,
 	buf2[i] = MICROBURST_SIGMADSP_TX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[i];
 	};
 	//printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_3 boost level setting to %d\n", boost_level);
-	adau1761_safeload_write(adau, stage_addr, &buf, 20);
-	adau1761_block_write(adau, data_addr, &buf2, 12);
+	adau1761_safeload_write(adau, stage_addr, buf, 20);
+	adau1761_block_write(adau, data_addr, buf2, 12);
 
 	return 0;
 };
@@ -1108,8 +1108,8 @@ static int microburst_sigmadsp_tx_eq_stage_4_put(struct snd_kcontrol *kcontrol,
 	buf2[i] = MICROBURST_SIGMADSP_TX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[i];
 	};
 	//printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_4 boost level setting to %d\n", boost_level);
-	adau1761_safeload_write(adau, stage_addr, &buf, 20);
-	adau1761_block_write(adau, data_addr, &buf2, 12);
+	adau1761_safeload_write(adau, stage_addr, buf, 20);
+	adau1761_block_write(adau, data_addr, buf2, 12);
 
 	return 0;
 };
@@ -1145,8 +1145,8 @@ static int microburst_sigmadsp_tx_eq_stage_5_put(struct snd_kcontrol *kcontrol,
 	buf2[i] = MICROBURST_SIGMADSP_TX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[i];
 	};
 	//printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_5 boost level setting to %d\n", boost_level);
-	adau1761_safeload_write(adau, stage_addr, &buf, 20);
-	adau1761_block_write(adau, data_addr, &buf2, 12);
+	adau1761_safeload_write(adau, stage_addr, buf, 20);
+	adau1761_block_write(adau, data_addr, buf2, 12);
 
 	return 0;
 };
@@ -1182,8 +1182,8 @@ static int microburst_sigmadsp_tx_eq_stage_6_put(struct snd_kcontrol *kcontrol,
 	buf2[i] = MICROBURST_SIGMADSP_TX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[i];
 	};
 	//printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_6 boost level setting to %d\n", boost_level);
-	adau1761_safeload_write(adau, stage_addr, &buf, 20);
-	adau1761_block_write(adau, data_addr, &buf2, 12);
+	adau1761_safeload_write(adau, stage_addr, buf, 20);
+	adau1761_block_write(adau, data_addr, buf2, 12);
 
 	return 0;
 };
@@ -1219,8 +1219,8 @@ static int microburst_sigmadsp_tx_eq_stage_7_put(struct snd_kcontrol *kcontrol,
 	buf2[i] = MICROBURST_SIGMADSP_TX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[i];
 	};
 	//printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_7 boost level setting to %d\n", boost_level);
-	adau1761_safeload_write(adau, stage_addr, &buf, 20);
-	adau1761_block_write(adau, data_addr, &buf2, 12);
+	adau1761_safeload_write(adau, stage_addr, buf, 20);
+	adau1761_block_write(adau, data_addr, buf2, 12);
 
 	return 0;
 };
@@ -1256,8 +1256,8 @@ static int microburst_sigmadsp_rx_eq_stage_0_put(struct snd_kcontrol *kcontrol,
 	buf2[i] = MICROBURST_SIGMADSP_RX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[i];
 	};
 	//printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_0 boost level setting to %d\n", boost_level);
-	adau1761_safeload_write(adau, stage_addr, &buf, 20);
-	adau1761_block_write(adau, data_addr, &buf2, 16);
+	adau1761_safeload_write(adau, stage_addr, buf, 20);
+	adau1761_block_write(adau, data_addr, buf2, 16);
 
 	return 0;
 };
@@ -1293,8 +1293,8 @@ static int microburst_sigmadsp_rx_eq_stage_1_put(struct snd_kcontrol *kcontrol,
 	buf2[i] = MICROBURST_SIGMADSP_RX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[i];
 	};
 	//printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_1 boost level setting to %d\n", boost_level);
-	adau1761_safeload_write(adau, stage_addr, &buf, 20);
-	adau1761_block_write(adau, data_addr, &buf2, 16);
+	adau1761_safeload_write(adau, stage_addr, buf, 20);
+	adau1761_block_write(adau, data_addr, buf2, 16);
 
 	return 0;
 };
@@ -1329,8 +1329,8 @@ static int microburst_sigmadsp_rx_eq_stage_2_put(struct snd_kcontrol *kcontrol,
 	buf2[i] = MICROBURST_SIGMADSP_RX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[i];
 	};
 	//printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_2 boost level setting to %d\n", boost_level);
-	adau1761_safeload_write(adau, stage_addr, &buf, 20);
-	adau1761_block_write(adau, data_addr, &buf2, 16);
+	adau1761_safeload_write(adau, stage_addr, buf, 20);
+	adau1761_block_write(adau, data_addr, buf2, 16);
 
 	return 0;
 };
@@ -1365,8 +1365,8 @@ static int microburst_sigmadsp_rx_eq_stage_3_put(struct snd_kcontrol *kcontrol,
 	buf2[i] = MICROBURST_SIGMADSP_RX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[i];
 	};
 	//printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_3 boost level setting to %d\n", boost_level);
-	adau1761_safeload_write(adau, stage_addr, &buf, 20);
-	adau1761_block_write(adau, data_addr, &buf2, 16);
+	adau1761_safeload_write(adau, stage_addr, buf, 20);
+	adau1761_block_write(adau, data_addr, buf2, 16);
 
 	return 0;
 };
@@ -1401,8 +1401,8 @@ static int microburst_sigmadsp_rx_eq_stage_4_put(struct snd_kcontrol *kcontrol,
 	buf2[i] = MICROBURST_SIGMADSP_RX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[i];
 	};
 	//printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_4 boost level setting to %d\n", boost_level);
-	adau1761_safeload_write(adau, stage_addr, &buf, 20);
-	adau1761_block_write(adau, data_addr, &buf2, 16);
+	adau1761_safeload_write(adau, stage_addr, buf, 20);
+	adau1761_block_write(adau, data_addr, buf2, 16);
 
 	return 0;
 };
@@ -1437,8 +1437,8 @@ static int microburst_sigmadsp_rx_eq_stage_5_put(struct snd_kcontrol *kcontrol,
 	buf2[i] = MICROBURST_SIGMADSP_RX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[i];
 	};
 	//printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_5 boost level setting to %d\n", boost_level);
-	adau1761_safeload_write(adau, stage_addr, &buf, 20);
-	adau1761_block_write(adau, data_addr, &buf2, 16);
+	adau1761_safeload_write(adau, stage_addr, buf, 20);
+	adau1761_block_write(adau, data_addr, buf2, 16);
 
 	return 0;
 };
@@ -1473,8 +1473,8 @@ static int microburst_sigmadsp_rx_eq_stage_6_put(struct snd_kcontrol *kcontrol,
 	buf2[i] = MICROBURST_SIGMADSP_RX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[i];
 	};
 	//printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_6 boost level setting to %d\n", boost_level);
-	adau1761_safeload_write(adau, stage_addr, &buf, 20);
-	adau1761_block_write(adau, data_addr, &buf2, 16);
+	adau1761_safeload_write(adau, stage_addr, buf, 20);
+	adau1761_block_write(adau, data_addr, buf2, 16);
 
 	return 0;
 };
@@ -1509,8 +1509,8 @@ static int microburst_sigmadsp_rx_eq_stage_7_put(struct snd_kcontrol *kcontrol,
 	buf2[i] = MICROBURST_SIGMADSP_RX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[i];
 	};
 	//printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_7 boost level setting to %d\n", boost_level);
-	adau1761_safeload_write(adau, stage_addr, &buf, 20);
-	adau1761_block_write(adau, data_addr, &buf2, 16);
+	adau1761_safeload_write(adau, stage_addr, buf, 20);
+	adau1761_block_write(adau, data_addr, buf2, 16);
 
 	return 0;
 };
@@ -1831,9 +1831,9 @@ static int adau1761_dejitter_fixup(struct snd_soc_dapm_widget *w,
 
 	/* After any power changes have been made the dejitter circuit
 	 * has to be reinitialized. */
-	snd_soc_write(codec, ADAU1761_DEJITTER, 0);
+        snd_soc_write(codec, ADAU1761_DEJITTER, 0);
 	if (!adau->master)
-		snd_soc_write(codec, ADAU1761_DEJITTER, 3);
+          snd_soc_write(codec, ADAU1761_DEJITTER, 3);
 
 	return 0;
 }
@@ -1858,7 +1858,7 @@ static const struct snd_soc_dapm_widget adau1x61_dapm_widgets[] = {
 
 	SND_SOC_DAPM_SUPPLY("SYSCLK", SND_SOC_NOPM, 0, 0, NULL, 0),
 
-	SND_SOC_DAPM_POST("Dejitter fixup", adau1761_dejitter_fixup),
+        //	SND_SOC_DAPM_POST("Dejitter fixup", adau1761_dejitter_fixup),
 
 	SND_SOC_DAPM_INPUT("LAUX"),
 	SND_SOC_DAPM_INPUT("RAUX"),
@@ -2246,6 +2246,8 @@ static int adau1761_probe(struct snd_soc_codec *codec)
 
 	switch (adau1761_get_lineout_mode(codec)) {
 	case ADAU1761_OUTPUT_MODE_LINE:
+		snd_soc_update_bits(codec, ADAU1761_PLAY_LINE_LEFT_VOL, 1, 0);
+		snd_soc_update_bits(codec, ADAU1761_PLAY_LINE_RIGHT_VOL, 1, 0);
 		break;
 	case ADAU1761_OUTPUT_MODE_HEADPHONE:
 		snd_soc_update_bits(codec, ADAU1761_PLAY_LINE_LEFT_VOL, 1, 1);
