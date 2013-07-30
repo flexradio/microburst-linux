@@ -1,9 +1,0 @@
-package/lib/lib/release/ti.syslink.ipc.rtos/package/package_ti.syslink.ipc.rtos.oe674: package/package_ti.syslink.ipc.rtos.c /opt/TI/xdctools_3_24_05_48/packages/xdc/std.h /opt/TI/C6000CGT7.2.7/include/stdarg.h /opt/TI/C6000CGT7.2.7/include/stddef.h /opt/TI/xdctools_3_24_05_48/packages/ti/targets/elf/std.h /opt/TI/xdctools_3_24_05_48/packages/ti/targets/select.h /opt/TI/xdctools_3_24_05_48/packages/ti/targets/std.h /opt/TI/C6000CGT7.2.7/include/stdint.h 
-package/package_ti.syslink.ipc.rtos.c:
-/opt/TI/xdctools_3_24_05_48/packages/xdc/std.h:
-/opt/TI/C6000CGT7.2.7/include/stdarg.h:
-/opt/TI/C6000CGT7.2.7/include/stddef.h:
-/opt/TI/xdctools_3_24_05_48/packages/ti/targets/elf/std.h:
-/opt/TI/xdctools_3_24_05_48/packages/ti/targets/select.h:
-/opt/TI/xdctools_3_24_05_48/packages/ti/targets/std.h:
-/opt/TI/C6000CGT7.2.7/include/stdint.h:

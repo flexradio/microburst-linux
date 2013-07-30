@@ -69,7 +69,7 @@
 /********************************************/
 
 static struct reg_default adau1761_reg_defaults[] = {
-	{ ADAU1761_DEJITTER,			0x03 },
+	{ ADAU1761_DEJITTER,			0x00 },
 	{ ADAU1761_DIGMIC_JACKDETECT,		0x00 },
 	{ ADAU1761_REC_MIXER_LEFT0,		0x00 },
 	{ ADAU1761_REC_MIXER_LEFT1,		0x00 },
@@ -103,7 +103,7 @@ static struct reg_default adau1761_reg_defaults[] = {
 	{ ADAU17X1_MICBIAS,			0x00 },
 	{ ADAU17X1_SERIAL_PORT0,		0x00 },
 	{ ADAU17X1_SERIAL_PORT1,		0x00 },
-	{ ADAU17X1_CONVERTER0,			0x04 },
+	{ ADAU17X1_CONVERTER0,			0x00 },
 	{ ADAU17X1_CONVERTER1,			0x00 },
 	{ ADAU17X1_LEFT_INPUT_DIGITAL_VOL,	0x00 },
 	{ ADAU17X1_RIGHT_INPUT_DIGITAL_VOL,	0x00 },
@@ -115,12 +115,12 @@ static struct reg_default adau1761_reg_defaults[] = {
 	{ ADAU17X1_SERIAL_PORT_PAD,		0x00 },
 	{ ADAU17X1_CONTROL_PORT_PAD0,		0x00 },
 	{ ADAU17X1_CONTROL_PORT_PAD1,		0x00 },
-	{ ADAU17X1_DSP_SAMPLING_RATE,		0x01 },
-	{ ADAU17X1_SERIAL_INPUT_ROUTE,		0x04 },
-	{ ADAU17X1_SERIAL_OUTPUT_ROUTE,		0x04 },
+	{ ADAU17X1_DSP_SAMPLING_RATE,		0x03 },
+	{ ADAU17X1_SERIAL_INPUT_ROUTE,		0x00 },
+	{ ADAU17X1_SERIAL_OUTPUT_ROUTE,		0x00 },
 	{ ADAU17X1_DSP_ENABLE,			0x00 },
 	{ ADAU17X1_DSP_RUN,			0x00 },
-	{ ADAU17X1_SERIAL_SAMPLING_RATE,	0x00 },
+	{ ADAU17X1_SERIAL_SAMPLING_RATE,	0x04 },
 };
 
 /* Lookup tables for SigmaDSP Firmware parameters */
@@ -154,8 +154,13 @@ uint32_t MICROBURST_SIGMADSP_FIXPT_LEVEL_LOOKUP_32_STEP_MINUS_96_TO_ZERO[32] = {
 
 /* TX_FILTER Low Pass Parameters */
 
+//uint32_t MICROBURST_SIGMADSP_FIXPT_TX_LPF_10000HZ[8] = { 0x0068464F, 0x00D08C9F, 0x0068464F, 0xFFA87724, 0xFF319B32,
+                                                         //		0x000002B8,
+                                                         //		0x0000028C,
+                                                         //		0x00000001
+                                                         //		};
 uint32_t MICROBURST_SIGMADSP_FIXPT_TX_LPF_10000HZ[8] = { 0x0068464F, 0x00D08C9F, 0x0068464F, 0xFFA87724, 0xFF319B32,
-		0x000002B8, 0x0000028C, 0x00000001 };
+		0x0000028C, 0x000002B8, 0x00000001 };
 uint32_t MICROBURST_SIGMADSP_FIXPT_TX_LPF_8000HZ[8] = { 0x0053954A, 0x00A72A95, 0x0053954A, 0xFFC5E3AA, 0xFF67E819,
 		0x000002B8, 0x0000028C, 0x00000001 };
 uint32_t MICROBURST_SIGMADSP_FIXPT_TX_LPF_4000HZ[8] = { 0x00283B63, 0x005076C5, 0x00283B63, 0xFFE4EBF3, 0xFFF84977,
@@ -171,8 +176,12 @@ uint32_t MICROBURST_SIGMADSP_FIXPT_TX_LPF_2000HZ[8] = { 0x001011B5, 0x0020236A, 
 
 uint32_t MICROBURST_SIGMADSP_FIXPT_TX_HPF_60HZ[8] = { 0x007DD334, 0xFF045997, 0x007DD334, 0xFF816E67, 0x00FE8F2C,
 		0x000002C2, 0x00000294, 0x00000001 };
+//uint32_t MICROBURST_SIGMADSP_FIXPT_TX_HPF_100HZ[8] = { 0x007D5A87, 0xFF054AF2, 0x007D5A87, 0xFF826068, 0x00FD98E1,
+//		0x000002C2, 0x00000294, 0x00000001 };
 uint32_t MICROBURST_SIGMADSP_FIXPT_TX_HPF_100HZ[8] = { 0x007D5A87, 0xFF054AF2, 0x007D5A87, 0xFF826068, 0x00FD98E1,
-		0x000002C2, 0x00000294, 0x00000001 };
+		0x00000294, 0x000002C2, 0x00000001 };
+uint32_t MICROBURST_SIGMADSP_FIXPT_TX_HPF_150HZ[8] = { 0x007CC431, 0xFF06779E, 0x007CC431, 0xFF838C66, 0x00FC6490,
+                0x00000294, 0x000002C2, 0x00000001 };
 uint32_t MICROBURST_SIGMADSP_FIXPT_TX_HPF_200HZ[8] = { 0x007C2E69, 0xFF07A32D, 0x007C2E69, 0xFF84B5A3, 0x00FB2FBF,
 		0x000002C2, 0x00000294, 0x00000001 };
 uint32_t MICROBURST_SIGMADSP_FIXPT_TX_HPF_400HZ[8] = { 0x0079DCAC, 0xFF0C46A7, 0x0079DCAC, 0xFF893FDD, 0x00F65785,
@@ -375,19 +384,19 @@ static int adau1761_safeload_write(struct adau *adau, uint32_t addr, uint32_t *d
           int ret;
           uint32_t bytes_to_write = size/4;
           uint32_t data_swapped[(size/4)];
-          printk (KERN_DEBUG "MB-sigmadsp: register safeload write addr %d size %d\n", addr, size);
+          //printk (KERN_DEBUG "MB-sigmadsp: register safeload write addr %d size %d\n", addr, size);
 
           if (size/4 > 5)
                     return -EINVAL;
           for (i = 0; i < size/4; i++)
           {
-              printk (KERN_DEBUG "MB-sigmadsp: %d: %08X\n", addr+i, data[i]);
+              //printk (KERN_DEBUG "MB-sigmadsp: %d: %08X\n", addr+i, data[i]);
               data_swapped[i] = htonl(data[i]);
           }
 
           for (i = 0; i < size/4; i++)
           {
-          	printk (KERN_DEBUG "MB-sigmadsp: safeload regmap write addr %d data %08X\n", ADAU1761_SAFELOAD_DATA(i), data_swapped[i]);
+          	//printk (KERN_DEBUG "MB-sigmadsp: safeload regmap write addr %d data %08X\n", ADAU1761_SAFELOAD_DATA(i), data_swapped[i]);
           		ret = regmap_raw_write(adau->regmap, ADAU1761_SAFELOAD_DATA(i), &data_swapped[i], 4);
           	if (ret)
                     	return ret;
@@ -396,11 +405,11 @@ static int adau1761_safeload_write(struct adau *adau, uint32_t addr, uint32_t *d
 //          addr = htonl(addr - 1);
           addr = addr - 0x0001;
           addr = htonl(addr);
-          printk (KERN_DEBUG "MB-sigmadsp: safeload regmap write addr %08X data %08X\n", ADAU1761_SAFELOAD_ADDR, addr);
+          //printk (KERN_DEBUG "MB-sigmadsp: safeload regmap write addr %08X data %08X\n", ADAU1761_SAFELOAD_ADDR, addr);
           ret = regmap_raw_write(adau->regmap, ADAU1761_SAFELOAD_ADDR, &addr, 4);
           if (ret)
                     return ret;
-          printk (KERN_DEBUG "MB-sigmadsp: safeload regmap write addr %08X data %08X\n", ADAU1761_SAFELOAD_SIZE, size/4);
+          //printk (KERN_DEBUG "MB-sigmadsp: safeload regmap write addr %08X data %08X\n", ADAU1761_SAFELOAD_SIZE, size/4);
           bytes_to_write = htonl(bytes_to_write);
           ret = regmap_raw_write(adau->regmap, ADAU1761_SAFELOAD_SIZE, &bytes_to_write , 4);
           if (ret)
@@ -420,13 +429,13 @@ static int adau1761_block_write(struct adau *adau, uint32_t addr, uint32_t *data
           int ret;
           unsigned int i;
           uint32_t data_swapped[(size/4)];
-          printk (KERN_DEBUG "MB-sigmadsp: register block write addr %d size %d\n", addr, size);
+          //printk (KERN_DEBUG "MB-sigmadsp: register block write addr %d size %d\n", addr, size);
           for (i = 0; i < size/4; i++)
           {
-        	  printk (KERN_DEBUG "MB-sigmadsp: %d: %08X\n", addr+i, data[i]);
+        	  //printk (KERN_DEBUG "MB-sigmadsp: %d: %08X\n", addr+i, data[i]);
 
         	  data_swapped[i] = htonl(data[i]);
-        	  printk (KERN_DEBUG "MB-sigmadsp: blockwrite regmap write addr %08X data %08X\n", addr, data_swapped[i]);
+        	  //printk (KERN_DEBUG "MB-sigmadsp: blockwrite regmap write addr %08X data %08X\n", addr, data_swapped[i]);
           }
 
           ret = regmap_raw_write(adau->regmap, addr, data_swapped, size);
@@ -452,7 +461,7 @@ static const char * const microburst_sigmadsp_monitor_voice_cw_text[] = {
 static int microburst_sigmadsp_cw_key_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-codecdsp: microburst_sigmadsp_cw_key_get called\n");
+	//printk (KERN_DEBUG "MB-codecdsp: microburst_sigmadsp_cw_key_get called\n");
 	ucontrol->value.integer.value[0] = kcontrol->private_value;
 	return 0;
 };
@@ -468,13 +477,13 @@ static int microburst_sigmadsp_cw_key_put(struct snd_kcontrol *kcontrol,
 	uint32_t key_up = MICROBURST_SIGMADSP_FIXPT_ZERO;
 	key_state = ucontrol->value.integer.value[0];
 
-	printk (KERN_DEBUG "MB-codecdsp: microburst_sigmadsp_cw_key_put called.  Key state: %d\n", key_state);
+	//printk (KERN_DEBUG "MB-codecdsp: microburst_sigmadsp_cw_key_put called.  Key state: %d\n", key_state);
 	if (key_state) {
-		//printk ("MB-codecdsp: setting key down state\n");
+		////printk ("MB-codecdsp: setting key down state\n");
 		adau1761_block_write(adau, cw_key_addr, &key_down ,sizeof(key_down));
 	}
 	else  {
-		//printk ("MB-codecdsp: setting key up state\n");
+		////printk ("MB-codecdsp: setting key up state\n");
 		adau1761_block_write(adau, cw_key_addr, &key_up, sizeof(key_up));
 	}
 	return 0;
@@ -483,7 +492,7 @@ static int microburst_sigmadsp_cw_key_put(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_monitor_voice_cw_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: monitor_voice_cw_get called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: monitor_voice_cw_get called\n");
 	ucontrol->value.integer.value[0] = kcontrol->private_value;
 	return 0;
 };
@@ -491,7 +500,7 @@ static int microburst_sigmadsp_monitor_voice_cw_get(struct snd_kcontrol *kcontro
 static int microburst_sigmadsp_monitor_voice_cw_put(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: monitor_voice_cw_put called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: monitor_voice_cw_put called\n");
 	uint32_t buf[2];
 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
 	struct adau *adau = snd_soc_codec_get_drvdata(codec);
@@ -509,8 +518,8 @@ static int microburst_sigmadsp_monitor_voice_cw_put(struct snd_kcontrol *kcontro
 		buf[1] = MICROBURST_SIGMADSP_FIXPT_ZERO;
 	}
 
-	printk (KERN_DEBUG "MB-sigmadsp: monitor voice cw setting to %d\n", mon_cw);
-	adau1761_block_write(adau, mux_addr, &buf, 8);
+	//printk (KERN_DEBUG "MB-sigmadsp: monitor voice cw setting to %d\n", mon_cw);
+	adau1761_block_write(adau, mux_addr, buf, 8);
 
 	return 0;
 };
@@ -518,7 +527,7 @@ static int microburst_sigmadsp_monitor_voice_cw_put(struct snd_kcontrol *kcontro
 static int microburst_sigmadsp_compander_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: compander_get called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: compander_get called\n");
 	ucontrol->value.integer.value[0] = kcontrol->private_value;
 	return 0;
 };
@@ -526,7 +535,7 @@ static int microburst_sigmadsp_compander_get(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_compander_put(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: compander_put called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: compander_put called\n");
 	uint32_t buf[2];
 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
 	struct adau *adau = snd_soc_codec_get_drvdata(codec);
@@ -544,8 +553,8 @@ static int microburst_sigmadsp_compander_put(struct snd_kcontrol *kcontrol,
 		buf[1] = MICROBURST_SIGMADSP_FIXPT_ZERO;
 	}
 
-	printk (KERN_DEBUG "MB-sigmadsp: compander setting to %d\n", compander_enable);
-	adau1761_block_write(adau, mux_addr, &buf, 8);
+	//printk (KERN_DEBUG "MB-sigmadsp: compander setting to %d\n", compander_enable);
+	adau1761_block_write(adau, mux_addr, buf, 8);
 
 	return 0;
 };
@@ -553,7 +562,7 @@ static int microburst_sigmadsp_compander_put(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_tx_eq_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_get called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: tx_eq_get called\n");
 	ucontrol->value.integer.value[0] = kcontrol->private_value;
 	return 0;
 };
@@ -561,7 +570,7 @@ static int microburst_sigmadsp_tx_eq_get(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_tx_eq_put(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_put called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: tx_eq_put called\n");
 	uint32_t buf[2];
 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
 	struct adau *adau = snd_soc_codec_get_drvdata(codec);
@@ -579,15 +588,15 @@ static int microburst_sigmadsp_tx_eq_put(struct snd_kcontrol *kcontrol,
 		buf[1] = MICROBURST_SIGMADSP_FIXPT_ZERO;
 	}
 
-	printk (KERN_DEBUG "MB-sigmadsp: tx_eq setting to %d\n", tx_eq_enable);
-	adau1761_block_write(adau, mux_addr, &buf, 8);
+	//printk (KERN_DEBUG "MB-sigmadsp: tx_eq setting to %d\n", tx_eq_enable);
+	adau1761_block_write(adau, mux_addr, buf, 8);
 	return 0;
 };
 
 static int microburst_sigmadsp_rx_eq_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_get called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: rx_eq_get called\n");
 	ucontrol->value.integer.value[0] = kcontrol->private_value;
 	return 0;
 };
@@ -595,7 +604,7 @@ static int microburst_sigmadsp_rx_eq_get(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_rx_eq_put(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_put called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: rx_eq_put called\n");
 	uint32_t buf[2];
 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
 	struct adau *adau = snd_soc_codec_get_drvdata(codec);
@@ -613,15 +622,15 @@ static int microburst_sigmadsp_rx_eq_put(struct snd_kcontrol *kcontrol,
 		buf[1] = MICROBURST_SIGMADSP_FIXPT_ZERO;
 	}
 
-	printk (KERN_DEBUG "MB-sigmadsp: rx_eq setting to %d\n", rx_eq_enable);
-	adau1761_block_write(adau, mux_addr, &buf, 8);
+	//printk (KERN_DEBUG "MB-sigmadsp: rx_eq setting to %d\n", rx_eq_enable);
+	adau1761_block_write(adau, mux_addr, buf, 8);
 	return 0;
 };
 
 static int microburst_sigmadsp_meter_select_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: meter_select_get called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: meter_select_get called\n");
 
 	ucontrol->value.integer.value[0] = kcontrol->private_value;
 	return 0;
@@ -630,7 +639,7 @@ static int microburst_sigmadsp_meter_select_get(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_meter_select_put(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: meter_select_put called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: meter_select_put called\n");
 	uint32_t buf[2];
 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
 	struct adau *adau = snd_soc_codec_get_drvdata(codec);
@@ -648,8 +657,8 @@ static int microburst_sigmadsp_meter_select_put(struct snd_kcontrol *kcontrol,
 		buf[1] = MICROBURST_SIGMADSP_FIXPT_ZERO;
 	}
 
-	printk (KERN_DEBUG "MB-sigmadsp: meter_select setting to %d\n", meter_select);
-	adau1761_block_write(adau, mux_addr, &buf, 8);
+	//printk (KERN_DEBUG "MB-sigmadsp: meter_select setting to %d\n", meter_select);
+	adau1761_block_write(adau, mux_addr, buf, 8);
 
 	return 0;
 };
@@ -657,7 +666,7 @@ static int microburst_sigmadsp_meter_select_put(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_echo_cancel_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: echo_cancel_get called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: echo_cancel_get called\n");
 	ucontrol->value.integer.value[0] = kcontrol->private_value;
 	return 0;
 };
@@ -665,7 +674,7 @@ static int microburst_sigmadsp_echo_cancel_get(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_echo_cancel_put(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: echo_cancel_put called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: echo_cancel_put called\n");
 	uint32_t buf[2];
 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
 	struct adau *adau = snd_soc_codec_get_drvdata(codec);
@@ -683,8 +692,8 @@ static int microburst_sigmadsp_echo_cancel_put(struct snd_kcontrol *kcontrol,
 		buf[1] = MICROBURST_SIGMADSP_FIXPT_ZERO;
 	}
 
-	printk (KERN_DEBUG "MB-sigmadsp: echo_cancel setting to %d\n", echo_cancel);
-	adau1761_block_write(adau, mux_addr, &buf, 8);
+	//printk (KERN_DEBUG "MB-sigmadsp: echo_cancel setting to %d\n", echo_cancel);
+	adau1761_block_write(adau, mux_addr, buf, 8);
 
 	return 0;
 };
@@ -692,7 +701,7 @@ static int microburst_sigmadsp_echo_cancel_put(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_input_source_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: input_source_get called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: input_source_get called\n");
 	ucontrol->value.integer.value[0] = kcontrol->private_value;
 	return 0;
 };
@@ -700,7 +709,7 @@ static int microburst_sigmadsp_input_source_get(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_input_source_put(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: input_source_put called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: input_source_put called\n");
 	uint32_t buf[3];
 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
 	struct adau *adau = snd_soc_codec_get_drvdata(codec);
@@ -729,8 +738,8 @@ static int microburst_sigmadsp_input_source_put(struct snd_kcontrol *kcontrol,
 	break;
 	};
 
-	printk (KERN_DEBUG "MB-sigmadsp: input_source setting to %d\n", input_source);
-	adau1761_block_write(adau, mux_addr, &buf, 12);
+	//printk (KERN_DEBUG "MB-sigmadsp: input_source setting to %d\n", input_source);
+	adau1761_block_write(adau, mux_addr, buf, 12);
 
 	return 0;
 };
@@ -738,7 +747,7 @@ static int microburst_sigmadsp_input_source_put(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_sig_gen_select_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: sig_gen_select_get called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: sig_gen_select_get called\n");
 	ucontrol->value.integer.value[0] = kcontrol->private_value;
 	return 0;
 };
@@ -746,7 +755,7 @@ static int microburst_sigmadsp_sig_gen_select_get(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_sig_gen_select_put(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: sig_gen_select_put called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: sig_gen_select_put called\n");
 	uint32_t buf[4];
 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
 	struct adau *adau = snd_soc_codec_get_drvdata(codec);
@@ -785,8 +794,8 @@ static int microburst_sigmadsp_sig_gen_select_put(struct snd_kcontrol *kcontrol,
 	break;
 	};
 
-	printk (KERN_DEBUG "MB-sigmadsp: sig_gen_select setting to %d\n", sig_gen_select);
-	adau1761_block_write(adau, mux_addr, &buf, 16);
+	//printk (KERN_DEBUG "MB-sigmadsp: sig_gen_select setting to %d\n", sig_gen_select);
+	adau1761_block_write(adau, mux_addr, buf, 16);
 
 	return 0;
 };
@@ -794,7 +803,7 @@ static int microburst_sigmadsp_sig_gen_select_put(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_monitor_level_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: monitor_level_get called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: monitor_level_get called\n");
 	ucontrol->value.integer.value[0] = kcontrol->private_value;
 	return 0;
 };
@@ -802,7 +811,7 @@ static int microburst_sigmadsp_monitor_level_get(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_monitor_level_put(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: monitor_level_put called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: monitor_level_put called\n");
 	uint32_t buf;
 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
 	struct adau *adau = snd_soc_codec_get_drvdata(codec);
@@ -810,7 +819,7 @@ static int microburst_sigmadsp_monitor_level_put(struct snd_kcontrol *kcontrol,
 	uint32_t mux_addr = MOD_MONITOR_LEVEL_GAIN1940ALGNS2_ADDR;
 	monitor_level = ucontrol->value.integer.value[0];
 	buf = MICROBURST_SIGMADSP_FIXPT_LEVEL_LOOKUP_64_STEP_MINUS_96_TO_ZERO[monitor_level];
-	printk (KERN_DEBUG "MB-sigmadsp: monitor_level setting to %d\n", monitor_level);
+	//printk (KERN_DEBUG "MB-sigmadsp: monitor_level setting to %d\n", monitor_level);
 	adau1761_block_write(adau, mux_addr, &buf, 4);
 
 	return 0;
@@ -819,7 +828,7 @@ static int microburst_sigmadsp_monitor_level_put(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_sig_gen_level_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: sig_gen_level_get called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: sig_gen_level_get called\n");
 	ucontrol->value.integer.value[0] = kcontrol->private_value;
 	return 0;
 };
@@ -827,7 +836,7 @@ static int microburst_sigmadsp_sig_gen_level_get(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_sig_gen_level_put(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: sig_gen_level_put called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: sig_gen_level_put called\n");
 	uint32_t buf;
 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
 	struct adau *adau = snd_soc_codec_get_drvdata(codec);
@@ -835,7 +844,7 @@ static int microburst_sigmadsp_sig_gen_level_put(struct snd_kcontrol *kcontrol,
 	uint32_t mux_addr = MOD_SIGGEN_SIG_GEN_LEVEL_GAIN1940ALGNS3_ADDR;
 	sig_gen_level = ucontrol->value.integer.value[0];
 	buf = MICROBURST_SIGMADSP_FIXPT_LEVEL_LOOKUP_64_STEP_MINUS_96_TO_ZERO[sig_gen_level];
-	printk (KERN_DEBUG "MB-sigmadsp: sig_gen_level setting to %d\n", sig_gen_level);
+	//printk (KERN_DEBUG "MB-sigmadsp: sig_gen_level setting to %d\n", sig_gen_level);
 	adau1761_block_write(adau, mux_addr, &buf, 4);
 
 	return 0;
@@ -844,7 +853,7 @@ static int microburst_sigmadsp_sig_gen_level_put(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_cw_sidetone_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: cw_sidetone_get called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: cw_sidetone_get called\n");
 	ucontrol->value.integer.value[0] = kcontrol->private_value;
 	return 0;
 };
@@ -852,7 +861,7 @@ static int microburst_sigmadsp_cw_sidetone_get(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_cw_sidetone_put(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: cw_sidetone_put called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: cw_sidetone_put called\n");
 	uint32_t buf[3];
 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
 	struct adau *adau = snd_soc_codec_get_drvdata(codec);
@@ -862,8 +871,8 @@ static int microburst_sigmadsp_cw_sidetone_put(struct snd_kcontrol *kcontrol,
 	buf[0] = 0x000000FF;
 	buf[1] = (uint32_t)(sidetone_frequency * 699);
 	buf[2] = MICROBURST_SIGMADSP_FIXPT_ONE;
-	printk (KERN_DEBUG "MB-sigmadsp: sidetone_frequency setting to %d\n", sidetone_frequency);
-	adau1761_block_write(adau, mux_addr, &buf, 12);
+	//printk (KERN_DEBUG "MB-sigmadsp: sidetone_frequency setting to %d\n", sidetone_frequency);
+	adau1761_block_write(adau, mux_addr, buf, 12);
 
 	return 0;
 };
@@ -871,7 +880,7 @@ static int microburst_sigmadsp_cw_sidetone_put(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_tx_filter_bw_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: tx_filter_bw_get called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: tx_filter_bw_get called\n");
 	ucontrol->value.integer.value[0] = kcontrol->private_value;
 	return 0;
 };
@@ -879,7 +888,7 @@ static int microburst_sigmadsp_tx_filter_bw_get(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_tx_filter_bw_put(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: tx_filter_bw_put called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: tx_filter_bw_put called\n");
 	uint32_t *buf_lp;
 	uint32_t *buf_hp;
 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
@@ -907,7 +916,7 @@ static int microburst_sigmadsp_tx_filter_bw_put(struct snd_kcontrol *kcontrol,
 	break;
 	};
 
-	printk (KERN_DEBUG "MB-sigmadsp: tx_filter_bw setting to %d\n", bandwidth_select);
+	//printk (KERN_DEBUG "MB-sigmadsp: tx_filter_bw setting to %d\n", bandwidth_select);
 	adau1761_block_write(adau, lp_addr, buf_lp, 32);
 	adau1761_block_write(adau, hp_addr, buf_hp, 32);
 
@@ -917,7 +926,7 @@ static int microburst_sigmadsp_tx_filter_bw_put(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_tx_eq_stage_0_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_0_get called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_0_get called\n");
 	ucontrol->value.integer.value[0] = kcontrol->private_value;
 	return 0;
 };
@@ -925,7 +934,7 @@ static int microburst_sigmadsp_tx_eq_stage_0_get(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_tx_eq_stage_0_put(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_0_put called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_0_put called\n");
 	uint32_t buf[5];
 	uint32_t buf2[3];
 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
@@ -938,17 +947,17 @@ static int microburst_sigmadsp_tx_eq_stage_0_put(struct snd_kcontrol *kcontrol,
 	for (i = 0; i < 5; i++)
 	{
 	buf[i] = MICROBURST_SIGMADSP_EQ_PANEL_STAGE_0_FIXPT_BOOST[boost_level][i];
-	//printk (KERN_DEBUG "MB-sigmadsp: tx eq stage data %d %d %x\n", boost_level, i, buf[i]);
+	////printk (KERN_DEBUG "MB-sigmadsp: tx eq stage data %d %d %x\n", boost_level, i, buf[i]);
 	};
 	for (i = 0; i < 3; i++)
 	{
 	buf2[i] = MICROBURST_SIGMADSP_TX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[i];
 	};
-	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_0 boost level setting to %d\n", boost_level);
+	//printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_0 boost level setting to %d\n", boost_level);
 //	adau1761_block_write(adau, stage_addr, &buf, 20);
 //	adau1761_block_write(adau, data_addr, &buf2, 12);
-	adau1761_safeload_write(adau, stage_addr, &buf, 20);
-	adau1761_block_write(adau, data_addr, &buf2, 12);
+	adau1761_safeload_write(adau, stage_addr, buf, 20);
+	adau1761_block_write(adau, data_addr, buf2, 12);
 
 
 	return 0;
@@ -957,7 +966,7 @@ static int microburst_sigmadsp_tx_eq_stage_0_put(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_tx_eq_stage_1_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_1_get called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_1_get called\n");
 	ucontrol->value.integer.value[0] = kcontrol->private_value;
 	return 0;
 };
@@ -965,7 +974,7 @@ static int microburst_sigmadsp_tx_eq_stage_1_get(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_tx_eq_stage_1_put(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_1_put called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_1_put called\n");
 
         uint32_t buf[5];
 	uint32_t buf2[3];
@@ -979,25 +988,25 @@ static int microburst_sigmadsp_tx_eq_stage_1_put(struct snd_kcontrol *kcontrol,
 	for (i = 0; i < 5; i++)
 	{
 	buf[i] = MICROBURST_SIGMADSP_EQ_PANEL_STAGE_1_FIXPT_BOOST[boost_level][i];
-	//printk (KERN_DEBUG "MB-sigmadsp: tx eq stage data %d %d %x\n", boost_level, i, buf[i]);
+	////printk (KERN_DEBUG "MB-sigmadsp: tx eq stage data %d %d %x\n", boost_level, i, buf[i]);
 	};
 	for (i = 0; i < 3; i++)
 	{
 	buf2[i] = MICROBURST_SIGMADSP_TX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[i];
 	};
-	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_1 boost level setting to %d\n", boost_level);
+	//printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_1 boost level setting to %d\n", boost_level);
 //	adau1761_block_write(adau, stage_addr, &buf, 20);
 //	adau1761_block_write(adau, data_addr, &buf2, 12);
 
-	adau1761_safeload_write(adau, stage_addr, &buf, 20);
-	adau1761_block_write(adau, data_addr, &buf2, 12);
+	adau1761_safeload_write(adau, stage_addr, buf, 20);
+	adau1761_block_write(adau, data_addr, buf2, 12);
 	return 0;
 };
 
 static int microburst_sigmadsp_tx_eq_stage_2_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_2_get called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_2_get called\n");
 	ucontrol->value.integer.value[0] = kcontrol->private_value;
 	return 0;
 };
@@ -1005,7 +1014,7 @@ static int microburst_sigmadsp_tx_eq_stage_2_get(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_tx_eq_stage_2_put(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_2_put called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_2_put called\n");
 	uint32_t buf[5];
 	uint32_t buf2[3];
 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
@@ -1018,15 +1027,15 @@ static int microburst_sigmadsp_tx_eq_stage_2_put(struct snd_kcontrol *kcontrol,
 	for (i = 0; i < 5; i++)
 	{
 	buf[i] = MICROBURST_SIGMADSP_EQ_PANEL_STAGE_2_FIXPT_BOOST[boost_level][i];
-	//printk (KERN_DEBUG "MB-sigmadsp: tx eq stage data %d %d %x\n", boost_level, i, buf[i]);
+	////printk (KERN_DEBUG "MB-sigmadsp: tx eq stage data %d %d %x\n", boost_level, i, buf[i]);
 	};
 	for (i = 0; i < 3; i++)
 	{
 	buf2[i] = MICROBURST_SIGMADSP_TX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[i];
 	};
-	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_2 boost level setting to %d\n", boost_level);
-	adau1761_safeload_write(adau, stage_addr, &buf, 20);
-	adau1761_block_write(adau, data_addr, &buf2, 12);
+	//printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_2 boost level setting to %d\n", boost_level);
+	adau1761_safeload_write(adau, stage_addr, buf, 20);
+	adau1761_block_write(adau, data_addr, buf2, 12);
 
 	return 0;
 };
@@ -1034,7 +1043,7 @@ static int microburst_sigmadsp_tx_eq_stage_2_put(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_tx_eq_stage_3_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_3_get called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_3_get called\n");
 	ucontrol->value.integer.value[0] = kcontrol->private_value;
 	return 0;
 };
@@ -1042,7 +1051,7 @@ static int microburst_sigmadsp_tx_eq_stage_3_get(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_tx_eq_stage_3_put(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_3_put called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_3_put called\n");
 	uint32_t buf[5];
 	uint32_t buf2[3];
 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
@@ -1055,15 +1064,15 @@ static int microburst_sigmadsp_tx_eq_stage_3_put(struct snd_kcontrol *kcontrol,
 	for (i = 0; i < 5; i++)
 	{
 	buf[i] = MICROBURST_SIGMADSP_EQ_PANEL_STAGE_3_FIXPT_BOOST[boost_level][i];
-	//printk (KERN_DEBUG "MB-sigmadsp: tx eq stage data %d %d %x\n", boost_level, i, buf[i]);
+	////printk (KERN_DEBUG "MB-sigmadsp: tx eq stage data %d %d %x\n", boost_level, i, buf[i]);
 	};
 	for (i = 0; i < 3; i++)
 	{
 	buf2[i] = MICROBURST_SIGMADSP_TX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[i];
 	};
-	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_3 boost level setting to %d\n", boost_level);
-	adau1761_safeload_write(adau, stage_addr, &buf, 20);
-	adau1761_block_write(adau, data_addr, &buf2, 12);
+	//printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_3 boost level setting to %d\n", boost_level);
+	adau1761_safeload_write(adau, stage_addr, buf, 20);
+	adau1761_block_write(adau, data_addr, buf2, 12);
 
 	return 0;
 };
@@ -1071,7 +1080,7 @@ static int microburst_sigmadsp_tx_eq_stage_3_put(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_tx_eq_stage_4_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_4_get called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_4_get called\n");
 	ucontrol->value.integer.value[0] = kcontrol->private_value;
 	return 0;
 };
@@ -1079,7 +1088,7 @@ static int microburst_sigmadsp_tx_eq_stage_4_get(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_tx_eq_stage_4_put(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_4_put called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_4_put called\n");
 	uint32_t buf[5];
 	uint32_t buf2[3];
 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
@@ -1092,15 +1101,15 @@ static int microburst_sigmadsp_tx_eq_stage_4_put(struct snd_kcontrol *kcontrol,
 	for (i = 0; i < 5; i++)
 	{
 	buf[i] = MICROBURST_SIGMADSP_EQ_PANEL_STAGE_4_FIXPT_BOOST[boost_level][i];
-	//printk (KERN_DEBUG "MB-sigmadsp: tx eq stage data %d %d %x\n", boost_level, i, buf[i]);
+	////printk (KERN_DEBUG "MB-sigmadsp: tx eq stage data %d %d %x\n", boost_level, i, buf[i]);
 	};
 	for (i = 0; i < 3; i++)
 	{
 	buf2[i] = MICROBURST_SIGMADSP_TX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[i];
 	};
-	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_4 boost level setting to %d\n", boost_level);
-	adau1761_safeload_write(adau, stage_addr, &buf, 20);
-	adau1761_block_write(adau, data_addr, &buf2, 12);
+	//printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_4 boost level setting to %d\n", boost_level);
+	adau1761_safeload_write(adau, stage_addr, buf, 20);
+	adau1761_block_write(adau, data_addr, buf2, 12);
 
 	return 0;
 };
@@ -1108,7 +1117,7 @@ static int microburst_sigmadsp_tx_eq_stage_4_put(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_tx_eq_stage_5_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_5_get called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_5_get called\n");
 	ucontrol->value.integer.value[0] = kcontrol->private_value;
 	return 0;
 };
@@ -1116,7 +1125,7 @@ static int microburst_sigmadsp_tx_eq_stage_5_get(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_tx_eq_stage_5_put(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_5_put called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_5_put called\n");
 	uint32_t buf[5];
 	uint32_t buf2[3];
 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
@@ -1129,15 +1138,15 @@ static int microburst_sigmadsp_tx_eq_stage_5_put(struct snd_kcontrol *kcontrol,
 	for (i = 0; i < 5; i++)
 	{
 	buf[i] = MICROBURST_SIGMADSP_EQ_PANEL_STAGE_5_FIXPT_BOOST[boost_level][i];
-	//printk (KERN_DEBUG "MB-sigmadsp: tx eq stage data %d %d %x\n", boost_level, i, buf[i]);
+	////printk (KERN_DEBUG "MB-sigmadsp: tx eq stage data %d %d %x\n", boost_level, i, buf[i]);
 	};
 	for (i = 0; i < 3; i++)
 	{
 	buf2[i] = MICROBURST_SIGMADSP_TX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[i];
 	};
-	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_5 boost level setting to %d\n", boost_level);
-	adau1761_safeload_write(adau, stage_addr, &buf, 20);
-	adau1761_block_write(adau, data_addr, &buf2, 12);
+	//printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_5 boost level setting to %d\n", boost_level);
+	adau1761_safeload_write(adau, stage_addr, buf, 20);
+	adau1761_block_write(adau, data_addr, buf2, 12);
 
 	return 0;
 };
@@ -1145,7 +1154,7 @@ static int microburst_sigmadsp_tx_eq_stage_5_put(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_tx_eq_stage_6_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_6_get called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_6_get called\n");
 	ucontrol->value.integer.value[0] = kcontrol->private_value;
 	return 0;
 };
@@ -1153,7 +1162,7 @@ static int microburst_sigmadsp_tx_eq_stage_6_get(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_tx_eq_stage_6_put(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_6_put called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_6_put called\n");
 	uint32_t buf[5];
 	uint32_t buf2[3];
 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
@@ -1166,15 +1175,15 @@ static int microburst_sigmadsp_tx_eq_stage_6_put(struct snd_kcontrol *kcontrol,
 	for (i = 0; i < 5; i++)
 	{
 	buf[i] = MICROBURST_SIGMADSP_EQ_PANEL_STAGE_6_FIXPT_BOOST[boost_level][i];
-	//printk (KERN_DEBUG "MB-sigmadsp: tx eq stage data %d %d %x\n", boost_level, i, buf[i]);
+	////printk (KERN_DEBUG "MB-sigmadsp: tx eq stage data %d %d %x\n", boost_level, i, buf[i]);
 	};
 	for (i = 0; i < 3; i++)
 	{
 	buf2[i] = MICROBURST_SIGMADSP_TX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[i];
 	};
-	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_6 boost level setting to %d\n", boost_level);
-	adau1761_safeload_write(adau, stage_addr, &buf, 20);
-	adau1761_block_write(adau, data_addr, &buf2, 12);
+	//printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_6 boost level setting to %d\n", boost_level);
+	adau1761_safeload_write(adau, stage_addr, buf, 20);
+	adau1761_block_write(adau, data_addr, buf2, 12);
 
 	return 0;
 };
@@ -1182,7 +1191,7 @@ static int microburst_sigmadsp_tx_eq_stage_6_put(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_tx_eq_stage_7_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_7_get called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_7_get called\n");
 	ucontrol->value.integer.value[0] = kcontrol->private_value;
 	return 0;
 };
@@ -1190,7 +1199,7 @@ static int microburst_sigmadsp_tx_eq_stage_7_get(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_tx_eq_stage_7_put(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_7_put called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_7_put called\n");
 	uint32_t buf[5];
 	uint32_t buf2[3];
 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
@@ -1203,15 +1212,15 @@ static int microburst_sigmadsp_tx_eq_stage_7_put(struct snd_kcontrol *kcontrol,
 	for (i = 0; i < 5; i++)
 	{
 	buf[i] = MICROBURST_SIGMADSP_EQ_PANEL_STAGE_7_FIXPT_BOOST[boost_level][i];
-	//printk (KERN_DEBUG "MB-sigmadsp: tx eq stage data %d %d %x\n", boost_level, i, buf[i]);
+	////printk (KERN_DEBUG "MB-sigmadsp: tx eq stage data %d %d %x\n", boost_level, i, buf[i]);
 	};
 	for (i = 0; i < 3; i++)
 	{
 	buf2[i] = MICROBURST_SIGMADSP_TX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[i];
 	};
-	printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_7 boost level setting to %d\n", boost_level);
-	adau1761_safeload_write(adau, stage_addr, &buf, 20);
-	adau1761_block_write(adau, data_addr, &buf2, 12);
+	//printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_7 boost level setting to %d\n", boost_level);
+	adau1761_safeload_write(adau, stage_addr, buf, 20);
+	adau1761_block_write(adau, data_addr, buf2, 12);
 
 	return 0;
 };
@@ -1219,7 +1228,7 @@ static int microburst_sigmadsp_tx_eq_stage_7_put(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_rx_eq_stage_0_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_0_get called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_0_get called\n");
 	ucontrol->value.integer.value[0] = kcontrol->private_value;
 	return 0;
 };
@@ -1227,7 +1236,7 @@ static int microburst_sigmadsp_rx_eq_stage_0_get(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_rx_eq_stage_0_put(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_0_put called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_0_put called\n");
 	uint32_t buf[5];
 	uint32_t buf2[4];
 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
@@ -1240,15 +1249,15 @@ static int microburst_sigmadsp_rx_eq_stage_0_put(struct snd_kcontrol *kcontrol,
 	for (i = 0; i < 5; i++)
 	{
 	buf[i] = MICROBURST_SIGMADSP_EQ_PANEL_STAGE_0_FIXPT_BOOST[boost_level][i];
-	//printk (KERN_DEBUG "MB-sigmadsp: tx eq stage data %d %d %x\n", boost_level, i, buf[i]);
+	////printk (KERN_DEBUG "MB-sigmadsp: tx eq stage data %d %d %x\n", boost_level, i, buf[i]);
 	};
 	for (i = 0; i < 4; i++)
 	{
 	buf2[i] = MICROBURST_SIGMADSP_RX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[i];
 	};
-	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_0 boost level setting to %d\n", boost_level);
-	adau1761_safeload_write(adau, stage_addr, &buf, 20);
-	adau1761_block_write(adau, data_addr, &buf2, 16);
+	//printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_0 boost level setting to %d\n", boost_level);
+	adau1761_safeload_write(adau, stage_addr, buf, 20);
+	adau1761_block_write(adau, data_addr, buf2, 16);
 
 	return 0;
 };
@@ -1256,7 +1265,7 @@ static int microburst_sigmadsp_rx_eq_stage_0_put(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_rx_eq_stage_1_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_1_get called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_1_get called\n");
 	ucontrol->value.integer.value[0] = kcontrol->private_value;
 	return 0;
 };
@@ -1264,7 +1273,7 @@ static int microburst_sigmadsp_rx_eq_stage_1_get(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_rx_eq_stage_1_put(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_1_put called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_1_put called\n");
 	uint32_t buf[5];
 	uint32_t buf2[4];
 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
@@ -1277,22 +1286,22 @@ static int microburst_sigmadsp_rx_eq_stage_1_put(struct snd_kcontrol *kcontrol,
 	for (i = 0; i < 5; i++)
 	{
 	buf[i] = MICROBURST_SIGMADSP_EQ_PANEL_STAGE_1_FIXPT_BOOST[boost_level][i];
-	//printk (KERN_DEBUG "MB-sigmadsp: tx eq stage data %d %d %x\n", boost_level, i, buf[i]);
+	////printk (KERN_DEBUG "MB-sigmadsp: tx eq stage data %d %d %x\n", boost_level, i, buf[i]);
 	};
 	for (i = 0; i < 4; i++)
 	{
 	buf2[i] = MICROBURST_SIGMADSP_RX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[i];
 	};
-	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_1 boost level setting to %d\n", boost_level);
-	adau1761_safeload_write(adau, stage_addr, &buf, 20);
-	adau1761_block_write(adau, data_addr, &buf2, 16);
+	//printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_1 boost level setting to %d\n", boost_level);
+	adau1761_safeload_write(adau, stage_addr, buf, 20);
+	adau1761_block_write(adau, data_addr, buf2, 16);
 
 	return 0;
 };
 static int microburst_sigmadsp_rx_eq_stage_2_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_2_get called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_2_get called\n");
 	ucontrol->value.integer.value[0] = kcontrol->private_value;
 	return 0;
 };
@@ -1300,7 +1309,7 @@ static int microburst_sigmadsp_rx_eq_stage_2_get(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_rx_eq_stage_2_put(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_2_put called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_2_put called\n");
 	uint32_t buf[5];
 	uint32_t buf2[4];
 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
@@ -1313,22 +1322,22 @@ static int microburst_sigmadsp_rx_eq_stage_2_put(struct snd_kcontrol *kcontrol,
 	for (i = 0; i < 5; i++)
 	{
 	buf[i] = MICROBURST_SIGMADSP_EQ_PANEL_STAGE_2_FIXPT_BOOST[boost_level][i];
-	//printk (KERN_DEBUG "MB-sigmadsp: tx eq stage data %d %d %x\n", boost_level, i, buf[i]);
+	////printk (KERN_DEBUG "MB-sigmadsp: tx eq stage data %d %d %x\n", boost_level, i, buf[i]);
 	};
 	for (i = 0; i < 4; i++)
 	{
 	buf2[i] = MICROBURST_SIGMADSP_RX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[i];
 	};
-	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_2 boost level setting to %d\n", boost_level);
-	adau1761_safeload_write(adau, stage_addr, &buf, 20);
-	adau1761_block_write(adau, data_addr, &buf2, 16);
+	//printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_2 boost level setting to %d\n", boost_level);
+	adau1761_safeload_write(adau, stage_addr, buf, 20);
+	adau1761_block_write(adau, data_addr, buf2, 16);
 
 	return 0;
 };
 static int microburst_sigmadsp_rx_eq_stage_3_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_3_get called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_3_get called\n");
 	ucontrol->value.integer.value[0] = kcontrol->private_value;
 	return 0;
 };
@@ -1336,7 +1345,7 @@ static int microburst_sigmadsp_rx_eq_stage_3_get(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_rx_eq_stage_3_put(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_3_put called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_3_put called\n");
 	uint32_t buf[5];
 	uint32_t buf2[4];
 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
@@ -1349,22 +1358,22 @@ static int microburst_sigmadsp_rx_eq_stage_3_put(struct snd_kcontrol *kcontrol,
 	for (i = 0; i < 5; i++)
 	{
 	buf[i] = MICROBURST_SIGMADSP_EQ_PANEL_STAGE_3_FIXPT_BOOST[boost_level][i];
-	//printk (KERN_DEBUG "MB-sigmadsp: tx eq stage data %d %d %x\n", boost_level, i, buf[i]);
+	////printk (KERN_DEBUG "MB-sigmadsp: tx eq stage data %d %d %x\n", boost_level, i, buf[i]);
 	};
 	for (i = 0; i < 4; i++)
 	{
 	buf2[i] = MICROBURST_SIGMADSP_RX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[i];
 	};
-	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_3 boost level setting to %d\n", boost_level);
-	adau1761_safeload_write(adau, stage_addr, &buf, 20);
-	adau1761_block_write(adau, data_addr, &buf2, 16);
+	//printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_3 boost level setting to %d\n", boost_level);
+	adau1761_safeload_write(adau, stage_addr, buf, 20);
+	adau1761_block_write(adau, data_addr, buf2, 16);
 
 	return 0;
 };
 static int microburst_sigmadsp_rx_eq_stage_4_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_4_get called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_4_get called\n");
 	ucontrol->value.integer.value[0] = kcontrol->private_value;
 	return 0;
 };
@@ -1372,7 +1381,7 @@ static int microburst_sigmadsp_rx_eq_stage_4_get(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_rx_eq_stage_4_put(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_4_put called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_4_put called\n");
 	uint32_t buf[5];
 	uint32_t buf2[4];
 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
@@ -1385,22 +1394,22 @@ static int microburst_sigmadsp_rx_eq_stage_4_put(struct snd_kcontrol *kcontrol,
 	for (i = 0; i < 5; i++)
 	{
 	buf[i] = MICROBURST_SIGMADSP_EQ_PANEL_STAGE_4_FIXPT_BOOST[boost_level][i];
-	//printk (KERN_DEBUG "MB-sigmadsp: tx eq stage data %d %d %x\n", boost_level, i, buf[i]);
+	////printk (KERN_DEBUG "MB-sigmadsp: tx eq stage data %d %d %x\n", boost_level, i, buf[i]);
 	};
 	for (i = 0; i < 4; i++)
 	{
 	buf2[i] = MICROBURST_SIGMADSP_RX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[i];
 	};
-	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_4 boost level setting to %d\n", boost_level);
-	adau1761_safeload_write(adau, stage_addr, &buf, 20);
-	adau1761_block_write(adau, data_addr, &buf2, 16);
+	//printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_4 boost level setting to %d\n", boost_level);
+	adau1761_safeload_write(adau, stage_addr, buf, 20);
+	adau1761_block_write(adau, data_addr, buf2, 16);
 
 	return 0;
 };
 static int microburst_sigmadsp_rx_eq_stage_5_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_5_get called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_5_get called\n");
 	ucontrol->value.integer.value[0] = kcontrol->private_value;
 	return 0;
 };
@@ -1408,7 +1417,7 @@ static int microburst_sigmadsp_rx_eq_stage_5_get(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_rx_eq_stage_5_put(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_5_put called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_5_put called\n");
 	uint32_t buf[5];
 	uint32_t buf2[4];
 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
@@ -1421,22 +1430,22 @@ static int microburst_sigmadsp_rx_eq_stage_5_put(struct snd_kcontrol *kcontrol,
 	for (i = 0; i < 5; i++)
 	{
 	buf[i] = MICROBURST_SIGMADSP_EQ_PANEL_STAGE_5_FIXPT_BOOST[boost_level][i];
-	//printk (KERN_DEBUG "MB-sigmadsp: tx eq stage data %d %d %x\n", boost_level, i, buf[i]);
+	////printk (KERN_DEBUG "MB-sigmadsp: tx eq stage data %d %d %x\n", boost_level, i, buf[i]);
 	};
 	for (i = 0; i < 4; i++)
 	{
 	buf2[i] = MICROBURST_SIGMADSP_RX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[i];
 	};
-	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_5 boost level setting to %d\n", boost_level);
-	adau1761_safeload_write(adau, stage_addr, &buf, 20);
-	adau1761_block_write(adau, data_addr, &buf2, 16);
+	//printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_5 boost level setting to %d\n", boost_level);
+	adau1761_safeload_write(adau, stage_addr, buf, 20);
+	adau1761_block_write(adau, data_addr, buf2, 16);
 
 	return 0;
 };
 static int microburst_sigmadsp_rx_eq_stage_6_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_6_get called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_6_get called\n");
 	ucontrol->value.integer.value[0] = kcontrol->private_value;
 	return 0;
 };
@@ -1444,7 +1453,7 @@ static int microburst_sigmadsp_rx_eq_stage_6_get(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_rx_eq_stage_6_put(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_6_put called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_6_put called\n");
 	uint32_t buf[5];
 	uint32_t buf2[4];
 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
@@ -1457,22 +1466,22 @@ static int microburst_sigmadsp_rx_eq_stage_6_put(struct snd_kcontrol *kcontrol,
 	for (i = 0; i < 5; i++)
 	{
 	buf[i] = MICROBURST_SIGMADSP_EQ_PANEL_STAGE_6_FIXPT_BOOST[boost_level][i];
-	//printk (KERN_DEBUG "MB-sigmadsp: tx eq stage data %d %d %x\n", boost_level, i, buf[i]);
+	////printk (KERN_DEBUG "MB-sigmadsp: tx eq stage data %d %d %x\n", boost_level, i, buf[i]);
 	};
 	for (i = 0; i < 4; i++)
 	{
 	buf2[i] = MICROBURST_SIGMADSP_RX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[i];
 	};
-	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_6 boost level setting to %d\n", boost_level);
-	adau1761_safeload_write(adau, stage_addr, &buf, 20);
-	adau1761_block_write(adau, data_addr, &buf2, 16);
+	//printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_6 boost level setting to %d\n", boost_level);
+	adau1761_safeload_write(adau, stage_addr, buf, 20);
+	adau1761_block_write(adau, data_addr, buf2, 16);
 
 	return 0;
 };
 static int microburst_sigmadsp_rx_eq_stage_7_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_7_get called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_7_get called\n");
 	ucontrol->value.integer.value[0] = kcontrol->private_value;
 	return 0;
 };
@@ -1480,7 +1489,7 @@ static int microburst_sigmadsp_rx_eq_stage_7_get(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_rx_eq_stage_7_put(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_7_put called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_7_put called\n");
 	uint32_t buf[5];
 	uint32_t buf2[4];
 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
@@ -1493,15 +1502,15 @@ static int microburst_sigmadsp_rx_eq_stage_7_put(struct snd_kcontrol *kcontrol,
 	for (i = 0; i < 5; i++)
 	{
 	buf[i] = MICROBURST_SIGMADSP_EQ_PANEL_STAGE_7_FIXPT_BOOST[boost_level][i];
-	//printk (KERN_DEBUG "MB-sigmadsp: tx eq stage data %d %d %x\n", boost_level, i, buf[i]);
+	////printk (KERN_DEBUG "MB-sigmadsp: tx eq stage data %d %d %x\n", boost_level, i, buf[i]);
 	};
 	for (i = 0; i < 4; i++)
 	{
 	buf2[i] = MICROBURST_SIGMADSP_RX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[i];
 	};
-	printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_7 boost level setting to %d\n", boost_level);
-	adau1761_safeload_write(adau, stage_addr, &buf, 20);
-	adau1761_block_write(adau, data_addr, &buf2, 16);
+	//printk (KERN_DEBUG "MB-sigmadsp: rx_eq_stage_7 boost level setting to %d\n", boost_level);
+	adau1761_safeload_write(adau, stage_addr, buf, 20);
+	adau1761_block_write(adau, data_addr, buf2, 16);
 
 	return 0;
 };
@@ -1509,24 +1518,24 @@ static int microburst_sigmadsp_rx_eq_stage_7_put(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_peak_meter_readback_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: peak_meter_readback_get called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: peak_meter_readback_get called\n");
 	uint32_t readback_address = MOD_MIC_LEVEL_PEAK_READBACKALGSIGMA2001_ADDR;
 	uint32_t meter_reading;
 	uint32_t meter_reading_inverted;
 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
 	struct adau *adau = snd_soc_codec_get_drvdata(codec);
-	printk (KERN_DEBUG "MB-sigmadsp: reading peak meter addr %d", readback_address);
+	//printk (KERN_DEBUG "MB-sigmadsp: reading peak meter addr %d", readback_address);
 	regmap_raw_read(adau->regmap, readback_address, &meter_reading_inverted, 4);
 	meter_reading = htonl(meter_reading_inverted);
 	ucontrol->value.integer.value[0] = meter_reading;
-	printk (KERN_DEBUG "MB-sigmadsp: peak reading value %08X", meter_reading);
+	//printk (KERN_DEBUG "MB-sigmadsp: peak reading value %08X", meter_reading);
 	return 0;
 };
 
 static int microburst_sigmadsp_peak_meter_readback_put(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: peak_meter_readback_put called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: peak_meter_readback_put called\n");
 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
 	struct adau *adau = snd_soc_codec_get_drvdata(codec);
 	//the put function does not do anything, this is a read-only control
@@ -1536,24 +1545,24 @@ static int microburst_sigmadsp_peak_meter_readback_put(struct snd_kcontrol *kcon
 static int microburst_sigmadsp_average_meter_readback_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: average_meter_readback_get called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: average_meter_readback_get called\n");
 	uint32_t readback_address = MOD_MIC_LEVEL_AVG_READBACKALGSIGMA2002_ADDR;
 	uint32_t meter_reading;
 	uint32_t meter_reading_inverted;
 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
 	struct adau *adau = snd_soc_codec_get_drvdata(codec);
-	printk (KERN_DEBUG "MB-sigmadsp: reading average meter addr %d", readback_address);
+	//printk (KERN_DEBUG "MB-sigmadsp: reading average meter addr %d", readback_address);
 	regmap_raw_read(adau->regmap, readback_address, &meter_reading_inverted, 4);
 	meter_reading = htonl(meter_reading_inverted);
 	ucontrol->value.integer.value[0] = meter_reading;
-	printk (KERN_DEBUG "MB-sigmadsp: average reading value %08X", meter_reading);
+	//printk (KERN_DEBUG "MB-sigmadsp: average reading value %08X", meter_reading);
 	return 0;
 };
 
 static int microburst_sigmadsp_average_meter_readback_put(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: average_meter_readback_put called\n");
+	//printk (KERN_DEBUG "MB-sigmadsp: average_meter_readback_put called\n");
 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
 	struct adau *adau = snd_soc_codec_get_drvdata(codec);
 	//the put function does not do anything, this is a read-only control
@@ -1822,9 +1831,9 @@ static int adau1761_dejitter_fixup(struct snd_soc_dapm_widget *w,
 
 	/* After any power changes have been made the dejitter circuit
 	 * has to be reinitialized. */
-	snd_soc_write(codec, ADAU1761_DEJITTER, 0);
+        snd_soc_write(codec, ADAU1761_DEJITTER, 0);
 	if (!adau->master)
-		snd_soc_write(codec, ADAU1761_DEJITTER, 3);
+          snd_soc_write(codec, ADAU1761_DEJITTER, 3);
 
 	return 0;
 }
@@ -1849,7 +1858,7 @@ static const struct snd_soc_dapm_widget adau1x61_dapm_widgets[] = {
 
 	SND_SOC_DAPM_SUPPLY("SYSCLK", SND_SOC_NOPM, 0, 0, NULL, 0),
 
-	SND_SOC_DAPM_POST("Dejitter fixup", adau1761_dejitter_fixup),
+        SND_SOC_DAPM_POST("Dejitter fixup", adau1761_dejitter_fixup),
 
 	SND_SOC_DAPM_INPUT("LAUX"),
 	SND_SOC_DAPM_INPUT("RAUX"),
@@ -1960,8 +1969,8 @@ static const struct snd_soc_dapm_widget adau1761_dapm_widgets[] = {
 	SND_SOC_DAPM_SUPPLY("Serial Output Routing Clock", ADAU1761_CLK_ENABLE0,
 		3, 0, NULL, 0),
 
-	SND_SOC_DAPM_SUPPLY("Decimator Resync Clock", ADAU1761_CLK_ENABLE0,
-		4, 0, NULL, 0),
+       	SND_SOC_DAPM_SUPPLY("Decimator Resync Clock", ADAU1761_CLK_ENABLE0,
+       		4, 0, NULL, 0),
 	SND_SOC_DAPM_SUPPLY("Interpolator Resync Clock", ADAU1761_CLK_ENABLE0,
 		2, 0, NULL, 0),
 
@@ -1998,11 +2007,12 @@ static const struct snd_soc_dapm_route adau1761_dapm_routes[] = {
 
 	{ "AIFOUT", NULL, "ALC Clock" },
 
-	{ "AIFIN", NULL, "Decimator Resync Clock" },
-	{ "AIFOUT", NULL, "Interpolator Resync Clock" },
+        { "AIFIN", NULL, "Decimator Resync Clock" },
+       	{ "AIFOUT", NULL, "Interpolator Resync Clock" },
 
-	{ "DSP", NULL, "Decimator Resync Clock" },
-	{ "DSP", NULL, "Interpolator Resync Clock" },
+        { "DSP", NULL, "Decimator Resync Clock" },
+        { "DSP", NULL, "Interpolator Resync Clock" },
+
 	{ "DSP", NULL, "Digital Clock 0" },
 
 	{ "Slew Clock", NULL, "Digital Clock 0" },
@@ -2012,7 +2022,7 @@ static const struct snd_soc_dapm_route adau1761_dapm_routes[] = {
 	{ "Digital Clock 0", NULL, "SYSCLK" },
 	{ "Digital Clock 1", NULL, "SYSCLK" },
 
-	{ "AIFOUT", NULL, "Decimator Resync Clock" },
+        { "AIFOUT", NULL, "Decimator Resync Clock" },
 };
 
 static int adau1761_set_bias_level(struct snd_soc_codec *codec,
@@ -2044,8 +2054,8 @@ static enum adau1761_output_mode adau1761_get_lineout_mode(
 {
 	struct adau1761_platform_data *pdata = codec->dev->platform_data;
 
-	if (pdata)
-		return pdata->lineout_mode;
+        //	if (pdata)
+        //		return pdata->lineout_mode;
 
 	return ADAU1761_OUTPUT_MODE_LINE;
 }
@@ -2236,6 +2246,8 @@ static int adau1761_probe(struct snd_soc_codec *codec)
 
 	switch (adau1761_get_lineout_mode(codec)) {
 	case ADAU1761_OUTPUT_MODE_LINE:
+		snd_soc_update_bits(codec, ADAU1761_PLAY_LINE_LEFT_VOL, 1, 0);
+		snd_soc_update_bits(codec, ADAU1761_PLAY_LINE_RIGHT_VOL, 1, 0);
 		break;
 	case ADAU1761_OUTPUT_MODE_HEADPHONE:
 		snd_soc_update_bits(codec, ADAU1761_PLAY_LINE_LEFT_VOL, 1, 1);
@@ -2272,7 +2284,7 @@ static int adau1761_probe(struct snd_soc_codec *codec)
 	}
 		else {
 			ret = snd_soc_add_controls(codec, microburst_sigmadsp_controls, ARRAY_SIZE(microburst_sigmadsp_controls));
-			printk("MB-codecdsp: adding kcontrols for dsp module\n");
+			//printk("MB-codecdsp: adding kcontrols for dsp module\n");
 
 		if (ret)
 			return ret;
