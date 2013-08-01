@@ -173,7 +173,7 @@ int notify_destroy(void)
 	 * not been deleted so far. If not, assert. */
 	for (i = 0; i < NOTIFY_MAX_DRIVERS; i++)
 		for (j = 0; j < NOTIFY_MAX_INTLINES; j++)
-			WARN_ON(notify_state.drivers[i][j].is_init != false);
+			WARN_ON(notify_state.drivers[i][j].is_init != 0);
 
 	kfree(notify_state.gate_handle);
 
