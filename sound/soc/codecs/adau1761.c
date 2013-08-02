@@ -1829,12 +1829,14 @@ static int adau1761_dejitter_fixup(struct snd_soc_dapm_widget *w,
 	struct snd_soc_codec *codec = w->codec;
 	struct adau *adau = snd_soc_codec_get_drvdata(codec);
 
+	regcache_sync(adau->regmap);
 	/* After any power changes have been made the dejitter circuit
 	 * has to be reinitialized. */
         snd_soc_write(codec, ADAU1761_DEJITTER, 0);
 	if (!adau->master)
           snd_soc_write(codec, ADAU1761_DEJITTER, 3);
 
+        printk(KERN_INFO "adau1761_dejitter_fixup called with event %d", event);
 	return 0;
 }
 
@@ -2028,6 +2030,7 @@ static const struct snd_soc_dapm_route adau1761_dapm_routes[] = {
 static int adau1761_set_bias_level(struct snd_soc_codec *codec,
 				 enum snd_soc_bias_level level)
 {
+  printk(KERN_INFO "adau1761_set_bias_level called ");
 	switch (level) {
 	case SND_SOC_BIAS_ON:
 		break;

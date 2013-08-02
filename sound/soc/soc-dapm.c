@@ -46,6 +46,9 @@
 #include <sound/soc.h>
 #include <sound/initval.h>
 
+//#define dev_dbg(dev, format, arg...)          \
+//  dev_printk(KERN_DEBUG, dev, format, ##arg)
+
 /* dapm power sequences - make this per codec in the future */
 static int dapm_up_seq[] = {
 	[snd_soc_dapm_pre] = 0,
@@ -2624,3 +2627,5 @@ void snd_soc_dapm_shutdown(struct snd_soc_card *card)
 MODULE_AUTHOR("Liam Girdwood, lrg@slimlogic.co.uk");
 MODULE_DESCRIPTION("Dynamic Audio Power Management core for ALSA SoC");
 MODULE_LICENSE("GPL");
+
+//#undef dev_dbg(dev, format, arg...)

@@ -462,6 +462,21 @@ static int davinci_mcasp_set_dai_fmt(struct snd_soc_dai *cpu_dai,
 		mcasp_clr_bits(base + DAVINCI_MCASP_RXFMCTL_REG, AFSRE);
 
 		mcasp_clr_bits(base + DAVINCI_MCASP_PDIR_REG, (0x3f << 26));
+
+                mcasp_set_bits(base + DAVINCI_MCASP_PDIR_REG, (0x1 << 27));
+
+                /*
+                switch(dev->clk_input_pin) {
+                case MCASP_AHCLKX_IN:
+                  mcasp_clr_bits(base + DAVINCI_MCASP_PDIR_REG, AHCLKX);
+                  break;
+                case MCASP_AHCLKX_OUT:
+                  mcasp_set_bits(base + DAVINCI_MCASP_PDIR_REG, AHCLKX);
+                  break;
+                default:
+                  return -EINVAL;
+                */
+
 		break;
 
 	default:
@@ -567,7 +582,7 @@ static int davinci_config_channel_size(struct davinci_audio_dev *dev,
 					TXSSZ(fmt), TXSSZ(0x0F));
 	mcasp_mod_bits(dev->base + DAVINCI_MCASP_TXFMT_REG, TXROT(rotate),
 							TXROT(7));
-	mcasp_mod_bits(dev->base + DAVINCI_MCASP_RXFMT_REG, RXROT(rotate),
+	mcasp_mod_bits(dev->base + DAVINCI_MCASP_RXFMT_REG, RXROT(0),
 							RXROT(7));
 	mcasp_set_reg(dev->base + DAVINCI_MCASP_TXMASK_REG, mask);
 	mcasp_set_reg(dev->base + DAVINCI_MCASP_RXMASK_REG, mask);
