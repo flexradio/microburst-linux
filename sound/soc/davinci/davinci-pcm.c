@@ -56,7 +56,7 @@ static struct snd_pcm_hardware pcm_hardware_playback = {
 	.info = (SNDRV_PCM_INFO_INTERLEAVED | SNDRV_PCM_INFO_BLOCK_TRANSFER |
 		 SNDRV_PCM_INFO_MMAP | SNDRV_PCM_INFO_MMAP_VALID |
 		 SNDRV_PCM_INFO_PAUSE | SNDRV_PCM_INFO_RESUME),
-	.formats = (SNDRV_PCM_FMTBIT_S16_LE),
+	.formats = (SNDRV_PCM_FMTBIT_S16_LE | SNDRV_PCM_FMTBIT_S32_LE),
 	.rates = (SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
 		  SNDRV_PCM_RATE_22050 | SNDRV_PCM_RATE_32000 |
 		  SNDRV_PCM_RATE_44100 | SNDRV_PCM_RATE_48000 |
@@ -69,7 +69,7 @@ static struct snd_pcm_hardware pcm_hardware_playback = {
 	.buffer_bytes_max = 128 * 1024,
 	.period_bytes_min = 32,
 	.period_bytes_max = 8 * 1024,
-	.periods_min = 8,
+	.periods_min = 2,
 	.periods_max = 255,
 	.fifo_size = 0,
 };
@@ -78,7 +78,7 @@ static struct snd_pcm_hardware pcm_hardware_capture = {
 	.info = (SNDRV_PCM_INFO_INTERLEAVED | SNDRV_PCM_INFO_BLOCK_TRANSFER |
 		 SNDRV_PCM_INFO_MMAP | SNDRV_PCM_INFO_MMAP_VALID |
 		 SNDRV_PCM_INFO_PAUSE),
-	.formats = (SNDRV_PCM_FMTBIT_S16_LE),
+	.formats = (SNDRV_PCM_FMTBIT_S16_LE | SNDRV_PCM_FMTBIT_S32_LE),
 	.rates = (SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |
 		  SNDRV_PCM_RATE_22050 | SNDRV_PCM_RATE_32000 |
 		  SNDRV_PCM_RATE_44100 | SNDRV_PCM_RATE_48000 |
@@ -91,7 +91,7 @@ static struct snd_pcm_hardware pcm_hardware_capture = {
 	.buffer_bytes_max = 128 * 1024,
 	.period_bytes_min = 32,
 	.period_bytes_max = 8 * 1024,
-	.periods_min = 8,
+	.periods_min = 2,
 	.periods_max = 255,
 	.fifo_size = 0,
 };
@@ -648,7 +648,7 @@ davinci_pcm_pointer(struct snd_pcm_substream *substream)
 	spin_unlock(&prtd->lock);
 
 	offset = bytes_to_frames(runtime, asp_count);
-	if (offset >= runtime->buffer_size)
+        if (offset >= runtime->buffer_size)
 		offset = 0;
 
 	return offset;
@@ -674,10 +674,10 @@ static int davinci_pcm_open(struct snd_pcm_substream *substream)
 	allocate_sram(substream, params->sram_size, ppcm);
 	snd_soc_set_runtime_hwparams(substream, ppcm);
 	/* ensure that buffer size is a multiple of period size */
-	ret = snd_pcm_hw_constraint_integer(runtime,
-						SNDRV_PCM_HW_PARAM_PERIODS);
-	if (ret < 0)
-		return ret;
+        ret = snd_pcm_hw_constraint_integer(runtime,
+                                            SNDRV_PCM_HW_PARAM_PERIODS);
+        if (ret < 0)
+          return ret;
 
 	prtd = kzalloc(sizeof(struct davinci_runtime_data), GFP_KERNEL);
 	if (prtd == NULL)
