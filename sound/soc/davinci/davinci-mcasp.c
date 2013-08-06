@@ -798,8 +798,8 @@ static int davinci_mcasp_trigger(struct snd_pcm_substream *substream,
 		break;
 
 	case SNDRV_PCM_TRIGGER_SUSPEND:
-		davinci_mcasp_stop(dev, substream->stream);
 		if (dev->clk_active) {
+                        davinci_mcasp_stop(dev, substream->stream);
 			clk_disable(dev->clk);
 			dev->clk_active = 0;
 		}
@@ -928,7 +928,7 @@ static int davinci_mcasp_probe(struct platform_device *pdev)
 	dma_data->ram_chan_q = pdata->ram_chan_q;
 	if (cpu_is_ti81xx())
 		dma_data->dma_addr = (dma_addr_t) (pdata->tx_dma_offset);
-	else
+        else
 		dma_data->dma_addr = (dma_addr_t) (pdata->tx_dma_offset
 							+ mem->start);
 
