@@ -76,7 +76,7 @@ static int adau17x1_pll_event(struct snd_soc_dapm_widget *w,
 	struct adau *adau = snd_soc_codec_get_drvdata(codec);
 	int ret;
 
-        printk(KERN_INFO "adau17x1_pll_event called. Event = %d", event);
+        //        printk(KERN_INFO "adau17x1_pll_event called. Event = %d", event);
 
 	if (SND_SOC_DAPM_EVENT_ON(event)) {
 		adau->pll_regs[5] = 1;
@@ -93,7 +93,7 @@ static int adau17x1_pll_event(struct snd_soc_dapm_widget *w,
 			adau->pll_regs, 6);
 
 	if (SND_SOC_DAPM_EVENT_ON(event)) {
-          printk(KERN_INFO "adau17x1_pll_event called. DAPM_EVENT_ON");
+          //          printk(KERN_INFO "adau17x1_pll_event called. DAPM_EVENT_ON");
 		mdelay(5);
 		snd_soc_update_bits(codec, ADAU17X1_CLOCK_CONTROL,
 			ADAU17X1_CLOCK_CONTROL_CORECLK_SRC_PLL,
@@ -243,18 +243,18 @@ static const struct snd_kcontrol_new adau17x1_dsp_controls[] = {
 static void adau17x1_check_aifclk(struct snd_soc_codec *codec)
 {
 	struct adau *adau = snd_soc_codec_get_drvdata(codec);
-        printk(KERN_INFO "adau17x1_check_aifclk called\n");
+        //        printk(KERN_INFO "adau17x1_check_aifclk called\n");
 	/* If we are in master mode we need to generate bit- and frameclock,
 	 * regardless of whether the AIF itself is powered or not */
 	snd_soc_dapm_sync(&codec->dapm);
 	if (codec->active && adau->master)
           {
-            printk(KERN_INFO "forcing enable aifclk\n");
+            //            printk(KERN_INFO "forcing enable aifclk\n");
 		snd_soc_dapm_force_enable_pin(&codec->dapm, "AIFCLK");
           }
 	else
           {
-            printk(KERN_INFO "disabling AIFCLK\n");
+            //            printk(KERN_INFO "disabling AIFCLK\n");
 		snd_soc_dapm_disable_pin(&codec->dapm, "AIFCLK");
           }
 }
@@ -780,7 +780,7 @@ int adau17x1_probe(struct snd_soc_codec *codec)
 {
 	struct adau *adau = snd_soc_codec_get_drvdata(codec);
 	int ret;
-        printk(KERN_INFO "adau17x1_probe called");
+        //        printk(KERN_INFO "adau17x1_probe called");
 	codec->control_data = adau->regmap;
 	ret = snd_soc_codec_set_cache_io(codec, 0, 0, SND_SOC_REGMAP);
 	if (ret < 0) {
@@ -849,7 +849,7 @@ EXPORT_SYMBOL_GPL(adau17x1_suspend);
 
 int adau17x1_resume(struct snd_soc_codec *codec)
 {
-  printk(KERN_INFO "adau1761x1_resume called");
+  //  printk(KERN_INFO "adau1761x1_resume called");
 	struct adau *adau = snd_soc_codec_get_drvdata(codec);
 
 	if (adau->control_type == SND_SOC_SPI)
@@ -867,7 +867,7 @@ int __devinit adau17x1_bus_probe(struct device *dev, struct regmap *regmap,
 {
 	struct adau *adau;
 	int ret;
-        printk(KERN_INFO "adau17x1_bus_probe called");
+        //        printk(KERN_INFO "adau17x1_bus_probe called");
 	if (IS_ERR(regmap))
 		return PTR_ERR(regmap);
 
