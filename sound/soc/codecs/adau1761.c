@@ -442,6 +442,14 @@ static int adau1761_block_write(struct adau *adau, uint32_t addr, uint32_t *data
 		  return ret;
 };
 
+/* 
+ * TODO: Update for your system's data type
+ */
+typedef unsigned short ADI_DATA_U16;
+typedef unsigned char  ADI_REG_TYPE;
+
+
+
 /* Microburst SigmaDSP kcontrol definitions */
 
 static const unsigned int microburst_sigmadsp_input_source_values[] = {
@@ -1515,6 +1523,76 @@ static int microburst_sigmadsp_rx_eq_stage_7_put(struct snd_kcontrol *kcontrol,
 	return 0;
 };
 
+static int microburst_sigmadsp_compander_decay_put(struct snd_kcontrol *kcontrol,
+                                                  struct snd_ctl_elem_value *ucontrol)
+{
+  uint32_t c_decay_address = MOD_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG1DECAY_ADDR;
+  struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+  struct adau *adau = snd_soc_codec_get_drvdata(codec);
+
+  uint32_t buf[1];
+
+  buf[0] = ucontrol->value.integer.value[0];
+
+  adau1761_block_write(adau, c_decay_address, buf, 4);
+
+  return 0;
+
+};
+
+static int microburst_sigmadsp_compander_decay_get(struct snd_kcontrol *kcontrol,
+                                                  struct snd_ctl_elem_value *ucontrol)
+{
+  uint32_t c_decay_address = MOD_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG1DECAY_ADDR;
+  struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+  struct adau *adau = snd_soc_codec_get_drvdata(codec);
+
+  uint32_t decay_value;
+
+  //  buf[0] = SIGMASTUDIOTYPE_INTEGER_CONVERT(ucontrol->value.integer.value[0]);
+  regmap_raw_read(adau->regmap, c_decay_address, &decay_value, 4);
+  decay_value = htonl(decay_value);
+  ucontrol->value.integer.value[0] = decay_value;
+  return 0;
+
+};
+
+
+/// Compander Hold 
+static int microburst_sigmadsp_compander_hold_put(struct snd_kcontrol *kcontrol,
+                                                  struct snd_ctl_elem_value *ucontrol)
+{
+  uint32_t c_hold_address = MOD_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG1HOLD_ADDR;
+  struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+  struct adau *adau = snd_soc_codec_get_drvdata(codec);
+
+  uint32_t buf[1];
+
+  buf[0] = ucontrol->value.integer.value[0];
+
+  adau1761_block_write(adau, c_hold_address, buf, 4);
+
+  return 0;
+
+};
+
+static int microburst_sigmadsp_compander_hold_get(struct snd_kcontrol *kcontrol,
+                                                  struct snd_ctl_elem_value *ucontrol)
+{
+  uint32_t c_hold_address = MOD_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG1HOLD_ADDR;
+  struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+  struct adau *adau = snd_soc_codec_get_drvdata(codec);
+
+  uint32_t hold_value;
+
+  //  buf[0] = SIGMASTUDIOTYPE_INTEGER_CONVERT(ucontrol->value.integer.value[0]);
+  regmap_raw_read(adau->regmap, c_hold_address, &hold_value, 4);
+  hold_value = htonl(hold_value);
+  ucontrol->value.integer.value[0] = hold_value;
+  return 0;
+
+};
+
 static int microburst_sigmadsp_peak_meter_readback_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
@@ -1578,6 +1656,10 @@ static const struct snd_kcontrol_new microburst_sigmadsp_controls[] = {
 				microburst_sigmadsp_monitor_voice_cw_put),
 		SOC_SINGLE_BOOL_EXT("Microburst SigmaDSP Compander", 1, microburst_sigmadsp_compander_get,
 				microburst_sigmadsp_compander_put),
+                SOC_SINGLE_INT_EXT("Microburst SigmaDSP Compander Hold", 12000, microburst_sigmadsp_compander_hold_get,
+                microburst_sigmadsp_compander_hold_put),
+                SOC_SINGLE_INT_EXT("Microburst SigmaDSP Compander Decay", 12000, microburst_sigmadsp_compander_decay_get,
+                                   microburst_sigmadsp_compander_decay_put),
 		SOC_SINGLE_BOOL_EXT("Microburst SigmaDSP TX EQ", 0, microburst_sigmadsp_tx_eq_get,
 				microburst_sigmadsp_tx_eq_put),
 		SOC_SINGLE_BOOL_EXT("Microburst SigmaDSP RX EQ", 0, microburst_sigmadsp_rx_eq_get,
