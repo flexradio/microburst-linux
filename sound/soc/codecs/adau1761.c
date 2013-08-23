@@ -154,42 +154,65 @@ uint32_t MICROBURST_SIGMADSP_FIXPT_LEVEL_LOOKUP_32_STEP_MINUS_96_TO_ZERO[32] = {
 
 /* TX_FILTER Low Pass Parameters */
 
-uint32_t MICROBURST_SIGMADSP_FIXPT_TX_LPF_10000HZ[8] = { 0x0068464F, 0x00D08C9F, 0x0068464F, 0xFFA87724, 0xFF319B32,
-                                                         		0x000002B8,
-                                                         		0x0000028C,
-                                                        		0x00000001
-                                                         		};
+uint32_t MICROBURST_SIGMADSP_FIXPT_TX_LPF_10000HZ[6] = { 0x0068464F, 0x00D08C9F, 0x0068464F, 0xFFA87724, 0xFF319B32,
+                                                         //                                                         		0x000002B8,
+                                                         //                                                         		0x0000028C,
+                                                         0x00000001};
 //uint32_t MICROBURST_SIGMADSP_FIXPT_TX_LPF_10000HZ[8] = { 0x0068464F, 0x00D08C9F, 0x0068464F, 0xFFA87724, 0xFF319B32,
 //		0x0000028C, 0x000002B8, 0x00000001 };
-uint32_t MICROBURST_SIGMADSP_FIXPT_TX_LPF_8000HZ[8] = { 0x0053954A, 0x00A72A95, 0x0053954A, 0xFFC5E3AA, 0xFF67E819,
-		0x000002B8, 0x0000028C, 0x00000001 };
-uint32_t MICROBURST_SIGMADSP_FIXPT_TX_LPF_4000HZ[8] = { 0x00283B63, 0x005076C5, 0x00283B63, 0xFFE4EBF3, 0xFFF84977,
-		0x000002B8, 0x0000028C, 0x00000001 };
-uint32_t MICROBURST_SIGMADSP_FIXPT_TX_LPF_3000HZ[8] = { 0x001C3366, 0x003866CC, 0x001C3366, 0xFFE29A52, 0x002B49B3,
-		0x000002B8, 0x0000028C, 0x00000001 };
-uint32_t MICROBURST_SIGMADSP_FIXPT_TX_LPF_2500HZ[8] = { 0x001617AF, 0x002C2F5F, 0x001616AF, 0xFFDE41F5, 0x00485958,
-		0x000002B8, 0x0000028C, 0x00000001 };
-uint32_t MICROBURST_SIGMADSP_FIXPT_TX_LPF_2000HZ[8] = { 0x001011B5, 0x0020236A, 0x001011B5, 0xFFD6DAD1, 0x00681FD1,
-		0x000002B8, 0x0000028C, 0x00000001 };
+uint32_t MICROBURST_SIGMADSP_FIXPT_TX_LPF_8000HZ[6] = { 0x0053954A, 0x00A72A95, 0x0053954A, 0xFFC5E3AA, 0xFF67E819,
+                                                        //		0x000002B8,
+                                                        //		0x0000028C,
+ 0x00000001 };
+uint32_t MICROBURST_SIGMADSP_FIXPT_TX_LPF_4000HZ[6] = { 0x00283B63, 0x005076C5, 0x00283B63, 0xFFE4EBF3, 0xFFF84977,
+                                                        //		0x000002B8,
+                                                        //		0x0000028C,
+ 0x00000001 };
+uint32_t MICROBURST_SIGMADSP_FIXPT_TX_LPF_3000HZ[6] = { 0x001C3366, 0x003866CC, 0x001C3366, 0xFFE29A52, 0x002B49B3,
+                                                        //	0x000002B8,
+                                                        //	0x0000028C, 
+0x00000001 };
+uint32_t MICROBURST_SIGMADSP_FIXPT_TX_LPF_2500HZ[6] = { 0x001617AF, 0x002C2F5F, 0x001616AF, 0xFFDE41F5, 0x00485958,
+                                                        //	0x000002B8,
+                                                        //	0x0000028C, 
+0x00000001 };
+uint32_t MICROBURST_SIGMADSP_FIXPT_TX_LPF_2000HZ[6] = { 0x001011B5, 0x0020236A, 0x001011B5, 0xFFD6DAD1, 0x00681FD1,
+                                                        //	0x000002B8,
+                                                        //	0x0000028C,
+ 0x00000001 };
 
 /* TX_FILTER High Pass Parameters */
 
-uint32_t MICROBURST_SIGMADSP_FIXPT_TX_HPF_60HZ[8] = { 0x007DD334, 0xFF045997, 0x007DD334, 0xFF816E67, 0x00FE8F2C,
-		0x000002C2, 0x00000294, 0x00000001 };
-uint32_t MICROBURST_SIGMADSP_FIXPT_TX_HPF_100HZ[8] = { 0x007D5A87, 0xFF054AF2, 0x007D5A87, 0xFF826068, 0x00FD98E1,
-		0x000002C2, 0x00000294, 0x00000001 };
+uint32_t MICROBURST_SIGMADSP_FIXPT_TX_HPF_60HZ[6] = { 0x007DD334, 0xFF045997, 0x007DD334, 0xFF816E67, 0x00FE8F2C,
+                                                      //		0x000002C2,
+                                                      //		0x00000294, 
+0x00000001 };
+uint32_t MICROBURST_SIGMADSP_FIXPT_TX_HPF_100HZ[6] = { 0x007D5A87, 0xFF054AF2, 0x007D5A87, 0xFF826068, 0x00FD98E1,
+                                                       //		0x000002C2,
+                                                       //		0x00000294, 
+0x00000001 };
 //uint32_t MICROBURST_SIGMADSP_FIXPT_TX_HPF_100HZ[8] = { 0x007D5A87, 0xFF054AF2, 0x007D5A87, 0xFF826068, 0x00FD98E1,
 //		0x00000294, 0x000002C2, 0x00000001 };
-uint32_t MICROBURST_SIGMADSP_FIXPT_TX_HPF_150HZ[8] = { 0x007CC431, 0xFF06779E, 0x007CC431, 0xFF838C66, 0x00FC6490,
-                0x00000294, 0x000002C2, 0x00000001 };
-uint32_t MICROBURST_SIGMADSP_FIXPT_TX_HPF_200HZ[8] = { 0x007C2E69, 0xFF07A32D, 0x007C2E69, 0xFF84B5A3, 0x00FB2FBF,
-		0x000002C2, 0x00000294, 0x00000001 };
-uint32_t MICROBURST_SIGMADSP_FIXPT_TX_HPF_400HZ[8] = { 0x0079DCAC, 0xFF0C46A7, 0x0079DCAC, 0xFF893FDD, 0x00F65785,
-		0x000002C2, 0x00000294, 0x00000001 };
-uint32_t MICROBURST_SIGMADSP_FIXPT_TX_HPF_450HZ[8] = { 0x0079498A, 0xFF0D6CEC, 0x0079498A, 0xFF8A5BED, 0x00F5203A,
-		0x000002C2, 0x00000294, 0x00000001 };
-uint32_t MICROBURST_SIGMADSP_FIXPT_TX_HPF_500HZ[8] = { 0x0078B6E8, 0xFF0E9231, 0x0078B6E8, 0xFF8B7578, 0x00F3E871,
-		0x000002C2, 0x00000294, 0x00000001 };
+uint32_t MICROBURST_SIGMADSP_FIXPT_TX_HPF_150HZ[6] = { 0x007CC431, 0xFF06779E, 0x007CC431, 0xFF838C66, 0x00FC6490,
+                                                       //   0x00000294,
+                                                       //   0x000002C2,
+ 0x00000001 };
+uint32_t MICROBURST_SIGMADSP_FIXPT_TX_HPF_200HZ[6] = { 0x007C2E69, 0xFF07A32D, 0x007C2E69, 0xFF84B5A3, 0x00FB2FBF,
+                                                       //		0x000002C2,
+                                                       //		0x00000294,
+ 0x00000001 };
+uint32_t MICROBURST_SIGMADSP_FIXPT_TX_HPF_400HZ[6] = { 0x0079DCAC, 0xFF0C46A7, 0x0079DCAC, 0xFF893FDD, 0x00F65785,
+                                                       //	0x000002C2,
+                                                       //	0x00000294, 
+0x00000001 };
+uint32_t MICROBURST_SIGMADSP_FIXPT_TX_HPF_450HZ[6] = { 0x0079498A, 0xFF0D6CEC, 0x0079498A, 0xFF8A5BED, 0x00F5203A,
+                                                       //	0x000002C2,
+                                                       //	0x00000294,
+ 0x00000001 };
+uint32_t MICROBURST_SIGMADSP_FIXPT_TX_HPF_500HZ[6] = { 0x0078B6E8, 0xFF0E9231, 0x0078B6E8, 0xFF8B7578, 0x00F3E871,
+                                                       //	0x000002C2,
+                                                       //	0x00000294,
+ 0x00000001 };
 
 /* EQ_PANEL Filter Parameters */
 
@@ -896,7 +919,7 @@ static int microburst_sigmadsp_tx_filter_bw_get(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_tx_filter_bw_put(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	//printk (KERN_DEBUG "MB-sigmadsp: tx_filter_bw_put called\n");
+	printk (KERN_DEBUG "MB-sigmadsp: tx_filter_bw_put called\n");
 	uint32_t *buf_lp;
 	uint32_t *buf_hp;
 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
@@ -904,29 +927,34 @@ static int microburst_sigmadsp_tx_filter_bw_put(struct snd_kcontrol *kcontrol,
 	int bandwidth_select;
 	uint32_t lp_addr = MOD_TX_FILTER_TX_LPF_ALG0_STAGE0_B2_ADDR;
 	uint32_t hp_addr = MOD_TX_FILTER_TX_HPF_ALG0_STAGE0_B2_ADDR;
+        uint32_t lp_loop_addr = MOD_TX_FILTER_TX_LPF_ALG0_LOOP_ADDR;
+        uint32_t hp_loop_addr = MOD_TX_FILTER_TX_HPF_ALG0_LOOP_ADDR;
 	bandwidth_select = ucontrol->value.integer.value[0];
-	switch (bandwidth_select) {
+	switch (bandwidth_select)
+          {
+          case 2:      
+            buf_lp = MICROBURST_SIGMADSP_FIXPT_TX_LPF_10000HZ;
+            buf_hp = MICROBURST_SIGMADSP_FIXPT_TX_HPF_60HZ;
+            break;
+          case 1: 
+            buf_lp = MICROBURST_SIGMADSP_FIXPT_TX_LPF_8000HZ;
+            buf_hp = MICROBURST_SIGMADSP_FIXPT_TX_HPF_200HZ;
+                        
+            break;
+          default:
+            buf_lp = MICROBURST_SIGMADSP_FIXPT_TX_LPF_2500HZ;
+            buf_hp = MICROBURST_SIGMADSP_FIXPT_TX_HPF_500HZ;
+            break;
+	}
 
-	case 2:	{
-			buf_lp = MICROBURST_SIGMADSP_FIXPT_TX_LPF_10000HZ;
-			buf_hp = MICROBURST_SIGMADSP_FIXPT_TX_HPF_60HZ;
-			};
-	break;
-	case 1: {
-			buf_lp = MICROBURST_SIGMADSP_FIXPT_TX_LPF_8000HZ;
-			buf_hp = MICROBURST_SIGMADSP_FIXPT_TX_HPF_200HZ;
-			};
-	break;
-	default: {
-			buf_lp = MICROBURST_SIGMADSP_FIXPT_TX_LPF_2500HZ;
-			buf_hp = MICROBURST_SIGMADSP_FIXPT_TX_HPF_500HZ;
-			};
-	break;
-	};
+	printk (KERN_DEBUG "MB-sigmadsp: tx_filter_bw setting to %d\n", bandwidth_select);
+        //	adau1761_block_write(adau, lp_addr, buf_lp, 24);
+        //	adau1761_block_write(adau, hp_addr, buf_hp, 24);
+        adau1761_safeload_write(adau, lp_addr, buf_lp, 20);
+        adau1761_block_write(adau, lp_loop_addr ,buf_lp + 5, 4);
 
-	//printk (KERN_DEBUG "MB-sigmadsp: tx_filter_bw setting to %d\n", bandwidth_select);
-	adau1761_block_write(adau, lp_addr, buf_lp, 32);
-	adau1761_block_write(adau, hp_addr, buf_hp, 32);
+        adau1761_safeload_write(adau, hp_addr, buf_hp, 20);
+        adau1761_block_write(adau, hp_loop_addr, buf_hp + 5, 4);
 
 	return 0;
 };
