@@ -471,8 +471,8 @@ static int omap_i2c_init(struct omap_i2c_dev *dev)
 	omap_i2c_write_reg(dev, OMAP_I2C_PSC_REG, psc);
 
 	/* SCL low and high time values */
-	omap_i2c_write_reg(dev, OMAP_I2C_SCLL_REG, scll);
-	omap_i2c_write_reg(dev, OMAP_I2C_SCLH_REG, sclh);
+	omap_i2c_write_reg(dev, OMAP_I2C_SCLL_REG, 4);
+	omap_i2c_write_reg(dev, OMAP_I2C_SCLH_REG, 4);
 
 	if (dev->fifo_size) {
 		/* Note: setup required fifo size - 1. RTRSH and XTRSH */
