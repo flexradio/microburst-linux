@@ -825,7 +825,7 @@ static int microburst_sigmadsp_sig_gen_select_put(struct snd_kcontrol *kcontrol,
 	break;
 	};
 
-	//printk (KERN_DEBUG "MB-sigmadsp: sig_gen_select setting to %d\n", sig_gen_select);
+	printk (KERN_DEBUG "MB-sigmadsp: sig_gen_select setting to %d\n", sig_gen_select);
 	adau1761_block_write(adau, mux_addr, buf, 16);
 
 	return 0;
@@ -1621,6 +1621,96 @@ static int microburst_sigmadsp_compander_hold_get(struct snd_kcontrol *kcontrol,
 
 };
 
+static int microburst_sigmadsp_extra_line_input_gain_put(struct snd_kcontrol *kcontrol,
+                                                  struct snd_ctl_elem_value *ucontrol)
+{
+  uint32_t extra_line_gain_addr = MOD_LINE_GAIN_GAIN1940ALGNS4_ADDR;
+  struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+  struct adau *adau = snd_soc_codec_get_drvdata(codec);
+
+  uint32_t buf[1];
+  buf[0] = ucontrol->value.integer.value[0] * 0x800000;
+
+  adau1761_block_write(adau, extra_line_gain_addr, buf, 4);
+  return 0;
+}
+
+static int microburst_sigmadsp_extra_line_input_gain_get(struct snd_kcontrol *kcontrol,
+                                                  struct snd_ctl_elem_value *ucontrol)
+{
+  uint32_t extra_line_gain_addr = MOD_LINE_GAIN_GAIN1940ALGNS4_ADDR;
+  struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+  struct adau *adau = snd_soc_codec_get_drvdata(codec);
+
+  uint32_t line_gain_value;
+
+  //  buf[0] = SIGMASTUDIOTYPE_INTEGER_CONVERT(ucontrol->value.integer.value[0]);
+  regmap_raw_read(adau->regmap, extra_line_gain_addr, &line_gain_value, 4);
+  line_gain_value = htonl(line_gain_value);
+  ucontrol->value.integer.value[0] = line_gain_value / 0x800000;
+  return 0;
+
+};
+
+static int microburst_sigmadsp_extra_mic_input_gain_put(struct snd_kcontrol *kcontrol,
+                                                struct snd_ctl_elem_value *ucontrol)
+{
+  uint32_t extra_mic_gain_addr = MOD_MIC_GAIN_GAIN1940ALGNS5_ADDR;
+  struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+  struct adau *adau = snd_soc_codec_get_drvdata(codec);
+
+  uint32_t buf[1];
+  buf[0] = ucontrol->value.integer.value[0] * 0x800000;
+
+  adau1761_block_write(adau, extra_mic_gain_addr, buf, 4);
+  return 0;
+}
+
+
+static int microburst_sigmadsp_extra_mic_input_gain_get(struct snd_kcontrol *kcontrol,
+                                                  struct snd_ctl_elem_value *ucontrol)
+{
+  uint32_t extra_mic_gain_addr = MOD_MIC_GAIN_GAIN1940ALGNS5_ADDR;
+  struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+  struct adau *adau = snd_soc_codec_get_drvdata(codec);
+
+  uint32_t mic_gain_value;
+
+  regmap_raw_read(adau->regmap, extra_mic_gain_addr, &mic_gain_value, 4);
+  mic_gain_value = htonl(mic_gain_value);
+  ucontrol->value.integer.value[0] = mic_gain_value / 0x800000;
+  return 0;
+
+};
+
+// Conversion needs to be done in Firmware!
+static int microburst_sigmadsp_compander_input_gain_get(struct snd_kcontrol *kcontrol,
+                                                        struct snd_ctl_elem_value *ucontrol)
+{
+  struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+  struct adau *adau = snd_soc_codec_get_drvdata(codec);
+
+  uint32_t value;
+
+  regmap_raw_read(adau->regmap, MOD_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG1ATTENUATION_ADDR, &value, 4);
+  value = htonl(value);
+  ucontrol->value.integer.value[0] = value ; // 20 * log10(value) ! 
+  return 0;
+};
+// Conversion needs to be done in Firmware
+static int microburst_sigmadsp_compander_input_gain_put(struct snd_kcontrol *kcontrol,
+                                                        struct snd_ctl_elem_value *ucontrol)
+{
+  struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+  struct adau *adau = snd_soc_codec_get_drvdata(codec);
+
+  uint32_t value[1];
+
+  value[0] = ucontrol->value.integer.value[0]; // Convert by  pow( 10.0, (ucontrol->value.integer.value[0] - 90) / 20.0);
+  adau1761_block_write(adau, MOD_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG1ATTENUATION_ADDR, value, 4);
+  return 0;
+};
+
 static int microburst_sigmadsp_peak_meter_readback_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
@@ -1676,6 +1766,7 @@ static int microburst_sigmadsp_average_meter_readback_put(struct snd_kcontrol *k
 };
 
 /* Microburst SigmaDSP kcontrols */
+static const DECLARE_TLV_DB_MINMAX(adau1761_input_gain, 0, 24);
 
 static const struct snd_kcontrol_new microburst_sigmadsp_controls[] = {
 		SOC_SINGLE_BOOL_EXT("Microburst SigmaDSP CW Key", 0, microburst_sigmadsp_cw_key_get,
@@ -1698,7 +1789,7 @@ static const struct snd_kcontrol_new microburst_sigmadsp_controls[] = {
 				microburst_sigmadsp_echo_cancel_put),
 		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Input Source", 2, microburst_sigmadsp_input_source_get,
 				microburst_sigmadsp_input_source_put),
-		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Sig Gen Select", 3, microburst_sigmadsp_sig_gen_select_get,
+		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Sig Gen Select", 4, microburst_sigmadsp_sig_gen_select_get,
 				microburst_sigmadsp_sig_gen_select_put),
 		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Monitor Level", 63, microburst_sigmadsp_monitor_level_get,
 				microburst_sigmadsp_monitor_level_put),
@@ -1744,6 +1835,12 @@ static const struct snd_kcontrol_new microburst_sigmadsp_controls[] = {
 				microburst_sigmadsp_peak_meter_readback_put),
 		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Average Meter Readback", 0x00800000, microburst_sigmadsp_average_meter_readback_get,
 				microburst_sigmadsp_average_meter_readback_put),
+                SOC_SINGLE_INT_EXT("Extra Line Input Gain", 15, microburst_sigmadsp_extra_line_input_gain_get, 
+                                   microburst_sigmadsp_extra_line_input_gain_put),
+                SOC_SINGLE_INT_EXT("Extra Mic Input Gain", 15, microburst_sigmadsp_extra_mic_input_gain_get, 
+                                   microburst_sigmadsp_extra_mic_input_gain_put),
+                SOC_SINGLE_INT_EXT("Microburst SigmaDSP Compander Input Gain", 0x00FFFFFF, microburst_sigmadsp_compander_input_gain_get, 
+                                   microburst_sigmadsp_compander_input_gain_put),
 
 };
 
