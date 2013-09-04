@@ -919,7 +919,7 @@ static int microburst_sigmadsp_tx_filter_bw_get(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_tx_filter_bw_put(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk (KERN_DEBUG "MB-sigmadsp: tx_filter_bw_put called\n");
+	printk(KERN_DEBUG "MB-sigmadsp: tx_filter_bw_put called\n");
 	uint32_t *buf_lp;
 	uint32_t *buf_hp;
 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
@@ -1629,12 +1629,13 @@ static int microburst_sigmadsp_extra_line_input_gain_put(struct snd_kcontrol *kc
   struct adau *adau = snd_soc_codec_get_drvdata(codec);
 
   uint32_t buf[1];
-  buf[0] = ucontrol->value.integer.value[0] * 0x800000;
+  buf[0] = ucontrol->value.integer.value[0];
 
   adau1761_block_write(adau, extra_line_gain_addr, buf, 4);
   return 0;
 }
 
+// Conversion needs to be done in Firmware!
 static int microburst_sigmadsp_extra_line_input_gain_get(struct snd_kcontrol *kcontrol,
                                                   struct snd_ctl_elem_value *ucontrol)
 {
@@ -1647,11 +1648,12 @@ static int microburst_sigmadsp_extra_line_input_gain_get(struct snd_kcontrol *kc
   //  buf[0] = SIGMASTUDIOTYPE_INTEGER_CONVERT(ucontrol->value.integer.value[0]);
   regmap_raw_read(adau->regmap, extra_line_gain_addr, &line_gain_value, 4);
   line_gain_value = htonl(line_gain_value);
-  ucontrol->value.integer.value[0] = line_gain_value / 0x800000;
+  ucontrol->value.integer.value[0] = line_gain_value;
   return 0;
 
 };
 
+// Conversion needs to be done in Firmware!
 static int microburst_sigmadsp_extra_mic_input_gain_put(struct snd_kcontrol *kcontrol,
                                                 struct snd_ctl_elem_value *ucontrol)
 {
@@ -1660,13 +1662,13 @@ static int microburst_sigmadsp_extra_mic_input_gain_put(struct snd_kcontrol *kco
   struct adau *adau = snd_soc_codec_get_drvdata(codec);
 
   uint32_t buf[1];
-  buf[0] = ucontrol->value.integer.value[0] * 0x800000;
+  buf[0] = ucontrol->value.integer.value[0];
 
   adau1761_block_write(adau, extra_mic_gain_addr, buf, 4);
   return 0;
 }
 
-
+// Conversion needs to be done in Firmware!
 static int microburst_sigmadsp_extra_mic_input_gain_get(struct snd_kcontrol *kcontrol,
                                                   struct snd_ctl_elem_value *ucontrol)
 {
@@ -1678,7 +1680,7 @@ static int microburst_sigmadsp_extra_mic_input_gain_get(struct snd_kcontrol *kco
 
   regmap_raw_read(adau->regmap, extra_mic_gain_addr, &mic_gain_value, 4);
   mic_gain_value = htonl(mic_gain_value);
-  ucontrol->value.integer.value[0] = mic_gain_value / 0x800000;
+  ucontrol->value.integer.value[0] = mic_gain_value;
   return 0;
 
 };
@@ -1711,6 +1713,35 @@ static int microburst_sigmadsp_compander_input_gain_put(struct snd_kcontrol *kco
   return 0;
 };
 
+// Conversion needs to be done in Firmware!
+static int microburst_sigmadsp_compander_post_gain_get(struct snd_kcontrol *kcontrol,
+                                                        struct snd_ctl_elem_value *ucontrol)
+{
+  struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+  struct adau *adau = snd_soc_codec_get_drvdata(codec);
+
+  uint32_t value;
+
+  regmap_raw_read(adau->regmap, MOD_POST_COMP_GAIN_GAIN1940ALGNS1_ADDR, &value, 4);
+  value = htonl(value);
+  ucontrol->value.integer.value[0] = value ; // 20 * log10(value) ! 
+  return 0;
+};
+// Conversion needs to be done in Firmware
+static int microburst_sigmadsp_compander_post_gain_put(struct snd_kcontrol *kcontrol,
+                                                        struct snd_ctl_elem_value *ucontrol)
+{
+  struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+  struct adau *adau = snd_soc_codec_get_drvdata(codec);
+
+  uint32_t value[1];
+
+  value[0] = ucontrol->value.integer.value[0]; // Convert by  pow( 10.0, (ucontrol->value.integer.value[0] - 90) / 20.0);
+  adau1761_block_write(adau, MOD_POST_COMP_GAIN_GAIN1940ALGNS1_ADDR, value, 4);
+  return 0;
+};
+
+
 static int microburst_sigmadsp_echo_cancel_adapt_get(struct snd_kcontrol *kcontrol,
 	                                                struct snd_ctl_elem_value *ucontrol)
 {
@@ -1720,6 +1751,7 @@ static int microburst_sigmadsp_echo_cancel_adapt_get(struct snd_kcontrol *kcontr
 	uint32_t value;
 
 	regmap_raw_read(adau->regmap, MOD_ECHO_CANCEL_ECHO_CANCEL_ADAPT_ISON_ADDR, &value, 4);
+	value = htonl(value);
 
 	if(value)
 	{
@@ -1755,8 +1787,6 @@ static int microburst_sigmadsp_echo_cancel_adapt_put(struct snd_kcontrol *kcontr
 
 	return 0;
 };
-
-
 
 static int microburst_sigmadsp_peak_meter_readback_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
@@ -1822,17 +1852,21 @@ static const struct snd_kcontrol_new microburst_sigmadsp_controls[] = {
 				microburst_sigmadsp_monitor_voice_cw_put),
 		SOC_SINGLE_BOOL_EXT("Microburst SigmaDSP Compander", 1, microburst_sigmadsp_compander_get,
 				microburst_sigmadsp_compander_put),
-                SOC_SINGLE_INT_EXT("Microburst SigmaDSP Compander Hold", 12000, microburst_sigmadsp_compander_hold_get,
-                microburst_sigmadsp_compander_hold_put),
-                SOC_SINGLE_INT_EXT("Microburst SigmaDSP Compander Decay", 32768, microburst_sigmadsp_compander_decay_get,
-                                   microburst_sigmadsp_compander_decay_put),
+		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Compander Hold", 12000, microburst_sigmadsp_compander_hold_get,
+			microburst_sigmadsp_compander_hold_put),
+		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Compander Decay", 0x7B89, microburst_sigmadsp_compander_decay_get,
+			microburst_sigmadsp_compander_decay_put),
+		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Compander Input Gain", 0x00FFFFFF, microburst_sigmadsp_compander_input_gain_get, 
+			microburst_sigmadsp_compander_input_gain_put),
+		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Compander Post Gain", 0x07FFFFFF, microburst_sigmadsp_compander_post_gain_get,
+			microburst_sigmadsp_compander_post_gain_put),
 		SOC_SINGLE_BOOL_EXT("Microburst SigmaDSP TX EQ", 0, microburst_sigmadsp_tx_eq_get,
 				microburst_sigmadsp_tx_eq_put),
 		SOC_SINGLE_BOOL_EXT("Microburst SigmaDSP RX EQ", 0, microburst_sigmadsp_rx_eq_get,
 				microburst_sigmadsp_rx_eq_put),
 		SOC_SINGLE_BOOL_EXT("Microburst SigmaDSP Meter Select", 0, microburst_sigmadsp_meter_select_get,
 				microburst_sigmadsp_meter_select_put),
-		SOC_SINGLE_BOOL_EXT("Microburst SigmaDSP Echo Cancel", 0, microburst_sigmadsp_echo_cancel_get,
+		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Echo Cancel", 2, microburst_sigmadsp_echo_cancel_get,
 				microburst_sigmadsp_echo_cancel_put),
 		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Echo Cancel Adapt", 2, microburst_sigmadsp_echo_cancel_adapt_get,
 			microburst_sigmadsp_echo_cancel_adapt_put),
@@ -1884,14 +1918,11 @@ static const struct snd_kcontrol_new microburst_sigmadsp_controls[] = {
 				microburst_sigmadsp_peak_meter_readback_put),
 		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Average Meter Readback", 0x00800000, microburst_sigmadsp_average_meter_readback_get,
 				microburst_sigmadsp_average_meter_readback_put),
-		SOC_SINGLE_INT_EXT("Extra Line Input Gain", 15, microburst_sigmadsp_extra_line_input_gain_get, 
+		SOC_SINGLE_INT_EXT("Extra Line Input Gain", 0x7FFFFFF, microburst_sigmadsp_extra_line_input_gain_get, 
 			microburst_sigmadsp_extra_line_input_gain_put),
-		SOC_SINGLE_INT_EXT("Extra Mic Input Gain", 15, microburst_sigmadsp_extra_mic_input_gain_get, 
+		SOC_SINGLE_INT_EXT("Extra Mic Input Gain", 0x7FFFFFF, microburst_sigmadsp_extra_mic_input_gain_get, 
 			microburst_sigmadsp_extra_mic_input_gain_put),
-		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Compander Input Gain", 0x00FFFFFF, microburst_sigmadsp_compander_input_gain_get, 
-			microburst_sigmadsp_compander_input_gain_put),
-
-};
+	};
 
 static const DECLARE_TLV_DB_SCALE(adau1761_sing_in_tlv, -1500, 300, 1);
 static const DECLARE_TLV_DB_SCALE(adau1761_diff_in_tlv, -1200, 75, 0);
