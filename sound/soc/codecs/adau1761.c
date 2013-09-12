@@ -24,6 +24,9 @@
 
 #include "microburst-sigmadsp.h"
 
+
+#define CODEC_MODULE_VERSION      1000
+
 #define ADAU1761_DIGMIC_JACKDETECT	0x4008
 #define ADAU1761_REC_MIXER_LEFT0	0x400a
 #define ADAU1761_REC_MIXER_LEFT1	0x400b
@@ -1624,7 +1627,7 @@ static int microburst_sigmadsp_compander_hold_get(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_extra_line_input_gain_put(struct snd_kcontrol *kcontrol,
                                                   struct snd_ctl_elem_value *ucontrol)
 {
-  uint32_t extra_line_gain_addr = MOD_LINE_GAIN_GAIN1940ALGNS4_ADDR;
+  uint32_t extra_line_gain_addr = MOD_LINE_GAIN_GAIN1940ALGNS5_ADDR;
   struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
   struct adau *adau = snd_soc_codec_get_drvdata(codec);
 
@@ -1639,7 +1642,7 @@ static int microburst_sigmadsp_extra_line_input_gain_put(struct snd_kcontrol *kc
 static int microburst_sigmadsp_extra_line_input_gain_get(struct snd_kcontrol *kcontrol,
                                                   struct snd_ctl_elem_value *ucontrol)
 {
-  uint32_t extra_line_gain_addr = MOD_LINE_GAIN_GAIN1940ALGNS4_ADDR;
+  uint32_t extra_line_gain_addr = MOD_LINE_GAIN_GAIN1940ALGNS5_ADDR;
   struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
   struct adau *adau = snd_soc_codec_get_drvdata(codec);
 
@@ -1657,7 +1660,7 @@ static int microburst_sigmadsp_extra_line_input_gain_get(struct snd_kcontrol *kc
 static int microburst_sigmadsp_extra_mic_input_gain_put(struct snd_kcontrol *kcontrol,
                                                 struct snd_ctl_elem_value *ucontrol)
 {
-  uint32_t extra_mic_gain_addr = MOD_MIC_GAIN_GAIN1940ALGNS5_ADDR;
+  uint32_t extra_mic_gain_addr = MOD_MIC_GAIN_GAIN1940ALGNS4_ADDR;
   struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
   struct adau *adau = snd_soc_codec_get_drvdata(codec);
 
@@ -1672,7 +1675,7 @@ static int microburst_sigmadsp_extra_mic_input_gain_put(struct snd_kcontrol *kco
 static int microburst_sigmadsp_extra_mic_input_gain_get(struct snd_kcontrol *kcontrol,
                                                   struct snd_ctl_elem_value *ucontrol)
 {
-  uint32_t extra_mic_gain_addr = MOD_MIC_GAIN_GAIN1940ALGNS5_ADDR;
+  uint32_t extra_mic_gain_addr = MOD_MIC_GAIN_GAIN1940ALGNS4_ADDR;
   struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
   struct adau *adau = snd_soc_codec_get_drvdata(codec);
 
@@ -1787,6 +1790,49 @@ static int microburst_sigmadsp_echo_cancel_adapt_put(struct snd_kcontrol *kcontr
 
 	return 0;
 };
+
+static int microburst_sigmadsp_binary_version_get(struct snd_kcontrol *kcontrol,
+	                                               struct snd_ctl_elem_value *ucontrol)
+{
+	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+	struct adau *adau = snd_soc_codec_get_drvdata(codec);
+
+	uint32_t value , ret_val;
+	value = 0x9999;
+	ret_val = regmap_raw_read(adau->regmap, MOD_CODEC_BINARY_VERSION_DCINPALG1_ADDR, &value, 4);
+
+	value = htonl(value);
+
+//	printk(KERN_DEBUG "Version Readback %d", value);
+
+	ucontrol->value.integer.value[0] = value;
+
+	return 0;
+}
+
+static int microburst_sigmadsp_binary_version_put(struct snd_kcontrol *kcontrol,
+	                                               struct snd_ctl_elem_value *ucontrol)
+{
+	// Dummy function
+	return 0;
+}
+
+static int microburst_sigmadsp_module_version_get(struct snd_kcontrol *kcontrol,
+	                                               struct snd_ctl_elem_value *ucontrol)
+{
+	printk(KERN_DEBUG "Module Version %d", CODEC_MODULE_VERSION);
+
+	ucontrol->value.integer.value[0] = CODEC_MODULE_VERSION;
+
+	return 0;
+}
+
+static int microburst_sigmadsp_module_version_put(struct snd_kcontrol *kcontrol,
+	                                               struct snd_ctl_elem_value *ucontrol)
+{
+	// Dummy function
+	return 0;
+}
 
 static int microburst_sigmadsp_peak_meter_readback_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
@@ -1922,6 +1968,10 @@ static const struct snd_kcontrol_new microburst_sigmadsp_controls[] = {
 			microburst_sigmadsp_extra_line_input_gain_put),
 		SOC_SINGLE_INT_EXT("Extra Mic Input Gain", 0x7FFFFFF, microburst_sigmadsp_extra_mic_input_gain_get, 
 			microburst_sigmadsp_extra_mic_input_gain_put),
+		SOC_SINGLE_INT_EXT("Codec Binary Version", 0xFFFFFF, microburst_sigmadsp_binary_version_get,
+			microburst_sigmadsp_binary_version_put),
+		SOC_SINGLE_INT_EXT("Codec Module Version", 0xFFFFFF, microburst_sigmadsp_module_version_get,
+			microburst_sigmadsp_module_version_put),
 	};
 
 static const DECLARE_TLV_DB_SCALE(adau1761_sing_in_tlv, -1500, 300, 1);
