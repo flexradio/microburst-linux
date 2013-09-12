@@ -121,12 +121,12 @@ endif
 ######## For TI816X device ########
 else ifeq ("$(DEVICE)","TI816X")
 LINUXKERNEL             = $(DEPOT)/src/flex/microburst-linux
-CGT_ARM_INSTALL_DIR     = $(DEPOT)/home/jreese/CodeSourcery/Sourcery_G++_Lite
+CGT_ARM_INSTALL_DIR     = $(DEPOT)/opt/ti/CodeSourcery/Sourcery_G++_Lite
 CGT_ARM_PREFIX          = $(CGT_ARM_INSTALL_DIR)/bin/arm-none-linux-gnueabi-
-IPC_INSTALL_DIR         = $(DEPOT)/opt/TI/ipc_1_25_00_04
-BIOS_INSTALL_DIR        = $(DEPOT)/opt/TI/bios_6_34_02_18
-XDC_INSTALL_DIR         = $(DEPOT)/opt/TI/xdctools_3_24_05_48
-CGT_C674_ELF_INSTALL_DIR= $(DEPOT)/opt/TI/C6000CGT7.2.7
+IPC_INSTALL_DIR         = $(DEPOT)/opt/ti/ipc_1_25_00_04
+BIOS_INSTALL_DIR        = $(DEPOT)/opt/ti/bios_6_34_01_14
+XDC_INSTALL_DIR         = $(DEPOT)/opt/ti/xdctools_3_24_03_33
+CGT_C674_ELF_INSTALL_DIR= $(DEPOT)/opt/ti/C6000CGT7.2.7
 
 # SYS/BIOS timer frequency (ti.sysbios.timers.dmtimer.Timer.intFreq)
 TI81XXDSP_DMTIMER_FREQ  = 32768
