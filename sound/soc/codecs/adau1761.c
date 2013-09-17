@@ -25,7 +25,7 @@
 #include "microburst-sigmadsp.h"
 
 
-#define CODEC_MODULE_VERSION      1000
+#define CODEC_MODULE_VERSION      1001
 
 #define ADAU1761_DIGMIC_JACKDETECT	0x4008
 #define ADAU1761_REC_MIXER_LEFT0	0x400a
@@ -1557,7 +1557,7 @@ static int microburst_sigmadsp_rx_eq_stage_7_put(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_compander_decay_put(struct snd_kcontrol *kcontrol,
                                                   struct snd_ctl_elem_value *ucontrol)
 {
-  uint32_t c_decay_address = MOD_COMPRESSOR_LOGIC_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG1DECAY_ADDR;
+  uint32_t c_decay_address = MOD_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG1DECAY_ADDR;
   struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
   struct adau *adau = snd_soc_codec_get_drvdata(codec);
 
@@ -1574,7 +1574,7 @@ static int microburst_sigmadsp_compander_decay_put(struct snd_kcontrol *kcontrol
 static int microburst_sigmadsp_compander_decay_get(struct snd_kcontrol *kcontrol,
                                                   struct snd_ctl_elem_value *ucontrol)
 {
-  uint32_t c_decay_address = MOD_COMPRESSOR_LOGIC_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG1DECAY_ADDR;
+  uint32_t c_decay_address = MOD_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG1DECAY_ADDR;
   struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
   struct adau *adau = snd_soc_codec_get_drvdata(codec);
 
@@ -1593,7 +1593,7 @@ static int microburst_sigmadsp_compander_decay_get(struct snd_kcontrol *kcontrol
 static int microburst_sigmadsp_compander_hold_put(struct snd_kcontrol *kcontrol,
                                                   struct snd_ctl_elem_value *ucontrol)
 {
-  uint32_t c_hold_address = MOD_COMPRESSOR_LOGIC_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG1HOLD_ADDR;
+  uint32_t c_hold_address = MOD_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG1HOLD_ADDR;
   struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
   struct adau *adau = snd_soc_codec_get_drvdata(codec);
 
@@ -1610,7 +1610,7 @@ static int microburst_sigmadsp_compander_hold_put(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_compander_hold_get(struct snd_kcontrol *kcontrol,
                                                   struct snd_ctl_elem_value *ucontrol)
 {
-  uint32_t c_hold_address = MOD_COMPRESSOR_LOGIC_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG1HOLD_ADDR;
+  uint32_t c_hold_address = MOD_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG1HOLD_ADDR;
   struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
   struct adau *adau = snd_soc_codec_get_drvdata(codec);
 
@@ -1697,7 +1697,7 @@ static int microburst_sigmadsp_compander_input_gain_get(struct snd_kcontrol *kco
 
   uint32_t value;
 
-  regmap_raw_read(adau->regmap, MOD_COMPRESSOR_LOGIC_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG1ATTENUATION_ADDR, &value, 4);
+  regmap_raw_read(adau->regmap, MOD_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG1ATTENUATION_ADDR, &value, 4);
   value = htonl(value);
   ucontrol->value.integer.value[0] = value ; // 20 * log10(value) ! 
   return 0;
@@ -1712,7 +1712,7 @@ static int microburst_sigmadsp_compander_input_gain_put(struct snd_kcontrol *kco
   uint32_t value[1];
 
   value[0] = ucontrol->value.integer.value[0]; // Convert by  pow( 10.0, (ucontrol->value.integer.value[0] - 90) / 20.0);
-  adau1761_block_write(adau, MOD_COMPRESSOR_LOGIC_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG1ATTENUATION_ADDR, value, 4);
+  adau1761_block_write(adau, MOD_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG1ATTENUATION_ADDR, value, 4);
   return 0;
 };
 
@@ -1756,13 +1756,13 @@ static int microburst_sigmadsp_compander_curve_put(struct  snd_kcontrol *kcontro
 
 uint32_t *compressor_array = ucontrol->value.integer.value;
 
-adau1761_safeload_write(adau, MOD_COMPRESSOR_LOGIC_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG10_ADDR, compressor_array, 20 );
-adau1761_safeload_write(adau, MOD_COMPRESSOR_LOGIC_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG10_ADDR, compressor_array+5, 20 );
-adau1761_safeload_write(adau, MOD_COMPRESSOR_LOGIC_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG10_ADDR, compressor_array+10, 20 );
-adau1761_safeload_write(adau, MOD_COMPRESSOR_LOGIC_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG10_ADDR, compressor_array+15, 20 );
-adau1761_safeload_write(adau, MOD_COMPRESSOR_LOGIC_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG10_ADDR, compressor_array+20, 20 );
-adau1761_safeload_write(adau, MOD_COMPRESSOR_LOGIC_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG10_ADDR, compressor_array+25, 20 );
-adau1761_safeload_write(adau, MOD_COMPRESSOR_LOGIC_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG10_ADDR, compressor_array+30, 12 );
+adau1761_safeload_write(adau, MOD_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG10_ADDR, compressor_array, 20 );
+adau1761_safeload_write(adau, MOD_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG10_ADDR, compressor_array+5, 20 );
+adau1761_safeload_write(adau, MOD_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG10_ADDR, compressor_array+10, 20 );
+adau1761_safeload_write(adau, MOD_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG10_ADDR, compressor_array+15, 20 );
+adau1761_safeload_write(adau, MOD_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG10_ADDR, compressor_array+20, 20 );
+adau1761_safeload_write(adau, MOD_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG10_ADDR, compressor_array+25, 20 );
+adau1761_safeload_write(adau, MOD_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG10_ADDR, compressor_array+30, 12 );
 
   return 0;	
 };
@@ -1775,7 +1775,7 @@ static int microburst_sigmadsp_compander_curve_get(struct snd_kcontrol *kcontrol
 
 
 // Conversion needs to be done in Firmware!
-static int microburst_sigmadsp_compander_post_gain_get(struct snd_kcontrol *kcontrol,
+static int microburst_sigmadsp_compander_post_gain_1_get(struct snd_kcontrol *kcontrol,
                                                         struct snd_ctl_elem_value *ucontrol)
 {
   struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
@@ -1783,13 +1783,13 @@ static int microburst_sigmadsp_compander_post_gain_get(struct snd_kcontrol *kcon
 
   uint32_t value;
 
-  regmap_raw_read(adau->regmap, MOD_COMPRESSOR_LOGIC_POST_COMP_GAIN_GAIN1940ALGNS1_ADDR, &value, 4);
+  regmap_raw_read(adau->regmap, MOD_POST_COMP_GAIN_1_GAIN1940ALGNS1_ADDR, &value, 4);
   value = htonl(value);
   ucontrol->value.integer.value[0] = value ; // 20 * log10(value) ! 
   return 0;
 };
 // Conversion needs to be done in Firmware
-static int microburst_sigmadsp_compander_post_gain_put(struct snd_kcontrol *kcontrol,
+static int microburst_sigmadsp_compander_post_gain_1_put(struct snd_kcontrol *kcontrol,
                                                         struct snd_ctl_elem_value *ucontrol)
 {
   struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
@@ -1798,11 +1798,37 @@ static int microburst_sigmadsp_compander_post_gain_put(struct snd_kcontrol *kcon
   uint32_t value[1];
 
   value[0] = ucontrol->value.integer.value[0]; // Convert by  pow( 10.0, (ucontrol->value.integer.value[0] - 90) / 20.0);
-  adau1761_block_write(adau, MOD_COMPRESSOR_LOGIC_POST_COMP_GAIN_GAIN1940ALGNS1_ADDR, value, 4);
+  adau1761_block_write(adau, MOD_POST_COMP_GAIN_1_GAIN1940ALGNS1_ADDR, value, 4);
   return 0;
 };
 
+// Conversion needs to be done in Firmware!
+static int microburst_sigmadsp_compander_post_gain_2_get(struct snd_kcontrol *kcontrol,
+                                                        struct snd_ctl_elem_value *ucontrol)
+{
+  struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+  struct adau *adau = snd_soc_codec_get_drvdata(codec);
 
+  uint32_t value;
+
+  regmap_raw_read(adau->regmap, MOD_POST_COMP_GAIN_2_GAIN1940ALGNS6_ADDR, &value, 4);
+  value = htonl(value);
+  ucontrol->value.integer.value[0] = value ; // 20 * log10(value) ! 
+  return 0;
+};
+// Conversion needs to be done in Firmware
+static int microburst_sigmadsp_compander_post_gain_2_put(struct snd_kcontrol *kcontrol,
+                                                        struct snd_ctl_elem_value *ucontrol)
+{
+  struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+  struct adau *adau = snd_soc_codec_get_drvdata(codec);
+
+  uint32_t value[1];
+
+  value[0] = ucontrol->value.integer.value[0]; // Convert by  pow( 10.0, (ucontrol->value.integer.value[0] - 90) / 20.0);
+  adau1761_block_write(adau, MOD_POST_COMP_GAIN_2_GAIN1940ALGNS6_ADDR, value, 4);
+  return 0;
+};
 static int microburst_sigmadsp_echo_cancel_adapt_get(struct snd_kcontrol *kcontrol,
 	                                                struct snd_ctl_elem_value *ucontrol)
 {
@@ -1964,8 +1990,10 @@ static const struct snd_kcontrol_new microburst_sigmadsp_controls[] = {
 			microburst_sigmadsp_compander_decay_put),
 		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Compander Input Gain", 0x00FFFFFF, microburst_sigmadsp_compander_input_gain_get, 
 			microburst_sigmadsp_compander_input_gain_put),
-		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Compander Post Gain", 0x07FFFFFF, microburst_sigmadsp_compander_post_gain_get,
-			microburst_sigmadsp_compander_post_gain_put),
+		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Compander Post Gain 1", 0x07FFFFFF, microburst_sigmadsp_compander_post_gain_1_get,
+			microburst_sigmadsp_compander_post_gain_1_put),
+		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Compander Post Gain 2", 0x07FFFFFF, microburst_sigmadsp_compander_post_gain_2_get,
+			microburst_sigmadsp_compander_post_gain_2_put),
 		SOC_SINGLE_BOOL_EXT("Microburst SigmaDSP TX EQ", 0, microburst_sigmadsp_tx_eq_get,
 				microburst_sigmadsp_tx_eq_put),
 		SOC_SINGLE_BOOL_EXT("Microburst SigmaDSP RX EQ", 0, microburst_sigmadsp_rx_eq_get,
