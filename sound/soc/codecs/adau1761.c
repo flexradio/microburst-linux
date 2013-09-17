@@ -1557,7 +1557,7 @@ static int microburst_sigmadsp_rx_eq_stage_7_put(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_compander_decay_put(struct snd_kcontrol *kcontrol,
                                                   struct snd_ctl_elem_value *ucontrol)
 {
-  uint32_t c_decay_address = MOD_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG1DECAY_ADDR;
+  uint32_t c_decay_address = MOD_COMPRESSOR_LOGIC_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG1DECAY_ADDR;
   struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
   struct adau *adau = snd_soc_codec_get_drvdata(codec);
 
@@ -1574,7 +1574,7 @@ static int microburst_sigmadsp_compander_decay_put(struct snd_kcontrol *kcontrol
 static int microburst_sigmadsp_compander_decay_get(struct snd_kcontrol *kcontrol,
                                                   struct snd_ctl_elem_value *ucontrol)
 {
-  uint32_t c_decay_address = MOD_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG1DECAY_ADDR;
+  uint32_t c_decay_address = MOD_COMPRESSOR_LOGIC_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG1DECAY_ADDR;
   struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
   struct adau *adau = snd_soc_codec_get_drvdata(codec);
 
@@ -1593,7 +1593,7 @@ static int microburst_sigmadsp_compander_decay_get(struct snd_kcontrol *kcontrol
 static int microburst_sigmadsp_compander_hold_put(struct snd_kcontrol *kcontrol,
                                                   struct snd_ctl_elem_value *ucontrol)
 {
-  uint32_t c_hold_address = MOD_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG1HOLD_ADDR;
+  uint32_t c_hold_address = MOD_COMPRESSOR_LOGIC_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG1HOLD_ADDR;
   struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
   struct adau *adau = snd_soc_codec_get_drvdata(codec);
 
@@ -1610,7 +1610,7 @@ static int microburst_sigmadsp_compander_hold_put(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_compander_hold_get(struct snd_kcontrol *kcontrol,
                                                   struct snd_ctl_elem_value *ucontrol)
 {
-  uint32_t c_hold_address = MOD_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG1HOLD_ADDR;
+  uint32_t c_hold_address = MOD_COMPRESSOR_LOGIC_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG1HOLD_ADDR;
   struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
   struct adau *adau = snd_soc_codec_get_drvdata(codec);
 
@@ -1697,7 +1697,7 @@ static int microburst_sigmadsp_compander_input_gain_get(struct snd_kcontrol *kco
 
   uint32_t value;
 
-  regmap_raw_read(adau->regmap, MOD_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG1ATTENUATION_ADDR, &value, 4);
+  regmap_raw_read(adau->regmap, MOD_COMPRESSOR_LOGIC_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG1ATTENUATION_ADDR, &value, 4);
   value = htonl(value);
   ucontrol->value.integer.value[0] = value ; // 20 * log10(value) ! 
   return 0;
@@ -1712,7 +1712,7 @@ static int microburst_sigmadsp_compander_input_gain_put(struct snd_kcontrol *kco
   uint32_t value[1];
 
   value[0] = ucontrol->value.integer.value[0]; // Convert by  pow( 10.0, (ucontrol->value.integer.value[0] - 90) / 20.0);
-  adau1761_block_write(adau, MOD_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG1ATTENUATION_ADDR, value, 4);
+  adau1761_block_write(adau, MOD_COMPRESSOR_LOGIC_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG1ATTENUATION_ADDR, value, 4);
   return 0;
 };
 
@@ -1756,13 +1756,13 @@ static int microburst_sigmadsp_compander_curve_put(struct  snd_kcontrol *kcontro
 
 uint32_t *compressor_array = ucontrol->value.integer.value;
 
-adau1761_safeload_write(adau, MOD_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG10_ADDR, compressor_array, 20 );
-adau1761_safeload_write(adau, MOD_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG10_ADDR, compressor_array+5, 20 );
-adau1761_safeload_write(adau, MOD_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG10_ADDR, compressor_array+10, 20 );
-adau1761_safeload_write(adau, MOD_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG10_ADDR, compressor_array+15, 20 );
-adau1761_safeload_write(adau, MOD_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG10_ADDR, compressor_array+20, 20 );
-adau1761_safeload_write(adau, MOD_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG10_ADDR, compressor_array+25, 20 );
-adau1761_safeload_write(adau, MOD_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG10_ADDR, compressor_array+30, 12 );
+adau1761_safeload_write(adau, MOD_COMPRESSOR_LOGIC_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG10_ADDR, compressor_array, 20 );
+adau1761_safeload_write(adau, MOD_COMPRESSOR_LOGIC_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG10_ADDR, compressor_array+5, 20 );
+adau1761_safeload_write(adau, MOD_COMPRESSOR_LOGIC_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG10_ADDR, compressor_array+10, 20 );
+adau1761_safeload_write(adau, MOD_COMPRESSOR_LOGIC_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG10_ADDR, compressor_array+15, 20 );
+adau1761_safeload_write(adau, MOD_COMPRESSOR_LOGIC_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG10_ADDR, compressor_array+20, 20 );
+adau1761_safeload_write(adau, MOD_COMPRESSOR_LOGIC_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG10_ADDR, compressor_array+25, 20 );
+adau1761_safeload_write(adau, MOD_COMPRESSOR_LOGIC_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG10_ADDR, compressor_array+30, 12 );
 
   return 0;	
 };
@@ -1783,7 +1783,7 @@ static int microburst_sigmadsp_compander_post_gain_get(struct snd_kcontrol *kcon
 
   uint32_t value;
 
-  regmap_raw_read(adau->regmap, MOD_POST_COMP_GAIN_GAIN1940ALGNS1_ADDR, &value, 4);
+  regmap_raw_read(adau->regmap, MOD_COMPRESSOR_LOGIC_POST_COMP_GAIN_GAIN1940ALGNS1_ADDR, &value, 4);
   value = htonl(value);
   ucontrol->value.integer.value[0] = value ; // 20 * log10(value) ! 
   return 0;
@@ -1798,7 +1798,7 @@ static int microburst_sigmadsp_compander_post_gain_put(struct snd_kcontrol *kcon
   uint32_t value[1];
 
   value[0] = ucontrol->value.integer.value[0]; // Convert by  pow( 10.0, (ucontrol->value.integer.value[0] - 90) / 20.0);
-  adau1761_block_write(adau, MOD_POST_COMP_GAIN_GAIN1940ALGNS1_ADDR, value, 4);
+  adau1761_block_write(adau, MOD_COMPRESSOR_LOGIC_POST_COMP_GAIN_GAIN1940ALGNS1_ADDR, value, 4);
   return 0;
 };
 
