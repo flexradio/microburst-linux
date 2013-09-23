@@ -416,7 +416,7 @@ static int adau1761_safeload_write(struct adau *adau, uint32_t addr, uint32_t *d
                     return -EINVAL;
           for (i = 0; i < size/4; i++)
           {
-              //printk (KERN_DEBUG "MB-sigmadsp: %d: %08X\n", addr+i, data[i]);
+            // printk (KERN_DEBUG "MB-sigmadsp: %d: %08X\n", addr+i, data[i]);
               data_swapped[i] = htonl(data[i]);
           }
 
@@ -1757,12 +1757,12 @@ static int microburst_sigmadsp_compander_curve_put(struct  snd_kcontrol *kcontro
 uint32_t *compressor_array = ucontrol->value.integer.value;
 
 adau1761_safeload_write(adau, MOD_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG10_ADDR, compressor_array, 20 );
-adau1761_safeload_write(adau, MOD_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG10_ADDR, compressor_array+5, 20 );
-adau1761_safeload_write(adau, MOD_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG10_ADDR, compressor_array+10, 20 );
-adau1761_safeload_write(adau, MOD_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG10_ADDR, compressor_array+15, 20 );
-adau1761_safeload_write(adau, MOD_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG10_ADDR, compressor_array+20, 20 );
-adau1761_safeload_write(adau, MOD_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG10_ADDR, compressor_array+25, 20 );
-adau1761_safeload_write(adau, MOD_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG10_ADDR, compressor_array+30, 12 );
+adau1761_safeload_write(adau, MOD_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG10_ADDR+5, compressor_array+5, 20 );
+adau1761_safeload_write(adau, MOD_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG10_ADDR+10, compressor_array+10, 20 );
+adau1761_safeload_write(adau, MOD_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG10_ADDR+15, compressor_array+15, 20 );
+adau1761_safeload_write(adau, MOD_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG10_ADDR+20, compressor_array+20, 20 );
+adau1761_safeload_write(adau, MOD_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG10_ADDR+25, compressor_array+25, 20 );
+adau1761_safeload_write(adau, MOD_COMPANDER_ALG0_STDPEAKINGCOMPRESSORALG10_ADDR+30, compressor_array+30, 16);
 
   return 0;	
 };
@@ -1945,6 +1945,33 @@ static int microburst_sigmadsp_peak_meter_readback_put(struct snd_kcontrol *kcon
 	return 0;
 };
 
+static int microburst_sigmadsp_compressor_meter_readback_get(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	//printk (KERN_DEBUG "MB-sigmadsp: peak_meter_readback_get called\n");
+	uint32_t readback_address = MOD_COMP_LEVEL_PEAK_READBACKALGSIGMA2003_ADDR;
+	uint32_t meter_reading;
+	uint32_t meter_reading_inverted;
+	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+	struct adau *adau = snd_soc_codec_get_drvdata(codec);
+	//printk (KERN_DEBUG "MB-sigmadsp: reading peak meter addr %d", readback_address);
+	regmap_raw_read(adau->regmap, readback_address, &meter_reading_inverted, 4);
+	meter_reading = htonl(meter_reading_inverted);
+	ucontrol->value.integer.value[0] = meter_reading;
+	//printk (KERN_DEBUG "MB-sigmadsp: peak reading value %08X", meter_reading);
+	return 0;
+};
+
+static int microburst_sigmadsp_compressor_meter_readback_put(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	//printk (KERN_DEBUG "MB-sigmadsp: peak_meter_readback_put called\n");
+//	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+//	struct adau *adau = snd_soc_codec_get_drvdata(codec);
+	//the put function does not do anything, this is a read-only control
+	return 0;
+};
+
 static int microburst_sigmadsp_average_meter_readback_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
@@ -1982,7 +2009,7 @@ static const struct snd_kcontrol_new microburst_sigmadsp_controls[] = {
 				microburst_sigmadsp_monitor_voice_cw_put),
 		SOC_SINGLE_BOOL_EXT("Microburst SigmaDSP Compander", 1, microburst_sigmadsp_compander_get,
 				microburst_sigmadsp_compander_put),
-		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Compander Curve", 101, microburst_sigmadsp_compander_curve_get, 
+		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Compander Curve", 0x07FFFFFF, microburst_sigmadsp_compander_curve_get, 
 			microburst_sigmadsp_compander_curve_put),
 		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Compander Hold", 12000, microburst_sigmadsp_compander_hold_get,
 			microburst_sigmadsp_compander_hold_put),
@@ -2052,6 +2079,8 @@ static const struct snd_kcontrol_new microburst_sigmadsp_controls[] = {
 				microburst_sigmadsp_peak_meter_readback_put),
 		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Average Meter Readback", 0x00800000, microburst_sigmadsp_average_meter_readback_get,
 				microburst_sigmadsp_average_meter_readback_put),
+		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Comp Meter Readback", 0x008000000, microburst_sigmadsp_compressor_meter_readback_get,
+			    microburst_sigmadsp_compressor_meter_readback_put),
 		SOC_SINGLE_INT_EXT("Extra Line Input Gain", 0x7FFFFFF, microburst_sigmadsp_extra_line_input_gain_get, 
 			microburst_sigmadsp_extra_line_input_gain_put),
 		SOC_SINGLE_INT_EXT("Extra Mic Input Gain", 0x7FFFFFF, microburst_sigmadsp_extra_mic_input_gain_get, 
