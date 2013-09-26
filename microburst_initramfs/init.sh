@@ -25,12 +25,13 @@ echo "New root filesystem extracted"
 echo "Upgrade Complete"
 
 if test -x /mnt/sdroot/bin/systemd ; then
-	echo "Switching to new root filesystem"
+	echo "Restarting radio.."
 	rm /mnt/sdboot/ug-uImage
 	rm /mnt/sdboot/rootfs.tgz
 	sync
 	umount /sys /proc /mnt/sdboot
-	exec switch_root /mnt/sdroot /bin/systemd
+#	exec switch_root /mnt/sdroot /bin/systemd
+        busybox reboot -d 0 -n -f
 fi
 	
 # If you get here, something bad happened.  
