@@ -25,7 +25,7 @@
 #include "microburst-sigmadsp.h"
 
 
-#define CODEC_MODULE_VERSION      1014
+#define CODEC_MODULE_VERSION      1018
 
 #define ADAU1761_DIGMIC_JACKDETECT	0x4008
 #define ADAU1761_REC_MIXER_LEFT0	0x400a
@@ -1875,6 +1875,77 @@ static int microburst_sigmadsp_echo_cancel_adapt_put(struct snd_kcontrol *kcontr
 	return 0;
 };
 
+static int microburst_sigmadsp_vox_enable_get(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	//printk (KERN_DEBUG "MB-sigmadsp: echo_cancel_get called\n");
+	ucontrol->value.integer.value[0] = kcontrol->private_value;
+	return 0;
+};
+
+static int microburst_sigmadsp_vox_enable_put(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	//printk (KERN_DEBUG "MB-sigmadsp: echo_cancel_put called\n");
+	uint32_t buf[2];
+	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+	struct adau *adau = snd_soc_codec_get_drvdata(codec);
+	int echo_cancel;
+	uint32_t mux_addr = MOD_VOX_ENABLE_ALG0_STAGE0_MONOSWITCHNOSLEW_ADDR;
+	echo_cancel = ucontrol->value.integer.value[0];
+	if (echo_cancel)
+	{
+		buf[0] = MICROBURST_SIGMADSP_FIXPT_ZERO;
+		buf[1] = MICROBURST_SIGMADSP_FIXPT_ONE;
+	}
+	else
+	{
+		buf[0] = MICROBURST_SIGMADSP_FIXPT_ONE;
+		buf[1] = MICROBURST_SIGMADSP_FIXPT_ZERO;
+	}
+
+	//printk (KERN_DEBUG "MB-sigmadsp: echo_cancel setting to %d\n", echo_cancel);
+	adau1761_block_write(adau, mux_addr, buf, 8);
+
+	return 0;
+};
+
+static int microburst_sigmadsp_eq_comp_bypass_get(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	//printk (KERN_DEBUG "MB-sigmadsp: echo_cancel_get called\n");
+	ucontrol->value.integer.value[0] = kcontrol->private_value;
+	return 0;
+};
+
+static int microburst_sigmadsp_eq_comp_bypass_put(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	//printk (KERN_DEBUG "MB-sigmadsp: echo_cancel_put called\n");
+	uint32_t buf[2];
+	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+	struct adau *adau = snd_soc_codec_get_drvdata(codec);
+	int echo_cancel;
+	uint32_t mux_addr = MOD_MODE_BYPASS_EQ_COMP_ALG0_STAGE0_MONOSWITCHNOSLEW_ADDR;
+	echo_cancel = ucontrol->value.integer.value[0];
+	if (echo_cancel)
+	{
+		buf[0] = MICROBURST_SIGMADSP_FIXPT_ZERO;
+		buf[1] = MICROBURST_SIGMADSP_FIXPT_ONE;
+	}
+	else
+	{
+		buf[0] = MICROBURST_SIGMADSP_FIXPT_ONE;
+		buf[1] = MICROBURST_SIGMADSP_FIXPT_ZERO;
+	}
+
+	//printk (KERN_DEBUG "MB-sigmadsp: echo_cancel setting to %d\n", echo_cancel);
+	adau1761_block_write(adau, mux_addr, buf, 8);
+
+	return 0;
+};
+
+
 static int microburst_sigmadsp_binary_version_get(struct snd_kcontrol *kcontrol,
 	                                               struct snd_ctl_elem_value *ucontrol)
 {
@@ -1883,7 +1954,7 @@ static int microburst_sigmadsp_binary_version_get(struct snd_kcontrol *kcontrol,
 
 	uint32_t value , ret_val;
 	value = 0x9999;
-	ret_val = regmap_raw_read(adau->regmap, MOD_CODEC_BINARY_VERSION_DCINPALG1_ADDR, &value, 4);
+	ret_val = regmap_raw_read(adau->regmap, MOD_CODEC_BINARY_VERSION_READBACKALGSIGMA2004_ADDR, &value, 4);
 
 	value = htonl(value);
 
@@ -2007,6 +2078,10 @@ static const struct snd_kcontrol_new microburst_sigmadsp_controls[] = {
 				microburst_sigmadsp_cw_key_put),
 		SOC_SINGLE_BOOL_EXT("Microburst SigmaDSP Monitor Voice CW", 1, microburst_sigmadsp_monitor_voice_cw_get,
 				microburst_sigmadsp_monitor_voice_cw_put),
+		SOC_SINGLE_INT_EXT("Microburst SigmaDSP EQ-COMP Bypass", 2, microburst_sigmadsp_eq_comp_bypass_get,
+			microburst_sigmadsp_eq_comp_bypass_put),
+		SOC_SINGLE_INT_EXT("Microburst SigmaDSP VOX Enable", 2, microburst_sigmadsp_vox_enable_get,
+			microburst_sigmadsp_vox_enable_put),
 		SOC_SINGLE_BOOL_EXT("Microburst SigmaDSP Compander", 1, microburst_sigmadsp_compander_get,
 				microburst_sigmadsp_compander_put),
 		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Compander Curve", 0x07FFFFFF, microburst_sigmadsp_compander_curve_get, 
