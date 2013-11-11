@@ -25,7 +25,7 @@
 #include "microburst-sigmadsp.h"
 
 
-#define CODEC_MODULE_VERSION      1018
+#define CODEC_MODULE_VERSION      1019
 
 #define ADAU1761_DIGMIC_JACKDETECT	0x4008
 #define ADAU1761_REC_MIXER_LEFT0	0x400a
@@ -2016,11 +2016,11 @@ static int microburst_sigmadsp_peak_meter_readback_put(struct snd_kcontrol *kcon
 	return 0;
 };
 
-static int microburst_sigmadsp_compressor_meter_readback_get(struct snd_kcontrol *kcontrol,
+static int microburst_sigmadsp_compressor_meter_readback_input_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
 	//printk (KERN_DEBUG "MB-sigmadsp: peak_meter_readback_get called\n");
-	uint32_t readback_address = MOD_COMP_LEVEL_PEAK_READBACKALGSIGMA2003_ADDR;
+	uint32_t readback_address = MOD_COMP_LEVEL_PEAK_IN_READBACKALGSIGMA2003_ADDR;
 	uint32_t meter_reading;
 	uint32_t meter_reading_inverted;
 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
@@ -2033,7 +2033,7 @@ static int microburst_sigmadsp_compressor_meter_readback_get(struct snd_kcontrol
 	return 0;
 };
 
-static int microburst_sigmadsp_compressor_meter_readback_put(struct snd_kcontrol *kcontrol,
+static int microburst_sigmadsp_compressor_meter_readback_input_put(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
 	//printk (KERN_DEBUG "MB-sigmadsp: peak_meter_readback_put called\n");
@@ -2042,6 +2042,35 @@ static int microburst_sigmadsp_compressor_meter_readback_put(struct snd_kcontrol
 	//the put function does not do anything, this is a read-only control
 	return 0;
 };
+
+
+static int microburst_sigmadsp_compressor_meter_readback_output_get(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	//printk (KERN_DEBUG "MB-sigmadsp: peak_meter_readback_get called\n");
+	uint32_t readback_address = MOD_COMP_LEVEL_PEAK_OUT_READBACKALGSIGMA2005_ADDR;
+	uint32_t meter_reading;
+	uint32_t meter_reading_inverted;
+	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+	struct adau *adau = snd_soc_codec_get_drvdata(codec);
+	//printk (KERN_DEBUG "MB-sigmadsp: reading peak meter addr %d", readback_address);
+	regmap_raw_read(adau->regmap, readback_address, &meter_reading_inverted, 4);
+	meter_reading = htonl(meter_reading_inverted);
+	ucontrol->value.integer.value[0] = meter_reading;
+	//printk (KERN_DEBUG "MB-sigmadsp: peak reading value %08X", meter_reading);
+	return 0;
+};
+
+static int microburst_sigmadsp_compressor_meter_readback_output_put(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	//printk (KERN_DEBUG "MB-sigmadsp: peak_meter_readback_put called\n");
+//	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+//	struct adau *adau = snd_soc_codec_get_drvdata(codec);
+	//the put function does not do anything, this is a read-only control
+	return 0;
+};
+
 
 static int microburst_sigmadsp_average_meter_readback_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
@@ -2154,8 +2183,10 @@ static const struct snd_kcontrol_new microburst_sigmadsp_controls[] = {
 				microburst_sigmadsp_peak_meter_readback_put),
 		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Average Meter Readback", 0x00800000, microburst_sigmadsp_average_meter_readback_get,
 				microburst_sigmadsp_average_meter_readback_put),
-		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Comp Meter Readback", 0x008000000, microburst_sigmadsp_compressor_meter_readback_get,
-			    microburst_sigmadsp_compressor_meter_readback_put),
+		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Comp Meter In Readback", 0x008000000, microburst_sigmadsp_compressor_meter_readback_input_get,
+			    microburst_sigmadsp_compressor_meter_readback_input_put),
+		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Comp Meter Out Readback", 0x008000000, microburst_sigmadsp_compressor_meter_readback_output_get,
+			    microburst_sigmadsp_compressor_meter_readback_output_put),
 		SOC_SINGLE_INT_EXT("Extra Line Input Gain", 0x7FFFFFF, microburst_sigmadsp_extra_line_input_gain_get, 
 			microburst_sigmadsp_extra_line_input_gain_put),
 		SOC_SINGLE_INT_EXT("Extra Mic Input Gain", 0x7FFFFFF, microburst_sigmadsp_extra_mic_input_gain_get, 
