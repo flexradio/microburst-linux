@@ -25,7 +25,7 @@
 #include "microburst-sigmadsp.h"
 
 
-#define CODEC_MODULE_VERSION      1019
+#define CODEC_MODULE_VERSION      1020
 
 #define ADAU1761_DIGMIC_JACKDETECT	0x4008
 #define ADAU1761_REC_MIXER_LEFT0	0x400a
@@ -565,6 +565,43 @@ static int microburst_sigmadsp_compander_get(struct snd_kcontrol *kcontrol,
 	ucontrol->value.integer.value[0] = kcontrol->private_value;
 	return 0;
 };
+
+static int microburst_sigmadsp_apf_get(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	//printk (KERN_DEBUG "MB-sigmadsp: compander_get called\n");
+	ucontrol->value.integer.value[0] = kcontrol->private_value;
+	return 0;
+};
+
+
+static int microburst_sigmadsp_apf_put(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	//printk (KERN_DEBUG "MB-sigmadsp: apf_put called\n");
+	uint32_t buf[2];
+	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+	struct adau *adau = snd_soc_codec_get_drvdata(codec);
+	int compander_enable;
+	uint32_t mux_addr =MOD_APF_ENABLE_ALG0_STAGE0_STEREOSWITCHNOSLEW_ADDR;
+	compander_enable = ucontrol->value.integer.value[0];
+	if (compander_enable)
+	{
+		buf[0] = MICROBURST_SIGMADSP_FIXPT_ZERO;
+		buf[1] = MICROBURST_SIGMADSP_FIXPT_ONE;
+	}
+	else
+	{
+		buf[0] = MICROBURST_SIGMADSP_FIXPT_ONE;
+		buf[1] = MICROBURST_SIGMADSP_FIXPT_ZERO;
+	}
+
+	//printk (KERN_DEBUG "MB-sigmadsp: compander setting to %d\n", compander_enable);
+	adau1761_block_write(adau, mux_addr, buf, 8);
+
+	return 0;
+};
+
 
 static int microburst_sigmadsp_compander_put(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
@@ -1716,6 +1753,39 @@ static int microburst_sigmadsp_compander_input_gain_put(struct snd_kcontrol *kco
   return 0;
 };
 
+static int microburst_sigmadsp_apf_coefficients_put(struct snd_kcontrol *kcontrol,
+                                                    struct snd_ctl_elem_value *ucontrol)
+{
+    struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+    struct adau *adau = snd_soc_codec_get_drvdata(codec);
+
+    uint32_t *coefficients = ucontrol->value.integer.value;
+    
+    uint32_t i;
+    for(i = 0; i < 5; i++){
+       	printk(KERN_DEBUG "Item %d is %x\n", i, ucontrol->value.integer.value[i]);
+    }
+    adau1761_safeload_write(adau, MOD_GENFILTER1_ALG0_STAGE0_A1_ADDR, coefficients, 20);
+    uint32_t data[1];
+    data[0] = 95;
+    adau1761_block_write(adau, MOD_GENFILTER1_ALG0_COEFF_ADR_ADDR, data, 4);
+    data[0] = 172;
+    adau1761_block_write(adau, MOD_GENFILTER1_ALG0_DATA_ADR_ADDR, data, 4);
+    data[0] = 178;
+    adau1761_block_write(adau, MOD_GENFILTER1_ALG0_DATAR_ADR_ADDR, data, 4);
+    data[0] = 1;
+    adau1761_block_write(adau, MOD_GENFILTER1_ALG0_LOOP_ADDR, data, 4);
+
+    return 0;
+
+};
+
+static int microburst_sigmadsp_apf_coefficients_get(struct snd_kcontrol *kcontrol,
+	                                               struct snd_ctl_elem_value *ucontrol)
+{
+	return 0;
+};
+
 static int microburst_sigmadsp_compander_curve_put(struct  snd_kcontrol *kcontrol,
 	struct snd_ctl_elem_value *ucontrol)
 {
@@ -2113,8 +2183,12 @@ static const struct snd_kcontrol_new microburst_sigmadsp_controls[] = {
 			microburst_sigmadsp_vox_enable_put),
 		SOC_SINGLE_BOOL_EXT("Microburst SigmaDSP Compander", 1, microburst_sigmadsp_compander_get,
 				microburst_sigmadsp_compander_put),
+		SOC_SINGLE_BOOL_EXT("Microburst SigmaDSP APF", 1, microburst_sigmadsp_apf_get,
+				microburst_sigmadsp_apf_put),
 		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Compander Curve", 0x07FFFFFF, microburst_sigmadsp_compander_curve_get, 
 			microburst_sigmadsp_compander_curve_put),
+		SOC_SINGLE_INT_EXT("Microburst SigmaDSP APF Coef", 0x07FFFFFF, microburst_sigmadsp_apf_coefficients_get,
+                                   microburst_sigmadsp_apf_coefficients_put),
 		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Compander Hold", 12000, microburst_sigmadsp_compander_hold_get,
 			microburst_sigmadsp_compander_hold_put),
 		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Compander Decay", 0x7B89, microburst_sigmadsp_compander_decay_get,
