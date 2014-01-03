@@ -56,8 +56,8 @@ GPPOS = Linux
 # code base.  This is especially helpful during development, but may not
 # be necessary at production.
 #
-SYSLINK_BUILD_DEBUG=1
-SYSLINK_TRACE_ENABLE=1
+SYSLINK_BUILD_DEBUG=0
+SYSLINK_TRACE_ENABLE=0
 
 # SysLink OPTIMIZE option (choose one): 0 or 1
 #
@@ -72,7 +72,7 @@ SYSLINK_TRACE_ENABLE=1
 # SysLink stack - that includes RTOS, user, and driver layers if applicable
 # to your environment.
 #
-SYSLINK_BUILD_OPTIMIZE=0
+SYSLINK_BUILD_OPTIMIZE=1
 
 # SysLink HLOS driver Notify options (choose one): NOTIFYDRIVERSHM,
 #    NOTIFYDRIVERCIRC
