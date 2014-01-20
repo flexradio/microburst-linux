@@ -19,6 +19,7 @@ echo "New root filesystem created and mounted"
 
 # Extract root filesystem from tarball
 tar zxf /mnt/sdboot/rootfs.tgz -C /mnt/sdroot/
+sync
 
 echo "New root filesystem extracted"
 
