@@ -25,7 +25,7 @@
 #include "microburst-sigmadsp.h"
 
 
-#define CODEC_MODULE_VERSION      1020
+#define CODEC_MODULE_VERSION      1021
 
 #define ADAU1761_DIGMIC_JACKDETECT	0x4008
 #define ADAU1761_REC_MIXER_LEFT0	0x400a
@@ -1761,10 +1761,10 @@ static int microburst_sigmadsp_apf_coefficients_put(struct snd_kcontrol *kcontro
 
     uint32_t *coefficients = ucontrol->value.integer.value;
     
-    uint32_t i;
-    for(i = 0; i < 5; i++){
-       	printk(KERN_DEBUG "Item %d is %x\n", i, ucontrol->value.integer.value[i]);
-    }
+    /* uint32_t i; */
+    /* for(i = 0; i < 5; i++){ */
+    /*    	printk(KERN_DEBUG "Item %d is %x\n", i, ucontrol->value.integer.value[i]); */
+    /*  }  */
     adau1761_safeload_write(adau, MOD_GENFILTER1_ALG0_STAGE0_A1_ADDR, coefficients, 20);
     uint32_t data[1];
     data[0] = 95;
@@ -1791,10 +1791,10 @@ static int microburst_sigmadsp_compander_curve_put(struct  snd_kcontrol *kcontro
 {
 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
 	struct adau *adau = snd_soc_codec_get_drvdata(codec);
-	uint32_t expander_index;
-	uint32_t value;;
+        //	uint32_t expander_index;
+        //	uint32_t value;;
 
-	uint32_t i;
+        //	uint32_t i;
 
 	//uint32_t compressor_array[34];
 //	compressor_array[0]  = MICROBURST_SIGMADSP_FIXPT_ONE;
