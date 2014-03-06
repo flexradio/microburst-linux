@@ -126,7 +126,7 @@ CGT_ARM_PREFIX          = $(CGT_ARM_INSTALL_DIR)/bin/arm-none-linux-gnueabi-
 IPC_INSTALL_DIR         = $(DEPOT)/home/eric/ti/ipc_1_25_03_15
 BIOS_INSTALL_DIR        = $(DEPOT)/home/eric/ti/bios_6_34_04_22
 XDC_INSTALL_DIR         = $(DEPOT)/home/eric/ti/xdctools_3_24_05_48
-CGT_C674_ELF_INSTALL_DIR= $(DEPOT)/opt/ti/C6000CGT7.2.7
+CGT_C674_ELF_INSTALL_DIR= $(DEPOT)/opt/ti/C6000CGT7.4.6
 
 
 # SYS/BIOS timer frequency (ti.sysbios.timers.dmtimer.Timer.intFreq)
