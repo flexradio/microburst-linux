@@ -463,7 +463,7 @@ static int davinci_mcasp_set_dai_fmt(struct snd_soc_dai *cpu_dai,
 
 		mcasp_clr_bits(base + DAVINCI_MCASP_PDIR_REG, (0x3f << 26));
 
-                mcasp_set_bits(base + DAVINCI_MCASP_PDIR_REG, (0x1 << 27));
+                mcasp_set_bits(base + DAVINCI_MCASP_PDIR_REG, (0x0 << 27));
 
                 /*
                 switch(dev->clk_input_pin) {
