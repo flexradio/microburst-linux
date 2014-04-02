@@ -25,7 +25,7 @@
 #include "microburst-sigmadsp.h"
 
 
-#define CODEC_MODULE_VERSION      1021
+#define CODEC_MODULE_VERSION      1022
 
 #define ADAU1761_DIGMIC_JACKDETECT	0x4008
 #define ADAU1761_REC_MIXER_LEFT0	0x400a
@@ -566,41 +566,41 @@ static int microburst_sigmadsp_compander_get(struct snd_kcontrol *kcontrol,
 	return 0;
 };
 
-static int microburst_sigmadsp_apf_get(struct snd_kcontrol *kcontrol,
-		struct snd_ctl_elem_value *ucontrol)
-{
-	//printk (KERN_DEBUG "MB-sigmadsp: compander_get called\n");
-	ucontrol->value.integer.value[0] = kcontrol->private_value;
-	return 0;
-};
+/* static int microburst_sigmadsp_apf_get(struct snd_kcontrol *kcontrol, */
+/* 		struct snd_ctl_elem_value *ucontrol) */
+/* { */
+/* 	//printk (KERN_DEBUG "MB-sigmadsp: compander_get called\n"); */
+/* 	ucontrol->value.integer.value[0] = kcontrol->private_value; */
+/* 	return 0; */
+/* }; */
 
 
-static int microburst_sigmadsp_apf_put(struct snd_kcontrol *kcontrol,
-		struct snd_ctl_elem_value *ucontrol)
-{
-	//printk (KERN_DEBUG "MB-sigmadsp: apf_put called\n");
-	uint32_t buf[2];
-	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
-	struct adau *adau = snd_soc_codec_get_drvdata(codec);
-	int compander_enable;
-	uint32_t mux_addr =MOD_APF_ENABLE_ALG0_STAGE0_STEREOSWITCHNOSLEW_ADDR;
-	compander_enable = ucontrol->value.integer.value[0];
-	if (compander_enable)
-	{
-		buf[0] = MICROBURST_SIGMADSP_FIXPT_ZERO;
-		buf[1] = MICROBURST_SIGMADSP_FIXPT_ONE;
-	}
-	else
-	{
-		buf[0] = MICROBURST_SIGMADSP_FIXPT_ONE;
-		buf[1] = MICROBURST_SIGMADSP_FIXPT_ZERO;
-	}
+/* static int microburst_sigmadsp_apf_put(struct snd_kcontrol *kcontrol, */
+/* 		struct snd_ctl_elem_value *ucontrol) */
+/* { */
+/* 	//printk (KERN_DEBUG "MB-sigmadsp: apf_put called\n"); */
+/* 	uint32_t buf[2]; */
+/* 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol); */
+/* 	struct adau *adau = snd_soc_codec_get_drvdata(codec); */
+/* 	int compander_enable; */
+/* 	uint32_t mux_addr =MOD_APF_ENABLE_ALG0_STAGE0_STEREOSWITCHNOSLEW_ADDR; */
+/* 	compander_enable = ucontrol->value.integer.value[0]; */
+/* 	if (compander_enable) */
+/* 	{ */
+/* 		buf[0] = MICROBURST_SIGMADSP_FIXPT_ZERO; */
+/* 		buf[1] = MICROBURST_SIGMADSP_FIXPT_ONE; */
+/* 	} */
+/* 	else */
+/* 	{ */
+/* 		buf[0] = MICROBURST_SIGMADSP_FIXPT_ONE; */
+/* 		buf[1] = MICROBURST_SIGMADSP_FIXPT_ZERO; */
+/* 	} */
 
-	//printk (KERN_DEBUG "MB-sigmadsp: compander setting to %d\n", compander_enable);
-	adau1761_block_write(adau, mux_addr, buf, 8);
+/* 	//printk (KERN_DEBUG "MB-sigmadsp: compander setting to %d\n", compander_enable); */
+/* 	adau1761_block_write(adau, mux_addr, buf, 8); */
 
-	return 0;
-};
+/* 	return 0; */
+/* }; */
 
 
 static int microburst_sigmadsp_compander_put(struct snd_kcontrol *kcontrol,
@@ -734,40 +734,40 @@ static int microburst_sigmadsp_meter_select_put(struct snd_kcontrol *kcontrol,
 	return 0;
 };
 
-static int microburst_sigmadsp_echo_cancel_get(struct snd_kcontrol *kcontrol,
-		struct snd_ctl_elem_value *ucontrol)
-{
-	//printk (KERN_DEBUG "MB-sigmadsp: echo_cancel_get called\n");
-	ucontrol->value.integer.value[0] = kcontrol->private_value;
-	return 0;
-};
+/* static int microburst_sigmadsp_echo_cancel_get(struct snd_kcontrol *kcontrol, */
+/* 		struct snd_ctl_elem_value *ucontrol) */
+/* { */
+/* 	//printk (KERN_DEBUG "MB-sigmadsp: echo_cancel_get called\n"); */
+/* 	ucontrol->value.integer.value[0] = kcontrol->private_value; */
+/* 	return 0; */
+/* }; */
 
-static int microburst_sigmadsp_echo_cancel_put(struct snd_kcontrol *kcontrol,
-		struct snd_ctl_elem_value *ucontrol)
-{
-	//printk (KERN_DEBUG "MB-sigmadsp: echo_cancel_put called\n");
-	uint32_t buf[2];
-	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
-	struct adau *adau = snd_soc_codec_get_drvdata(codec);
-	int echo_cancel;
-	uint32_t mux_addr = MOD_ECHO_CANCEL_ENABLE_ALG0_STAGE0_MONOSWITCHNOSLEW_ADDR;
-	echo_cancel = ucontrol->value.integer.value[0];
-	if (echo_cancel)
-	{
-		buf[0] = MICROBURST_SIGMADSP_FIXPT_ZERO;
-		buf[1] = MICROBURST_SIGMADSP_FIXPT_ONE;
-	}
-	else
-	{
-		buf[0] = MICROBURST_SIGMADSP_FIXPT_ONE;
-		buf[1] = MICROBURST_SIGMADSP_FIXPT_ZERO;
-	}
+/* static int microburst_sigmadsp_echo_cancel_put(struct snd_kcontrol *kcontrol, */
+/* 		struct snd_ctl_elem_value *ucontrol) */
+/* { */
+/* 	//printk (KERN_DEBUG "MB-sigmadsp: echo_cancel_put called\n"); */
+/* 	uint32_t buf[2]; */
+/* 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol); */
+/* 	struct adau *adau = snd_soc_codec_get_drvdata(codec); */
+/* 	int echo_cancel; */
+/* 	uint32_t mux_addr = MOD_ECHO_CANCEL_ENABLE_ALG0_STAGE0_MONOSWITCHNOSLEW_ADDR; */
+/* 	echo_cancel = ucontrol->value.integer.value[0]; */
+/* 	if (echo_cancel) */
+/* 	{ */
+/* 		buf[0] = MICROBURST_SIGMADSP_FIXPT_ZERO; */
+/* 		buf[1] = MICROBURST_SIGMADSP_FIXPT_ONE; */
+/* 	} */
+/* 	else */
+/* 	{ */
+/* 		buf[0] = MICROBURST_SIGMADSP_FIXPT_ONE; */
+/* 		buf[1] = MICROBURST_SIGMADSP_FIXPT_ZERO; */
+/* 	} */
 
-	//printk (KERN_DEBUG "MB-sigmadsp: echo_cancel setting to %d\n", echo_cancel);
-	adau1761_block_write(adau, mux_addr, buf, 8);
+/* 	//printk (KERN_DEBUG "MB-sigmadsp: echo_cancel setting to %d\n", echo_cancel); */
+/* 	adau1761_block_write(adau, mux_addr, buf, 8); */
 
-	return 0;
-};
+/* 	return 0; */
+/* }; */
 
 static int microburst_sigmadsp_input_source_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
@@ -959,7 +959,7 @@ static int microburst_sigmadsp_tx_filter_bw_get(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_tx_filter_bw_put(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
-	printk(KERN_DEBUG "MB-sigmadsp: tx_filter_bw_put called\n");
+    //	printk(KERN_DEBUG "MB-sigmadsp: tx_filter_bw_put called\n");
 	uint32_t *buf_lp;
 	uint32_t *buf_hp;
 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
@@ -987,7 +987,7 @@ static int microburst_sigmadsp_tx_filter_bw_put(struct snd_kcontrol *kcontrol,
             break;
 	}
 
-	printk (KERN_DEBUG "MB-sigmadsp: tx_filter_bw setting to %d\n", bandwidth_select);
+        //	printk (KERN_DEBUG "MB-sigmadsp: tx_filter_bw setting to %d\n", bandwidth_select);
         //	adau1761_block_write(adau, lp_addr, buf_lp, 24);
         //	adau1761_block_write(adau, hp_addr, buf_hp, 24);
         adau1761_safeload_write(adau, lp_addr, buf_lp, 20);
@@ -1753,38 +1753,38 @@ static int microburst_sigmadsp_compander_input_gain_put(struct snd_kcontrol *kco
   return 0;
 };
 
-static int microburst_sigmadsp_apf_coefficients_put(struct snd_kcontrol *kcontrol,
-                                                    struct snd_ctl_elem_value *ucontrol)
-{
-    struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
-    struct adau *adau = snd_soc_codec_get_drvdata(codec);
+/* static int microburst_sigmadsp_apf_coefficients_put(struct snd_kcontrol *kcontrol, */
+/*                                                     struct snd_ctl_elem_value *ucontrol) */
+/* { */
+/*     struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol); */
+/*     struct adau *adau = snd_soc_codec_get_drvdata(codec); */
 
-    uint32_t *coefficients = ucontrol->value.integer.value;
+/*     uint32_t *coefficients = ucontrol->value.integer.value; */
     
-    /* uint32_t i; */
-    /* for(i = 0; i < 5; i++){ */
-    /*    	printk(KERN_DEBUG "Item %d is %x\n", i, ucontrol->value.integer.value[i]); */
-    /*  }  */
-    adau1761_safeload_write(adau, MOD_GENFILTER1_ALG0_STAGE0_A1_ADDR, coefficients, 20);
-    uint32_t data[1];
-    data[0] = 95;
-    adau1761_block_write(adau, MOD_GENFILTER1_ALG0_COEFF_ADR_ADDR, data, 4);
-    data[0] = 172;
-    adau1761_block_write(adau, MOD_GENFILTER1_ALG0_DATA_ADR_ADDR, data, 4);
-    data[0] = 178;
-    adau1761_block_write(adau, MOD_GENFILTER1_ALG0_DATAR_ADR_ADDR, data, 4);
-    data[0] = 1;
-    adau1761_block_write(adau, MOD_GENFILTER1_ALG0_LOOP_ADDR, data, 4);
+/*     /\* uint32_t i; *\/ */
+/*     /\* for(i = 0; i < 5; i++){ *\/ */
+/*     /\*    	printk(KERN_DEBUG "Item %d is %x\n", i, ucontrol->value.integer.value[i]); *\/ */
+/*     /\*  }  *\/ */
+/*     adau1761_safeload_write(adau, MOD_GENFILTER1_ALG0_STAGE0_A1_ADDR, coefficients, 20); */
+/*     uint32_t data[1]; */
+/*     data[0] = 95; */
+/*     adau1761_block_write(adau, MOD_GENFILTER1_ALG0_COEFF_ADR_ADDR, data, 4); */
+/*     data[0] = 172; */
+/*     adau1761_block_write(adau, MOD_GENFILTER1_ALG0_DATA_ADR_ADDR, data, 4); */
+/*     data[0] = 178; */
+/*     adau1761_block_write(adau, MOD_GENFILTER1_ALG0_DATAR_ADR_ADDR, data, 4); */
+/*     data[0] = 1; */
+/*     adau1761_block_write(adau, MOD_GENFILTER1_ALG0_LOOP_ADDR, data, 4); */
 
-    return 0;
+/*     return 0; */
 
-};
+/* }; */
 
-static int microburst_sigmadsp_apf_coefficients_get(struct snd_kcontrol *kcontrol,
-	                                               struct snd_ctl_elem_value *ucontrol)
-{
-	return 0;
-};
+/* static int microburst_sigmadsp_apf_coefficients_get(struct snd_kcontrol *kcontrol, */
+/* 	                                               struct snd_ctl_elem_value *ucontrol) */
+/* { */
+/* 	return 0; */
+/* }; */
 
 static int microburst_sigmadsp_compander_curve_put(struct  snd_kcontrol *kcontrol,
 	struct snd_ctl_elem_value *ucontrol)
@@ -1899,86 +1899,86 @@ static int microburst_sigmadsp_compander_post_gain_2_put(struct snd_kcontrol *kc
   adau1761_block_write(adau, MOD_POST_COMP_GAIN_2_GAIN1940ALGNS6_ADDR, value, 4);
   return 0;
 };
-static int microburst_sigmadsp_echo_cancel_adapt_get(struct snd_kcontrol *kcontrol,
-	                                                struct snd_ctl_elem_value *ucontrol)
-{
-	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
-	struct adau *adau = snd_soc_codec_get_drvdata(codec);
+/* tatic int microburst_sigmadsp_echo_cancel_adapt_get(struct snd_kcontrol *kcontrol, */
+/* 	                                                struct snd_ctl_elem_value *ucontrol) */
+/* { */
+/* 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol); */
+/* 	struct adau *adau = snd_soc_codec_get_drvdata(codec); */
 
-	uint32_t value;
+/* 	uint32_t value; */
 
-	regmap_raw_read(adau->regmap, MOD_ECHO_CANCEL_ECHO_CANCEL_ADAPT_ISON_ADDR, &value, 4);
-	value = htonl(value);
+/* 	regmap_raw_read(adau->regmap, MOD_ECHO_CANCEL_ECHO_CANCEL_ADAPT_ISON_ADDR, &value, 4); */
+/* 	value = htonl(value); */
 
-	if(value)
-	{
-		ucontrol->value.integer.value[0] = 1;
-	}
-	else
-	{
-		ucontrol->value.integer.value[0] = 0;
-	}
-	return 0;
-};
+/* 	if(value) */
+/* 	{ */
+/* 		ucontrol->value.integer.value[0] = 1; */
+/* 	} */
+/* 	else */
+/* 	{ */
+/* 		ucontrol->value.integer.value[0] = 0; */
+/* 	} */
+/* 	return 0; */
+/* }; */
 
-static int microburst_sigmadsp_echo_cancel_adapt_put(struct snd_kcontrol *kcontrol,
-                                                 	struct snd_ctl_elem_value *ucontrol)
-{
-	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
-	struct adau *adau = snd_soc_codec_get_drvdata(codec);
+/* static int microburst_sigmadsp_echo_cancel_adapt_put(struct snd_kcontrol *kcontrol, */
+/*                                                  	struct snd_ctl_elem_value *ucontrol) */
+/* { */
+/* 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol); */
+/* 	struct adau *adau = snd_soc_codec_get_drvdata(codec); */
 
 
-	uint32_t value;
-	if(ucontrol->value.integer.value[0])
-	{
-		value = MICROBURST_SIGMADSP_FIXPT_ONE;
-		adau1761_block_write(adau, MOD_ECHO_CANCEL_ECHO_CANCEL_ADAPT_ISON_ADDR,
-			&value, 4);
-	}
-	else
-	{
-		value = MICROBURST_SIGMADSP_FIXPT_ZERO;
-		adau1761_block_write(adau, MOD_ECHO_CANCEL_ECHO_CANCEL_ADAPT_ISON_ADDR,
-			&value, 4);
-	}
+/* 	uint32_t value; */
+/* 	if(ucontrol->value.integer.value[0]) */
+/* 	{ */
+/* 		value = MICROBURST_SIGMADSP_FIXPT_ONE; */
+/* 		adau1761_block_write(adau, MOD_ECHO_CANCEL_ECHO_CANCEL_ADAPT_ISON_ADDR, */
+/* 			&value, 4); */
+/* 	} */
+/* 	else */
+/* 	{ */
+/* 		value = MICROBURST_SIGMADSP_FIXPT_ZERO; */
+/* 		adau1761_block_write(adau, MOD_ECHO_CANCEL_ECHO_CANCEL_ADAPT_ISON_ADDR, */
+/* 			&value, 4); */
+/* 	} */
 
-	return 0;
-};
+/* 	return 0; */
+/* }; */
 
-static int microburst_sigmadsp_vox_enable_get(struct snd_kcontrol *kcontrol,
-		struct snd_ctl_elem_value *ucontrol)
-{
-	//printk (KERN_DEBUG "MB-sigmadsp: echo_cancel_get called\n");
-	ucontrol->value.integer.value[0] = kcontrol->private_value;
-	return 0;
-};
+/* static int microburst_sigmadsp_vox_enable_get(struct snd_kcontrol *kcontrol, */
+/* 		struct snd_ctl_elem_value *ucontrol) */
+/* { */
+/* 	//printk (KERN_DEBUG "MB-sigmadsp: echo_cancel_get called\n"); */
+/* 	ucontrol->value.integer.value[0] = kcontrol->private_value; */
+/* 	return 0; */
+/* }; */
 
-static int microburst_sigmadsp_vox_enable_put(struct snd_kcontrol *kcontrol,
-		struct snd_ctl_elem_value *ucontrol)
-{
-	//printk (KERN_DEBUG "MB-sigmadsp: echo_cancel_put called\n");
-	uint32_t buf[2];
-	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
-	struct adau *adau = snd_soc_codec_get_drvdata(codec);
-	int echo_cancel;
-	uint32_t mux_addr = MOD_VOX_ENABLE_ALG0_STAGE0_MONOSWITCHNOSLEW_ADDR;
-	echo_cancel = ucontrol->value.integer.value[0];
-	if (echo_cancel)
-	{
-		buf[0] = MICROBURST_SIGMADSP_FIXPT_ZERO;
-		buf[1] = MICROBURST_SIGMADSP_FIXPT_ONE;
-	}
-	else
-	{
-		buf[0] = MICROBURST_SIGMADSP_FIXPT_ONE;
-		buf[1] = MICROBURST_SIGMADSP_FIXPT_ZERO;
-	}
+/* static int microburst_sigmadsp_vox_enable_put(struct snd_kcontrol *kcontrol, */
+/* 		struct snd_ctl_elem_value *ucontrol) */
+/* { */
+/* 	//printk (KERN_DEBUG "MB-sigmadsp: echo_cancel_put called\n"); */
+/* 	uint32_t buf[2]; */
+/* 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol); */
+/* 	struct adau *adau = snd_soc_codec_get_drvdata(codec); */
+/* 	int echo_cancel; */
+/* 	uint32_t mux_addr = MOD_VOX_ENABLE_ALG0_STAGE0_MONOSWITCHNOSLEW_ADDR; */
+/* 	echo_cancel = ucontrol->value.integer.value[0]; */
+/* 	if (echo_cancel) */
+/* 	{ */
+/* 		buf[0] = MICROBURST_SIGMADSP_FIXPT_ZERO; */
+/* 		buf[1] = MICROBURST_SIGMADSP_FIXPT_ONE; */
+/* 	} */
+/* 	else */
+/* 	{ */
+/* 		buf[0] = MICROBURST_SIGMADSP_FIXPT_ONE; */
+/* 		buf[1] = MICROBURST_SIGMADSP_FIXPT_ZERO; */
+/* 	} */
 
-	//printk (KERN_DEBUG "MB-sigmadsp: echo_cancel setting to %d\n", echo_cancel);
-	adau1761_block_write(adau, mux_addr, buf, 8);
+/* 	//printk (KERN_DEBUG "MB-sigmadsp: echo_cancel setting to %d\n", echo_cancel); */
+/* 	adau1761_block_write(adau, mux_addr, buf, 8); */
 
-	return 0;
-};
+/* 	return 0; */
+/* }; */
 
 static int microburst_sigmadsp_eq_comp_bypass_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
@@ -2045,7 +2045,7 @@ static int microburst_sigmadsp_binary_version_put(struct snd_kcontrol *kcontrol,
 static int microburst_sigmadsp_module_version_get(struct snd_kcontrol *kcontrol,
 	                                               struct snd_ctl_elem_value *ucontrol)
 {
-	printk(KERN_DEBUG "Module Version %d", CODEC_MODULE_VERSION);
+    //	printk(KERN_DEBUG "Module Version %d", CODEC_MODULE_VERSION);
 
 	ucontrol->value.integer.value[0] = CODEC_MODULE_VERSION;
 
@@ -2179,16 +2179,16 @@ static const struct snd_kcontrol_new microburst_sigmadsp_controls[] = {
 				microburst_sigmadsp_monitor_voice_cw_put),
 		SOC_SINGLE_INT_EXT("Microburst SigmaDSP EQ-COMP Bypass", 2, microburst_sigmadsp_eq_comp_bypass_get,
 			microburst_sigmadsp_eq_comp_bypass_put),
-		SOC_SINGLE_INT_EXT("Microburst SigmaDSP VOX Enable", 2, microburst_sigmadsp_vox_enable_get,
-			microburst_sigmadsp_vox_enable_put),
+                //		SOC_SINGLE_INT_EXT("Microburst SigmaDSP VOX Enable", 2, microburst_sigmadsp_vox_enable_get,
+                //			microburst_sigmadsp_vox_enable_put),
 		SOC_SINGLE_BOOL_EXT("Microburst SigmaDSP Compander", 1, microburst_sigmadsp_compander_get,
 				microburst_sigmadsp_compander_put),
-		SOC_SINGLE_BOOL_EXT("Microburst SigmaDSP APF", 1, microburst_sigmadsp_apf_get,
-				microburst_sigmadsp_apf_put),
+                //		SOC_SINGLE_BOOL_EXT("Microburst SigmaDSP APF", 1, microburst_sigmadsp_apf_get,
+                //				microburst_sigmadsp_apf_put),
 		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Compander Curve", 0x07FFFFFF, microburst_sigmadsp_compander_curve_get, 
 			microburst_sigmadsp_compander_curve_put),
-		SOC_SINGLE_INT_EXT("Microburst SigmaDSP APF Coef", 0x07FFFFFF, microburst_sigmadsp_apf_coefficients_get,
-                                   microburst_sigmadsp_apf_coefficients_put),
+                //		SOC_SINGLE_INT_EXT("Microburst SigmaDSP APF Coef", 0x07FFFFFF, microburst_sigmadsp_apf_coefficients_get,
+                //                 microburst_sigmadsp_apf_coefficients_put),
 		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Compander Hold", 12000, microburst_sigmadsp_compander_hold_get,
 			microburst_sigmadsp_compander_hold_put),
 		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Compander Decay", 0x7B89, microburst_sigmadsp_compander_decay_get,
@@ -2205,10 +2205,10 @@ static const struct snd_kcontrol_new microburst_sigmadsp_controls[] = {
 				microburst_sigmadsp_rx_eq_put),
 		SOC_SINGLE_BOOL_EXT("Microburst SigmaDSP Meter Select", 0, microburst_sigmadsp_meter_select_get,
 				microburst_sigmadsp_meter_select_put),
-		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Echo Cancel", 2, microburst_sigmadsp_echo_cancel_get,
-				microburst_sigmadsp_echo_cancel_put),
-		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Echo Cancel Adapt", 2, microburst_sigmadsp_echo_cancel_adapt_get,
-			microburst_sigmadsp_echo_cancel_adapt_put),
+                //		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Echo Cancel", 2, microburst_sigmadsp_echo_cancel_get,
+                //				microburst_sigmadsp_echo_cancel_put),
+                //		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Echo Cancel Adapt", 2, microburst_sigmadsp_echo_cancel_adapt_get,
+                //			microburst_sigmadsp_echo_cancel_adapt_put),
 		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Input Source", 2, microburst_sigmadsp_input_source_get,
 				microburst_sigmadsp_input_source_put),
 		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Sig Gen Select", 4, microburst_sigmadsp_sig_gen_select_get,
