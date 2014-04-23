@@ -25,7 +25,7 @@
 #include "microburst-sigmadsp.h"
 
 
-#define CODEC_MODULE_VERSION      1022
+#define CODEC_MODULE_VERSION      1023
 
 #define ADAU1761_DIGMIC_JACKDETECT	0x4008
 #define ADAU1761_REC_MIXER_LEFT0	0x400a
@@ -2059,6 +2059,40 @@ static int microburst_sigmadsp_module_version_put(struct snd_kcontrol *kcontrol,
 	return 0;
 }
 
+
+static int microburst_sigmadsp_peak_meter_decay_get(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	//printk (KERN_DEBUG "MB-sigmadsp: peak_meter_readback_get called\n");
+    	/* uint32_t readback_address = MOD_MIC_LEVEL_PEAK_READBACKALGSIGMA2001_ADDR; */
+	/* uint32_t meter_reading; */
+	/* uint32_t meter_reading_inverted; */
+	/* struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol); */
+	/* struct adau *adau = snd_soc_codec_get_drvdata(codec); */
+	/* //printk (KERN_DEBUG "MB-sigmadsp: reading peak meter addr %d", readback_address); */
+	/* regmap_raw_read(adau->regmap, readback_address, &meter_reading_inverted, 4); */
+	/* meter_reading = htonl(meter_reading_inverted); */
+	/* ucontrol->value.integer.value[0] = meter_reading; */
+	//printk (KERN_DEBUG "MB-sigmadsp: peak reading value %08X", meter_reading);
+	return 0;
+};
+
+static int microburst_sigmadsp_peak_meter_decay_put(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+  struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+  struct adau *adau = snd_soc_codec_get_drvdata(codec);
+
+  uint32_t value[1];
+
+  value[0] = ucontrol->value.integer.value[0];
+
+  //  printk(KERN_DEBUG "Decay PUT %d", value[0]);
+  adau1761_block_write(adau, MOD_PEAKENV1_ALG0_MONOENVELOPEPEAKALG1DECAY_ADDR, value, 4);
+
+	//the put function does not do anything, this is a read-only control
+	return 0;
+};
 static int microburst_sigmadsp_peak_meter_readback_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
@@ -2255,6 +2289,8 @@ static const struct snd_kcontrol_new microburst_sigmadsp_controls[] = {
 				microburst_sigmadsp_rx_eq_stage_7_put),
 		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Peak Meter Readback", 0x00800000, microburst_sigmadsp_peak_meter_readback_get,
 				microburst_sigmadsp_peak_meter_readback_put),
+		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Peak Meter Decay", 0x00800000, microburst_sigmadsp_peak_meter_decay_get,
+				microburst_sigmadsp_peak_meter_decay_put),
 		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Average Meter Readback", 0x00800000, microburst_sigmadsp_average_meter_readback_get,
 				microburst_sigmadsp_average_meter_readback_put),
 		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Comp Meter In Readback", 0x008000000, microburst_sigmadsp_compressor_meter_readback_input_get,
