@@ -25,7 +25,7 @@
 #include "microburst-sigmadsp.h"
 
 
-#define CODEC_MODULE_VERSION      1023
+#define CODEC_MODULE_VERSION      1024
 
 #define ADAU1761_DIGMIC_JACKDETECT	0x4008
 #define ADAU1761_REC_MIXER_LEFT0	0x400a
@@ -539,7 +539,7 @@ static int microburst_sigmadsp_monitor_voice_cw_put(struct snd_kcontrol *kcontro
 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
 	struct adau *adau = snd_soc_codec_get_drvdata(codec);
 	int mon_cw;		//monitor CW is state 1, monitor Voice is state 0
-	uint32_t mux_addr = MOD_MONITOR_VOICE_CW_ALG0_STAGE0_MONOSWITCHNOSLEW_ADDR;
+	uint32_t mux_addr = MOD_MONITOR_VOICE_CW_ALG0_STAGE0_STEREOSWITCHNOSLEW_ADDR;
 	mon_cw = ucontrol->value.integer.value[0];
 	if (mon_cw)
 	{
@@ -871,7 +871,7 @@ static int microburst_sigmadsp_sig_gen_select_put(struct snd_kcontrol *kcontrol,
 	return 0;
 };
 
-static int microburst_sigmadsp_monitor_level_get(struct snd_kcontrol *kcontrol,
+static int microburst_sigmadsp_cw_monitor_level_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
 	//printk (KERN_DEBUG "MB-sigmadsp: monitor_level_get called\n");
@@ -879,7 +879,7 @@ static int microburst_sigmadsp_monitor_level_get(struct snd_kcontrol *kcontrol,
 	return 0;
 };
 
-static int microburst_sigmadsp_monitor_level_put(struct snd_kcontrol *kcontrol,
+static int microburst_sigmadsp_cw_monitor_level_put(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
 	//printk (KERN_DEBUG "MB-sigmadsp: monitor_level_put called\n");
@@ -887,7 +887,8 @@ static int microburst_sigmadsp_monitor_level_put(struct snd_kcontrol *kcontrol,
 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
 	struct adau *adau = snd_soc_codec_get_drvdata(codec);
 	int monitor_level;
-	uint32_t mux_addr = MOD_MONITOR_LEVEL_GAIN1940ALGNS2_ADDR;
+        uint32_t mux_addr = MOD_CW_MONITOR_LEVEL_GAIN1940ALGNS2_ADDR;
+        //	uint32_t mux_addr = MOD_MONITOR_LEVEL_GAIN1940ALGNS2_ADDR;
 	monitor_level = ucontrol->value.integer.value[0];
 	buf = MICROBURST_SIGMADSP_FIXPT_LEVEL_LOOKUP_64_STEP_MINUS_96_TO_ZERO[monitor_level];
 	//printk (KERN_DEBUG "MB-sigmadsp: monitor_level setting to %d\n", monitor_level);
@@ -895,6 +896,146 @@ static int microburst_sigmadsp_monitor_level_put(struct snd_kcontrol *kcontrol,
 
 	return 0;
 };
+
+static int microburst_sigmadsp_voice_monitor_level_get(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	//printk (KERN_DEBUG "MB-sigmadsp: monitor_level_get called\n");
+	ucontrol->value.integer.value[0] = kcontrol->private_value;
+	return 0;
+};
+
+static int microburst_sigmadsp_voice_monitor_level_put(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	//printk (KERN_DEBUG "MB-sigmadsp: monitor_level_put called\n");
+	uint32_t buf;
+	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+	struct adau *adau = snd_soc_codec_get_drvdata(codec);
+	int monitor_level;
+        uint32_t mux_addr = MOD_VOICE_MONITOR_LEVEL_GAIN1940ALGNS8_ADDR;
+        //	uint32_t mux_addr = MOD_MONITOR_LEVEL_GAIN1940ALGNS2_ADDR;
+	monitor_level = ucontrol->value.integer.value[0];
+	buf = MICROBURST_SIGMADSP_FIXPT_LEVEL_LOOKUP_64_STEP_MINUS_96_TO_ZERO[monitor_level];
+	//printk (KERN_DEBUG "MB-sigmadsp: monitor_level setting to %d\n", monitor_level);
+	adau1761_block_write(adau, mux_addr, &buf, 4);
+
+	return 0;
+};
+
+// Conversion needs to be done in Firmware!
+static int microburst_sigmadsp_voice_monitor_left_pan_get(struct snd_kcontrol *kcontrol,
+                                                        struct snd_ctl_elem_value *ucontrol)
+{
+  struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+  struct adau *adau = snd_soc_codec_get_drvdata(codec);
+
+  uint32_t value;
+
+  regmap_raw_read(adau->regmap, MOD_SB_MON_LEFT_PAN_GAIN1940ALGNS9_ADDR, &value, 4);
+  value = htonl(value);
+  ucontrol->value.integer.value[0] = value ; // 20 * log10(value) ! 
+  return 0;
+};
+// Conversion needs to be done in Firmware
+static int microburst_sigmadsp_voice_monitor_left_pan_put(struct snd_kcontrol *kcontrol,
+                                                        struct snd_ctl_elem_value *ucontrol)
+{
+  struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+  struct adau *adau = snd_soc_codec_get_drvdata(codec);
+
+  uint32_t value[1];
+
+  value[0] = ucontrol->value.integer.value[0]; // Convert by  pow( 10.0, (ucontrol->value.integer.value[0] - 90) / 20.0);
+  adau1761_block_write(adau, MOD_SB_MON_LEFT_PAN_GAIN1940ALGNS9_ADDR, value, 4);
+  return 0;
+};
+
+// Conversion needs to be done in Firmware!
+static int microburst_sigmadsp_voice_monitor_right_pan_get(struct snd_kcontrol *kcontrol,
+                                                        struct snd_ctl_elem_value *ucontrol)
+{
+  struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+  struct adau *adau = snd_soc_codec_get_drvdata(codec);
+
+  uint32_t value;
+
+  regmap_raw_read(adau->regmap,MOD_SB_MON_RIGHT_PAN_GAIN1940ALGNS10_ADDR, &value, 4);
+  value = htonl(value);
+  ucontrol->value.integer.value[0] = value ; // 20 * log10(value) ! 
+  return 0;
+};
+// Conversion needs to be done in Firmware
+static int microburst_sigmadsp_voice_monitor_right_pan_put(struct snd_kcontrol *kcontrol,
+                                                        struct snd_ctl_elem_value *ucontrol)
+{
+  struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+  struct adau *adau = snd_soc_codec_get_drvdata(codec);
+
+  uint32_t value[1];
+
+  value[0] = ucontrol->value.integer.value[0]; // Convert by  pow( 10.0, (ucontrol->value.integer.value[0] - 90) / 20.0);
+  adau1761_block_write(adau, MOD_SB_MON_RIGHT_PAN_GAIN1940ALGNS10_ADDR, value, 4);
+  return 0;
+};
+
+// Conversion needs to be done in Firmware!
+static int microburst_sigmadsp_cw_monitor_left_pan_get(struct snd_kcontrol *kcontrol,
+                                                        struct snd_ctl_elem_value *ucontrol)
+{
+  struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+  struct adau *adau = snd_soc_codec_get_drvdata(codec);
+
+  uint32_t value;
+
+  regmap_raw_read(adau->regmap, MOD_CW_MON_LEFT_PAN_GAIN1940ALGNS11_ADDR, &value, 4);
+  value = htonl(value);
+  ucontrol->value.integer.value[0] = value ; // 20 * log10(value) ! 
+  return 0;
+};
+// Conversion needs to be done in Firmware
+static int microburst_sigmadsp_cw_monitor_left_pan_put(struct snd_kcontrol *kcontrol,
+                                                        struct snd_ctl_elem_value *ucontrol)
+{
+  struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+  struct adau *adau = snd_soc_codec_get_drvdata(codec);
+
+  uint32_t value[1];
+
+  value[0] = ucontrol->value.integer.value[0]; // Convert by  pow( 10.0, (ucontrol->value.integer.value[0] - 90) / 20.0);
+  adau1761_block_write(adau, MOD_CW_MON_LEFT_PAN_GAIN1940ALGNS11_ADDR, value, 4);
+  return 0;
+};
+
+// Conversion needs to be done in Firmware!
+static int microburst_sigmadsp_cw_monitor_right_pan_get(struct snd_kcontrol *kcontrol,
+                                                        struct snd_ctl_elem_value *ucontrol)
+{
+  struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+  struct adau *adau = snd_soc_codec_get_drvdata(codec);
+
+  uint32_t value;
+
+  regmap_raw_read(adau->regmap, MOD_CW_MON_RIGHT_PAN_GAIN1940ALGNS12_ADDR, &value, 4);
+  value = htonl(value);
+  ucontrol->value.integer.value[0] = value ; // 20 * log10(value) ! 
+  return 0;
+};
+// Conversion needs to be done in Firmware
+static int microburst_sigmadsp_cw_monitor_right_pan_put(struct snd_kcontrol *kcontrol,
+                                                        struct snd_ctl_elem_value *ucontrol)
+{
+  struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+  struct adau *adau = snd_soc_codec_get_drvdata(codec);
+
+  uint32_t value[1];
+
+  value[0] = ucontrol->value.integer.value[0]; // Convert by  pow( 10.0, (ucontrol->value.integer.value[0] - 90) / 20.0);
+  adau1761_block_write(adau, MOD_CW_MON_RIGHT_PAN_GAIN1940ALGNS12_ADDR, value, 4);
+  return 0;
+};
+
+
 
 static int microburst_sigmadsp_sig_gen_level_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
@@ -2247,8 +2388,18 @@ static const struct snd_kcontrol_new microburst_sigmadsp_controls[] = {
 				microburst_sigmadsp_input_source_put),
 		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Sig Gen Select", 4, microburst_sigmadsp_sig_gen_select_get,
 				microburst_sigmadsp_sig_gen_select_put),
-		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Monitor Level", 63, microburst_sigmadsp_monitor_level_get,
-				microburst_sigmadsp_monitor_level_put),
+		SOC_SINGLE_INT_EXT("Microburst SigmaDSP CW Monitor Level", 63, microburst_sigmadsp_cw_monitor_level_get,
+				microburst_sigmadsp_cw_monitor_level_put),
+		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Voice Monitor Level", 63, microburst_sigmadsp_voice_monitor_level_get,
+				microburst_sigmadsp_voice_monitor_level_put),
+		SOC_SINGLE_INT_EXT("Microburst SigmaDSP CW Monitor Right Pan", 0x07FFFFFF, microburst_sigmadsp_cw_monitor_right_pan_get,
+			microburst_sigmadsp_cw_monitor_right_pan_put),
+		SOC_SINGLE_INT_EXT("Microburst SigmaDSP CW Monitor Left Pan", 0x07FFFFFF, microburst_sigmadsp_cw_monitor_left_pan_get,
+			microburst_sigmadsp_cw_monitor_left_pan_put),
+		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Voice Monitor Right Pan", 0x07FFFFFF, microburst_sigmadsp_voice_monitor_right_pan_get,
+			microburst_sigmadsp_voice_monitor_right_pan_put),
+		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Voice Monitor Left Pan", 0x07FFFFFF, microburst_sigmadsp_voice_monitor_left_pan_get,
+			microburst_sigmadsp_voice_monitor_left_pan_put),
 		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Sig Gen Level", 63, microburst_sigmadsp_sig_gen_level_get,
 				microburst_sigmadsp_sig_gen_level_put),
 		SOC_SINGLE_INT_EXT("Microburst SigmaDSP CW Sidetone", 10000, microburst_sigmadsp_cw_sidetone_get,
