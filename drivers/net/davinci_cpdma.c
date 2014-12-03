@@ -781,7 +781,13 @@ static int __cpdma_chan_process(struct cpdma_chan *chan)
 	desc_dma = desc_phys(pool, desc);
 
 	status	= __raw_readl(&desc->hw_mode);
-	outlen	= status & 0x7ff;
+
+        /* In order to receive Jumbo Frames we need to AND by more
+           than 0x7FF (2047). The new value of 0x3FFF allows for up to
+           16383 sized reads from the descriptor
+        */
+        outlen =  status & 0x3fff;
+        // outlen = status & 0xEFF;
 	if (status & CPDMA_DESC_OWNER) {
 		chan->stats.busy_dequeue++;
 		status = -EBUSY;
