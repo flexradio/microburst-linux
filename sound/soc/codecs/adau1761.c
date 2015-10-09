@@ -25,7 +25,7 @@
 #include "microburst-sigmadsp.h"
 
 
-#define CODEC_MODULE_VERSION      1024
+#define CODEC_MODULE_VERSION      1025
 
 #define ADAU1761_DIGMIC_JACKDETECT	0x4008
 #define ADAU1761_REC_MIXER_LEFT0	0x400a
@@ -489,6 +489,44 @@ static const char * const microburst_sigmadsp_input_source_text[] = {
 static const char * const microburst_sigmadsp_monitor_voice_cw_text[] = {
 		"Monitor Voice", "Monitor CW",
 };
+
+
+static int microburst_sigmadsp_rx_mute_get(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	//printk (KERN_DEBUG "MB-sigmadsp: tx_eq_stage_3_get called\n");
+	ucontrol->value.integer.value[0] = kcontrol->private_value;
+	return 0;
+};
+
+
+static int microburst_sigmadsp_rx_mute_set(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+	struct adau *adau = snd_soc_codec_get_drvdata(codec);
+        uint32_t mute_addr = MOD_RX_MUTE_ALG0_MUTEONOFF_ADDR;
+
+        int state;
+        uint32_t mute_rx = MICROBURST_SIGMADSP_FIXPT_ONE;
+	uint32_t unmute = MICROBURST_SIGMADSP_FIXPT_ZERO;
+
+        state = ucontrol->value.integer.value[0];
+
+	//printk (KERN_DEBUG "MB-codecdsp: microburst_sigmadsp_cw_key_put called.  Key state: %d\n", key_state);
+	if (state) {
+            	adau1761_safeload_write(adau, mute_addr, &mute_rx, 4);
+	}
+	else  {
+            	adau1761_safeload_write(adau, mute_addr, &unmute, 4);
+		
+	}
+
+        //        printk (KERN_CRIT  "MB-sigmadsp: RX MUTE SET = 0x%08X", state);
+
+	return 0;
+};
+
 
 /* Microburst SigmaDSP kcontrol functions */
 
@@ -1256,6 +1294,7 @@ static int microburst_sigmadsp_tx_eq_stage_2_put(struct snd_kcontrol *kcontrol,
 
 	return 0;
 };
+
 
 static int microburst_sigmadsp_tx_eq_stage_3_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
@@ -2348,6 +2387,8 @@ static int microburst_sigmadsp_average_meter_readback_put(struct snd_kcontrol *k
 static const DECLARE_TLV_DB_MINMAX(adau1761_input_gain, 0, 24);
 
 static const struct snd_kcontrol_new microburst_sigmadsp_controls[] = {
+    		SOC_SINGLE_BOOL_EXT("RX MUTE", 0, microburst_sigmadsp_rx_mute_get,
+				microburst_sigmadsp_rx_mute_set),
 		SOC_SINGLE_BOOL_EXT("Microburst SigmaDSP CW Key", 0, microburst_sigmadsp_cw_key_get,
 				microburst_sigmadsp_cw_key_put),
 		SOC_SINGLE_BOOL_EXT("Microburst SigmaDSP Monitor Voice CW", 1, microburst_sigmadsp_monitor_voice_cw_get,
