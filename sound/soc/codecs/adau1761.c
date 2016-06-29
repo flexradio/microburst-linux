@@ -25,7 +25,7 @@
 #include "microburst-sigmadsp.h"
 
 
-#define CODEC_MODULE_VERSION      1026
+#define CODEC_MODULE_VERSION      1028
 
 #define ADAU1761_DIGMIC_JACKDETECT	0x4008
 #define ADAU1761_REC_MIXER_LEFT0	0x400a
@@ -396,9 +396,9 @@ uint32_t MICROBURST_SIGMADSP_EQ_PANEL_STAGE_7_FIXPT_BOOST[21][5] = {
  {0x0036D1A5, 0x0042828C, 0x00B4B727, 0xFFCAFDE5, 0xFF86F6C2, },
  {0x00390E28, 0x003E976D, 0x00BBBF2B, 0xFFC97E43, 0xFF831CFD, }, };
 
-uint32_t MICROBURST_SIGMADSP_TX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[3] = { MOD_TX_EQ_TX_EQ_PANEL_ALG0_DATA_ADR_FIXPT, MOD_TX_EQ_TX_EQ_PANEL_ALG0_COEFF_ADR_FIXPT, MOD_TX_EQ_TX_EQ_PANEL_ALG0_LOOP_FIXPT };
+//uint32_t MICROBURST_SIGMADSP_TX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[3] = { MOD_TX_EQ_TX_EQ_PANEL_ALG0_DATA_ADR_FIXPT, MOD_TX_EQ_TX_EQ_PANEL_ALG0_COEFF_ADR_FIXPT, MOD_TX_EQ_TX_EQ_PANEL_ALG0_LOOP_FIXPT };
 
-uint32_t MICROBURST_SIGMADSP_RX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[4] = { MOD_RX_EQ_RX_EQ_PANEL_ALG0_DATA_ADR_FIXPT, MOD_RX_EQ_RX_EQ_PANEL_ALG0_DATAR_ADR_FIXPT, MOD_RX_EQ_RX_EQ_PANEL_ALG0_COEFF_ADR_FIXPT, MOD_RX_EQ_RX_EQ_PANEL_ALG0_LOOP_FIXPT };
+//uint32_t MICROBURST_SIGMADSP_RX_EQ_PANEL_DATA_COEFF_LOOP_FIXPT[4] = { MOD_RX_EQ_RX_EQ_PANEL_ALG0_DATA_ADR_FIXPT, MOD_RX_EQ_RX_EQ_PANEL_ALG0_DATAR_ADR_FIXPT, MOD_RX_EQ_RX_EQ_PANEL_ALG0_COEFF_ADR_FIXPT, MOD_RX_EQ_RX_EQ_PANEL_ALG0_LOOP_FIXPT }; /*  */
 
 
 /* Safeload write function for SigmaDSP Firmware parameters */
@@ -505,7 +505,9 @@ static int microburst_sigmadsp_rx_mute_set(struct snd_kcontrol *kcontrol,
 {
 	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
 	struct adau *adau = snd_soc_codec_get_drvdata(codec);
-        uint32_t mute_addr = MOD_RX_MUTE_ALG0_MUTEONOFF_ADDR;
+  uint32_t mute_addr =        MOD_RX_MUTE_MUTENOSLEWALG1MUTE_ADDR;
+ //MOD_RX_MUTE_ALG0_MUTEONOFF_ADDR;
+
 
         int state;
         uint32_t mute_rx = MICROBURST_SIGMADSP_FIXPT_ONE;
@@ -560,6 +562,39 @@ static int microburst_sigmadsp_cw_key_put(struct snd_kcontrol *kcontrol,
 	}
 	return 0;
 };
+
+
+static int microburst_sigmadsp_cw_key_rx_mute_get(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	//printk (KERN_DEBUG "MB-codecdsp: microburst_sigmadsp_cw_key_rx_mute_get called\n");
+	ucontrol->value.integer.value[0] = kcontrol->private_value;
+	return 0;
+};
+
+static int microburst_sigmadsp_cw_key_rx_mute_put(struct snd_kcontrol *kcontrol,
+		struct snd_ctl_elem_value *ucontrol)
+{
+	struct snd_soc_codec *codec = snd_kcontrol_chip(kcontrol);
+	struct adau *adau = snd_soc_codec_get_drvdata(codec);
+	int key_state;
+	uint32_t cw_key_addr = MOD_CW_KEY_RX_MUTE_ISON_ADDR;
+	uint32_t key_down = MICROBURST_SIGMADSP_FIXPT_ONE;
+	uint32_t key_up = MICROBURST_SIGMADSP_FIXPT_ZERO;
+	key_state = ucontrol->value.integer.value[0];
+
+	//printk (KERN_DEBUG "MB-codecdsp: microburst_sigmadsp_cw_key_rx_mute_put called.  Key state: %d\n", key_state);
+	if (key_state) {
+		////printk ("MB-codecdsp: setting key down mute state\n");
+		adau1761_block_write(adau, cw_key_addr, &key_down ,sizeof(key_down));
+	}
+	else  {
+		////printk ("MB-codecdsp: setting key up mute state\n");
+		adau1761_block_write(adau, cw_key_addr, &key_up, sizeof(key_up));
+	}
+	return 0;
+};
+
 
 static int microburst_sigmadsp_monitor_voice_cw_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
@@ -667,7 +702,7 @@ static int microburst_sigmadsp_compander_put(struct snd_kcontrol *kcontrol,
 
 	return 0;
 };
-
+/*
 static int microburst_sigmadsp_tx_eq_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
@@ -735,7 +770,7 @@ static int microburst_sigmadsp_rx_eq_put(struct snd_kcontrol *kcontrol,
 	adau1761_block_write(adau, mux_addr, buf, 8);
 	return 0;
 };
-
+*/
 static int microburst_sigmadsp_meter_select_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
@@ -1177,7 +1212,7 @@ static int microburst_sigmadsp_tx_filter_bw_put(struct snd_kcontrol *kcontrol,
 
 	return 0;
 };
-
+/*
 static int microburst_sigmadsp_tx_eq_stage_0_get(struct snd_kcontrol *kcontrol,
 		struct snd_ctl_elem_value *ucontrol)
 {
@@ -1770,6 +1805,7 @@ static int microburst_sigmadsp_rx_eq_stage_7_put(struct snd_kcontrol *kcontrol,
 
 	return 0;
 };
+*/
 
 static int microburst_sigmadsp_compander_decay_put(struct snd_kcontrol *kcontrol,
                                                   struct snd_ctl_elem_value *ucontrol)
@@ -2391,6 +2427,8 @@ static const struct snd_kcontrol_new microburst_sigmadsp_controls[] = {
 				microburst_sigmadsp_rx_mute_set),
 		SOC_SINGLE_BOOL_EXT("Microburst SigmaDSP CW Key", 0, microburst_sigmadsp_cw_key_get,
 				microburst_sigmadsp_cw_key_put),
+        SOC_SINGLE_BOOL_EXT("Microburst SigmaDSP CW Key RX Mute", 0, microburst_sigmadsp_cw_key_rx_mute_get,
+                            microburst_sigmadsp_cw_key_rx_mute_put),
 		SOC_SINGLE_BOOL_EXT("Microburst SigmaDSP Monitor Voice CW", 1, microburst_sigmadsp_monitor_voice_cw_get,
 				microburst_sigmadsp_monitor_voice_cw_put),
 		SOC_SINGLE_INT_EXT("Microburst SigmaDSP EQ-COMP Bypass", 2, microburst_sigmadsp_eq_comp_bypass_get,
@@ -2415,10 +2453,10 @@ static const struct snd_kcontrol_new microburst_sigmadsp_controls[] = {
 			microburst_sigmadsp_compander_post_gain_1_put),
 		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Compander Post Gain 2", 0x07FFFFFF, microburst_sigmadsp_compander_post_gain_2_get,
 			microburst_sigmadsp_compander_post_gain_2_put),
-		SOC_SINGLE_BOOL_EXT("Microburst SigmaDSP TX EQ", 0, microburst_sigmadsp_tx_eq_get,
+        /*		SOC_SINGLE_BOOL_EXT("Microburst SigmaDSP TX EQ", 0, microburst_sigmadsp_tx_eq_get,
 				microburst_sigmadsp_tx_eq_put),
 		SOC_SINGLE_BOOL_EXT("Microburst SigmaDSP RX EQ", 0, microburst_sigmadsp_rx_eq_get,
-				microburst_sigmadsp_rx_eq_put),
+    microburst_sigmadsp_rx_eq_put),*/
 		SOC_SINGLE_BOOL_EXT("Microburst SigmaDSP Meter Select", 0, microburst_sigmadsp_meter_select_get,
 				microburst_sigmadsp_meter_select_put),
                 //		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Echo Cancel", 2, microburst_sigmadsp_echo_cancel_get,
@@ -2447,7 +2485,7 @@ static const struct snd_kcontrol_new microburst_sigmadsp_controls[] = {
 				microburst_sigmadsp_cw_sidetone_put),
 		SOC_SINGLE_INT_EXT("Microburst SigmaDSP TX Filter Bandwidth", 2, microburst_sigmadsp_tx_filter_bw_get,
 				microburst_sigmadsp_tx_filter_bw_put),
-		SOC_SINGLE_INT_EXT("Microburst SigmaDSP TX EQ Stage 0", 20, microburst_sigmadsp_tx_eq_stage_0_get,
+        /*		SOC_SINGLE_INT_EXT("Microburst SigmaDSP TX EQ Stage 0", 20, microburst_sigmadsp_tx_eq_stage_0_get,
 				microburst_sigmadsp_tx_eq_stage_0_put),
 		SOC_SINGLE_INT_EXT("Microburst SigmaDSP TX EQ Stage 1", 20, microburst_sigmadsp_tx_eq_stage_1_get,
 				microburst_sigmadsp_tx_eq_stage_1_put),
@@ -2478,7 +2516,7 @@ static const struct snd_kcontrol_new microburst_sigmadsp_controls[] = {
 		SOC_SINGLE_INT_EXT("Microburst SigmaDSP RX EQ Stage 6", 20, microburst_sigmadsp_rx_eq_stage_6_get,
 				microburst_sigmadsp_rx_eq_stage_6_put),
 		SOC_SINGLE_INT_EXT("Microburst SigmaDSP RX EQ Stage 7", 20, microburst_sigmadsp_rx_eq_stage_7_get,
-				microburst_sigmadsp_rx_eq_stage_7_put),
+    microburst_sigmadsp_rx_eq_stage_7_put),*/
 		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Peak Meter Readback", 0x00800000, microburst_sigmadsp_peak_meter_readback_get,
 				microburst_sigmadsp_peak_meter_readback_put),
 		SOC_SINGLE_INT_EXT("Microburst SigmaDSP Peak Meter Decay", 0x00800000, microburst_sigmadsp_peak_meter_decay_get,
