@@ -112,7 +112,7 @@ static const char emac_version_string[] = "TI DaVinci EMAC Linux v6.1";
 
 #define EMAC_DEF_BUFFER_OFFSET		(0) /* Buffer offset to DMA (future) */
 #define EMAC_DEF_MIN_ETHPKTSIZE		(60) /* Minimum ethernet pkt size */
-#define EMAC_DEF_MAX_FRAME_SIZE		(1500 + 14 + 4 + 4)
+#define EMAC_DEF_MAX_FRAME_SIZE		(16000 + 14 + 4 + 4)
 #define EMAC_DEF_TX_CH			(0) /* Default 0th channel */
 #define EMAC_DEF_RX_CH			(0) /* Default 0th channel */
 #define EMAC_DEF_RX_NUM_DESC		(128)

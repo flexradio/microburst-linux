@@ -140,8 +140,6 @@ __be32 ic_servaddr = NONE;	/* Boot server IP address */
 __be32 root_server_addr = NONE;	/* Address of NFS server */
 u8 root_server_path[256] = { 0, };	/* Path to mount as root */
 
-u32 ic_dev_xid;		/* Device under configuration */
-
 /* vendor class identifier */
 static char vendor_class_identifier[253] __initdata;
 
@@ -186,7 +184,7 @@ struct ic_device {
 };
 
 static struct ic_device *ic_first_dev __initdata = NULL;/* List of open device */
-static struct net_device *ic_dev __initdata = NULL;	/* Selected device */
+static struct ic_device *ic_dev __initdata; /* Selected device */
 
 static bool __init ic_device_match(struct net_device *dev)
 {
@@ -276,7 +274,7 @@ static void __init ic_close_devs(void)
 	while ((d = next)) {
 		next = d->next;
 		dev = d->dev;
-		if (dev != ic_dev) {
+		if (dev != ic_dev->dev ) {
 			DBG(("IP-Config: Downing %s\n", dev->name));
 			dev_change_flags(dev, d->flags);
 		}
@@ -341,7 +339,7 @@ static int __init ic_setup_if(void)
 	int err;
 
 	memset(&ir, 0, sizeof(ir));
-	strcpy(ir.ifr_ifrn.ifrn_name, ic_dev->name);
+	strcpy(ir.ifr_ifrn.ifrn_name, ic_dev->dev->name);
 	set_sockaddr(sin, ic_myaddr, 0);
 	if ((err = ic_devinet_ioctl(SIOCSIFADDR, &ir)) < 0) {
 		printk(KERN_ERR "IP-Config: Unable to set interface address (%d).\n", err);
@@ -362,7 +360,7 @@ static int __init ic_setup_if(void)
 	 * out, we'll try to muddle along.
 	 */
 	if (ic_dev_mtu != 0) {
-		strcpy(ir.ifr_name, ic_dev->name);
+		strcpy(ir.ifr_name, ic_dev->dev->name);
 		ir.ifr_mtu = ic_dev_mtu;
 		if ((err = ic_dev_ioctl(SIOCSIFMTU, &ir)) < 0)
 			printk(KERN_ERR "IP-Config: Unable to set interface mtu to %d (%d).\n",
@@ -532,7 +530,7 @@ ic_rarp_recv(struct sk_buff *skb, struct net_device *dev, struct packet_type *pt
 		goto drop_unlock;
 
 	/* We have a winner! */
-	ic_dev = dev;
+	ic_dev = d;
 	if (ic_myaddr == NONE)
 		ic_myaddr = tip;
 	ic_servaddr = sip;
@@ -980,13 +978,6 @@ static int __init ic_bootp_recv(struct sk_buff *skb, struct net_device *dev, str
 		goto drop_unlock;
 	}
 
-	/* Is it a reply for the device we are configuring? */
-	if (b->xid != ic_dev_xid) {
-		if (net_ratelimit())
-			printk(KERN_ERR "DHCP/BOOTP: Ignoring delayed packet\n");
-		goto drop_unlock;
-	}
-
 	/* Parse extensions */
 	if (ext_len >= 4 &&
 	    !memcmp(b->exten, ic_bootp_cookie, 4)) { /* Check magic cookie */
@@ -1077,7 +1068,7 @@ static int __init ic_bootp_recv(struct sk_buff *skb, struct net_device *dev, str
 	}
 
 	/* We have a winner! */
-	ic_dev = dev;
+	ic_dev = d;
 	ic_myaddr = b->your_ip;
 	ic_servaddr = b->server_ip;
 	if (ic_gateway == NONE && b->relay_ip)
@@ -1170,8 +1161,6 @@ static int __init ic_dynamic(void)
 	get_random_bytes(&timeout, sizeof(timeout));
 	timeout = CONF_BASE_TIMEOUT + (timeout % (unsigned) CONF_TIMEOUT_RANDOM);
 	for (;;) {
-		/* Track the device we are configuring */
-		ic_dev_xid = d->xid;
 
 #ifdef IPCONFIG_BOOTP
 		if (do_bootp && (d->able & IC_BOOTP))
@@ -1191,6 +1180,8 @@ static int __init ic_dynamic(void)
 		    (ic_proto_enabled & IC_USE_DHCP) &&
 		    ic_dhcp_msgtype != DHCPACK) {
 			ic_got_reply = 0;
+      /* continue on device that got the reply */
+      d = ic_dev;
 			printk(",");
 			continue;
 		}
@@ -1436,7 +1427,7 @@ static int __init ip_auto_config(void)
 #endif /* IPCONFIG_DYNAMIC */
 	} else {
 		/* Device selected manually or only one device -> use it */
-		ic_dev = ic_first_dev->dev;
+		ic_dev = ic_first_dev;
 	}
 
 	addr = root_nfs_parse_addr(root_server_path);
@@ -1469,7 +1460,7 @@ static int __init ip_auto_config(void)
 	 * Clue in the operator.
 	 */
 	printk("IP-Config: Complete:");
-	printk("\n     device=%s", ic_dev->name);
+	printk("\n     device=%s", ic_dev->dev->name);
 	printk(", addr=%pI4", &ic_myaddr);
 	printk(", mask=%pI4", &ic_netmask);
 	printk(", gw=%pI4", &ic_gateway);
