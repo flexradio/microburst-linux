@@ -1,7 +1,7 @@
 #
 # Automatically generated make config: don't edit
 # Linux/arm 2.6.37-0.1-microburst Kernel Configuration
-# Wed Sep 14 09:06:42 2016
+# Tue Nov 29 17:15:10 2016
 #
 CONFIG_ARM=y
 CONFIG_SYS_SUPPORTS_APM_EMULATION=y
@@ -887,9 +887,11 @@ CONFIG_USB_NET_DM9601=y
 #
 # CONFIG_PPP is not set
 # CONFIG_SLIP is not set
-# CONFIG_NETCONSOLE is not set
-# CONFIG_NETPOLL is not set
-# CONFIG_NET_POLL_CONTROLLER is not set
+CONFIG_NETCONSOLE=m
+# CONFIG_NETCONSOLE_DYNAMIC is not set
+CONFIG_NETPOLL=y
+# CONFIG_NETPOLL_TRAP is not set
+CONFIG_NET_POLL_CONTROLLER=y
 # CONFIG_ISDN is not set
 # CONFIG_PHONE is not set
 
