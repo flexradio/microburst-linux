@@ -274,7 +274,7 @@ static void __init ic_close_devs(void)
 	while ((d = next)) {
 		next = d->next;
 		dev = d->dev;
-		if (dev != ic_dev->dev ) {
+		if (!ic_dev || dev != ic_dev->dev ) {
 			DBG(("IP-Config: Downing %s\n", dev->name));
 			dev_change_flags(dev, d->flags);
 		}
@@ -1441,14 +1441,6 @@ static int __init ip_auto_config(void)
 		return -1;
 
 	/*
-	 * Close all network devices except the device we've
-	 * autoconfigured and set up routes.
-	 */
-	ic_close_devs();
-	if (ic_setup_if() < 0 || ic_setup_routes() < 0)
-		return -1;
-
-	/*
 	 * Record which protocol was actually used.
 	 */
 #ifdef IPCONFIG_DYNAMIC
@@ -1473,6 +1465,14 @@ static int __init ip_auto_config(void)
 		printk(", mtu=%d", ic_dev_mtu);
 	printk("\n");
 #endif /* !SILENT */
+  
+  /*
+   * Close all network devices except the device we've
+	 * autoconfigured and set up routes.
+	 */
+	ic_close_devs();
+	if (ic_setup_if() < 0 || ic_setup_routes() < 0)
+		return -1;
 
 	return 0;
 }
