@@ -167,15 +167,25 @@ static int evm_adau1761_init(struct snd_soc_pcm_runtime *rtd)
 /* davinci-evm digital audio interface glue - connects codec <--> CPU */
 static struct snd_soc_dai_link ti81xx_evm_dai[] = {
 	{
-		.name = "adau1x61",
-		.stream_name = "adau1x61",
-		.cpu_dai_name = "davinci-mcasp.2",
-		.codec_dai_name = "adau-hifi",
+		.name = "adau1x61-de",
+		.stream_name = "adau1x61-de",
+		.cpu_dai_name = "davinci-mcasp.0",
+		.codec_dai_name = "adau-hifi-de",
 		.platform_name = "davinci-pcm-audio",
 		.codec_name = "adau1761.1-0038",
 		.init = evm_adau1761_init,
 		.ops = &microburst_ops,
 	},
+  {
+		.name = "adau1x61-mb",
+		.stream_name = "adau1x61-mb",
+		.cpu_dai_name = "davinci-mcasp.2",
+		.codec_dai_name = "adau-hifi-mb",
+		.platform_name = "davinci-pcm-audio",
+		.codec_name = "adau1761.1-0038",
+		.init = evm_adau1761_init,
+		.ops = &microburst_ops,
+	}
 };
 
 static struct snd_soc_card microburst_snd_soc_card = {

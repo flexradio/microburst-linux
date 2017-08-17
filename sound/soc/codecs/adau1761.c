@@ -3233,8 +3233,27 @@ static struct snd_soc_dai_driver adau1361_dai_driver = {
 	.ops = &adau17x1_dai_ops,
 };
 
-static struct snd_soc_dai_driver adau1761_dai_driver = {
-	.name = "adau-hifi",
+static struct snd_soc_dai_driver adau1761_dai_driver_mb = {
+	.name = "adau-hifi-mb",
+	.playback = {
+		.stream_name = "Playback",
+		.channels_min = 2,
+		.channels_max = 8,
+		.rates = SNDRV_PCM_RATE_8000_96000,
+		.formats = ADAU1761_FORMATS,
+	},
+	.capture = {
+		.stream_name = "Capture",
+		.channels_min = 2,
+		.channels_max = 8,
+		.rates = SNDRV_PCM_RATE_8000_96000,
+		.formats = ADAU1761_FORMATS,
+	},
+	.ops = &adau17x1_dai_ops,
+};
+
+static struct snd_soc_dai_driver adau1761_dai_driver_de = {
+	.name = "adau-hifi-de",
 	.playback = {
 		.stream_name = "Playback",
 		.channels_min = 2,
@@ -3278,14 +3297,18 @@ static int __devinit adau1761_spi_probe(struct spi_device *spi)
 	ret = adau17x1_bus_probe(&spi->dev, regmap, type, SND_SOC_SPI);
 	if (ret)
 		return ret;
-
+  /*
 	if (type == ADAU1361)
 		dai_drv = &adau1361_dai_driver;
 	else
 		dai_drv = &adau1761_dai_driver;
+  */
 
 	ret = snd_soc_register_codec(&spi->dev, &adau1761_codec_driver,
-			dai_drv, 1);
+                               &adau1761_dai_driver_mb, 1);
+
+  ret = snd_soc_register_codec(&spi->dev, &adau1761_codec_driver,
+                               &adau1761_dai_driver_de, 1);
 
 	if (ret)
 		goto err_remove;
@@ -3351,13 +3374,18 @@ static int __devinit adau1761_i2c_probe(struct i2c_client *client,
 	if (ret)
 		return ret;
 
+  /*
 	if (type == ADAU1361)
 		dai_drv = &adau1361_dai_driver;
 	else
 		dai_drv = &adau1761_dai_driver;
+  */
 
 	ret = snd_soc_register_codec(&client->dev, &adau1761_codec_driver,
-			dai_drv, 1);
+                               &adau1761_dai_driver_mb, 1);
+
+  ret = snd_soc_register_codec(&client->dev, &adau1761_codec_driver,
+                               &adau1761_dai_driver_de, 1);
 
 	if (ret)
 		goto err_remove;
