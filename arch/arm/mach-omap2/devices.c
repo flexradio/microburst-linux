@@ -2550,32 +2550,79 @@ static struct resource dm385_mcasp_resource[] = {
 };
 
 static struct resource ti81xx_mcasp_resource[] = {
-	{
-		.name = "mcasp",
-		.start = TI81XX_ASP2_BASE,
-		.end = TI81XX_ASP2_BASE + (SZ_1K * 12) - 1,
-		.flags = IORESOURCE_MEM,
-	},
-	/* TX event */
-	{
-		.start = TI81XX_DMA_MCASP2_AXEVT,
-		.end = TI81XX_DMA_MCASP2_AXEVT,
-		.flags = IORESOURCE_DMA,
-	},
-	/* RX event */
-	{
-		.start = TI81XX_DMA_MCASP2_AREVT,
-		.end = TI81XX_DMA_MCASP2_AREVT,
-		.flags = IORESOURCE_DMA,
-	},
+
+    {
+      .name = "mcasp0",
+      .start = TI81XX_ASP0_BASE,
+      .end = TI81XX_ASP0_BASE + (SZ_1K * 12) - 1,
+      .flags = IORESOURCE_MEM,
+    },
+    /* TX event */
+    {
+      .start = TI81XX_DMA_MCASP0_AXEVT,
+      .end = TI81XX_DMA_MCASP0_AXEVT,
+      .flags = IORESOURCE_DMA,
+    },
+    /* RX event */
+    {
+      .start = TI81XX_DMA_MCASP0_AREVT,
+      .end = TI81XX_DMA_MCASP0_AREVT,
+      .flags = IORESOURCE_DMA,
+    },
+    {
+            .name = "mcasp1",
+            .start = TI81XX_ASP1_BASE,
+            .end = TI81XX_ASP1_BASE + (SZ_1K * 12) - 1,
+            .flags = IORESOURCE_MEM,
+    },
+    /* TX event */
+    {
+            .start = TI81XX_DMA_MCASP1_AXEVT,
+            .end = TI81XX_DMA_MCASP1_AXEVT,
+            .flags = IORESOURCE_DMA,
+    },
+    /* RX event */
+    {
+            .start = TI81XX_DMA_MCASP1_AREVT,
+            .end = TI81XX_DMA_MCASP1_AREVT,
+            .flags = IORESOURCE_DMA,
+    },
+    {
+      .name = "mcasp2",
+      .start = TI81XX_ASP2_BASE,
+      .end = TI81XX_ASP2_BASE + (SZ_1K * 12) - 1,
+      .flags = IORESOURCE_MEM,
+    },
+    /* TX event */
+    {
+      .start = TI81XX_DMA_MCASP2_AXEVT,
+      .end = TI81XX_DMA_MCASP2_AXEVT,
+      .flags = IORESOURCE_DMA,
+    },
+    /* RX event */
+    {
+      .start = TI81XX_DMA_MCASP2_AREVT,
+      .end = TI81XX_DMA_MCASP2_AREVT,
+      .flags = IORESOURCE_DMA,
+    }
 };
 
-static struct platform_device ti81xx_mcasp_device = {
-	.name = "davinci-mcasp",
+static struct platform_device ti81xx_mcasp_device[] = {
+        {
+                .name = "davinci-mcasp",
+        },
+        {
+                .name = "davinci-mcasp",
+        },
+        {
+                .name = "davinci-mcasp",
+        },
+
 };
 
 void __init ti81xx_register_mcasp(int id, struct snd_platform_data *pdata)
 {
+        /*
 	if (machine_is_ti8168evm() || machine_is_ti8148evm()
 				|| machine_is_ti811xevm()) {
 		ti81xx_mcasp_device.id = 2;
@@ -2589,9 +2636,22 @@ void __init ti81xx_register_mcasp(int id, struct snd_platform_data *pdata)
 		pr_err("%s: platform not supported\n", __func__);
 		return;
 	}
+        */
 
-	ti81xx_mcasp_device.dev.platform_data = pdata;
-	platform_device_register(&ti81xx_mcasp_device);
+  /* Actually use the ID passed in */
+
+  if ( id > 2 || id < 0 )
+  {
+          pr_err("%s: id %d is out of range\n", __func__ , id);
+          return;
+  }
+
+  ti81xx_mcasp_device[id].id = id;
+  ti81xx_mcasp_device[id].resource = &ti81xx_mcasp_resource[id*3];
+  ti81xx_mcasp_device[id].num_resources = ARRAY_SIZE(ti81xx_mcasp_resource) / 3 ;
+	ti81xx_mcasp_device[id].dev.platform_data = pdata;
+
+	platform_device_register(&ti81xx_mcasp_device[id]);
 }
 #endif
 

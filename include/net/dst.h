@@ -118,6 +118,7 @@ dst_feature(const struct dst_entry *dst, u32 feature)
 static inline u32 dst_mtu(const struct dst_entry *dst)
 {
 	u32 mtu = dst_metric(dst, RTAX_MTU);
+  mtu = 1500;
 	/*
 	 * Alexey put it here, so ask him about it :)
 	 */

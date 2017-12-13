@@ -857,16 +857,27 @@ static struct snd_soc_dai_driver davinci_mcasp_dai[] = {
 		.ops 		= &davinci_mcasp_dai_ops,
 
 	},
-	{
-		"davinci-mcasp.1",
-		.playback 	= {
-			.channels_min	= 1,
-			.channels_max	= 384,
-			.rates		= DAVINCI_MCASP_RATES,
-			.formats	= SNDRV_PCM_FMTBIT_S16_LE,
+  {
+		.name		= "davinci-mcasp.2",
+		.playback	= {
+			.channels_min	= 2,
+			.channels_max 	= 2,
+			.rates 		= DAVINCI_MCASP_RATES,
+			.formats 	= SNDRV_PCM_FMTBIT_S8 |
+      SNDRV_PCM_FMTBIT_S16_LE |
+      SNDRV_PCM_FMTBIT_S32_LE,
+		},
+		.capture 	= {
+			.channels_min 	= 2,
+			.channels_max 	= 2,
+			.rates 		= DAVINCI_MCASP_RATES,
+			.formats	= SNDRV_PCM_FMTBIT_S8 |
+      SNDRV_PCM_FMTBIT_S16_LE |
+      SNDRV_PCM_FMTBIT_S32_LE,
 		},
 		.ops 		= &davinci_mcasp_dai_ops,
-	},
+
+	}
 
 };
 

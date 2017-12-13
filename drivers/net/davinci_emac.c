@@ -69,22 +69,24 @@ static int debug_level;
 module_param(debug_level, int, 0);
 MODULE_PARM_DESC(debug_level, "DaVinci EMAC debug level (NETIF_MSG bits)");
 
-/* Netif debug messages possible */
-#define DAVINCI_EMAC_DEBUG	(NETIF_MSG_DRV | \
-				NETIF_MSG_PROBE | \
-				NETIF_MSG_LINK | \
-				NETIF_MSG_TIMER | \
-				NETIF_MSG_IFDOWN | \
-				NETIF_MSG_IFUP | \
-				NETIF_MSG_RX_ERR | \
-				NETIF_MSG_TX_ERR | \
-				NETIF_MSG_TX_QUEUED | \
-				NETIF_MSG_INTR | \
-				NETIF_MSG_TX_DONE | \
-				NETIF_MSG_RX_STATUS | \
-				NETIF_MSG_PKTDATA | \
-				NETIF_MSG_HW | \
-				NETIF_MSG_WOL)
+/* /\* Netif debug messages possible *\/ */
+/* #define DAVINCI_EMAC_DEBUG	(NETIF_MSG_DRV | \ */
+/* 				NETIF_MSG_PROBE | \ */
+/* 				NETIF_MSG_LINK | \ */
+/* 				NETIF_MSG_TIMER | \ */
+/* 				NETIF_MSG_IFDOWN | \ */
+/* 				NETIF_MSG_IFUP | \ */
+/* 				NETIF_MSG_RX_ERR | \ */
+/* 				NETIF_MSG_TX_ERR | \ */
+/* 				NETIF_MSG_TX_QUEUED | \ */
+/* 				NETIF_MSG_INTR | \ */
+/* 				NETIF_MSG_TX_DONE | \ */
+/* 				NETIF_MSG_RX_STATUS | \ */
+/* 				NETIF_MSG_PKTDATA | \ */
+/* 				NETIF_MSG_HW | \ */
+/* 				NETIF_MSG_WOL) */
+
+#define DAVINCI_EMAC_DEBUG  1
 
 /* version info */
 #define EMAC_MAJOR_VERSION	6
@@ -1590,6 +1592,9 @@ static void emac_set_phy_config(struct emac_priv *priv, struct phy_device *phy)
  */
 static int emac_dev_open(struct net_device *ndev)
 {
+
+  printk(KERN_ERR "************** EMAC DEV OPEN *************\n");
+
 	struct device *emac_dev = &ndev->dev;
 	u32 cnt;
 	struct resource *res;
@@ -1669,24 +1674,35 @@ static int emac_dev_open(struct net_device *ndev)
 			dev_err(emac_dev, "could not connect to phy %s\n",
 				priv->phy_id);
 			priv->phydev = NULL;
-			return PTR_ERR(priv->phydev);
+
+      /* No PHY , fix the link, speed and duplex settings */
+      dev_notice(emac_dev, "no phy, defaulting to 1000/full\n");
+      priv->link = 1;
+      priv->speed = SPEED_1000;
+      priv->duplex = DUPLEX_FULL;
+      emac_update_phystatus(priv);
+
+     
 		}
+    else
+    {
 
-		emac_set_phy_config(priv, priv->phydev);
+      emac_set_phy_config(priv, priv->phydev);
 
-		priv->link = 0;
-		priv->speed = 0;
-		priv->duplex = ~0;
+      priv->link = 0;
+      priv->speed = 0;
+      priv->duplex = ~0;
 
-		dev_info(emac_dev, "attached PHY driver [%s] "
-			"(mii_bus:phy_addr=%s, id=%x)\n",
-			priv->phydev->drv->name, dev_name(&priv->phydev->dev),
-			priv->phydev->phy_id);
+      dev_info(emac_dev, "attached PHY driver [%s] "
+               "(mii_bus:phy_addr=%s, id=%x)\n",
+               priv->phydev->drv->name, dev_name(&priv->phydev->dev),
+                 priv->phydev->phy_id);
+    }
 	} else {
 		/* No PHY , fix the link, speed and duplex settings */
-		dev_notice(emac_dev, "no phy, defaulting to 100/full\n");
+		dev_notice(emac_dev, "no phy, defaulting to 1000/full\n");
 		priv->link = 1;
-		priv->speed = SPEED_100;
+		priv->speed = SPEED_1000;
 		priv->duplex = DUPLEX_FULL;
 		emac_update_phystatus(priv);
 	}
