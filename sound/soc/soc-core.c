@@ -763,10 +763,25 @@ static int soc_codec_close(struct snd_pcm_substream *substream)
 	cpu_dai->runtime = NULL;
 
 	if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK) {
+    /* EdG: We do not want to do the delayed stop because it causes a
+       race condition with the restart of the audio stream which causes
+       us to lose audio completely.
+
+       I believe our callbacks are short enough to where, on a missed callback,
+       we would get the stop after the restart.
+
+       Since we're not getting much pop suppression from delaying it and we're losing
+       audio.. we're just going to do it inline. No race. No loss of audio.
+    */
 		/* start delayed pop wq here for playback streams */
-		codec_dai->pop_wait = 1;
-		schedule_delayed_work(&rtd->delayed_work,
-			msecs_to_jiffies(rtd->pmdown_time));
+    //		codec_dai->pop_wait = 1;
+    //		schedule_delayed_work(&rtd->delayed_work,
+    //			msecs_to_jiffies(rtd->pmdown_time));
+		codec_dai->pop_wait = 0;
+		snd_soc_dapm_stream_event(rtd,
+                              codec_dai->driver->playback.stream_name,
+                              SND_SOC_DAPM_STREAM_STOP);
+
 	} else {
 		/* capture streams can be powered down now */
 		snd_soc_dapm_stream_event(rtd,
