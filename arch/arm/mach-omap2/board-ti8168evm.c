@@ -283,17 +283,43 @@ static u8 ti8168_iis_serializer_direction[] = {
 	INACTIVE_MODE,	INACTIVE_MODE,	INACTIVE_MODE,	INACTIVE_MODE,
 };
 
-static struct snd_platform_data ti8168_evm_snd_data = {
-	.tx_dma_offset	= 0x46800000,
-	.rx_dma_offset	= 0x46800000,
+static struct snd_platform_data ti8168_evm_snd_data[] = {
+  {
+	.tx_dma_offset	= 0x46000000,
+	.rx_dma_offset	= 0x46000000,
 	.op_mode	= DAVINCI_MCASP_IIS_MODE,
 	.num_serializer = ARRAY_SIZE(ti8168_iis_serializer_direction),
 	.tdm_slots	= 2,
 	.serial_dir	= ti8168_iis_serializer_direction,
-	.asp_chan_q	= EVENTQ_2,
+	.asp_chan_q	= EVENTQ_0,
 	.version	= MCASP_VERSION_2,
 	.txnumevt	= 1,
-	.rxnumevt	= 1,
+	.rxnumevt	= 1
+  },
+  {
+    .tx_dma_offset	= 0x46400000,
+    .rx_dma_offset	= 0x46400000,
+    .op_mode	= DAVINCI_MCASP_IIS_MODE,
+    .num_serializer = ARRAY_SIZE(ti8168_iis_serializer_direction),
+    .tdm_slots	= 2,
+    .serial_dir	= ti8168_iis_serializer_direction,
+    .asp_chan_q	= EVENTQ_1,
+    .version	= MCASP_VERSION_2,
+    .txnumevt	= 1,
+    .rxnumevt	= 1
+  },
+  {
+    .tx_dma_offset	= 0x46800000,
+    .rx_dma_offset	= 0x46800000,
+    .op_mode	= DAVINCI_MCASP_IIS_MODE,
+    .num_serializer = ARRAY_SIZE(ti8168_iis_serializer_direction),
+    .tdm_slots	= 2,
+    .serial_dir	= ti8168_iis_serializer_direction,
+    .asp_chan_q	= EVENTQ_2,
+    .version	= MCASP_VERSION_2,
+    .txnumevt	= 1,
+    .rxnumevt	= 1
+  }
 };
 
 static struct omap_musb_board_data musb_board_data = {
@@ -352,7 +378,9 @@ static void __init ti8168_evm_init(void)
 	ti81xx_mux_init(board_mux);
 	omap_serial_init();
 	ti816x_evm_i2c_init();
-	ti81xx_register_mcasp(0, &ti8168_evm_snd_data);
+	ti81xx_register_mcasp(0, &ti8168_evm_snd_data[0]);
+  ti81xx_register_mcasp(2, &ti8168_evm_snd_data[2]);
+
 	ti816x_spi_init();
 	/* initialize usb */
 	usb_musb_init(&musb_board_data);

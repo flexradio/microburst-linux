@@ -1335,19 +1335,65 @@ void ti816x_emac_mux(void)
 }
 
 
+/*
+ *  Parse MAC Address
+ *  command line.
+ *
+ *  microburst_mac=00:1C:2D:XX:XX:XX
+ *
+ * 
+ */
+
+static u32 _microburst_mac_address[ETH_ALEN] = {0};
+
+static int __init microburst_set_mac(char *line)
+{
+  u32 * mac;
+
+	printk(KERN_DEBUG "microburst_set_mac(%s)", line);
+
+  mac = _microburst_mac_address;
+  sscanf(line, "=%X:%X:%X:%X:%X:%X", &mac[0], &mac[1], &mac[2], &mac[3], &mac[4], &mac[5]);
+
+	return 1;
+}
+
+__setup("microburst_mac", microburst_set_mac);
 
 void ti816x_ethernet_init(void)
 {
-	u32 mac_lo, mac_hi;
+  u32 mac_lo, mac_hi;
+  u32 *mac;
 
-	mac_lo = omap_ctrl_readl(TI81XX_CONTROL_MAC_ID0_LO);
-	mac_hi = omap_ctrl_readl(TI81XX_CONTROL_MAC_ID0_HI);
-	ti816x_emac1_pdata.mac_addr[0] = mac_hi & 0xFF;
-	ti816x_emac1_pdata.mac_addr[1] = (mac_hi & 0xFF00) >> 8;
-	ti816x_emac1_pdata.mac_addr[2] = (mac_hi & 0xFF0000) >> 16;
-	ti816x_emac1_pdata.mac_addr[3] = (mac_hi & 0xFF000000) >> 24;
-	ti816x_emac1_pdata.mac_addr[4] = mac_lo & 0xFF;
-	ti816x_emac1_pdata.mac_addr[5] = (mac_lo & 0xFF00) >> 8;
+  mac = _microburst_mac_address;
+  printk(KERN_DEBUG "_microburst_mac_address=%02X:%02X:%02X:%02X:%02X:%02X",
+         mac[0], mac[1], mac[2], mac[3], mac[4], mac[5]);
+
+  if ( mac[0] == 0 && mac[1] == 0 && mac[2] == 0 )
+  {
+    printk(KERN_DEBUG "Loaded mac address does not have FLEX OUI - defaulting to TI MAC");
+
+    mac_lo = omap_ctrl_readl(TI81XX_CONTROL_MAC_ID0_LO);
+    mac_hi = omap_ctrl_readl(TI81XX_CONTROL_MAC_ID0_HI);
+
+    ti816x_emac1_pdata.mac_addr[0] = mac_hi & 0xFF;
+    ti816x_emac1_pdata.mac_addr[1] = (mac_hi & 0xFF00) >> 8;
+    ti816x_emac1_pdata.mac_addr[2] = (mac_hi & 0xFF0000) >> 16;
+    ti816x_emac1_pdata.mac_addr[3] = (mac_hi & 0xFF000000) >> 24;
+    ti816x_emac1_pdata.mac_addr[4] = mac_lo & 0xFF;
+    ti816x_emac1_pdata.mac_addr[5] = (mac_lo & 0xFF00) >> 8;
+
+  }
+  else
+  {
+    
+    ti816x_emac1_pdata.mac_addr[0] = mac[0];
+    ti816x_emac1_pdata.mac_addr[1] = mac[1];
+    ti816x_emac1_pdata.mac_addr[2] = mac[2];
+    ti816x_emac1_pdata.mac_addr[3] = mac[3];
+    ti816x_emac1_pdata.mac_addr[4] = mac[4];
+    ti816x_emac1_pdata.mac_addr[5] = mac[5];
+  }
 
 	ti816x_emac1_pdata.ctrl_reg_offset = TI816X_EMAC_CNTRL_OFFSET;
 	ti816x_emac1_pdata.ctrl_mod_reg_offset = TI816X_EMAC_CNTRL_MOD_OFFSET;
@@ -1366,6 +1412,7 @@ void ti816x_ethernet_init(void)
 
 	mac_lo = omap_ctrl_readl(TI81XX_CONTROL_MAC_ID1_LO);
 	mac_hi = omap_ctrl_readl(TI81XX_CONTROL_MAC_ID1_HI);
+
 	ti816x_emac2_pdata.mac_addr[0] = mac_hi & 0xFF;
 	ti816x_emac2_pdata.mac_addr[1] = (mac_hi & 0xFF00) >> 8;
 	ti816x_emac2_pdata.mac_addr[2] = (mac_hi & 0xFF0000) >> 16;
@@ -1383,6 +1430,8 @@ void ti816x_ethernet_init(void)
 	ti816x_emac2_pdata.interrupt_disable = NULL;
 	ti816x_emac2_device.dev.platform_data = &ti816x_emac2_pdata;
 	platform_device_register(&ti816x_emac2_device);
+
+  printk(KERN_DEBUG "Emac2 Mac hi: 0x%X lo: 0x%X", mac_hi, mac_lo);
 
 	ti816x_emac_mux();
 }
@@ -2550,32 +2599,79 @@ static struct resource dm385_mcasp_resource[] = {
 };
 
 static struct resource ti81xx_mcasp_resource[] = {
-	{
-		.name = "mcasp",
-		.start = TI81XX_ASP2_BASE,
-		.end = TI81XX_ASP2_BASE + (SZ_1K * 12) - 1,
-		.flags = IORESOURCE_MEM,
-	},
-	/* TX event */
-	{
-		.start = TI81XX_DMA_MCASP2_AXEVT,
-		.end = TI81XX_DMA_MCASP2_AXEVT,
-		.flags = IORESOURCE_DMA,
-	},
-	/* RX event */
-	{
-		.start = TI81XX_DMA_MCASP2_AREVT,
-		.end = TI81XX_DMA_MCASP2_AREVT,
-		.flags = IORESOURCE_DMA,
-	},
+
+    {
+      .name = "mcasp0",
+      .start = TI81XX_ASP0_BASE,
+      .end = TI81XX_ASP0_BASE + (SZ_1K * 12) - 1,
+      .flags = IORESOURCE_MEM,
+    },
+    /* TX event */
+    {
+      .start = TI81XX_DMA_MCASP0_AXEVT,
+      .end = TI81XX_DMA_MCASP0_AXEVT,
+      .flags = IORESOURCE_DMA,
+    },
+    /* RX event */
+    {
+      .start = TI81XX_DMA_MCASP0_AREVT,
+      .end = TI81XX_DMA_MCASP0_AREVT,
+      .flags = IORESOURCE_DMA,
+    },
+    {
+            .name = "mcasp1",
+            .start = TI81XX_ASP1_BASE,
+            .end = TI81XX_ASP1_BASE + (SZ_1K * 12) - 1,
+            .flags = IORESOURCE_MEM,
+    },
+    /* TX event */
+    {
+            .start = TI81XX_DMA_MCASP1_AXEVT,
+            .end = TI81XX_DMA_MCASP1_AXEVT,
+            .flags = IORESOURCE_DMA,
+    },
+    /* RX event */
+    {
+            .start = TI81XX_DMA_MCASP1_AREVT,
+            .end = TI81XX_DMA_MCASP1_AREVT,
+            .flags = IORESOURCE_DMA,
+    },
+    {
+      .name = "mcasp2",
+      .start = TI81XX_ASP2_BASE,
+      .end = TI81XX_ASP2_BASE + (SZ_1K * 12) - 1,
+      .flags = IORESOURCE_MEM,
+    },
+    /* TX event */
+    {
+      .start = TI81XX_DMA_MCASP2_AXEVT,
+      .end = TI81XX_DMA_MCASP2_AXEVT,
+      .flags = IORESOURCE_DMA,
+    },
+    /* RX event */
+    {
+      .start = TI81XX_DMA_MCASP2_AREVT,
+      .end = TI81XX_DMA_MCASP2_AREVT,
+      .flags = IORESOURCE_DMA,
+    }
 };
 
-static struct platform_device ti81xx_mcasp_device = {
-	.name = "davinci-mcasp",
+static struct platform_device ti81xx_mcasp_device[] = {
+        {
+                .name = "davinci-mcasp",
+        },
+        {
+                .name = "davinci-mcasp",
+        },
+        {
+                .name = "davinci-mcasp",
+        },
+
 };
 
 void __init ti81xx_register_mcasp(int id, struct snd_platform_data *pdata)
 {
+        /*
 	if (machine_is_ti8168evm() || machine_is_ti8148evm()
 				|| machine_is_ti811xevm()) {
 		ti81xx_mcasp_device.id = 2;
@@ -2589,9 +2685,22 @@ void __init ti81xx_register_mcasp(int id, struct snd_platform_data *pdata)
 		pr_err("%s: platform not supported\n", __func__);
 		return;
 	}
+        */
 
-	ti81xx_mcasp_device.dev.platform_data = pdata;
-	platform_device_register(&ti81xx_mcasp_device);
+  /* Actually use the ID passed in */
+
+  if ( id > 2 || id < 0 )
+  {
+          pr_err("%s: id %d is out of range\n", __func__ , id);
+          return;
+  }
+
+  ti81xx_mcasp_device[id].id = id;
+  ti81xx_mcasp_device[id].resource = &ti81xx_mcasp_resource[id*3];
+  ti81xx_mcasp_device[id].num_resources = ARRAY_SIZE(ti81xx_mcasp_resource) / 3 ;
+	ti81xx_mcasp_device[id].dev.platform_data = pdata;
+
+	platform_device_register(&ti81xx_mcasp_device[id]);
 }
 #endif
 

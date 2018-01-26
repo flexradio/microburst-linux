@@ -42,8 +42,8 @@ struct mburst_vr_drvdata {
 	spinlock_t		lock;
 };
 
-static int vr_davinci_wants = 995000;	//debug value remove!
-static int vr_setpoint = 800000;
+static int vr_davinci_wants = 1000000;	//debug value remove!
+static int vr_setpoint = 1000000;
 
 static struct proc_dir_entry *Our_Proc_File;
 static char procfs_buffer[PROCFS_MAX_SIZE];

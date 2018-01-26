@@ -207,25 +207,34 @@ static int omap_hsmmc_card_detect(struct device *dev, int slot)
 	u32 pstate;
 	u32 enabled;
 
-	if (mmc->version != MMC_CTRL_VERSION_2)
-		/* NOTE: assumes card detect signal is active-low */
-		return !gpio_get_value_cansleep(mmc->slots[0].switch_pin);
-	else {
-		pstate = 0;
-		enabled = 0;
+  /* For Microburst and DeepEddy we always assume the card detect
+   *  is TRUE.
+   *
+   * Microburst has that pin unconnected and DeepEddy it is being
+   * repurposed
+   */
 
-		enabled = host->mmc->enabled;
-		if (!enabled)
-			mmc_host_enable(host->mmc);
+  return 1;
 
-		pstate = OMAP_HSMMC_READ(host->base, PSTATE);
+	/* if (mmc->version != MMC_CTRL_VERSION_2) */
+	/* 	/\* NOTE: assumes card detect signal is active-low *\/ */
+	/* 	return !gpio_get_value_cansleep(mmc->slots[0].switch_pin); */
+	/* else { */
+	/* 	pstate = 0; */
+	/* 	enabled = 0; */
 
-		if (!enabled)
-			mmc_host_disable(host->mmc);
-		pstate = pstate & PSTATE_CINS_MASK;
-		pstate = pstate >> PSTATE_CINS_SHIFT;
-		return pstate;
-	}
+	/* 	enabled = host->mmc->enabled; */
+	/* 	if (!enabled) */
+	/* 		mmc_host_enable(host->mmc); */
+
+	/* 	pstate = OMAP_HSMMC_READ(host->base, PSTATE); */
+
+	/* 	if (!enabled) */
+	/* 		mmc_host_disable(host->mmc); */
+	/* 	pstate = pstate & PSTATE_CINS_MASK; */
+	/* 	pstate = pstate >> PSTATE_CINS_SHIFT; */
+	/* 	return pstate; */
+  /*	} */
 }
 
 static int omap_hsmmc_get_wp(struct device *dev, int slot)
@@ -236,24 +245,34 @@ static int omap_hsmmc_get_wp(struct device *dev, int slot)
 
 	u32 pstate;
 
-	if (mmc->version != MMC_CTRL_VERSION_2)
-		/* NOTE: assumes write protect signal is active-high */
-		return gpio_get_value_cansleep(mmc->slots[0].gpio_wp);
-	else {
-		pstate = 0;
-		pstate = OMAP_HSMMC_READ(host->base, PSTATE);
-		pstate &= PSTATE_WP_MASK;
 
-		/* For TI814X, always return that the card is 'rw', since
-		 * the WP pin is not connected.
-		 * Otherwise, detect the status and then return whether
-		 * the card is 'ro' or 'rw'.
-		 */
-		if (cpu_is_ti814x())
-			return 0;
-		else
-			return !(pstate >> PSTATE_WP_SHIFT);
-	}
+  /* For Microburst and DeepEddy we always assume the card is 'rw
+   *  
+   *
+   * Microburst has that pin unconnected and DeepEddy it is being
+   * repurposed
+   */
+
+  return 0;
+
+	/* if (mmc->version != MMC_CTRL_VERSION_2) */
+	/* 	/\* NOTE: assumes write protect signal is active-high *\/ */
+	/* 	return gpio_get_value_cansleep(mmc->slots[0].gpio_wp); */
+	/* else { */
+	/* 	pstate = 0; */
+	/* 	pstate = OMAP_HSMMC_READ(host->base, PSTATE); */
+	/* 	pstate &= PSTATE_WP_MASK; */
+
+	/* 	/\* For TI814X, always return that the card is 'rw', since */
+	/* 	 * the WP pin is not connected. */
+	/* 	 * Otherwise, detect the status and then return whether */
+	/* 	 * the card is 'ro' or 'rw'. */
+	/* 	 *\/ */
+	/* 	if (cpu_is_ti814x()) */
+	/* 		return 0; */
+	/* 	else */
+	/* 		return !(pstate >> PSTATE_WP_SHIFT); */
+	/* } */
 }
 
 static int omap_hsmmc_get_cover_state(struct device *dev, int slot)

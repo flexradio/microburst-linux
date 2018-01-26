@@ -18,7 +18,7 @@ mount /dev/mmcblk0p1 /mnt/sdroot
 echo "New root filesystem created and mounted"
 
 # Extract root filesystem from tarball
-tar zxf /mnt/sdboot/rootfs.tgz -C /mnt/sdroot/
+tar xf /mnt/sdboot/rootfs.tgz -C /mnt/sdroot/
 
 echo "Sync() Flushing rootfs to disk"
 sync
