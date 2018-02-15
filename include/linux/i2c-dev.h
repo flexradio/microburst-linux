@@ -48,6 +48,8 @@
 #define I2C_RDWR	0x0707	/* Combined R/W transfer (one STOP only) */
 
 #define I2C_PEC		0x0708	/* != 0 to use PEC with SMBus */
+#define I2C_SPEED    0x0709	/* kHz */
+
 #define I2C_SMBUS	0x0720	/* SMBus transfer */
 
 

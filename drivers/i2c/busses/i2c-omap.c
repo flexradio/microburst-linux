@@ -272,6 +272,7 @@ static void omap_i2c_unidle(struct omap_i2c_dev *dev)
 	WARN_ON(!dev->idle);
 
 	pdev = to_platform_device(dev->dev);
+
 	pdata = pdev->dev.platform_data;
 
 	pm_runtime_get_sync(&pdev->dev);
@@ -495,12 +496,12 @@ static int omap_i2c_init(struct omap_i2c_dev *dev)
 			OMAP_I2C_IE_AL)  | ((dev->fifo_size) ?
 				(OMAP_I2C_IE_RDR | OMAP_I2C_IE_XDR) : 0);
 	omap_i2c_write_reg(dev, OMAP_I2C_IE_REG, dev->iestate);
-	if (cpu_is_omap34xx()) {
+
 		dev->pscstate = psc;
 		dev->scllstate = scll;
 		dev->sclhstate = sclh;
 		dev->bufstate = buf;
-	}
+
 	return 0;
 }
 
@@ -660,6 +661,113 @@ omap_i2c_xfer(struct i2c_adapter *adap, struct i2c_msg msgs[], int num)
 out:
 	omap_i2c_idle(dev);
 	return r;
+}
+
+static int omap_i2c_speed_change(struct i2c_adapter *adap, unsigned long speed)
+{
+	struct omap_i2c_dev *dev = i2c_get_adapdata(adap);
+
+	u16 psc = 0, scll = 0, sclh = 0, buf = 0;
+	u16 fsscll = 0, fssclh = 0, hsscll = 0, hssclh = 0;
+	unsigned long fclk_rate = 12000000;
+	unsigned long timeout;
+  u16 sysc;
+	unsigned long internal_clk = 0;
+	struct clk *fclk;
+
+  struct platform_device *pdev;
+  pdev = to_platform_device(dev->dev);
+  pm_runtime_get_sync(&pdev->dev);
+
+  omap_i2c_wait_for_bb(dev);
+
+  // Put part into reset
+  omap_i2c_write_reg(dev, OMAP_I2C_CON_REG,  0);
+
+  dev->speed = (u32)speed;
+
+	if (!(cpu_class_is_omap1() || cpu_is_omap2420())) {
+		/*
+		 * HSI2C controller internal clk rate should be 19.2 Mhz for
+		 * HS and for all modes on 2430. On 34xx we can use lower rate
+		 * to get longer filter period for better noise suppression.
+		 * The filter is iclk (fclk for HS) period.
+		 */
+		if (dev->speed > 400 || cpu_is_omap2430())
+			internal_clk = 19200;
+		else if (dev->speed > 100)
+			internal_clk = 9600;
+		else
+			internal_clk = 4000;
+		fclk = clk_get(dev->dev, "fck");
+		fclk_rate = clk_get_rate(fclk) / 1000;
+		clk_put(fclk);
+
+		/* Compute prescaler divisor */
+		psc = fclk_rate / internal_clk;
+		psc = psc - 1;
+
+		/* If configured for High Speed */
+		if (dev->speed > 400) {
+			unsigned long scl;
+
+			/* For first phase of HS mode */
+			scl = internal_clk / 400;
+			fsscll = scl - (scl / 3) - 7;
+			fssclh = (scl / 3) - 5;
+
+			/* For second phase of HS mode */
+			scl = fclk_rate / dev->speed;
+			hsscll = scl - (scl / 3) - 7;
+			hssclh = (scl / 3) - 5;
+		} else if (dev->speed > 100) {
+			unsigned long scl;
+
+			/* Fast mode */
+			scl = internal_clk / dev->speed;
+			fsscll = scl - (scl / 3) - 7;
+			fssclh = (scl / 3) - 5;
+		} else {
+			/* Standard mode */
+			fsscll = internal_clk / (dev->speed * 2) - 7;
+			fssclh = internal_clk / (dev->speed * 2) - 5;
+		}
+		scll = (hsscll << OMAP_I2C_SCLL_HSSCLL) | fsscll;
+		sclh = (hssclh << OMAP_I2C_SCLH_HSSCLH) | fssclh;
+	} else {
+		/* Program desired operating rate */
+		fclk_rate /= (psc + 1) * 1000;
+		if (psc > 2)
+			psc = 2;
+		scll = fclk_rate / (dev->speed * 2) - 7 + psc;
+		sclh = fclk_rate / (dev->speed * 2) - 7 + psc;
+	}
+
+  dev->pscstate = psc;
+  dev->scllstate = scll;
+  dev->sclhstate = sclh;
+
+	/* Setup clock prescaler to obtain approx 12MHz I2C module clock: */
+	omap_i2c_write_reg(dev, OMAP_I2C_PSC_REG, psc);
+
+	/* SCL low and high time values */
+	omap_i2c_write_reg(dev, OMAP_I2C_SCLL_REG, scll);
+	omap_i2c_write_reg(dev, OMAP_I2C_SCLH_REG, sclh);
+
+  omap_i2c_write_reg(dev, OMAP_I2C_BUF_REG, dev->bufstate);
+  omap_i2c_write_reg(dev, OMAP_I2C_SYSC_REG, dev->syscstate);
+  omap_i2c_write_reg(dev, OMAP_I2C_WE_REG, dev->westate);
+
+  printk(KERN_DEBUG "SPEED CHANGE REQUESTED to %lu kHz", speed);
+  printk(KERN_DEBUG "PSC: %u SCLL: %u SCLH: %u", psc, scll, sclh);
+  /* Take the I2C module out of reset */
+  omap_i2c_write_reg(dev, OMAP_I2C_CON_REG, OMAP_I2C_CON_EN);
+
+  pm_runtime_put_sync(&pdev->dev);
+
+  msleep(1);
+
+  return 0;
 }
 
 static u32
@@ -963,6 +1071,7 @@ complete:
 static const struct i2c_algorithm omap_i2c_algo = {
 	.master_xfer	= omap_i2c_xfer,
 	.functionality	= omap_i2c_func,
+  .speed_change = omap_i2c_speed_change
 };
 
 static int __devinit
