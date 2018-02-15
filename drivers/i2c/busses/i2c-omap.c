@@ -425,7 +425,7 @@ static int omap_i2c_init(struct omap_i2c_dev *dev)
 		else
 			internal_clk = 4000;
 		fclk = clk_get(dev->dev, "fck");
-		fclk_rate = clk_get_rate(fclk) / 1000;
+		fclk_rate = clk_get_rate(fclk) / 2000;
 		clk_put(fclk);
 
 		/* Compute prescaler divisor */
@@ -699,8 +699,9 @@ static int omap_i2c_speed_change(struct i2c_adapter *adap, unsigned long speed)
 			internal_clk = 9600;
 		else
 			internal_clk = 4000;
+
 		fclk = clk_get(dev->dev, "fck");
-		fclk_rate = clk_get_rate(fclk) / 1000;
+		fclk_rate = clk_get_rate(fclk) / 2000;
 		clk_put(fclk);
 
 		/* Compute prescaler divisor */
