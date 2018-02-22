@@ -143,7 +143,7 @@ enum {
 #define OMAP_I2C_SCLH_HSSCLH	8
 
 /* I2C System Test Register (OMAP_I2C_SYSTEST): */
-#ifdef DEBUG
+
 #define OMAP_I2C_SYSTEST_ST_EN		(1 << 15)	/* System test enable */
 #define OMAP_I2C_SYSTEST_FREE		(1 << 14)	/* Free running mode */
 #define OMAP_I2C_SYSTEST_TMODE_MASK	(3 << 12)	/* Test mode select */
@@ -152,7 +152,7 @@ enum {
 #define OMAP_I2C_SYSTEST_SCL_O		(1 << 2)	/* SCL line drive out */
 #define OMAP_I2C_SYSTEST_SDA_I		(1 << 1)	/* SDA line sense in */
 #define OMAP_I2C_SYSTEST_SDA_O		(1 << 0)	/* SDA line drive out */
-#endif
+
 
 /* OCP_SYSSTATUS bit definitions */
 #define SYSS_RESETDONE_MASK		(1 << 0)
@@ -314,6 +314,11 @@ static void omap_i2c_idle(struct omap_i2c_dev *dev)
 	else
 		omap_i2c_write_reg(dev, OMAP_I2C_IE_REG, 0);
 
+  //  if ( dev->rev >= OMAP_I2C_REV_ON_4430 )
+  //    printk(KERN_INFO "dev->rev >= omap_i2c_rev_on_433");
+
+  //  if ( dev->rev < OMAP_I2C_REV_2)
+  //    printk(KERN_INFO "dev->rev < omap_i2c_rev_2");
 	if (dev->rev < OMAP_I2C_REV_2) {
 		iv = omap_i2c_read_reg(dev, OMAP_I2C_IV_REG); /* Read clears */
 	} else {
@@ -663,15 +668,155 @@ out:
 	return r;
 }
 
+static int omap_i2c_atecc_wake(struct i2c_adapter *adap)
+{
+	struct omap_i2c_dev *dev = i2c_get_adapdata(adap);
+
+  struct platform_device *pdev;
+  u32 reg;
+  u16 iv;
+
+  printk(KERN_INFO "ATECC WAKE");
+  pdev = to_platform_device(dev->dev);
+  pm_runtime_get_sync(&pdev->dev);
+
+  dev->iestate = omap_i2c_read_reg(dev, OMAP_I2C_IE_REG);
+  printk(KERN_INFO "dev->iestate: 0x%X", dev->iestate);
+  // Disable interrupt
+  printk(KERN_INFO "disabling interrupts");
+  omap_i2c_write_reg(dev, OMAP_I2C_IRQENABLE_CLR, dev->iestate);
+
+  //  omap_i2c_idle(dev);
+  //  dev->idle = 1;
+
+  // We must hold SDA low for at least 60uS to wake up ATECC508A
+  reg = omap_i2c_read_reg(dev, OMAP_I2C_SYSTEST_REG);
+  /* enable test mode */
+  reg |= OMAP_I2C_SYSTEST_ST_EN;
+  /* select SDA/SCL IO mode */
+  reg |= 3 << OMAP_I2C_SYSTEST_TMODE_SHIFT;
+  /* set SCL to high-impedance state (reset value is 0) */
+  reg |= OMAP_I2C_SYSTEST_SCL_O;
+  /* drive SDA low */
+  reg &= ~OMAP_I2C_SYSTEST_SDA_O;
+  /* Write out to part */
+  omap_i2c_write_reg(dev, OMAP_I2C_SYSTEST_REG, reg);
+  pm_runtime_put_sync(&pdev->dev);
+  printk(KERN_INFO "Delaying 100us");
+  udelay(100);
+
+  pm_runtime_get_sync(&pdev->dev);
+  printk(KERN_INFO "Resetting lines");
+  // Reset everything back
+  reg = omap_i2c_read_reg(dev, OMAP_I2C_SYSTEST_REG);
+  /* restore reset values */
+  reg &= ~OMAP_I2C_SYSTEST_ST_EN;
+  reg &= ~OMAP_I2C_SYSTEST_TMODE_MASK;
+  reg &= ~OMAP_I2C_SYSTEST_SCL_O;
+  reg &= ~OMAP_I2C_SYSTEST_SDA_O;
+  omap_i2c_write_reg(dev, OMAP_I2C_SYSTEST_REG, reg);
+
+  omap_i2c_write_reg(dev, OMAP_I2C_STAT_REG, dev->iestate);
+
+  /* Flush posted write before the dev->idle store occurs */
+  omap_i2c_read_reg(dev, OMAP_I2C_STAT_REG);
+
+  pm_runtime_put_sync(&pdev->dev);
+
+
+  // reenable interrupts
+  if ( dev->iestate ) {
+    printk(KERN_INFO "Enabling interrupts");
+    omap_i2c_write_reg(dev, OMAP_I2C_IRQENABLE_SET, dev->iestate);
+  }
+
+  //  dev->idle = 0;
+
+  return 0;
+}
+
+static int
+omap_i2c_atecc_wake_two(struct i2c_adapter *adap)
+{
+	struct omap_i2c_dev *dev = i2c_get_adapdata(adap);
+	int r;
+  u32 reg;
+
+	omap_i2c_unidle(dev);
+
+	r = omap_i2c_wait_for_bb(dev);
+	if (r < 0)
+		goto out;
+
+  // We must hold SDA low for at least 60uS to wake up ATECC508A
+  reg = omap_i2c_read_reg(dev, OMAP_I2C_SYSTEST_REG);
+  /* enable test mode */
+  reg |= OMAP_I2C_SYSTEST_ST_EN;
+  /* select SDA/SCL IO mode */
+  reg |= 3 << OMAP_I2C_SYSTEST_TMODE_SHIFT;
+  /* set SCL to high-impedance state (reset value is 0) */
+  reg |= OMAP_I2C_SYSTEST_SCL_O;
+  /* drive SDA low */
+  reg &= ~OMAP_I2C_SYSTEST_SDA_O;
+  /* Write out to part */
+  omap_i2c_write_reg(dev, OMAP_I2C_SYSTEST_REG, reg);
+
+  printk(KERN_INFO "Delaying 100us");
+  udelay(80);
+
+
+  printk(KERN_INFO "Resetting lines");
+  // Reset everything back
+  reg = omap_i2c_read_reg(dev, OMAP_I2C_SYSTEST_REG);
+  /* restore reset values */
+  reg &= ~OMAP_I2C_SYSTEST_ST_EN;
+  reg &= ~OMAP_I2C_SYSTEST_TMODE_MASK;
+  reg &= ~OMAP_I2C_SYSTEST_SCL_O;
+  reg &= ~OMAP_I2C_SYSTEST_SDA_O;
+  omap_i2c_write_reg(dev, OMAP_I2C_SYSTEST_REG, reg);
+
+  r = omap_i2c_init(dev);
+
+  omap_i2c_wait_for_bb(dev);
+ out:
+	omap_i2c_idle(dev);
+	return r;
+}
+
+
+static int
+omap_i2c_speed_change_two(struct i2c_adapter *adap, unsigned long speed)
+{
+	struct omap_i2c_dev *dev = i2c_get_adapdata(adap);
+	int r;
+
+	omap_i2c_unidle(dev);
+
+	r = omap_i2c_wait_for_bb(dev);
+	if (r < 0)
+		goto out;
+
+  dev->speed = (u32) speed;
+
+  r = omap_i2c_init(dev);
+
+
+
+	omap_i2c_wait_for_bb(dev);
+ out:
+	omap_i2c_idle(dev);
+	return r;
+}
+
 static int omap_i2c_speed_change(struct i2c_adapter *adap, unsigned long speed)
 {
 	struct omap_i2c_dev *dev = i2c_get_adapdata(adap);
 
-	u16 psc = 0, scll = 0, sclh = 0, buf = 0;
+	u16 psc = 0, scll = 0, sclh = 0;
 	u16 fsscll = 0, fssclh = 0, hsscll = 0, hssclh = 0;
 	unsigned long fclk_rate = 12000000;
-	unsigned long timeout;
-  u16 sysc;
+
+
 	unsigned long internal_clk = 0;
 	struct clk *fclk;
 
@@ -759,14 +904,14 @@ static int omap_i2c_speed_change(struct i2c_adapter *adap, unsigned long speed)
   omap_i2c_write_reg(dev, OMAP_I2C_SYSC_REG, dev->syscstate);
   omap_i2c_write_reg(dev, OMAP_I2C_WE_REG, dev->westate);
 
-  printk(KERN_DEBUG "SPEED CHANGE REQUESTED to %lu kHz", speed);
-  printk(KERN_DEBUG "PSC: %u SCLL: %u SCLH: %u", psc, scll, sclh);
+  //  printk(KERN_DEBUG "SPEED CHANGE REQUESTED to %lu kHz", speed);
+  //  printk(KERN_DEBUG "PSC: %u SCLL: %u SCLH: %u", psc, scll, sclh);
   /* Take the I2C module out of reset */
   omap_i2c_write_reg(dev, OMAP_I2C_CON_REG, OMAP_I2C_CON_EN);
 
   pm_runtime_put_sync(&pdev->dev);
 
-  msleep(1);
+  msleep(10);
 
   return 0;
 }
@@ -827,8 +972,11 @@ omap_i2c_rev1_isr(int this_irq, void *dev_id)
 	struct omap_i2c_dev *dev = dev_id;
 	u16 iv, w;
 
-	if (dev->idle)
+  //  printk(KERN_INFO "omap_i2c_rev1_isr");
+
+	if (dev->idle) {
 		return IRQ_NONE;
+  }
 
 	iv = omap_i2c_read_reg(dev, OMAP_I2C_IV_REG);
 	switch (iv) {
@@ -916,8 +1064,12 @@ omap_i2c_isr(int this_irq, void *dev_id)
 	u16 stat, w;
 	int err, count = 0;
 
-	if (dev->idle)
+  //  printk(KERN_INFO "omap_i2c_isr");
+
+	if (dev->idle) {
+    //printk(KERN_ERR "dev->idle so returning IRQ_NONE");
 		return IRQ_NONE;
+  }
 
 	bits = omap_i2c_read_reg(dev, OMAP_I2C_IE_REG);
 	while ((stat = (omap_i2c_read_reg(dev, OMAP_I2C_STAT_REG))) & bits) {
@@ -1072,7 +1224,8 @@ complete:
 static const struct i2c_algorithm omap_i2c_algo = {
 	.master_xfer	= omap_i2c_xfer,
 	.functionality	= omap_i2c_func,
-  .speed_change = omap_i2c_speed_change
+  .speed_change = omap_i2c_speed_change_two,
+  .atecc_wake = omap_i2c_atecc_wake_two
 };
 
 static int __devinit
