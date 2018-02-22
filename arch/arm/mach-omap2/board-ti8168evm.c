@@ -204,9 +204,9 @@ static struct i2c_board_info __initdata ti816x_i2c_boardinfo1[] = {
 
 static int __init ti816x_evm_i2c_init(void)
 {
-	omap_register_i2c_bus(1, 100, ti816x_i2c_boardinfo0,
+	omap_register_i2c_bus(1, 50, ti816x_i2c_boardinfo0,
 		ARRAY_SIZE(ti816x_i2c_boardinfo0));
-	omap_register_i2c_bus(2, 100, ti816x_i2c_boardinfo1,
+	omap_register_i2c_bus(2, 50, ti816x_i2c_boardinfo1,
 		ARRAY_SIZE(ti816x_i2c_boardinfo1));
 	return 0;
 }
