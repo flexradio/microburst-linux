@@ -452,6 +452,14 @@ static long i2cdev_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
 		 */
 		client->adapter->timeout = msecs_to_jiffies(arg * 10);
 		break;
+  case I2C_SPEED:
+    if ( client->adapter->algo->speed_change)
+      client->adapter->algo->speed_change(client->adapter, arg);
+    break;
+  case I2C_ATECC_WAKE:
+    if ( client->adapter->algo->atecc_wake)
+      client->adapter->algo->atecc_wake(client->adapter);
+    break;
 	default:
 		/* NOTE:  returning a fault code here could cause trouble
 		 * in buggy userspace code.  Some old kernel bugs returned

@@ -345,6 +345,9 @@ struct i2c_algorithm {
 
 	/* To determine what the adapter supports */
 	u32 (*functionality) (struct i2c_adapter *);
+
+  int (*speed_change)(struct i2c_adapter *adap, unsigned long speed);
+  int (*atecc_wake)(struct i2c_adapter *adap);
 };
 
 /*
