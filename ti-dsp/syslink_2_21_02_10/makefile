@@ -45,8 +45,7 @@ endif
 
 #  ======== all ========
 .PHONY: syslink syslink-driver syslink-hlos syslink-rtos
-.PHONY: samples samples-hlos examples extract
-.PHONY: install install-driver install-samples install-examples
+.PHONY: install install-driver
 .PHONY: all clean help
 
 all: syslink
@@ -68,10 +67,8 @@ ifneq ($(wildcard $(XDC_INSTALL_DIR)/bin/echo.exe),)
 endif
 endif
 
-samples: examples
 
 install: install-driver
-install: install-examples
 
 syslink-driver:
 	@echo "#"
@@ -267,12 +264,6 @@ else ifeq ("$(DEVICE)","OMAPL1XX")
             syslink-samples-hlos
 endif
 
-examples:
-	@echo "#"
-	@echo "# Making $@..."
-	$(MAKE) -C examples extract
-	$(MAKE) -C examples all
-
 install-driver:
 	@echo "#"
 	@echo "# Installing files in $(EXEC_DIR)"
@@ -287,15 +278,6 @@ install-driver:
             LOADER=$(LOADER) \
             $@
 
-install-samples: install-examples
-
-install-examples:
-	$(MAKE) -C examples \
-            DEVICE=$(DEVICE) \
-            SYSLINK_INSTALL_DIR=$(SYSLINK_INSTALL_DIR) \
-            EXEC_DIR=$(EXEC_DIR) \
-            install
-
 clean::
 	@echo "#"
 	@echo "# Cleaning packages..."
@@ -303,8 +285,6 @@ clean::
             XDC_INSTALL_DIR=$(XDC_INSTALL_DIR) \
             QNX_INSTALL_DIR=$(QNX_INSTALL_DIR) \
             clean
-	@echo "# Cleaning examples..."
-	$(MAKE) -C examples clean
 
 help:
 	@echo ""
@@ -518,8 +498,6 @@ else ifeq ($(MAKECMDGOALS), clean)
 else ifeq ($(MAKECMDGOALS), help)
 else ifeq ($(MAKECMDGOALS), install)
 else ifeq ($(MAKECMDGOALS), install-driver)
-else ifeq ($(MAKECMDGOALS), install-samples)
-else ifeq ($(MAKECMDGOALS), install-examples)
 
 #
 # Check for OMAP3530 specific components and options
