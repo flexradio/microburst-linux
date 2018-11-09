@@ -67,76 +67,6 @@ static struct omap2_hsmmc_info mmc[] = {
 	{}	/* Terminator */
 };
 
-static struct mtd_partition ti816x_evm_norflash_partitions[] = {
-	/* bootloader (U-Boot, etc) in first 5 sectors */
-	{
-		.name		= "bootloader",
-		.offset		= 0,
-		.size		= 2 * SZ_128K,
-		.mask_flags	= MTD_WRITEABLE, /* force read-only */
-	},
-	/* bootloader params in the next 1 sectors */
-	{
-		.name		= "env",
-		.offset		= MTDPART_OFS_APPEND,
-		.size		= SZ_128K,
-		.mask_flags	= 0,
-	},
-	/* kernel */
-	{
-		.name		= "kernel",
-		.offset		= MTDPART_OFS_APPEND,
-		.size		= 2 * SZ_2M,
-		.mask_flags	= 0
-	},
-	/* file system */
-	{
-		.name		= "filesystem",
-		.offset		= MTDPART_OFS_APPEND,
-		.size		= 25 * SZ_2M,
-		.mask_flags	= 0
-	},
-	/* reserved */
-	{
-		.name		= "reserved",
-		.offset		= MTDPART_OFS_APPEND,
-		.size		= MTDPART_SIZ_FULL,
-		.mask_flags	= 0
-	}
-};
-
-
-#define NAND_BLOCK_SIZE					SZ_128K
-
-static struct mtd_partition ti816x_nand_partitions[] = {
-/* All the partition sizes are listed in terms of NAND block size */
-	{
-		.name           = "U-Boot",
-		.offset         = 0,    /* Offset = 0x0 */
-		.size           = 19 * NAND_BLOCK_SIZE,
-	},
-	{
-		.name           = "U-Boot Env",
-		.offset         = MTDPART_OFS_APPEND,   /* Offset = 0x260000 */
-		.size           = 1 * NAND_BLOCK_SIZE,
-	},
-	{
-		.name           = "Kernel",
-		.offset         = MTDPART_OFS_APPEND,   /* Offset = 0x280000 */
-		.size           = 34 * NAND_BLOCK_SIZE,
-	},
-	{
-		.name           = "File System",
-		.offset         = MTDPART_OFS_APPEND,   /* Offset = 0x6C0000 */
-		.size           = 1601 * NAND_BLOCK_SIZE,
-	},
-	{
-		.name           = "Reserved",
-		.offset         = MTDPART_OFS_APPEND,   /* Offset = 0xCEE0000 */
-		.size           = MTDPART_SIZ_FULL,
-	},
-};
-
 #ifdef CONFIG_REGULATOR_MBURST
 static struct regulator_consumer_supply ti816x_i2c_supply[] = {
 	{
@@ -209,55 +139,6 @@ static int __init ti816x_evm_i2c_init(void)
 	omap_register_i2c_bus(2, 50, ti816x_i2c_boardinfo1,
 		ARRAY_SIZE(ti816x_i2c_boardinfo1));
 	return 0;
-}
-
-/* SPI fLash information */
-struct mtd_partition ti816x_spi_partitions[] = {
-	/* All the partition sizes are listed in terms of NAND block size */
-	{
-		.name		= "U-Boot",
-		.offset		= 0,	/* Offset = 0x0 */
-		.size		= 64 * SZ_4K,
-		.mask_flags	= MTD_WRITEABLE,	/* force read-only */
-	},
-	{
-		.name		= "U-Boot Env",
-		.offset		= MTDPART_OFS_APPEND,	/* Offset = 0x40000 */
-		.size		= 2 * SZ_4K,
-	},
-	{
-		.name		= "Kernel",
-		.offset		= MTDPART_OFS_APPEND,	/* Offset = 0x42000 */
-		.size		= 640 * SZ_4K,
-	},
-	{
-		.name		= "File System",
-		.offset		= MTDPART_OFS_APPEND,	/* Offset = 0x2C2000 */
-		.size		= MTDPART_SIZ_FULL,	/* size = 1.24 MiB */
-	}
-};
-
-const struct flash_platform_data ti816x_spi_flash = {
-	.name		= "spi_flash",
-	.parts		= ti816x_spi_partitions,
-	.nr_parts	= ARRAY_SIZE(ti816x_spi_partitions),
-};
-
-struct spi_board_info __initdata ti816x_spi_slave_info[] = {
-	{
-		.modalias	= "m25p80",
-		.platform_data	= &ti816x_spi_flash,
-		.irq		= -1,
-		.max_speed_hz	= 75000000,
-		.bus_num	= 1,
-		.chip_select	= 0,
-	},
-};
-
-static void __init ti816x_spi_init(void)
-{
-	spi_register_board_info(ti816x_spi_slave_info,
-				ARRAY_SIZE(ti816x_spi_slave_info));
 }
 
 static struct platform_device flex_adau1x61_device = {
@@ -381,28 +262,12 @@ static void __init ti8168_evm_init(void)
 	ti81xx_register_mcasp(0, &ti8168_evm_snd_data[0]);
   ti81xx_register_mcasp(2, &ti8168_evm_snd_data[2]);
 
-	ti816x_spi_init();
 	/* initialize usb */
 	usb_musb_init(&musb_board_data);
 	/* register devices (sound card) */
 	platform_add_devices(flex_devices, ARRAY_SIZE(flex_devices));
-	/* nand initialisation */
-	if (cpu_is_ti81xx()) {
-		u32 *control_status = TI81XX_CTRL_REGADDR(0x40);
-		if (*control_status & (1<<16))
-			bw = 2;	/*16-bit nand if BTMODE BW pin on board is ON*/
-		else
-			bw = 0;	/*8-bit nand if BTMODE BW pin on board is OFF*/
-
-		board_nand_init(ti816x_nand_partitions,
-			ARRAY_SIZE(ti816x_nand_partitions), 0, bw);
-	} else
-		board_nand_init(ti816x_nand_partitions,
-		ARRAY_SIZE(ti816x_nand_partitions), 0, NAND_BUSWIDTH_16);
 
 	omap2_hsmmc_init(mmc);
-	board_nor_init(ti816x_evm_norflash_partitions,
-		ARRAY_SIZE(ti816x_evm_norflash_partitions), 0);
 	mburst_vr_init();
 
 	regulator_has_full_constraints();
