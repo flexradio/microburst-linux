@@ -1,5 +1,6 @@
 #! /bin/bash
-
+export CROSS_COMPILE=arm-linux-gnueabi-
+export ARCH=arm
 make -j8 uImage
 make -j8 modules
 make INSTALL_MOD_PATH=/nfsroots/microburst modules_install
