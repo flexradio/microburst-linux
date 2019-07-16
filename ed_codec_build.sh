@@ -1,5 +1,5 @@
 #! /bin/bash
-export CROSS_COMPILE=arm-linux-gnueabi-
+export CROSS_COMPILE=/opt/ti/CodeSourcery/Sourcery_G++_Lite/bin/arm-none-linux-gnueabi-
 export ARCH=arm
 make -j8 uImage
 make -j8 modules
@@ -9,4 +9,5 @@ make syslink
 make install
 cd ../../
 depmod -b /nfsroots/microburst 2.6.37-0.1-microburst+
+cp /src/flex/microburst-linux/arch/arm/boot/uImage /var/lib/tftpboot/
 sync
