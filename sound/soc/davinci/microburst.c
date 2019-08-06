@@ -63,8 +63,8 @@ static int microburst_hw_params(struct snd_pcm_substream *substream,
 	int ret = 0;
 	unsigned sysclk;
 
-        sysclk = 24576000; // 98304000
-        //	sysclk = 98304000;
+  /* This is the MCLK clock coming in directly to the ADAU1761 */
+  sysclk = 24576000;
 
 	/* set codec DAI configuration */
 	ret = snd_soc_dai_set_fmt(codec_dai, CODEC_AUDIO_FORMAT);
@@ -76,16 +76,26 @@ static int microburst_hw_params(struct snd_pcm_substream *substream,
 	if (ret < 0)
 		return ret;
 
+  /* Set up direct clock from MCLK */
+  ret = snd_soc_dai_set_sysclk(codec_dai, ADAU17X1_CLK_SRC_MCLK, sysclk,
+                               SND_SOC_CLOCK_IN);
+  if (ret < 0)
+    return ret;
 	/* Set up for clock input on PLL */
-	ret = snd_soc_dai_set_sysclk(codec_dai, ADAU17X1_CLK_SRC_PLL, sysclk,
-			SND_SOC_CLOCK_IN);
-	if (ret < 0)
-		return ret;
-
-        ret = snd_soc_dai_set_pll(codec_dai, 0, 0, sysclk, 49152000);
+  //	ret = snd_soc_dai_set_sysclk(codec_dai, ADAU17X1_CLK_SRC_PLL, sysclk,
+  //			SND_SOC_CLOCK_IN);
+  //	if (ret < 0)
+  //		return ret;
+  /* Not using the PLL */
+  //  ret = snd_soc_dai_set_pll(codec_dai, 0, 0, sysclk, 49152000);
 
 	/* Set clock divider, div_id (0) argument ignored */
-        ret = snd_soc_dai_set_clkdiv(codec_dai, 0, 4);	//This was originally codec_dai, 0, 1
+  //  ret = snd_soc_dai_set_clkdiv(codec_dai, 0, 4);	//This was originally codec_dai, 0, 1
+
+  /* Set clock divider, div_id (0) argument ignored.
+     Internal clock freq is 48kHz so we want need to set divider is = MCLK / fs = 512 = 0x1
+  */
+  ret = snd_soc_dai_set_clkdiv(codec_dai, 0, 2);
 
 	if (ret < 0)
 		return ret;
