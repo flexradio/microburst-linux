@@ -283,7 +283,7 @@ static int adau17x1_hw_params(struct snd_pcm_substream *substream,
 	if (adau->clk_src == ADAU17X1_CLK_SRC_PLL)
 		freq = adau->pll_freq;
 	else
-          freq = adau->sysclk /  adau->sysclk_div;  //this was adau->sysclk * adau->sysclk_div originally, might be hiding the real problem
+    freq = adau->sysclk * adau->sysclk_div;
 		printk(KERN_DEBUG "sysclk %d sysclk_div %d freq %d params_rate %d\n",adau->sysclk,adau->sysclk_div,freq,params_rate(params));
 
 	if (freq % params_rate(params) != 0)
