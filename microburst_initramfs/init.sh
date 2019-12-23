@@ -11,12 +11,17 @@ mount -t vfat /dev/mmcblk0p0 /mnt/sdboot
 echo "Boot filesystem mounted"
 
 # Verify extraction of rootfs tarball works
-mkdir -p /tmp/rootfs
+busybox mkdir -p /tmp/rootfs
 if tar xf /mnt/sdboot/rootfs.tgz -C /tmp/rootfs/
 then
       echo "rootfs successfully extracted"
 else
       echo "rootfs extraction failed. Abort!"
+      rm /mnt/sdboot/ug-uImage
+      rm /mnt/sdboot/rootfs.tgz
+      rm /mnt/sdboot/manifest
+      sync
+      umount /sys /proc /mnt/sdboot
       busybox reboot -d 0 -n -f
 fi
 
@@ -27,7 +32,7 @@ echo "New root filesystem created and mounted"
 
 # Copy Extracted root filesystem from temp folder
 echo "rootfs now being copied to root partition"
-cp -ar /tmp/rootfs/* /mnt/sdroot/
+busybox cp -ar /tmp/rootfs/* /mnt/sdroot/
 
 echo "Sync() Flushing rootfs to disk"
 sync
