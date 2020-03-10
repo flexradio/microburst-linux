@@ -17,9 +17,9 @@ then
       echo "rootfs successfully extracted"
 else
       echo "rootfs extraction failed. Abort!"
-      rm /mnt/sdboot/ug-uImage
-      rm /mnt/sdboot/rootfs.tgz
-      rm /mnt/sdboot/manifest
+      rm -f /mnt/sdboot/ug-uImage
+      rm -f /mnt/sdboot/rootfs.tgz
+      rm -f /mnt/sdboot/manifest
       sync
       umount /sys /proc /mnt/sdboot
       busybox reboot -d 0 -n -f
@@ -43,9 +43,9 @@ echo "Upgrade Complete"
 
 if test -x /mnt/sdroot/bin/systemd ; then
 	echo "Restarting radio.."
-	rm /mnt/sdboot/ug-uImage
-	rm /mnt/sdboot/rootfs.tgz
-	rm /mnt/sdboot/manifest
+	rm -f /mnt/sdboot/ug-uImage
+	rm -f /mnt/sdboot/rootfs.tgz
+	rm -f /mnt/sdboot/manifest
 	sync
 	umount /sys /proc /mnt/sdboot
 #	exec switch_root /mnt/sdroot /bin/systemd
