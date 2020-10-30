@@ -5,33 +5,23 @@ nod /dev/mmcblk0 644 0 0 b 179 0
 nod /dev/mmcblk0p0 644 0 0 b 179 1
 nod /dev/mmcblk0p1 644 0 0 b 179 2
 nod /dev/mmcblk0p2 644 0 0 b 179 3
+nod /dev/null 666 0 0 c 1 3
 dir /bin 755 0 0
 slink /bin/sh busybox 777 0 0
 slink /bin/ls busybox 777 0 0
 slink /bin/rm busybox 777 0 0
 slink /bin/mount busybox 777 0 0
 slink /bin/umount busybox 777 0 0
-slink /bin/switch_root busybox 777 0 0
 slink /bin/tar busybox 777 0 0
 slink /bin/sync busybox 777 0 0
 slink /bin/grep busybox 777 0 0
 slink /bin/sed busybox 777 0 0
 slink /bin/awk busybox 777 0 0
-file /bin/busybox /src/flex/microburst-linux/microburst_initramfs/busybox 755 0 0
-file /bin/mke2fs /src/flex/microburst-linux/microburst_initramfs/mke2fs 755 0 0
-dir /lib 755 0 0
-file /lib/libblkid.so.1 /src/flex/microburst-linux/microburst_initramfs/libblkid.so.1 755 0 0
-file /lib/libcom_err.so.2 /src/flex/microburst-linux/microburst_initramfs/libcom_err.so.2 755 0 0
-file /lib/libc.so.6 /src/flex/microburst-linux/microburst_initramfs/libc.so.6 755 0 0
-file /lib/libe2p.so.2 /src/flex/microburst-linux/microburst_initramfs/libe2p.so.2 755 0 0
-file /lib/libext2fs.so.2 /src/flex/microburst-linux/microburst_initramfs/libext2fs.so.2 755 0 0
-file /lib/libuuid.so.1 /src/flex/microburst-linux/microburst_initramfs/libuuid.so.1 755 0 0
-file /lib/ld-linux.so.3 /src/flex/microburst-linux/microburst_initramfs/ld-linux.so.3 755 0 0
-file /lib/libpthread.so.0 /src/flex/microburst-linux/microburst_initramfs/libpthread.so.0 755 0 0
+file /bin/busybox microburst_initramfs/busybox 755 0 0
 dir /usr 755 0 0
 dir /proc 755 0 0
 dir /sys 755 0 0
 dir /mnt 755 0 0
 dir /mnt/sdboot 755 0 0
 dir /mnt/sdroot 755 0 0
-file /init /src/flex/microburst-linux/microburst_initramfs/init.sh 755 0 0
+file /init microburst_initramfs/init.sh 755 0 0
