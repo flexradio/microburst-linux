@@ -27,7 +27,7 @@ if ! tar -xf /mnt/sdboot/rootfs.tgz  -O > /dev/null; then
 fi
 
 # Verify the firmware bundle if it's there
-if compgen -G /mnt/sdboot/firmware_*.tar; then
+if stat -t /mnt/sdboot/firmware_*.tar > /dev/null 2>&1; then
   if ! tar -xf /mnt/sdboot/firmware_*.tar -O > /dev/null; then
     echo "Firmware bundle is corrupt!"
     restart_radio
@@ -42,7 +42,7 @@ echo "New root filesystem created and mounted"
 # Copy Extracted root filesystem from temp folder
 echo "rootfs now being extracted to root partition"
 tar -C /tmp/sdroot/ -xf /mnt/sdboot/rootfs.tgz
-if compgen -G /mnt/sdboot/firmware_*.tar; then
+if stat -t /mnt/sdboot/firmware_*.tar > /dev/null 2>&1; then
   tar -C /tmp/sdroot/ -xf /mnt/sdboot/firmware_*.tar
 fi
 
