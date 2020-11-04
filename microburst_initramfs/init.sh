@@ -4,7 +4,7 @@ set -x
 
 restart_radio() {
   echo "Restarting radio.."
-  rm -f /mnt/sdboot/ug-uImage /mnt/sdboot/rootfs.tgz /mnt/sdboot/manifest
+  rm -f /mnt/sdboot/ug-uImage /mnt/sdboot/rootfs.tgz /mnt/sdboot/manifest /mnt/sdboot/firmware_*.tar
   sync
   umount /sys /proc /mnt/sdboot
   busybox reboot -d 0 -n -f
@@ -41,9 +41,9 @@ echo "New root filesystem created and mounted"
 
 # Copy Extracted root filesystem from temp folder
 echo "rootfs now being extracted to root partition"
-tar -C /tmp/sdroot/ -xf /mnt/sdboot/rootfs.tgz
+tar -C /mnt/sdroot/ -xf /mnt/sdboot/rootfs.tgz
 if stat -t /mnt/sdboot/firmware_*.tar > /dev/null 2>&1; then
-  tar -C /tmp/sdroot/ -xf /mnt/sdboot/firmware_*.tar
+  tar -C /mnt/sdroot/ -xf /mnt/sdboot/firmware_*.tar
 fi
 
 echo "New root filesystem extracted"
