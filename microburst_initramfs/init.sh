@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/busybox sh
 
 set -x
 
@@ -9,6 +9,8 @@ restart_radio() {
   umount /sys /proc /mnt/sdboot
   busybox reboot -d 0 -n -f
 }
+
+/bin/busybox --install -s
 
 # Mount proc and sys
 mount -t proc proc /proc
@@ -27,11 +29,9 @@ if ! tar -xf /mnt/sdboot/rootfs.tgz  -O > /dev/null; then
 fi
 
 # Verify the firmware bundle if it's there
-if stat -t /mnt/sdboot/firmware_*.tar > /dev/null 2>&1; then
-  if ! tar -xf /mnt/sdboot/firmware_*.tar -O > /dev/null; then
-    echo "Firmware bundle is corrupt!"
-    restart_radio
-  fi
+if ! tar -xf /mnt/sdboot/firmware_*.tar -O > /dev/null; then
+  echo "Firmware bundle is corrupt!"
+  restart_radio
 fi
 
 # Create ext2 filesystem on mmc partition 2 and mount it
@@ -42,9 +42,7 @@ echo "New root filesystem created and mounted"
 # Copy Extracted root filesystem from temp folder
 echo "rootfs now being extracted to root partition"
 tar -C /mnt/sdroot/ -xf /mnt/sdboot/rootfs.tgz
-if stat -t /mnt/sdboot/firmware_*.tar > /dev/null 2>&1; then
-  tar -C /mnt/sdroot/ -xf /mnt/sdboot/firmware_*.tar
-fi
+tar -C /mnt/sdroot/ -xf /mnt/sdboot/firmware_*.tar
 
 echo "New root filesystem extracted"
 echo "Upgrade Complete"

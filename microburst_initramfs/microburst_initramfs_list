@@ -1,28 +1,20 @@
 dir /dev 755 0 0
+#  These should ideally be created by udev/mdev/devtmpfs but it's not working right
 nod /dev/console 644 0 0 c 5 1
+nod /dev/null 666 0 0 c 1 3
 nod /dev/loop0 644 0 0 b 7 0
 nod /dev/mmcblk0 644 0 0 b 179 0
 nod /dev/mmcblk0p0 644 0 0 b 179 1
 nod /dev/mmcblk0p1 644 0 0 b 179 2
 nod /dev/mmcblk0p2 644 0 0 b 179 3
-nod /dev/null 666 0 0 c 1 3
+
 dir /bin 755 0 0
-slink /bin/sh busybox 777 0 0
-slink /bin/ls busybox 777 0 0
-slink /bin/rm busybox 777 0 0
-slink /bin/mount busybox 777 0 0
-slink /bin/umount busybox 777 0 0
-slink /bin/tar busybox 777 0 0
-slink /bin/sync busybox 777 0 0
-slink /bin/grep busybox 777 0 0
-slink /bin/sed busybox 777 0 0
-slink /bin/awk busybox 777 0 0
-slink /bin/mke2fs busybox 777 0 0
-file /bin/busybox microburst_initramfs/busybox 755 0 0
-dir /usr 755 0 0
+dir /sbin 755 0 0
 dir /proc 755 0 0
 dir /sys 755 0 0
 dir /mnt 755 0 0
 dir /mnt/sdboot 755 0 0
 dir /mnt/sdroot 755 0 0
+
 file /init microburst_initramfs/init.sh 755 0 0
+file /bin/busybox microburst_initramfs/busybox 755 0 0
