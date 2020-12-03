@@ -29,10 +29,18 @@ if ! tar -xf /mnt/sdboot/rootfs.tgz  -O > /dev/null; then
 fi
 
 # Verify the firmware bundle if it's there
-if ! tar -xf /mnt/sdboot/firmware_*.tar -O > /dev/null; then
-  echo "Firmware bundle is corrupt!"
-  restart_radio
-fi
+for f in /mnt/sdboot/firmware_*.tar; do
+  if [[ -f "$f" ]]; then
+    echo "Found firmware bundle, testing integrity."
+    if ! tar -xf /mnt/sdboot/firmware_*.tar -O > /dev/null; then
+      echo "Firmware bundle is corrupt!"
+      restart_radio
+    fi
+  else
+    echo "No firmware bundle present, skipping for now."
+  fi
+  break
+done
 
 # Create ext2 filesystem on mmc partition 2 and mount it
 mke2fs -L root /dev/mmcblk0p1
