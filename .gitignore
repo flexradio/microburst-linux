@@ -77,3 +77,8 @@ GTAGS
 *.orig
 *~
 \#*#
+
+#
+# Syslink temp files
+#
+package.mak

@@ -1,4 +1,16 @@
-#!/bin/sh
+#!/bin/busybox sh
+
+set -x
+
+restart_radio() {
+  echo "Restarting radio.."
+  rm -f /mnt/sdboot/ug-uImage /mnt/sdboot/rootfs.tgz /mnt/sdboot/manifest /mnt/sdboot/firmware_*.tar
+  sync
+  umount /sys /proc /mnt/sdboot
+  busybox reboot -d 0 -n -f
+}
+
+/bin/busybox --install -s
 
 # Mount proc and sys
 mount -t proc proc /proc
@@ -11,19 +23,24 @@ mount -t vfat /dev/mmcblk0p0 /mnt/sdboot
 echo "Boot filesystem mounted"
 
 # Verify extraction of rootfs tarball works
-busybox mkdir -p /tmp/rootfs
-if tar xf /mnt/sdboot/rootfs.tgz -C /tmp/rootfs/
-then
-      echo "rootfs successfully extracted"
-else
-      echo "rootfs extraction failed. Abort!"
-      rm -f /mnt/sdboot/ug-uImage
-      rm -f /mnt/sdboot/rootfs.tgz
-      rm -f /mnt/sdboot/manifest
-      sync
-      umount /sys /proc /mnt/sdboot
-      busybox reboot -d 0 -n -f
+if ! tar -xf /mnt/sdboot/rootfs.tgz  -O > /dev/null; then
+  echo "rootfs extraction failed. Abort!"
+  restart_radio
 fi
+
+# Verify the firmware bundle if it's there
+for f in /mnt/sdboot/firmware_*.tar; do
+  if [[ -f "$f" ]]; then
+    echo "Found firmware bundle, testing integrity."
+    if ! tar -xf /mnt/sdboot/firmware_*.tar -O > /dev/null; then
+      echo "Firmware bundle is corrupt!"
+      restart_radio
+    fi
+  else
+    echo "No firmware bundle present, skipping for now."
+  fi
+  break
+done
 
 # Create ext2 filesystem on mmc partition 2 and mount it
 mke2fs -L root /dev/mmcblk0p1
@@ -31,27 +48,15 @@ mount /dev/mmcblk0p1 /mnt/sdroot
 echo "New root filesystem created and mounted"
 
 # Copy Extracted root filesystem from temp folder
-echo "rootfs now being copied to root partition"
-busybox cp -ar /tmp/rootfs/* /mnt/sdroot/
-
-echo "Sync() Flushing rootfs to disk"
-sync
+echo "rootfs now being extracted to root partition"
+tar -C /mnt/sdroot/ -xf /mnt/sdboot/rootfs.tgz
+tar -C /mnt/sdroot/ -xf /mnt/sdboot/firmware_*.tar
 
 echo "New root filesystem extracted"
-
 echo "Upgrade Complete"
 
-if test -x /mnt/sdroot/bin/systemd ; then
-	echo "Restarting radio.."
-	rm -f /mnt/sdboot/ug-uImage
-	rm -f /mnt/sdboot/rootfs.tgz
-	rm -f /mnt/sdboot/manifest
-	sync
-	umount /sys /proc /mnt/sdboot
-#	exec switch_root /mnt/sdroot /bin/systemd
-        busybox reboot -d 0 -n -f
-fi
-	
+restart_radio
+
 # If you get here, something bad happened.  
 
 # Kill kernel printk messages
