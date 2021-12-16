@@ -42,8 +42,8 @@ for f in /mnt/sdboot/firmware_*.tar; do
   break
 done
 
-# Create ext2 filesystem on mmc partition 2 and mount it
-mke2fs -L root /dev/mmcblk0p1
+# Create ext3 filesystem on mmc partition 2 and mount it
+/sbin/mke2fs -j -t ext3 -L root -F -F /dev/mmcblk0p1
 mount /dev/mmcblk0p1 /mnt/sdroot
 echo "New root filesystem created and mounted"
 

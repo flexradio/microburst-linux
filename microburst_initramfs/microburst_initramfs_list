@@ -8,6 +8,7 @@ nod /dev/mmcblk0p0 644 0 0 b 179 1
 nod /dev/mmcblk0p1 644 0 0 b 179 2
 nod /dev/mmcblk0p2 644 0 0 b 179 3
 
+dir /etc 755 0 0
 dir /bin 755 0 0
 dir /sbin 755 0 0
 dir /proc 755 0 0
@@ -18,3 +19,5 @@ dir /mnt/sdroot 755 0 0
 
 file /init microburst_initramfs/init.sh 755 0 0
 file /bin/busybox microburst_initramfs/busybox 755 0 0
+file /sbin/mke2fs microburst_initramfs/e2fsprogs/sbin/mke2fs 755 0 0
+file /etc/mke2fs.conf microburst_initramfs/e2fsprogs/etc/mke2fs.conf 644 0 0
